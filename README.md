@@ -1,7 +1,7 @@
 # EnglishClient - WORK IN PROGRESS
 
 node-version: 14.17.3 LTS
-implemented-styles: CSS
+implemented-styles: SCSS
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 
