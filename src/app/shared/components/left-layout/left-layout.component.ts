@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 export interface AboutText {
   title: string;
@@ -8,16 +8,12 @@ export interface AboutText {
 @Component({
   selector: 'app-left-layout',
   templateUrl: './left-layout.component.html',
-  styleUrls: ['./left-layout.component.scss']
+  styleUrls: ['./left-layout.component.scss'],
 })
+export class LeftLayoutComponent implements OnInit {
+  @Input() about: AboutText[] = [];
 
-export class LeftLayoutComponent implements OnInit{
-  
-  @Input() about: AboutText[] = []
+  constructor() {}
 
-
-  constructor(){}
-
-  ngOnInit(){}
-  
+  ngOnInit() {}
 }
