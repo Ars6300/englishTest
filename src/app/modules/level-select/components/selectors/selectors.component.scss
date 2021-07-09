@@ -1,0 +1,23 @@
+.selectors {
+  display: flex;
+  flex-direction: column;
+
+  &-title {
+    margin: 40px auto;
+    color: #fff;
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+
+    &_button {
+      margin-bottom: 6vh;
+    }
+  }
+}
