@@ -1,6 +1,3 @@
-import { SelectorsComponent } from './modules/level-select/components/selectors/selectors.component';
-import { SelectLevelComponent } from './modules/level-select/level-select.component';
-import { LeftLayoutComponent } from './shared/components/left-layout/left-layout.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
