@@ -1,0 +1,22 @@
+.wrapper{
+  position: sticky;
+  display: flex;
+  width: 62px;
+  height: 18px;
+  justify-content: space-between;
+}
+
+.language{
+  color: #4B4B4B;
+  font-style: normal;
+  font-weight: 500;
+
+  &:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+  }
+}
+
+.selected{
+  color: #FFFFFF
+}

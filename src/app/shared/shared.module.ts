@@ -7,6 +7,7 @@ import { AuthDirective } from './directives/auth.directive';
 import { DangerButtonComponent } from './components/buttons/danger-button/danger-button.component';
 import { PrimaryButtonComponent } from './components/buttons/primary-button/primary-button.component';
 import { SecondaryButtonComponent } from './components/buttons/secondary-button/secondary-button.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 
@@ -18,7 +19,8 @@ import { SecondaryButtonComponent } from './components/buttons/secondary-button/
     AuthDirective,
     DangerButtonComponent,
     PrimaryButtonComponent,
-    SecondaryButtonComponent
+    SecondaryButtonComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule
