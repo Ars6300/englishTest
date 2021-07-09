@@ -4,8 +4,12 @@ import { LanguageSelectComponent } from './components/language-select/language-s
 import { SafePipe } from './pipes/safe.pipe';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { AuthDirective } from './directives/auth.directive';
+
 import { ButtonComponent } from './components/buttons/button/button.component';
 import { ButtonsStylingDirective } from './directives/buttons-styling.directive';
+
+import { HeaderComponent } from './components/header/header.component';
+
 @NgModule({
   declarations: [
     LanguageSelectComponent,
@@ -14,6 +18,7 @@ import { ButtonsStylingDirective } from './directives/buttons-styling.directive'
     AuthDirective,
     ButtonComponent,
     ButtonsStylingDirective,
+    HeaderComponent
   ],
   imports: [CommonModule],
   exports: [ButtonComponent, ButtonsStylingDirective],
