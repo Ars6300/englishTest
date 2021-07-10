@@ -4,12 +4,11 @@ import { LanguageSelectComponent } from './components/language-select/language-s
 import { SafePipe } from './pipes/safe.pipe';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { AuthDirective } from './directives/auth.directive';
-import { DangerButtonComponent } from './components/buttons/danger-button/danger-button.component';
-import { PrimaryButtonComponent } from './components/buttons/primary-button/primary-button.component';
-import { SecondaryButtonComponent } from './components/buttons/secondary-button/secondary-button.component';
+
+import { ButtonComponent } from './components/buttons/button/button.component';
+import { ButtonsStylingDirective } from './directives/buttons-styling.directive';
+
 import { HeaderComponent } from './components/header/header.component';
-
-
 
 @NgModule({
   declarations: [
@@ -17,13 +16,11 @@ import { HeaderComponent } from './components/header/header.component';
     SafePipe,
     CapitalizePipe,
     AuthDirective,
-    DangerButtonComponent,
-    PrimaryButtonComponent,
-    SecondaryButtonComponent,
+    ButtonComponent,
+    ButtonsStylingDirective,
     HeaderComponent
   ],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule],
+  exports: [ButtonComponent, ButtonsStylingDirective],
 })
-export class SharedModule { }
+export class SharedModule {}
