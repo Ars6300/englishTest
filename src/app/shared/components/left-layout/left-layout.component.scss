@@ -1,12 +1,13 @@
 .left {
-  h2 {
+  padding: 100px 0px 0px 70px;
+  &-title {
     color: #545454;
     font-size: 35px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     margin-bottom: 40px;
   }
-  p {
+  &-text {
     width: 80%;
     color: #545454;
     font-size: 27px;
