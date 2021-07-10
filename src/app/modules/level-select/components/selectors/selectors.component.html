@@ -1,0 +1,10 @@
+<div class="selectors">
+  <h1 class="selectors-title">{{ title }}</h1>
+
+  <div class="selectors-container">
+    <button class="selectors-container-button" *ngFor="let button of buttons">
+      {{ button | uppercase }}
+    </button>
+    <button class="selectors-container-button">START TEST</button>
+  </div>
+</div>
