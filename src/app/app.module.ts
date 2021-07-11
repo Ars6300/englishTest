@@ -1,4 +1,3 @@
-import { TimerComponent } from './shared/components/timer/timer.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
