@@ -1,3 +1,4 @@
+import { TimerComponent } from './shared/components/timer/timer.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -13,4 +14,3 @@ import { AppComponent } from './app.component';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-

@@ -7,8 +7,7 @@ import { AuthDirective } from './directives/auth.directive';
 
 import { ButtonComponent } from './components/buttons/button/button.component';
 import { ButtonsStylingDirective } from './directives/buttons-styling.directive';
-
-import { HeaderComponent } from './components/header/header.component';
+import { TimerComponent } from './components/timer/timer.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +17,9 @@ import { HeaderComponent } from './components/header/header.component';
     AuthDirective,
     ButtonComponent,
     ButtonsStylingDirective,
-    HeaderComponent
+    TimerComponent,
   ],
   imports: [CommonModule],
-  exports: [ButtonComponent, ButtonsStylingDirective],
+  exports: [ButtonComponent, ButtonsStylingDirective, TimerComponent],
 })
 export class SharedModule {}
