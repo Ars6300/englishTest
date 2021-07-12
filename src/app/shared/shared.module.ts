@@ -10,7 +10,9 @@ import { AuthDirective } from './directives/auth.directive';
 import { ButtonComponent } from './components/buttons/button/button.component';
 import { ButtonsStylingDirective } from './directives/buttons-styling.directive';
 import { TimerComponent } from './components/timer/timer.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { HeaderComponent } from './components/header/header.component';
+
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { HeaderComponent } from './components/header/header.component';
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,
+    NavigationComponent,
     HeaderComponent,
   ],
   imports: [CommonModule, FormsModule],
