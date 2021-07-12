@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AboutText } from 'src/app/shared/components/left-layout/left-layout.component';
 
 
