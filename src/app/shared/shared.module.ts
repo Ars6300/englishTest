@@ -1,3 +1,4 @@
+import { LeftLayoutComponent } from './components/left-layout/left-layout.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,10 +12,10 @@ import { ButtonComponent } from './components/buttons/button/button.component';
 import { ButtonsStylingDirective } from './directives/buttons-styling.directive';
 import { TimerComponent } from './components/timer/timer.component';
 
-
 @NgModule({
   declarations: [
     LanguageSelectComponent,
+    LeftLayoutComponent,
     SafePipe,
     CapitalizePipe,
     AuthDirective,
@@ -28,7 +29,8 @@ import { TimerComponent } from './components/timer/timer.component';
     FormsModule,
     ButtonComponent,
     ButtonsStylingDirective,
-    TimerComponent
+    TimerComponent,
+    LeftLayoutComponent,
   ],
 })
 export class SharedModule {}
