@@ -11,6 +11,8 @@ import { ButtonComponent } from './components/buttons/button/button.component';
 import { ButtonsStylingDirective } from './directives/buttons-styling.directive';
 import { TimerComponent } from './components/timer/timer.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { HeaderComponent } from './components/header/header.component';
+
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     ButtonsStylingDirective,
     TimerComponent,
     NavigationComponent,
+    HeaderComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -30,7 +33,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     FormsModule,
     ButtonComponent,
     ButtonsStylingDirective,
-    TimerComponent
+    TimerComponent,
+    HeaderComponent
   ],
 })
 export class SharedModule {}
