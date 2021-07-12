@@ -1,0 +1,12 @@
+:host {
+  font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
+.timer {
+  &-title {}
+
+  &-time {
+    font-weight: bold;
+  }
+}
