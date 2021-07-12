@@ -11,6 +11,7 @@ import { ButtonComponent } from './components/buttons/button/button.component';
 import { ButtonsStylingDirective } from './directives/buttons-styling.directive';
 import { TimerComponent } from './components/timer/timer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { HeaderComponent } from './components/header/header.component';
     ButtonsStylingDirective,
     TimerComponent,
     HeaderComponent,
+    FooterComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -31,7 +33,8 @@ import { HeaderComponent } from './components/header/header.component';
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
 })
 export class SharedModule {}
