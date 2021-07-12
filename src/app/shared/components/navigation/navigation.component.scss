@@ -1,0 +1,22 @@
+.navigation {
+  width: 400px;
+  margin-bottom: 50px;
+  ul {
+    padding: 0;
+    list-style: none;
+    li {
+      margin-bottom: 30px;
+      font-size: 25px;
+      a {
+        color: #545454;
+        font-family: 'Montserrat';
+        font-weight: 500;
+        text-decoration: none;
+      }
+      &.active {
+        font-size: 30px;
+        border-bottom: 0.5px solid #81BACF;
+      }
+    }
+  }
+}
