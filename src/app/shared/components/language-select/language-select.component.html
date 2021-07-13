@@ -1,4 +1,5 @@
-<div class="wrapper">
-  <p (click)="changeLanguage(eng)" class="language {{selectedEng}}">eng</p>
-  <p (click)="changeLanguage(ru)" class="language {{selectedRu}}">ru</p>
+<div class="wrapper-lang">
+  <div (click)="onChangeLanguage(item)" *ngFor="let item of obj" >
+    <p class="language" [class.selected]="item.selected" >{{item.lang}}</p>
+  </div>
 </div>

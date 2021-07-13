@@ -6,22 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./language-select.component.scss']
 })
 export class LanguageSelectComponent implements OnInit {
-  ru = 'ru';
-  eng = 'eng';
-  selectedRu = '';
-  selectedEng = 'selected';
+  obj: any[] = [
+    {
+      lang: 'eng',
+    selected: true
+    },
+    {
+      lang: 'ru',
+      selected: false
+    }
+    
+  ]
 
   constructor() { }
 
-  changeLanguage(language: string){
-    if(language === this.ru){
-      this.selectedRu = 'selected'
-      this.selectedEng = ''
-    }else{
-      this.selectedEng = 'selected'
-      this.selectedRu = ''
-    } 
-    return console.log(language)
+  onChangeLanguage(target: any){
+    this.obj = this.obj.map((item) => {
+      if (item.lang === target.lang) return {...item, selected: true}
+      return {...item, selected: false}
+    })
   }
 
   ngOnInit(): void {
