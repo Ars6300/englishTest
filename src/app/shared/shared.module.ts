@@ -1,3 +1,4 @@
+import { LeftLayoutComponent } from './components/left-layout/left-layout.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,10 +16,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 
-
 @NgModule({
   declarations: [
     LanguageSelectComponent,
+    LeftLayoutComponent,
     SafePipe,
     CapitalizePipe,
     AuthDirective,
@@ -36,6 +37,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,
+    LeftLayoutComponent,
     HeaderComponent,
     FooterComponent
   ],
