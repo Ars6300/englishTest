@@ -12,6 +12,7 @@ import { ButtonsStylingDirective } from './directives/buttons-styling.directive'
 import { TimerComponent } from './components/timer/timer.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -26,6 +27,7 @@ import { HeaderComponent } from './components/header/header.component';
     TimerComponent,
     NavigationComponent,
     HeaderComponent,
+    FooterComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -34,7 +36,8 @@ import { HeaderComponent } from './components/header/header.component';
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
 })
 export class SharedModule {}
