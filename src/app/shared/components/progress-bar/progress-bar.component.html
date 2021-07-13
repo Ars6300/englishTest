@@ -1,0 +1,9 @@
+<div class="progress-bar">
+  <div class="progress-bar__progress">
+    {{current_progress}}/{{max_progress}}
+  </div>
+  <div class="progress-bar__line">
+    <div class="progress-bar__line-done" [ngStyle]="{width: current_progress/max_progress*100+'%'}">
+    </div>
+  </div>
+</div>

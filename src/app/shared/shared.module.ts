@@ -13,7 +13,9 @@ import { ButtonsStylingDirective } from './directives/buttons-styling.directive'
 import { TimerComponent } from './components/timer/timer.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
+
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { FooterComponent } from './components/footer/footer.component';
     TimerComponent,
     NavigationComponent,
     HeaderComponent,
+    ProgressBarComponent,
     FooterComponent,
   ],
   imports: [CommonModule, FormsModule],
@@ -37,6 +40,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,
+    HeaderComponent,
+    ProgressBarComponent,
     LeftLayoutComponent,
     HeaderComponent,
     FooterComponent

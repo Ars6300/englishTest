@@ -1,0 +1,23 @@
+.progress-bar{
+  &__line{
+    height: 15px;
+    width: 100%;
+    border-radius: 7.5px;
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+
+  &__line-done{
+    background: #2BCE2B;
+    height: 15px;
+  }
+
+  &__progress{
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+  }
+}
+
