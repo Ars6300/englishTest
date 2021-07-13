@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './modules/error/error.component';
-import { ErrorModule } from './modules/error/error.module'
 
 import { LoginModule } from './modules/login/login.module';
 
@@ -19,10 +18,14 @@ const routes: Routes = [
   {
     path: 'error',
     component: ErrorComponent
-  }
+  },
+  // {
+  //   path: '**',
+  //   redirectTo: '/error'
+  // }
 ];
 @NgModule({
-  imports: [LoginModule, RouterModule.forRoot(routes), ErrorModule],
+  imports: [LoginModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

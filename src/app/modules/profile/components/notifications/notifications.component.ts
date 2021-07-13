@@ -13,7 +13,7 @@ export class NotificationsComponent implements OnInit {
   ngOnInit(): void {
   }
   goToSelectLevel(){
-    this.router.navigate(['/select-level'])
+    this.router.navigate(['select-level'])
   }
 
 }
