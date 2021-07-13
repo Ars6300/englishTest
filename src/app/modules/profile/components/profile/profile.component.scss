@@ -1,0 +1,29 @@
+.profile {
+  display: flex;
+  font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  &-navigation {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 97vh;
+    background-color: white;
+    padding: 3vw;
+
+    &-button {
+      width: 60%;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      text-align: left;
+      margin-top: 3vh;
+      font-size: 25px;
+
+      &.active {
+        font-weight: bolder;
+        font-size: 35px;
+        border-bottom: 1px solid #7ad2f4;
+      }
+    }
+  }
+}
