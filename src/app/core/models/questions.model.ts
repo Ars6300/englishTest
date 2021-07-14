@@ -1,7 +1,7 @@
 import { Level } from './level.model';
 export interface Questions {
   questionId: string;
-  answers: [];
+  answers: Answer[];
   text: string;
   type: string;
   audioLink: string;
