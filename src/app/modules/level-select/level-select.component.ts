@@ -27,7 +27,6 @@ export class SelectLevelComponent implements OnInit{
   constructor(){}
 
   ngOnInit(){
-    console.log('asd');
     
   }
   

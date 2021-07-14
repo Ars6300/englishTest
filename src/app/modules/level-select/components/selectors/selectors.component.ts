@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-selectors',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./selectors.component.scss'],
 })
 export class SelectorsComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
   title = 'Select your English level';
   buttons = [
     'A1 Beginner',
@@ -17,4 +18,8 @@ export class SelectorsComponent implements OnInit {
     'C2 Proficiancy',
   ];
   ngOnInit(): void {}
+
+  startTest(){
+    this.router.navigate(['/grammar'])
+  }
 }
