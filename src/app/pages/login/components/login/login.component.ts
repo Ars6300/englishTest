@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PROFILE_PATH } from 'src/app/app-routing.constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,6 +21,6 @@ export class LoginComponent implements OnInit {
     console.log('Form Submitted:' + userForm.submitted);
   }
   goToProfile(){
-    this.router.navigate(['/profile'])
+    this.router.navigate([`/${PROFILE_PATH}`])
   }
 }

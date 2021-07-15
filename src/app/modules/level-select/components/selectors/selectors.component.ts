@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GRAMMAR_PATH } from 'src/app/app-routing.constants';
 
 @Component({
   selector: 'app-selectors',
@@ -20,6 +21,6 @@ export class SelectorsComponent implements OnInit {
   ngOnInit(): void {}
 
   startTest(){
-    this.router.navigate(['/grammar'])
+    this.router.navigate([`/${GRAMMAR_PATH}`])
   }
 }
