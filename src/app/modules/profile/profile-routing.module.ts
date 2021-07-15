@@ -4,16 +4,17 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NOTIFICATION_PATH, RESULTS_PATH, STATISTICS_PATH, PROFILE_PATH } from './profile-routing.constants';
 
 const routes: Routes = [
   {
     path: '',
     component: ProfileComponent,
     children: [
-      { path: '', redirectTo: '/profile/notifications', pathMatch: 'full' },
-      { path: 'notifications', component: NotificationsComponent },
-      { path: 'results', component: ResultsComponent },
-      { path: 'statistics', component: StatisticsComponent },
+      { path: '', redirectTo: `/${PROFILE_PATH}/${NOTIFICATION_PATH}`, pathMatch: 'full' },
+      { path: NOTIFICATION_PATH, component: NotificationsComponent },
+      { path: RESULTS_PATH, component: ResultsComponent },
+      { path: STATISTICS_PATH, component: StatisticsComponent },
     ],
   },
 ];

@@ -14,12 +14,7 @@ export class SelectLevelComponent implements OnInit{
   about: AboutText[] = [
     {
       title: 'About Test', 
-      text: `The test consists of 4 blocks:
-      Block 1)  Grammar Test.
-      Block 2) Listening. 
-      Block 3) Essay
-      Block 4) Speaking.
-      You have 60 minutes for all blocks. Good luck!`
+      text: `The test consists of 4 blocks: Block 1)  Grammar Test. Block 2) Listening. Block 3) Essay Block 4) Speaking. You have 60 minutes for all blocks. Good luck!`
     }
   ]
   

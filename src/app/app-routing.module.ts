@@ -8,55 +8,73 @@ import { GrammarModule } from './modules/grammar/grammar.module';
 import { ListeningModule } from './modules/listening/listening.module';
 import { WritingModule } from './modules/writing/writing.module';
 import { SpeakingModule } from './modules/speaking/speaking.module';
+import { ProfileModule } from './modules/profile/profile.module';
 import { SharedModule } from './shared/shared.module'
+
+import { 
+  PROFILE_PATH,
+  ERROR_PATH, 
+  GRAMMAR_PATH, 
+  GRAMMAR_MODULE, 
+  LISTENING_PATH, 
+  LISTENING_MODULE, 
+  LOGIN_PATH, 
+  LOGIN_MODULE, 
+  SELECT_LEVEL_PATH, 
+  SELECT_LEVEL_MODULE, 
+  SPEAKING_PATH, 
+  SPEAKING_MODULE,
+  WRITING_PATH,
+  WRITING_MODULE, 
+  appRoutingLoadChildren} from './app-routing.constants';
+
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: LOGIN_PATH,
     loadChildren: () =>
-      import('./pages/login/login.module').then((m) => m.LoginModule),
+      import(LOGIN_MODULE).then((m) => m.LoginModule),
   },
   {
-    path: 'profile',
-    loadChildren: () =>
-      import('./modules/profile/profile.module').then((m) => m.ProfileModule),
+    path: PROFILE_PATH,
+    loadChildren: appRoutingLoadChildren.profileModule
   },
   {
-    path: 'select-level',
+    path: SELECT_LEVEL_PATH,
     loadChildren: () =>
-      import('./modules/level-select/level-select.module').then((m) => m.LevelSelectModule),
+      import(SELECT_LEVEL_MODULE).then((m) => m.LevelSelectModule),
   },
   {
-    path: 'grammar',
+    path: GRAMMAR_PATH,
     loadChildren: () =>
-      import('./modules/grammar/grammar.module').then((m) => m.GrammarModule),
+      import(GRAMMAR_MODULE).then((m) => m.GrammarModule),
   },
   {
-    path: 'writing',
+    path: WRITING_PATH,
     loadChildren: () =>
-      import('./modules/writing/writing.module').then((m) => m.WritingModule),
+      import(WRITING_MODULE).then((m) => m.WritingModule),
   },
   {
-    path: 'listening',
+    path: LISTENING_PATH,
     loadChildren: () =>
-      import('./modules/listening/listening.module').then((m) => m.ListeningModule),
+      import(LISTENING_MODULE).then((m) => m.ListeningModule),
   },
   {
-    path: 'speaking',
+    path: SPEAKING_PATH,
     loadChildren: () =>
-      import('./modules/speaking/speaking.module').then((m) => m.SpeakingModule),
+      import(SPEAKING_MODULE).then((m) => m.SpeakingModule),
   },
   {
-    path: 'error',
+    path: ERROR_PATH,
     component: ErrorComponent
   },
   {
     path: '**',
-    redirectTo: '/error'
+    redirectTo: `/${ERROR_PATH}`
   }
 ];
 @NgModule({
-  imports: [LoginModule, LevelSelectModule, GrammarModule, ListeningModule, WritingModule, SpeakingModule, SharedModule, RouterModule.forRoot(routes)],
+  imports: [LoginModule, LevelSelectModule, GrammarModule, ListeningModule, WritingModule, SpeakingModule, SharedModule, ProfileModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
