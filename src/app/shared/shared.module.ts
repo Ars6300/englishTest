@@ -15,7 +15,19 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { HeaderComponent } from './components/header/header.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ErrorComponent } from '../pages/error/error.component';
+import { RouterModule, Routes } from '@angular/router';
+import { GrammarComponent } from '../modules/grammar/grammar.component';
+import { ListeningComponent } from '../modules/listening/listening.component';
+import { WritingComponent } from '../modules/writing/writing.component';
+import { SpeakingComponent } from '../modules/speaking/speaking.component';
 
+const routes: Routes = [
+  {path: 'grammar', component: GrammarComponent},
+  {path: 'listening', component: ListeningComponent},
+  {path: 'writing', component: WritingComponent},
+  {path: 'speaking', component: SpeakingComponent},
+];
 
 
 @NgModule({
@@ -32,11 +44,13 @@ import { FooterComponent } from './components/footer/footer.component';
     HeaderComponent,
     ProgressBarComponent,
     FooterComponent,
+    ErrorComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
   exports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,
@@ -44,7 +58,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ProgressBarComponent,
     LeftLayoutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ErrorComponent,
   ],
 })
 export class SharedModule {}

@@ -1,8 +1,16 @@
 <div class="navigation">
   <ul>
-    <li class="active"><a href="#" >Grammar Test</a></li>
-    <li><a href="#" >Listening</a></li>
-    <li><a href="#" >Essay</a></li>
-    <li><a href="#" >Speaking</a></li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/grammar']">Grammar Test</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/listening']" >Listening</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/writing']" >Essay</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/speaking']" >Speaking</a>
+    </li>
   </ul>
 </div>

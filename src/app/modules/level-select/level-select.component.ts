@@ -22,10 +22,12 @@ export class SelectLevelComponent implements OnInit{
       You have 60 minutes for all blocks. Good luck!`
     }
   ]
-
+  
 
   constructor(){}
 
-  ngOnInit(){}
+  ngOnInit(){
+    
+  }
   
 }
