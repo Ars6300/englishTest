@@ -1,7 +1,6 @@
 export const LOGIN_PATH = 'login'
 export const LOGIN_MODULE = './pages/login/login.module'
-export const PROFILE_PATH = 'profile'
-export const PROFILE_MODULE = './modules/profile/profile.module'
+
 export const SELECT_LEVEL_PATH = 'select-level'
 export const SELECT_LEVEL_MODULE = './modules/level-select/level-select.module'
 export const GRAMMAR_PATH = 'grammar'
@@ -15,7 +14,7 @@ export const SPEAKING_MODULE = './modules/speaking/speaking.module'
 export const ERROR_PATH = 'error'
 export const QUESTION_GRAMMAR_PATH = 'g-question/:id'
 export const QUESTION_LISTENING_PATH = 'l-question/:id'
-export const NOTIFICATION_PATH = 'notifications'
-export const RESULTS_PATH = 'results'
-export const STATISTICS_PATH = 'statistics'
 
+
+export const PROFILE_PATH = 'profile'
+export const PROFILE_MODULE = './modules/profile/profile.module'

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PROFILE_PATH } from 'src/app/app-routing.constants';
-
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',

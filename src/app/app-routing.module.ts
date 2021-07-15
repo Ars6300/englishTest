@@ -12,6 +12,8 @@ import { ProfileModule } from './modules/profile/profile.module';
 import { SharedModule } from './shared/shared.module'
 
 import { 
+  PROFILE_PATH,
+  PROFILE_MODULE,
   ERROR_PATH, 
   GRAMMAR_PATH, 
   GRAMMAR_MODULE, 
@@ -19,14 +21,13 @@ import {
   LISTENING_MODULE, 
   LOGIN_PATH, 
   LOGIN_MODULE, 
-  PROFILE_PATH, 
-  PROFILE_MODULE, 
   SELECT_LEVEL_PATH, 
   SELECT_LEVEL_MODULE, 
   SPEAKING_PATH, 
   SPEAKING_MODULE,
   WRITING_PATH,
   WRITING_MODULE } from './app-routing.constants';
+
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ const routes: Routes = [
   {
     path: PROFILE_PATH,
     loadChildren: () =>
-      import('./modules/profile/profile.module').then((m) => m.ProfileModule),
+      import(PROFILE_MODULE).then((m) => m.ProfileModule),
   },
   {
     path: SELECT_LEVEL_PATH,
