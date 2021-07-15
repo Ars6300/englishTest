@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { Notification } from 'src/app/core/models/notification.model';
 
 @Component({

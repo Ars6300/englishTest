@@ -5,11 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/components/header/header.component';
+import { LevelSelectModule } from './modules/level-select/level-select.module';
+import { QuestionComponent } from './pages/question/question.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule],
+  declarations: [AppComponent, QuestionComponent],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, LevelSelectModule],
   providers: [],
   bootstrap: [AppComponent],
 })
