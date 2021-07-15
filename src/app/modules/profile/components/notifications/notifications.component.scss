@@ -1,0 +1,28 @@
+.notifications {
+  display: flex;
+  flex-direction: column;
+  padding: 3vw 6vw;
+
+  &-button {
+    margin-top: 7vh;
+  }
+}
+
+.title {
+  color: #fff;
+  font-weight: normal;
+  margin-top: 3vh;
+  line-height: 30px;
+  font-size: 35px;
+}
+
+.message {
+  &-text {
+    font-size: 25px;
+    margin-top: 3vh;
+  }
+
+  &-title {
+    margin-top: 7vh;
+  }
+}
