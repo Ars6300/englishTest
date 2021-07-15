@@ -13,6 +13,7 @@ import { ButtonsStylingDirective } from './directives/buttons-styling.directive'
 import { TimerComponent } from './components/timer/timer.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ErrorComponent } from '../pages/error/error.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'speaking', component: SpeakingComponent},
 ];
 
+
 @NgModule({
   declarations: [
     LanguageSelectComponent,
@@ -40,6 +42,7 @@ const routes: Routes = [
     TimerComponent,
     NavigationComponent,
     HeaderComponent,
+    ProgressBarComponent,
     FooterComponent,
     ErrorComponent,
   ],
@@ -51,6 +54,8 @@ const routes: Routes = [
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,
+    HeaderComponent,
+    ProgressBarComponent,
     LeftLayoutComponent,
     HeaderComponent,
     FooterComponent,
