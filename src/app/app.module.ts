@@ -6,9 +6,10 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { LevelSelectModule } from './modules/level-select/level-select.module';
+import { QuestionComponent } from './pages/question/question.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, QuestionComponent],
   imports: [BrowserModule, AppRoutingModule, SharedModule, LevelSelectModule],
   providers: [],
   bootstrap: [AppComponent],

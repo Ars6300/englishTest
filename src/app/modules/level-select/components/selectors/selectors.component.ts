@@ -15,7 +15,7 @@ export class SelectorsComponent implements OnInit {
     'B1 Intermidiate',
     'B2 Upper Int.',
     'C1 Advanced',
-    'C2 Proficiancy',
+    'C2 Proficiency',
   ];
   ngOnInit(): void {}
 
