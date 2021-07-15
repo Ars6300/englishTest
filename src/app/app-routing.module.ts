@@ -13,7 +13,6 @@ import { SharedModule } from './shared/shared.module'
 
 import { 
   PROFILE_PATH,
-  PROFILE_MODULE,
   ERROR_PATH, 
   GRAMMAR_PATH, 
   GRAMMAR_MODULE, 
@@ -26,7 +25,8 @@ import {
   SPEAKING_PATH, 
   SPEAKING_MODULE,
   WRITING_PATH,
-  WRITING_MODULE } from './app-routing.constants';
+  WRITING_MODULE, 
+  appRoutingLoadChildren} from './app-routing.constants';
 
 
 const routes: Routes = [
@@ -37,8 +37,7 @@ const routes: Routes = [
   },
   {
     path: PROFILE_PATH,
-    loadChildren: () =>
-      import(PROFILE_MODULE).then((m) => m.ProfileModule),
+    loadChildren: appRoutingLoadChildren.profileModule
   },
   {
     path: SELECT_LEVEL_PATH,

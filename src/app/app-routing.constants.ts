@@ -1,6 +1,5 @@
 export const LOGIN_PATH = 'login'
 export const LOGIN_MODULE = './pages/login/login.module'
-
 export const SELECT_LEVEL_PATH = 'select-level'
 export const SELECT_LEVEL_MODULE = './modules/level-select/level-select.module'
 export const GRAMMAR_PATH = 'grammar'
@@ -15,6 +14,7 @@ export const ERROR_PATH = 'error'
 export const QUESTION_GRAMMAR_PATH = 'g-question/:id'
 export const QUESTION_LISTENING_PATH = 'l-question/:id'
 
-
 export const PROFILE_PATH = 'profile'
-export const PROFILE_MODULE = './modules/profile/profile.module'
+export const appRoutingLoadChildren = {
+  profileModule: () => import('./modules/profile/profile.module').then(m => m.ProfileModule),
+}
