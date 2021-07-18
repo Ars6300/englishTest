@@ -1,3 +1,4 @@
 <p class="timer timer-title">
-  {{ title }}: <span class="timer timer-time">{{ time }}</span>
+  {{ title }}:
+  <countdown class="timer-time" [config]="{ leftTime: time }"></countdown>
 </p>
