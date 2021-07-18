@@ -6,12 +6,12 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { LevelSelectModule } from './modules/level-select/level-select.module';
-import { QuestionComponent } from './pages/question/question.component';
-
+import { QuestionsLoadingService } from './modules/questions-block/questions-loading.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [AppComponent, QuestionComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, LevelSelectModule],
-  providers: [],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, LevelSelectModule, HttpClientModule],
+  providers: [QuestionsLoadingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

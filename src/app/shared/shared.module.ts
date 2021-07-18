@@ -21,6 +21,7 @@ import { GrammarComponent } from '../modules/grammar/grammar.component';
 import { ListeningComponent } from '../modules/listening/listening.component';
 import { WritingComponent } from '../modules/writing/writing.component';
 import { SpeakingComponent } from '../modules/speaking/speaking.component';
+import { QuestionsModule } from '../modules/questions-block/questions.module';
 
 const routes: Routes = [
   {path: 'grammar', component: GrammarComponent},
@@ -46,11 +47,12 @@ const routes: Routes = [
     FooterComponent,
     ErrorComponent,
   ],
-  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, FormsModule, RouterModule.forChild(routes), QuestionsModule],
   exports: [
     CommonModule,
     FormsModule,
     RouterModule,
+    QuestionsModule,
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,

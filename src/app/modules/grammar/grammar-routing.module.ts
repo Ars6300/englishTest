@@ -5,19 +5,19 @@ import { GrammarComponent } from './grammar.component';
 
 const routes: Routes = [
   {
-    path: 'grammar', 
+    path: 'grammar',
     component: GrammarComponent,
     children: [
       {
         path: 'g-question/:id',
-        component: QuestionComponent
-      }
-    ]
-  }
+        component: QuestionComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class GrammarRoutingModule { }
+export class GrammarRoutingModule {}
