@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit {
+  charactersLimit: number= 512
   constructor() {}
 
   ngOnInit(): void {}
