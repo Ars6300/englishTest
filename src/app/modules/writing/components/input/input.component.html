@@ -1,0 +1,21 @@
+<div class="input">
+  <form #essayText="ngForm" (ngSubmit)="onEssaySubmit(essayText)">
+    <h2 class="input-title">
+      The field is not available until you select the topic
+    </h2>
+    <textarea
+      type="text"
+      name="essay"
+      class="input-textarea"
+      placeholder="Write your essay here"
+      ngModel
+      required
+    ></textarea>
+    <div class="input-controls">
+      <p class="input-count">
+        Number of characters: {{ essayText.value["essay"].length }}/512
+      </p>
+      <button class="input-submit" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
