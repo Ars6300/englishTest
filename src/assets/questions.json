@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "answers": ["before", "use to", "didn't", "used to"],
+        "text": "She ________ have short hair, but now it's long",
+        "type": "string",
+        "audioLink": "string",
+        "level": "Level.Advanced"
+    },
+    {
+        "id": "2",
+        "answers": ["don't", "can't", "not can", "am not"],
+        "text": "I'm busy on Friday, so I ________ come",
+        "type": "string",
+        "audioLink": "string",
+        "level": "Level.Intermediate"
+    },
+    {
+        "id": "3",
+        "answers": ["had arrived, would have missed", "would arrive, would miss", "would have arrived, would have missed", "arrived, would have missed"],
+        "text": "If he ________ one minute later, he ________ the train",
+        "type": "string",
+        "audioLink": "string",
+        "level": "Level.Upperintermediate"
+    }
+]

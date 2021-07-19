@@ -21,14 +21,15 @@ import { GrammarComponent } from '../modules/grammar/grammar.component';
 import { ListeningComponent } from '../modules/listening/listening.component';
 import { WritingComponent } from '../modules/writing/writing.component';
 import { SpeakingComponent } from '../modules/speaking/speaking.component';
+import { QuestionsModule } from '../modules/questions-block/questions.module';
+import { CountdownModule } from 'ngx-countdown';
 
 const routes: Routes = [
-  {path: 'grammar', component: GrammarComponent},
-  {path: 'listening', component: ListeningComponent},
-  {path: 'writing', component: WritingComponent},
-  {path: 'speaking', component: SpeakingComponent},
+  { path: 'grammar', component: GrammarComponent },
+  { path: 'listening', component: ListeningComponent },
+  { path: 'writing', component: WritingComponent },
+  { path: 'speaking', component: SpeakingComponent },
 ];
-
 
 @NgModule({
   declarations: [
@@ -46,11 +47,12 @@ const routes: Routes = [
     FooterComponent,
     ErrorComponent,
   ],
-  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, FormsModule, RouterModule.forChild(routes), QuestionsModule, CountdownModule,],
   exports: [
     CommonModule,
     FormsModule,
     RouterModule,
+    QuestionsModule,
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,

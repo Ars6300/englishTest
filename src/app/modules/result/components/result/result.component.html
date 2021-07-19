@@ -1,0 +1,72 @@
+<div class="result">
+  <h1 class="result-title">Your grammar and listening results:</h1>
+  <div class="result-tables">
+    <h2 class="result-tables-title">Grammar results</h2>
+    <table>
+      <td>
+        <tr *ngFor="let header of headers">
+          {{
+            header
+          }}
+        </tr>
+      </td>
+      <td *ngFor="let item of data">
+        <tr>
+          {{
+            item.count
+          }}
+        </tr>
+        <tr>
+          {{
+            item.answer
+          }}
+        </tr>
+        <tr>
+          {{
+            item.point
+          }}
+        </tr>
+      </td>
+    </table>
+    <tr>
+      Total points: 10
+    </tr>
+
+    <h2 class="result-tables-title">Listenning results</h2>
+
+    <table>
+      <td>
+        <tr *ngFor="let header of headers">
+          {{
+            header
+          }}
+        </tr>
+      </td>
+      <td *ngFor="let item of data">
+        <tr>
+          {{
+            item.count
+          }}
+        </tr>
+        <tr>
+          {{
+            item.answer
+          }}
+        </tr>
+        <tr>
+          {{
+            item.point
+          }}
+        </tr>
+      </td>
+    </table>
+    <tr>
+      Total points: 10
+    </tr>
+  </div>
+  <div class="result-buttons">
+    <button>Try again</button>
+    <button>Submit</button>
+    <button>Exit</button>
+  </div>
+</div>
