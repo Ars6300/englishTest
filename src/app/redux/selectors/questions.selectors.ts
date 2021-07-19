@@ -1,21 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { QuestionsState } from '../reducers/questions.reducers';
 
-import { questionAdapter, QuestionState } from '../reducers/questions.reducers';
+const getQuestionsState = createFeatureSelector<QuestionsState>('questions');
 
-const questionFeatureSelector =
-  createFeatureSelector<QuestionState>('questions');
+export const getQuestions = createSelector(getQuestionsState, (state) => {
+    return state.questions;
+});
 
-export const getQuestions = createSelector(
-  questionFeatureSelector,
-  questionAdapter.getSelectors().selectAll
-);
-
-export const getLoading = createSelector(
-  questionFeatureSelector,
-  (state) => state.loading
-);
-
-export const getError = createSelector(
-  questionFeatureSelector,
-  (state) => state.error
-);

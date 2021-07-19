@@ -8,6 +8,9 @@ import { Answer, Question } from 'src/app/core/models/questions.model';
   providedIn: 'root',
 })
 export class QuestionsLoadingService {
+  static getQuestions(): Question[] {
+    throw new Error('Method not implemented.');
+  }
   private questions: Question[] = [];
   private answers: Answer[] = [];
 
@@ -28,10 +31,4 @@ export class QuestionsLoadingService {
       (answer: Answer) => answer.questionId === questionId
     );
   }
-
-  addQuestion(text: string): any {}
-
-  updateQuestion(id: string): any {}
-
-  deleteQuestion(id: string): any {}
 }
