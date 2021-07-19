@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WRITING_PATH } from 'src/app/app-routing.constants';
 import { WritingComponent } from './writing.component';
 
 const routes: Routes = [
-  {path: 'writing', component: WritingComponent}
+  {path: WRITING_PATH, component: WritingComponent}
 ];
 
 @NgModule({
