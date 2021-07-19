@@ -5,16 +5,15 @@ import { Observable } from 'rxjs';
 import { Answer, Question } from 'src/app/core/models/questions.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuestionsLoadingService {
-
   private questions: Question[] = [];
   private answers: Answer[] = [];
 
   questionsPath: string = 'assets/questions.json';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>(this.questionsPath);
@@ -25,7 +24,14 @@ export class QuestionsLoadingService {
   }
 
   getAnswerById(questionId: string) {
-    return this.answers.find((answer: Answer) => answer.questionId === questionId);
+    return this.answers.find(
+      (answer: Answer) => answer.questionId === questionId
+    );
   }
 
+  addQuestion(text: string): any {}
+
+  updateQuestion(id: string): any {}
+
+  deleteQuestion(id: string): any {}
 }

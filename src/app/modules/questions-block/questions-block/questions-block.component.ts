@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { Question } from '../../../core/models/questions.model';
 
@@ -16,14 +17,20 @@ export class QuestionsBlockComponent implements OnInit {
   questions: Question[] = [];
   question: Question[] = [];
 
+  //public questions: Observable<Question[]>;
+
   index = 0;
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
     private router: Router
+    //private questionStore: Store<QuestionState>
   ) {}
 
   ngOnInit() {
+    //this.questionStore.dispatch(new GetQuestions());
+    //this.questions = this.questionStore.select(getQuestions);
+    
     this.router.navigate(['grammar/g-question/:'], {
       queryParams: { index: this.index },
     });
