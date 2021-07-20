@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { Answer, Question } from 'src/app/core/models/questions.model';
+import { QUESTIONS_MOCK } from 'src/app/redux/reducers/questions.reducers';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class QuestionsLoadingService {
   constructor(private http: HttpClient) {}
 
   getQuestions(): Observable<Question[]> {
-    return this.http.get<Question[]>(this.questionsPath);
+    return of(QUESTIONS_MOCK);
   }
 
   getQuestionById(id: string) {
