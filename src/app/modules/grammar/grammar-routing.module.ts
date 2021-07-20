@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GRAMMAR_PATH, QUESTION_GRAMMAR_PATH } from 'src/app/app-routing.constants';
+import { GuardGuard } from 'src/app/core/guard/guard.guard';
 import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { GrammarComponent } from './grammar.component';
 
@@ -13,7 +14,8 @@ const routes: Routes = [
         path: QUESTION_GRAMMAR_PATH,
         component: QuestionComponent
       }
-    ]
+    ],
+    canActivate: [GuardGuard]
   }
 ];
 

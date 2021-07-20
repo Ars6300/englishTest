@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "SIGN_IN": "Войти"
+    "SIGN_IN": "Войти",
+    "VALID_EMAIL": "Введите правильный email",
+    "VALID_PASSWORD": "Введите правильный пароль"
   },
   "PROFILE": {
     "PROFILE": "Профиль",

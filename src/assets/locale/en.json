@@ -1,6 +1,8 @@
 {
   "LOGIN": {
-    "SIGN_IN": "Sign in"
+    "SIGN_IN": "Sign in",
+    "VALID_EMAIL": "Enter valid email",
+    "VALID_PASSWORD": "Enter valid password"
   },
   "PROFILE": {
     "PROFILE": "Profile",

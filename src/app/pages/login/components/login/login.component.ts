@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PROFILE_PATH } from 'src/app/app-routing.constants';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,18 +10,44 @@ import { PROFILE_PATH } from 'src/app/app-routing.constants';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router) {}
+  
+  form!: FormGroup
+  submitted = false
 
-  ngOnInit() {}
+  submit(){
+    if (this.form.invalid ) {
+      return;
+    }
+    this.submitted = true
 
-  onFormSubmit(userForm: NgForm) {
-    console.log(userForm.value);
-    console.log('Email:' + userForm.controls['email'].value);
-    console.log('Password:' + userForm.controls['password'].value);
-    console.log('Form Valid:' + userForm.valid);
-    console.log('Form Submitted:' + userForm.submitted);
+    const user = {
+      email: this.form.value.email,
+      password: this.form.value.password,
+    }
+  
+    this.auth.login(user).subscribe( res => {
+      console.log(res)
+      this.form.reset
+      this.router.navigate(['/profile'])
+      this.submitted = false
+    }, () => {
+      this.submitted = false
+    }
+    )
   }
-  goToProfile(){
-    this.router.navigate([`/${PROFILE_PATH}`])
+  
+  
+  constructor(
+    public auth: AuthenticationService,
+    private router: Router,
+  ) {}
+  
+  ngOnInit() {
+    this.form = new FormGroup({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+    })
+
   }
+
 }

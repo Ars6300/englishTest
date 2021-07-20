@@ -27,6 +27,7 @@ import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationService } from '../utils';
 import { QuestionsModule } from '../modules/questions-block/questions.module';
 import { CountdownModule } from 'ngx-countdown';
+import { SpeakingModule } from '../modules/speaking/speaking.module';
 
 const routes: Routes = [
   { path: 'grammar', component: GrammarComponent },

@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiKey: "AIzaSyANv8rL5vYKQZB-tSwOMcAXl2Bys5tX-lo",
   locales: ['en', 'ru'],
   defaultLocale: 'en',
 };

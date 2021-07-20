@@ -17,7 +17,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationService } from './utils';
 import { QuestionsLoadingService } from './modules/questions-block/questions-loading.service';
-import { HttpClientModule } from '@angular/common/http';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../assets/locale/', '.json');
