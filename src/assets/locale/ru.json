@@ -1,0 +1,22 @@
+{
+  "LOGIN": {
+    "SIGN_IN": "Войти"
+  },
+  "PROFILE": {
+    "PROFILE": "Профиль",
+    "RESULTS": "Результаты",
+    "STATISTICS": "Статистика"
+  },
+  "SELECTORS": {
+    "START_BTN": "Начать"
+  },
+  "NAVIGATION": {
+    "GRAMMAR": "Грамматика",
+    "LISTENING": "Прослушивание",
+    "WRITING": "Эссе",
+    "SPEAKING": "Разговорная речь"
+  },
+  "TIMER": {
+    "TIME": "Оставшееся время"
+  }
+}
