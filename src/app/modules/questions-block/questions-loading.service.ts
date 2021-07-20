@@ -1,23 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { Answer, Question } from 'src/app/core/models/questions.model';
+import { QUESTIONS_MOCK } from 'src/app/redux/reducers/questions.reducers';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuestionsLoadingService {
-
+  static getQuestions(): Question[] {
+    throw new Error('Method not implemented.');
+  }
   private questions: Question[] = [];
   private answers: Answer[] = [];
 
   questionsPath: string = 'assets/questions.json';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getQuestions(): Observable<Question[]> {
-    return this.http.get<Question[]>(this.questionsPath);
+    return of(QUESTIONS_MOCK);
   }
 
   getQuestionById(id: string) {
@@ -25,7 +28,8 @@ export class QuestionsLoadingService {
   }
 
   getAnswerById(questionId: string) {
-    return this.answers.find((answer: Answer) => answer.questionId === questionId);
+    return this.answers.find(
+      (answer: Answer) => answer.questionId === questionId
+    );
   }
-
 }
