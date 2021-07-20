@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiKey: "AIzaSyANv8rL5vYKQZB-tSwOMcAXl2Bys5tX-lo",
+  api_URL: "https://localhost:44356/api/User/Login",
   locales: ['en', 'ru'],
   defaultLocale: 'en',
 };

@@ -16,7 +16,7 @@ export class AuthenticationService {
 
   login(user: { email: any; password: any; }){
     // return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
-    return this.http.post('https://localhost:44356/api/User/Login', user)
+    return this.http.post(environment.api_URL, user)
     .pipe(
       tap(this.controller)
     )
@@ -26,7 +26,6 @@ export class AuthenticationService {
     if (response) {
       // document.cookie = `token=${response.Idtoken}; max-age=3600`;
       document.cookie = `token=${response.token}; max-age=3600`;
-      
     }
   }
 
@@ -37,7 +36,7 @@ export class AuthenticationService {
   get token(){
     const cookieDate = document.cookie
     if (!!cookieDate) {
-      return true
+      return cookieDate.split('=')[1]
     }
     return this.logout()
   }
