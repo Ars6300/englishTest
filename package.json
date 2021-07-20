@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "update-locale": "ngx-translate-extract -i ./src -o src/assets/locale/*.json --sort --format namespaced-json"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +23,8 @@
     "@ngrx/entity": "^12.2.0",
     "@ngrx/store": "^12.2.0",
     "@ngrx/store-devtools": "^12.2.0",
-    "angular-countdown": "^1.2.1",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "ngx-countdown": "^12.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

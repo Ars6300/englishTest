@@ -21,6 +21,10 @@ import { GrammarComponent } from '../modules/grammar/grammar.component';
 import { ListeningComponent } from '../modules/listening/listening.component';
 import { WritingComponent } from '../modules/writing/writing.component';
 import { SpeakingComponent } from '../modules/speaking/speaking.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../app.module';
+import { MissingTranslationService } from '../utils';
 import { QuestionsModule } from '../modules/questions-block/questions.module';
 import { CountdownModule } from 'ngx-countdown';
 
@@ -48,11 +52,24 @@ const routes: Routes = [
     ErrorComponent,
   ],
   imports: [
-    CommonModule, 
-    FormsModule, 
-    RouterModule.forChild(routes), 
+    CommonModule,
+    FormsModule,
+    RouterModule.forChild(routes),
     QuestionsModule, 
     CountdownModule,
+    HttpClientModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: MissingTranslationService,
+      },
+      useDefaultLang: false,
+    }),
   ],
   exports: [
     CommonModule,
