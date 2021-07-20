@@ -25,6 +25,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationService } from '../utils';
+import { QuestionsModule } from '../modules/questions-block/questions.module';
+import { CountdownModule } from 'ngx-countdown';
 
 const routes: Routes = [
   { path: 'grammar', component: GrammarComponent },
@@ -53,6 +55,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
+    QuestionsModule, 
+    CountdownModule,
     HttpClientModule,
     TranslateModule.forChild({
       loader: {
@@ -71,6 +75,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     RouterModule,
+    QuestionsModule,
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,

@@ -1,0 +1,26 @@
+<div class="container">
+  <p class="text">{{ question[index].text }}</p>
+  <div class="form_radio_group">
+    <div
+      class="form_radio_group-item"
+      *ngFor="let answer of question[index].answers"
+    >
+      <input
+        class="input-text"
+        id="{{ question[index].id }}"
+        type="radio"
+        name="radio"
+        value="{{ index }}"
+      />
+      <label for="{{ question[index].id }}">{{ answer }}</label>
+    </div>
+  </div>
+  <button
+    ButtonType="primary"
+    class="button-next"
+    appButtonsStyling
+    (click)="nextQuestion()"
+  >
+    Next
+  </button>
+</div>

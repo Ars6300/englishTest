@@ -1,7 +1,7 @@
 import { Level } from './level.model';
-export interface Questions {
-  questionId: string;
-  answers: Answer[];
+export interface Question {
+  id: string;
+  answers: string[];
   text: string;
   type: string;
   audioLink: string;
@@ -10,5 +10,5 @@ export interface Questions {
 
 export interface Answer {
   questionId: string;
-  answerId: string;
+  id: string;
 }

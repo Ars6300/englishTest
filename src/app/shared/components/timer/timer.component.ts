@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
@@ -7,11 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimerComponent implements OnInit {
   title: string = 'Time remaining';
-  time = new Date().toLocaleTimeString('en-US', {
-    hour12: false,
-    minute: 'numeric',
-    second: 'numeric',
-  });
+  @Input() time = 3600;
   constructor() {}
 
   ngOnInit(): void {}
