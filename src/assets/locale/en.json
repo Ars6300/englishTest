@@ -1,5 +1,22 @@
 {
   "LOGIN": {
     "SIGN_IN": "Sign in"
+  },
+  "PROFILE": {
+    "PROFILE": "Profile",
+    "RESULTS": "Results",
+    "STATISTICS": "Statistics"
+  },
+  "SELECTORS": {
+    "START_BTN": "Start"
+  },
+  "NAVIGATION": {
+    "GRAMMAR": "Grammar Test",
+    "LISTENING": "Listening",
+    "WRITING": "Essay",
+    "SPEAKING": "Speaking"
+  },
+  "TIMER": {
+    "TIME": "Time remaining"
   }
 }

@@ -1,36 +1,39 @@
-<form class="form" #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
-  <div class="logo-container">
-    <img
-      src="../../../../../assets/images/logo.png"
-      alt=""
-      class="logo-image"
-    />
-  </div>
-  <div class="form-group">
-    <input
-      type="email"
-      class="input-email"
-      placeholder="Email"
-      name="email"
-      ngModel
-      required
-    />
-    <input
-      type="password"
-      class="input-password"
-      placeholder="Password"
-      name="password"
-      ngModel
-      required
-    />
-    <button
-      type="submit"
-      ButtonType="primary"
-      class="button-submit"
-      appButtonsStyling
-      (click)="goToProfile()"
-    >
-      {{ "LOGIN.SIGN_IN" | translate }}
-    </button>
-  </div>
-</form>
+<div class="login-form">
+  <form class="form" #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+    <div class="logo-container">
+      <img
+        src="../../../../../assets/images/logo.png"
+        alt=""
+        class="logo-image"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="email"
+        class="input-email"
+        placeholder="Email"
+        name="email"
+        ngModel
+        required
+      />
+      <input
+        type="password"
+        class="input-password"
+        placeholder="Password"
+        name="password"
+        ngModel
+        required
+      />
+      <button
+        type="submit"
+        ButtonType="primary"
+        class="button-submit"
+        appButtonsStyling
+        (click)="goToProfile()"
+      >
+        {{ "LOGIN.SIGN_IN" | translate}}
+      </button>
+    </div>
+  </form>
+
+</div>

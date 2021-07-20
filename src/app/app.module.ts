@@ -7,12 +7,12 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { LevelSelectModule } from './modules/level-select/level-select.module';
 import { QuestionComponent } from './pages/question/question.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {
   MissingTranslationHandler,
   TranslateLoader,
   TranslateModule,
 } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationService } from './utils';
 
