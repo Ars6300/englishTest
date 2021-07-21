@@ -6,10 +6,10 @@ import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { QuestionsBlockComponent } from './questions-block/questions-block.component';
 
 import { RouterModule, Routes } from '@angular/router';
-import { GuardGuard } from 'src/app/core/guard/guard.guard';
+import { AuthGuard } from 'src/app/core/guard/auth-guard/auth.guard';
 
 const routes: Routes = [
-  { path: 'grammar', component: QuestionsBlockComponent, canActivate: [GuardGuard] },
+  { path: 'grammar', component: QuestionsBlockComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

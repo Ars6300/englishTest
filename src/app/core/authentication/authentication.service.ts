@@ -12,33 +12,35 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private router: Router
-  ){}
+  ){
+    console.log((this.token));
+  }
 
   login(user: { email: any; password: any; }){
-    // return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
     return this.http.post(environment.api_URL, user)
     .pipe(
-      tap(this.controller)
+      tap(this.setCookies)
     )
   }
 
-  private controller(response: any){
+  private setCookies(response: any){
     if (response) {
-      // document.cookie = `token=${response.Idtoken}; max-age=3600`;
       document.cookie = `token=${response.token}; max-age=3600`;
     }
   }
 
-  logout(){
+  deleteCookie(){
     document.cookie = `test=test; max-age=-1`;
   }
 
   get token(){
     const cookieDate = document.cookie
     if (!!cookieDate) {
-      return cookieDate.split('=')[1]
+      return cookieDate.split(';').find((cookie) => {
+        return cookie.startsWith('token')
+      })
     }
-    return this.logout()
+    return this.deleteCookie()
   }
 
   isAuthenticated(){

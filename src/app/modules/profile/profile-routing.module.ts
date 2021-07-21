@@ -5,7 +5,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NOTIFICATION_PATH, RESULTS_PATH, STATISTICS_PATH, PROFILE_PATH } from './profile-routing.constants';
-import { GuardGuard } from 'src/app/core/guard/guard.guard';
+import { AuthGuard } from 'src/app/core/guard/auth-guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: RESULTS_PATH, component: ResultsComponent },
       { path: STATISTICS_PATH, component: StatisticsComponent },
     ],
-    canActivate: [GuardGuard]
+    canActivate: [AuthGuard]
   },
 ];
 

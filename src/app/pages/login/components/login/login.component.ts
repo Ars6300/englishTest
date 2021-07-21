@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   
     this.auth.login(user).subscribe( res => {
       // console.log(res)
-      this.form.reset
+      this.form.reset()
       this.router.navigate(['/profile'])
       this.submitted = false
     }, () => {
@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
     public auth: AuthenticationService,
     private router: Router,
   ) {
+
 
   }
   
