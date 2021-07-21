@@ -1,3 +1,8 @@
+import {
+  LISTENING_PATH,
+  QUESTION_LISTENING_PATH,
+  WRITING_PATH,
+} from 'src/app/app-routing.constants';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -25,6 +30,7 @@ export class QuestionsBlockComponent implements OnInit {
   questions$: Observable<Question[]> | undefined;
 
   index = 0;
+  navigateTo = '';
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
@@ -34,8 +40,15 @@ export class QuestionsBlockComponent implements OnInit {
 
   ngOnInit() {
     this.questions$ = this.questionStore.select(getQuestions);
+    const currentRoute = this.router.url;
 
-    this.router.navigate([GRAMMAR_PATH + '/' + QUESTION_GRAMMAR_PATH], {
+    if (currentRoute.includes(GRAMMAR_PATH)) {
+      this.navigateTo = `${GRAMMAR_PATH}/${QUESTION_GRAMMAR_PATH}`;
+    } else if (currentRoute.includes(LISTENING_PATH)) {
+      this.navigateTo = `${LISTENING_PATH}/${QUESTION_LISTENING_PATH}`;
+    }
+
+    this.router.navigate([this.navigateTo], {
       queryParams: { index: this.index },
     });
     this.questionsLoadingService.getQuestions().subscribe((questions$) => {
@@ -45,12 +58,17 @@ export class QuestionsBlockComponent implements OnInit {
   }
 
   nextQuestion() {
-    this.router.navigate([GRAMMAR_PATH + '/' + QUESTION_GRAMMAR_PATH], {
+    this.router.navigate([this.navigateTo], {
       queryParams: { index: ++this.index },
     });
     this.question.push(this.questionsList[this.index]);
-    if (this.index === this.questionsList.length) {
-      this.router.navigate(['listening']);
+    if (
+      this.index === this.questionsList.length &&
+      this.navigateTo.includes(LISTENING_PATH)
+    ) {
+      this.router.navigate([WRITING_PATH]);
+    } else if (this.index === this.questionsList.length) {
+      this.router.navigate([LISTENING_PATH]);
     }
   }
 }
