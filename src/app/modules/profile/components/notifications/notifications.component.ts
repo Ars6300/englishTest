@@ -32,9 +32,9 @@ export class NotificationsComponent implements OnInit {
   ];
 
   ngOnInit() { 
-    this.userService.getData().subscribe(res => {
-      console.log(res)
-    })
+    // this.userService.getData().subscribe(res => {
+    //   console.log(res)
+    // })
   }
 
 

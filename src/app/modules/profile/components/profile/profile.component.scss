@@ -1,29 +1,33 @@
 .profile {
   display: flex;
   font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
 
   &-navigation {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
+    max-width: 400px;
+    width: 33%;
     height: 100vh;
-    background-color: white;
-    padding: 3vw;
+    background: rgb(255, 255, 255);
+    padding: 100px 0 0 70px;
+    ul {
+      padding: 0;
+      list-style: none;
 
-    &-button {
-      width: 60%;
-      border: none;
-      background-color: transparent;
-      cursor: pointer;
-      text-align: left;
-      margin-top: 3vh;
-      font-size: 25px;
-      color: #000;
-      
-      &.active {
-        font-weight: bolder;
-        font-size: 35px;
-        border-bottom: 1px solid #7ad2f4;
+      li {
+        margin-bottom: 30px;
+        font-size: 25px;
+
+        a {
+          color: #545454;
+          font-family: 'Montserrat';
+          font-weight: 500;
+          text-decoration: none;
+        }
+
+        &.active {
+          font-size: 30px;
+          border-bottom: 0.5px solid #81BACF;
+        }
       }
     }
   }

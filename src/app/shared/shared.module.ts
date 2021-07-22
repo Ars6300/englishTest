@@ -77,6 +77,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule,
     QuestionsModule,
+    CountdownModule,
     ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,
