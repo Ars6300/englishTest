@@ -8,12 +8,15 @@ import { QuestionsBlockComponent } from './questions-block/questions-block.compo
 import { RouterModule, Routes } from '@angular/router';
 import { QuestionEffects } from 'src/app/redux/effects/questions.effects';
 import { USER_PROVIDED_EFFECTS } from '@ngrx/effects';
-import { GRAMMAR_PATH } from 'src/app/app-routing.constants';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AppSerializer } from './questions-block/serializer';
 
+import { GRAMMAR_PATH, LISTENING_PATH } from 'src/app/app-routing.constants';
+
+
 const routes: Routes = [
   { path: GRAMMAR_PATH, component: QuestionsBlockComponent },
+  { path: LISTENING_PATH, component: QuestionsBlockComponent },
 ];
 
 @NgModule({
