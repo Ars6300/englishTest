@@ -1,11 +1,12 @@
 <div class="notifications">
+  
   <h1 class="title">Notifications</h1>
   <div *ngIf="notifications.length; else nothingToShow" class="message">
     <p class="message-text">{{ notifications[0].title }}</p>
     <h1 class="message-title title">Assigned by</h1>
     <p class="message-text">{{ notifications[0].assignedBy }}</p>
-    <h1 class="message-title title">Deadline</h1>
-    <p class="message-text">{{ notifications[0].deadline }}</p>
+    <!-- <h1 class="message-title title">Deadline</h1>
+    <p class="message-text">{{ notifications[0].deadline }}</p> -->
   </div>
 
   <ng-template #nothingToShow>
@@ -18,3 +19,4 @@
     Start a test
   </app-button>
 </div>
+

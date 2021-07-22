@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { tap } from 'rxjs/operators';
+import { deleteCookieParams, setCookieParams } from "src/app/shared/utils/cookies";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -13,10 +14,9 @@ export class AuthenticationService {
     private http: HttpClient,
     private router: Router
   ){
-    console.log((this.token));
   }
 
-  login(user: { email: any; password: any; }){
+  login(user: { email: string; password: any; }){
     return this.http.post(environment.api_URL, user)
     .pipe(
       tap(this.setCookies)
@@ -25,22 +25,16 @@ export class AuthenticationService {
 
   private setCookies(response: any){
     if (response) {
-      document.cookie = `token=${response.token}; max-age=3600`;
+      setCookieParams('token', response.token, '3600')
     }
   }
 
-  deleteCookie(){
-    document.cookie = `test=test; max-age=-1`;
-  }
+  deleteCookie(){deleteCookieParams()}
 
   get token(){
-    const cookieDate = document.cookie
-    if (!!cookieDate) {
-      return cookieDate.split(';').find((cookie) => {
-        return cookie.startsWith('token')
-      })
-    }
-    return this.deleteCookie()
+    return document.cookie
+      .split(';')
+      .map(cookie => cookie.startsWith('token') ? cookie.split('=')[1] : null)[0]
   }
 
   isAuthenticated(){

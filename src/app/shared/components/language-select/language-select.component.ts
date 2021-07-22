@@ -9,7 +9,7 @@ export class LanguageSelectComponent implements OnInit {
   obj: any[] = [
     {
       lang: 'eng',
-    selected: true
+      selected: true
     },
     {
       lang: 'ru',
