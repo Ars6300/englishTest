@@ -17,6 +17,12 @@ import {
   QUESTION_GRAMMAR_PATH,
 } from '../../../app-routing.constants';
 
+//import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
+import {
+  QueryHandler,
+  QuestionHandler,
+} from 'src/app/core/models/query-handler.model';
+import { QuestionType } from '../../../core/models/test.model';
 @Component({
   selector: 'app-questions-block',
   templateUrl: './questions-block.component.html',
@@ -39,6 +45,11 @@ export class QuestionsBlockComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    //this.questionsSyncStore.init();
+
+    grammar.setNext(listening).setNext(writing).setNext(speaking);
+
     this.questions$ = this.questionStore.select(getQuestions);
     const currentRoute = this.router.url;
 
@@ -72,3 +83,50 @@ export class QuestionsBlockComponent implements OnInit {
     }
   }
 }
+
+class GrammarQuestion extends QuestionHandler {
+  public handle(request: string): string { 
+    if (request === QuestionType.Grammar) {
+      console.log('grammar');
+      return QuestionType.Grammar;
+    }
+    return super.handle(request);
+  }
+}
+
+class ListeningQuestion extends QuestionHandler {
+  public handle(request: string): string {
+    if (request === QuestionType.Listening) {
+      console.log('listening');
+      return QuestionType.Listening;
+    }
+    return super.handle(request);
+  }
+}
+
+class WritingQuestion extends QuestionHandler {
+  public handle(request: string): string {
+    if (request === QuestionType.Writing) {
+      console.log('writing');
+      return QuestionType.Listening;
+    }
+    return super.handle(request);
+  }
+}
+
+class SpeakingQuestion extends QuestionHandler {
+  public handle(request: string): string {
+    if (request === QuestionType.Listening) {
+      console.log('speaking');
+      return QuestionType.Speaking;
+    }
+    return super.handle(request);
+  }
+}
+
+const grammar = new GrammarQuestion();
+const listening = new ListeningQuestion();
+const writing = new WritingQuestion();
+const speaking = new SpeakingQuestion();
+
+grammar.setNext(listening).setNext(writing).setNext(speaking)
