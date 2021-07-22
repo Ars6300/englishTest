@@ -3,7 +3,7 @@ export interface Question {
   id: string;
   answers: string[];
   text: string;
-  type: string;
+  type: number;
   audioLink: string;
   level: Level;
 }
