@@ -16,12 +16,13 @@ import {
   GRAMMAR_PATH,
   QUESTION_GRAMMAR_PATH,
 } from '../../../app-routing.constants';
+import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
 
 @Component({
   selector: 'app-questions-block',
   templateUrl: './questions-block.component.html',
   styleUrls: ['./questions-block.component.scss'],
-  providers: [QuestionsLoadingService],
+  providers: [QuestionsLoadingService, QuestionsSyncService],
 })
 export class QuestionsBlockComponent implements OnInit {
   question: Question[] = [];
@@ -35,10 +36,13 @@ export class QuestionsBlockComponent implements OnInit {
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
     private router: Router,
-    private questionStore: Store<QuestionsState>
+    private questionStore: Store<QuestionsState>,
+    private questionsSyncStore: QuestionsSyncService
   ) {}
 
   ngOnInit() {
+    this.questionsSyncStore.init();
+
     this.questions$ = this.questionStore.select(getQuestions);
     const currentRoute = this.router.url;
 
