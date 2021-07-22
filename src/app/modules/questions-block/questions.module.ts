@@ -9,6 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { QuestionEffects } from 'src/app/redux/effects/questions.effects';
 import { USER_PROVIDED_EFFECTS } from '@ngrx/effects';
 import { GRAMMAR_PATH } from 'src/app/app-routing.constants';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { AppSerializer } from './questions-block/serializer';
 
 const routes: Routes = [
   { path: GRAMMAR_PATH, component: QuestionsBlockComponent },
@@ -19,6 +21,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    StoreRouterConnectingModule.forRoot({
+      serializer: AppSerializer,
+    }),
     //HttpClientModule
   ],
   providers: [
