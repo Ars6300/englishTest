@@ -6,8 +6,6 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { LevelSelectModule } from './modules/level-select/level-select.module';
-
-import { QuestionComponent } from './pages/question/question.component';
 import {
   MissingTranslationHandler,
   TranslateLoader,
@@ -17,7 +15,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationService } from './utils';
 import { QuestionsLoadingService } from './modules/questions-block/questions-loading.service';
-import { HttpClientModule } from '@angular/common/http';
+import { ReduxModule } from './redux/redux.module';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../assets/locale/', '.json');
@@ -31,6 +29,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     SharedModule,
     LevelSelectModule,
     HttpClientModule,
+    ReduxModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

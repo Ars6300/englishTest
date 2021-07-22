@@ -6,9 +6,13 @@ import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { QuestionsBlockComponent } from './questions-block/questions-block.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { QuestionEffects } from 'src/app/redux/effects/questions.effects';
+import { USER_PROVIDED_EFFECTS } from '@ngrx/effects';
+import { GRAMMAR_PATH, LISTENING_PATH } from 'src/app/app-routing.constants';
 
 const routes: Routes = [
-  { path: 'grammar', component: QuestionsBlockComponent },
+  { path: GRAMMAR_PATH, component: QuestionsBlockComponent },
+  { path: LISTENING_PATH, component: QuestionsBlockComponent },
 ];
 
 @NgModule({
@@ -18,8 +22,14 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     //HttpClientModule
   ],
-  providers: [],
+  providers: [
+    QuestionEffects,
+    {
+      provide: USER_PROVIDED_EFFECTS,
+      multi: true,
+      useValue: [QuestionEffects],
+    },
+  ],
   exports: [QuestionComponent, QuestionsBlockComponent],
 })
-
 export class QuestionsModule {}
