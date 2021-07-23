@@ -4,21 +4,17 @@ import { AboutText } from 'src/app/shared/components/left-layout/left-layout.com
 @Component({
   selector: 'app-writing',
   templateUrl: './writing.component.html',
-  styleUrls: ['./writing.component.scss']
+  styleUrls: ['./writing.component.scss'],
 })
 export class WritingComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   about: AboutText[] = [
     {
-      title: 'Writing', 
-      text: `You need to choose a topic for your essay. After selecting a topic, you will be given space to write. The maximum number of characters is 512. Good Luck!`
-    }
-  ]
-
-
+      title: 'Writing',
+      text: `You need to choose a topic for your essay. After selecting a topic, you will be given space to write. The maximum number of characters is 512. Good Luck!`,
+    },
+  ];
 }
