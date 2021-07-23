@@ -16,6 +16,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationService } from './utils';
 import { QuestionsLoadingService } from './modules/questions-block/questions-loading.service';
 import { ReduxModule } from './redux/redux.module';
+import { QuestionsSyncService } from './core/services/questions-sync.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../assets/locale/', '.json');
@@ -43,7 +44,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       useDefaultLang: false,
     }),
   ],
-  providers: [QuestionsLoadingService],
+  providers: [QuestionsLoadingService, QuestionsSyncService],
 
   bootstrap: [AppComponent],
 })
