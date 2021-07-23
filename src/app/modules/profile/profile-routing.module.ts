@@ -12,10 +12,10 @@ const routes: Routes = [
     path: '',
     component: ProfileComponent,
     children: [
-      { path: '', redirectTo: `/${PROFILE_PATH}/${NOTIFICATION_PATH}`, pathMatch: 'full' },
-      { path: NOTIFICATION_PATH, component: NotificationsComponent },
-      { path: RESULTS_PATH, component: ResultsComponent },
-      { path: STATISTICS_PATH, component: StatisticsComponent },
+      { path: '', redirectTo: `/${PROFILE_PATH}/${NOTIFICATION_PATH}`, pathMatch: 'full',  },
+      { path: NOTIFICATION_PATH, component: NotificationsComponent, canActivate: [AuthGuard] },
+      { path: RESULTS_PATH, component: ResultsComponent, canActivate: [AuthGuard] },
+      { path: STATISTICS_PATH, component: StatisticsComponent, canActivate: [AuthGuard] },
     ],
     canActivate: [AuthGuard]
   },
