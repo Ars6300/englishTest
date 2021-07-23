@@ -18,6 +18,10 @@ import {
 } from '../../../app-routing.constants';
 import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
 
+//import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
+import {
+  QueryHandler,
+} from 'src/app/core/models/query-handler.model';
 @Component({
   selector: 'app-questions-block',
   templateUrl: './questions-block.component.html',
@@ -41,6 +45,7 @@ export class QuestionsBlockComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
     this.questionsSyncStore.init();
 
     this.questions$ = this.questionStore.select(getQuestions);
@@ -75,4 +80,22 @@ export class QuestionsBlockComponent implements OnInit {
       this.router.navigate([LISTENING_PATH]);
     }
   }
+
+  getTestQuestions(handler: QueryHandler): void {
+    const testType = ['1', '2', '3', '4'];
+
+    for (const type of testType) {
+      console.log(`${type}`);
+
+      const result = handler.handle(type);
+      if (result) {
+        console.log(`${result}`);
+      } else {
+        console.log(`${type} was left untouched.`);
+      }
+    }
+  }
 }
+
+
+

@@ -1,3 +1,5 @@
+import { QuestionType } from './core/models/test.model';
+
 export const LOGIN_PATH = 'login';
 export const LOGIN_MODULE = './pages/login/login.module';
 export const SELECT_LEVEL_PATH = 'select-level';
@@ -13,8 +15,8 @@ export const SPEAKING_MODULE = './modules/speaking/speaking.module';
 export const RESULT_PATH = 'result';
 export const RESULT_MODULE = './modules/result/result.module';
 export const ERROR_PATH = 'error';
-export const QUESTION_GRAMMAR_PATH = 'g-question/:id';
-export const QUESTION_LISTENING_PATH = 'l-question/:id';
+export const QUESTION_GRAMMAR_PATH = QuestionType.Grammar;
+export const QUESTION_LISTENING_PATH = QuestionType.Listening;
 
 export const PROFILE_PATH = 'profile';
 export const appRoutingLoadChildren = {

@@ -10,15 +10,16 @@ import { QuestionEffects } from 'src/app/redux/effects/questions.effects';
 import { USER_PROVIDED_EFFECTS } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AppSerializer } from './questions-block/serializer';
+import { GrammarQuestion } from '../../core/models/query-types-class'
 
 import { GRAMMAR_PATH, LISTENING_PATH } from 'src/app/app-routing.constants';
-
 
 const routes: Routes = [
   { path: GRAMMAR_PATH, component: QuestionsBlockComponent },
   { path: LISTENING_PATH, component: QuestionsBlockComponent },
 ];
 
+export const grammar = new GrammarQuestion();
 @NgModule({
   declarations: [QuestionComponent, QuestionsBlockComponent],
   imports: [
@@ -39,4 +40,5 @@ const routes: Routes = [
   ],
   exports: [QuestionComponent, QuestionsBlockComponent],
 })
+
 export class QuestionsModule {}
