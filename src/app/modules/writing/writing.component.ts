@@ -7,7 +7,9 @@ import { AboutText } from 'src/app/shared/components/left-layout/left-layout.com
   styleUrls: ['./writing.component.scss'],
 })
 export class WritingComponent implements OnInit {
-  constructor() {}
+  constructor() {
+    console.log(this.about);
+  }
 
   ngOnInit(): void {}
 

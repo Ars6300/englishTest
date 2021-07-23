@@ -9,6 +9,7 @@ import { AboutText } from 'src/app/shared/components/left-layout/left-layout.com
 export class GrammarComponent implements OnInit {
 
   constructor() {
+    console.log(this.about);
   }
 
   ngOnInit(): void {

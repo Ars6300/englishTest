@@ -7,7 +7,9 @@ import { AboutText } from 'src/app/shared/components/left-layout/left-layout.com
   styleUrls: ['./listening.component.scss'],
 })
 export class ListeningComponent implements OnInit {
-  constructor() {}
+  constructor() {
+    console.log(this.about);
+  }
 
   ngOnInit(): void {}
 

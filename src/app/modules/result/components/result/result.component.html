@@ -1,7 +1,7 @@
 <div class="result">
-  <h1 class="result-title">Your grammar and listening results:</h1>
+  <h1 class="result-title">{{"RESULT.FIRST_SECOND" | translate}}</h1>
   <div class="result-tables">
-    <h2 class="result-tables-title">Grammar results</h2>
+    <h2 class="result-tables-title">{{"RESULT.GRAMMAR_RES" | translate }}</h2>
     <table>
       <td>
         <tr *ngFor="let header of headers">
@@ -29,10 +29,10 @@
       </td>
     </table>
     <tr>
-      Total points: 10
+      {{"RESULT.TOTAL_POINTS" | translate}} 10
     </tr>
 
-    <h2 class="result-tables-title">Listenning results</h2>
+    <h2 class="result-tables-title">{{"RESULT.LISTENING_RES" | translate }}</h2>
 
     <table>
       <td>
@@ -61,12 +61,12 @@
       </td>
     </table>
     <tr>
-      Total points: 10
+      {{"RESULT.TOTAL_POINTS" | translate}} 10
     </tr>
   </div>
   <div class="result-buttons">
-    <button>Try again</button>
-    <button>Submit</button>
-    <button>Exit</button>
+    <button>{{"BUTTONS.RETRY" | translate}}</button>
+    <button>{{"BUTTONS.SUBMIT" | translate}}</button>
+    <button>{{"BUTTONS.EXIT" | translate}}</button>
   </div>
 </div>

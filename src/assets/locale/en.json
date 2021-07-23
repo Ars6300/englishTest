@@ -7,7 +7,10 @@
   "PROFILE": {
     "PROFILE": "Profile",
     "RESULTS": "Results",
-    "STATISTICS": "Statistics"
+    "STATISTICS": "Statistics",
+    "NOTIFICATIONS": "Notifications",
+    "ASSIGNED": "Assigned by",
+    "NO_TEXT": "You don't have assigned tests yet. But you can pass one yourself"
   },
   "SELECTORS": {
     "START_BTN": "Start"
@@ -21,6 +24,29 @@
   "TIMER": {
     "TIME": "Time remaining"
   },
+  "BUTTONS": {
+    "NEXT": "Next",
+    "SUBMIT": "Submit",
+    "EXIT": "Exit",
+    "RETRY": "Try again",
+    "START_TEST": "Start a test"
+  },
+  "WRITING": {
+    "TEXTAREA_LABEL": "The field is not available until you select the topic",
+    "NUMBERS_OF_CHARACTERS": "Number of characters:"
+  },
+  "ABOUT": {
+    "TITLE": "{{title}}",
+    "TEXT": "{{text}}"
+  },
+  "RESULT": {
+    "FIRST_SECOND": "Your grammar and listening results:",
+    "GRAMMAR_RES": "Grammar results",
+    "LISTENING_RES": "Listening results",
+    "TOTAL_POINTS": "Total points:"
+  },
+
+  
   "GRAMMAR": {
     "TITLE": "Grammar Test",
     "TEXT": "You need to answer 15 questions. Each question can have from 3 to 5 answers. Good luck!"
@@ -38,3 +64,4 @@
     "TEXT": "You need to select the topic of the speaking, once you select the topic, a button to start recording will be available to you. When you have finished talking, press the stop button. (Remember you have 5 minutes. Good Luck!"
   }
 }
+

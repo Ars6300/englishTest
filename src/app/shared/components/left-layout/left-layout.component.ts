@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Grammar } from './left-layout.constants';
 
 export interface AboutText {
   title: string;
@@ -14,7 +16,10 @@ export class LeftLayoutComponent implements OnInit {
   @Input() about: AboutText[] = [];
   url = window.location.pathname.split('/')[1];
 
-  constructor() {}
+  constructor(private translate: TranslateService) {
+    this.about = [new Grammar()];
+    console.log(this.about);
+  }
 
   ngOnInit() {}
 }

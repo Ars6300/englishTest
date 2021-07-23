@@ -13,11 +13,6 @@ import { UserInfoService } from 'src/app/core/services/user-info/user-info.servi
 })
 export class NotificationsComponent implements OnInit {
 
-
-  firstName = 'piter'
-  lastName = 'underson'
-  email = 'asd'
-
   constructor(
     private router: Router,
     private userService: UserInfoService,
