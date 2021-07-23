@@ -24,9 +24,10 @@ import { SpeakingComponent } from '../modules/speaking/speaking.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
-import { MissingTranslationService } from '../utils';
+import { MissingTranslationService } from './utils/utils';
 import { QuestionsModule } from '../modules/questions-block/questions.module';
 import { CountdownModule } from 'ngx-countdown';
+import { SpeakingModule } from '../modules/speaking/speaking.module';
 
 const routes: Routes = [
   { path: 'grammar', component: GrammarComponent },

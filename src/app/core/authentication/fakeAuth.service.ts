@@ -1,31 +1,25 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
 import {
   deleteCookieParams,
   setCookieParams,
 } from 'src/app/shared/utils/cookies';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationService {
-  constructor(private http: HttpClient, private router: Router) {}
+export class FakeAuthenticationService {
+  constructor(private router: Router) {}
 
   login(user: { email: string; password: any }) {
-    return this.http.post(environment.api_URL, user).pipe(tap(this.setCookies));
-  }
-
-  private setCookies(response: any) {
-    if (response) {
-      setCookieParams('token', response.token, '3600');
+    if (user.email === user.email && user.password === user.password) {
+      this.router.navigate(['/profile']);
+      setCookieParams('token', 'token123123123', '3600');
     }
   }
 
   deleteCookie() {
-    deleteCookieParams();
+    deleteCookieParams();      
   }
 
   get token() {

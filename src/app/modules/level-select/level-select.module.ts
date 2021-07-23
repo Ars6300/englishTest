@@ -8,7 +8,7 @@ import { SelectLevelComponent } from './level-select.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
-import { MissingTranslationService } from 'src/app/utils';
+import { MissingTranslationService } from 'src/app/shared/utils/utils';
 
 @NgModule({
   declarations: [SelectorsComponent, SelectLevelComponent],

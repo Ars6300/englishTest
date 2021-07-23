@@ -31,6 +31,7 @@ import {
   WRITING_MODULE,
   appRoutingLoadChildren,
 } from './app-routing.constants';
+import { AuthGuard } from './core/guard/auth-guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -69,6 +70,7 @@ const routes: Routes = [
   {
     path: ERROR_PATH,
     component: ErrorComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
