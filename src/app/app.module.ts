@@ -17,6 +17,7 @@ import { MissingTranslationService } from './shared/utils/utils';
 import { QuestionsLoadingService } from './modules/questions-block/questions-loading.service';
 import { AuthInterceptor } from './core/interceptor/auth-interceptor/auth-interceptor';
 import { ReduxModule } from './redux/redux.module';
+import { QuestionsSyncService } from './core/services/questions-sync.service';
 
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
@@ -45,7 +46,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       useDefaultLang: false,
     }),
   ],
-  providers: [QuestionsLoadingService,
+  providers: [
+    QuestionsLoadingService, 
+    QuestionsSyncService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

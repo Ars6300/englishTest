@@ -19,3 +19,4 @@ export class QuestionHandler implements QueryHandler {
     return null!;
   }
 }
+
