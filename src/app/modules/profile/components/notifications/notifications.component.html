@@ -2,9 +2,9 @@
   
   <h1 class="title">{{"PROFILE.NOTIFICATIONS" | translate}}</h1>
   <div *ngIf="notifications.length; else nothingToShow" class="message">
-    <p class="message-text">{{ notifications[0].title }}</p>
+    <p class="message-text">{{ notifications[0].title | translate}}</p>
     <h1 class="message-title title">{{"PROFILE.ASSIGNED" | translate}}</h1>
-    <p class="message-text">{{ notifications[0].assignedBy }}</p>
+    <p class="message-text">{{ notifications[0].assignedBy | translate}}</p>
   </div>
 
   <ng-template #nothingToShow>

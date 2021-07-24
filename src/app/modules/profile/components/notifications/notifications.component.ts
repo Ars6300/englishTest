@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 
 import { Notification } from 'src/app/core/models/notification.model';
 import { UserInfoService } from 'src/app/core/services/user-info/user-info.service';
+import { ASSIGNED_ROLE, TEST_NOTIFICATION } from '../../profile-routing.constants';
 
 @Component({
   selector: 'app-notifications',
@@ -20,8 +21,8 @@ export class NotificationsComponent implements OnInit {
 
   notifications: Notification[] = [
     {
-      title: 'You have test assigned',
-      assignedBy: 'HR',
+      title: TEST_NOTIFICATION,
+      assignedBy: ASSIGNED_ROLE,
       deadline: new Date().toLocaleDateString('en-UK'),
     },
   ];

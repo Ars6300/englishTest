@@ -3,10 +3,20 @@
   <div class="result-tables">
     <h2 class="result-tables-title">{{"RESULT.GRAMMAR_RES" | translate }}</h2>
     <table>
-      <td>
-        <tr *ngFor="let header of headers">
+      <td *ngFor="let header of headers">
+        <tr>
           {{
-            header
+            header.questionCount | translate
+          }}
+        </tr>
+        <tr>
+          {{
+            header.yourAnswer | translate
+          }}
+        </tr>
+        <tr >
+          {{
+            header.points | translate
           }}
         </tr>
       </td>
@@ -35,10 +45,20 @@
     <h2 class="result-tables-title">{{"RESULT.LISTENING_RES" | translate }}</h2>
 
     <table>
-      <td>
-        <tr *ngFor="let header of headers">
+      <td *ngFor="let header of headers">
+        <tr>
           {{
-            header
+            header.questionCount | translate
+          }}
+        </tr>
+        <tr>
+          {{
+            header.yourAnswer | translate
+          }}
+        </tr>
+        <tr >
+          {{
+            header.points | translate
           }}
         </tr>
       </td>
