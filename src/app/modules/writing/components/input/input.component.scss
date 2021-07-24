@@ -7,8 +7,7 @@
   flex-direction: column;
   padding: 100px;
   width: 100%;
-  font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #fff;
+  color: var(--color-light);
 
   &-textarea {
     width: 100%;

@@ -1,5 +1,4 @@
 <div class="notifications">
-  
   <h1 class="title">Notifications</h1>
   <div *ngIf="notifications.length; else nothingToShow" class="message">
     <p class="message-text">{{ notifications[0].title }}</p>
@@ -15,8 +14,7 @@
     </p>
   </ng-template>
 
-  <app-button class="notifications-button" (click)="goToSelectLevel()">
+  <button class="notifications-button" (click)="goToSelectLevel()">
     Start a test
-  </app-button>
+  </button>
 </div>
-
