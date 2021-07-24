@@ -1,0 +1,29 @@
+.results {
+  display: flex;
+  color: #545454;
+
+  &-list,
+  &-expand {
+    padding: 100px;
+
+    &-title {
+      font-size: 35px;
+    }
+
+    ul {
+      list-style: none;
+      line-height: 2.2;
+      margin-top: 20px;
+
+      a {
+        text-decoration: none;
+        font-size: 23px;
+        color: black;
+      }
+
+      a:hover {
+        font-weight: bold;
+      }
+    }
+  }
+}
