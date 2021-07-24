@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-//import { HttpClientModule } from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon'
 
 import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { QuestionsBlockComponent } from './questions-block/questions-block.component';
@@ -15,6 +15,7 @@ import { AppSerializer } from './questions-block/serializer';
 import { GrammarQuestion } from '../../core/models/query-types-class'
 
 import { GRAMMAR_PATH, LISTENING_PATH } from 'src/app/app-routing.constants';
+import { AudioComponent } from './audio/audio.component';
 
 const routes: Routes = [
   { path: GRAMMAR_PATH, component: QuestionsBlockComponent, canActivate: [AuthGuard] },
@@ -24,14 +25,14 @@ const routes: Routes = [
 
 export const grammar = new GrammarQuestion();
 @NgModule({
-  declarations: [QuestionComponent, QuestionsBlockComponent],
+  declarations: [QuestionComponent, QuestionsBlockComponent, AudioComponent],
   imports: [
     CommonModule,
+    MatIconModule,
     RouterModule.forChild(routes),
     StoreRouterConnectingModule.forRoot({
       serializer: AppSerializer,
     }),
-    //HttpClientModule
   ],
   providers: [
     QuestionEffects,
@@ -41,7 +42,7 @@ export const grammar = new GrammarQuestion();
       useValue: [QuestionEffects],
     },
   ],
-  exports: [QuestionComponent, QuestionsBlockComponent],
+  exports: [QuestionComponent, QuestionsBlockComponent, AudioComponent],
 })
 
 export class QuestionsModule {}
