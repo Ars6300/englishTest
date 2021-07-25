@@ -1,11 +1,11 @@
-.login-form{
+.login-form {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 100vh;
   width: 100%;
-  //height: max-content;
 }
+
 .container {
   width: 100%;
   max-width: 1400px;
@@ -14,9 +14,10 @@
   align-items: center;
   margin: 0 auto;
 }
+
 .person {
   img {
-    @media screen and (max-width: 1600px){
+    @media screen and (max-width: 1600px) {
       width: 400px;
     }
   }
@@ -29,7 +30,7 @@
   align-items: center;
   max-width: 678px;
   width: 100%;
-  background: #FFFFFF;
+  background-color: var(--color-light);
   padding: 120px 140px;
   border-radius: 10px;
 }
@@ -39,6 +40,7 @@
   width: 100%;
   margin-bottom: 120px;
 }
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -46,16 +48,17 @@
 
 .form-control {
   margin-bottom: 30px;
+
   small {
-    font-size: 16px;
-    color: rgb(209, 25, 25);
+    font-size: 0.8rem;
+    color: var(--color-warning);
   }
 }
 
 .input-email,
 .input-password {
   width: 100%;
-  height: 35px;
+  height: 2.3rem;
   background-color: #efefef;
   border: 0.5px solid #cccccc;
   padding: 9px 15px;
@@ -64,27 +67,22 @@
 
 .button-submit {
   width: 400px;
-  height: 50px;
-  background: #42768ab9!important;
-  font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 20px;
-  color: #ffffff !important;
+
+  &:hover {
+    background-color: var(--color-button);
+  }
+
   &:disabled {
     cursor: not-allowed !important;
-    background: #1e6c8b77!important;
-    color: #fff !important;
+    filter: grayscale(50%) opacity(50%);
   }
-}
-
-.button-submit:hover {
-  cursor: pointer;
 }
 
 
 .input-email,
 .input-password::placeholder {
   font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 14px;
+  font-size: 0.7rem;
 }
 
 .input-email,

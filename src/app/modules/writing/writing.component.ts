@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutText } from 'src/app/shared/components/left-layout/left-layout.component';
+import { WRITTING_TEXT, WRITTING_TITLE } from './writing.constants';
 
 @Component({
   selector: 'app-writing',
@@ -13,8 +14,8 @@ export class WritingComponent implements OnInit {
 
   about: AboutText[] = [
     {
-      title: 'Writing',
-      text: `You need to choose a topic for your essay. After selecting a topic, you will be given space to write. The maximum number of characters is 512. Good Luck!`,
+      title: WRITTING_TITLE,
+      text: WRITTING_TEXT,
     },
   ];
 }

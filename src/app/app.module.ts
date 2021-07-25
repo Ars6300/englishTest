@@ -22,6 +22,7 @@ import { QuestionsLoadingService } from './modules/questions-block/questions-loa
 import { AuthInterceptor } from './core/interceptor/auth-interceptor/auth-interceptor';
 import { ReduxModule } from './redux/redux.module';
 import { QuestionsSyncService } from './core/services/questions-sync.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../assets/locale/', '.json');
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       },
       useDefaultLang: false,
     }),
+    NoopAnimationsModule,
   ],
   providers: [
     QuestionsLoadingService,

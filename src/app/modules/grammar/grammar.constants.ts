@@ -1,0 +1,2 @@
+export const GRAMMAR_TITLE = 'GRAMMAR.TITLE'
+export const GRAMMAR_TEXT = 'GRAMMAR.TEXT'

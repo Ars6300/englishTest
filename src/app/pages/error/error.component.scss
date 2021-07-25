@@ -2,28 +2,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 100px;
+  justify-content: center;
+  height: 100vh;
+
   &__title {
-    font-size: 50px;
-    color: #fff;
+    font-size: 2.5rem;
+    color: var(--color-light);
     margin-bottom: 20px;
   }
+
   &__text {
-    font-size: 40px;
-    color: #fff;
+    font-size: 2rem;
+    color: var(--color-light);
     margin-bottom: 20px;
   }
+
   &__link {
+    margin-top: 20px;
     padding: 20px 30px;
-    font-size: 22px;
+    font-size: 1.1rem;
     cursor: pointer;
     border: none;
-    background: #A2DFF7;
+    background-color: var(--color-button);
     border-radius: 10px;
-    color: #fff;
+    color: var(--color-light);
     transition: background 0.3s ease;
-    &:hover {
-      background: #85ddff;
-    }
   }
 }

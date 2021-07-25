@@ -8,7 +8,6 @@ import { SafePipe } from './pipes/safe.pipe';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { AuthDirective } from './directives/auth.directive';
 
-import { ButtonComponent } from './components/buttons/button/button.component';
 import { ButtonsStylingDirective } from './directives/buttons-styling.directive';
 import { TimerComponent } from './components/timer/timer.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -22,18 +21,23 @@ import { ListeningComponent } from '../modules/listening/listening.component';
 import { WritingComponent } from '../modules/writing/writing.component';
 import { SpeakingComponent } from '../modules/speaking/speaking.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import {
+  MissingTranslationHandler,
+  TranslateLoader,
+  TranslateModule,
+} from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationService } from './utils/utils';
 import { QuestionsModule } from '../modules/questions-block/questions.module';
 import { CountdownModule } from 'ngx-countdown';
-import { SpeakingModule } from '../modules/speaking/speaking.module';
+
+import { AuthGuard } from '../core/guard/auth-guard/auth.guard';
 
 const routes: Routes = [
-  { path: 'grammar', component: GrammarComponent },
-  { path: 'listening', component: ListeningComponent },
-  { path: 'writing', component: WritingComponent },
-  { path: 'speaking', component: SpeakingComponent },
+  { path: 'grammar',   component: GrammarComponent,   canActivate: [AuthGuard] },
+  { path: 'listening', component: ListeningComponent, canActivate: [AuthGuard] },
+  { path: 'writing',   component: WritingComponent,   canActivate: [AuthGuard] },
+  { path: 'speaking',  component: SpeakingComponent,  canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -43,7 +47,6 @@ const routes: Routes = [
     SafePipe,
     CapitalizePipe,
     AuthDirective,
-    ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,
     NavigationComponent,
@@ -56,7 +59,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
-    QuestionsModule, 
+    QuestionsModule,
     CountdownModule,
     HttpClientModule,
     TranslateModule.forChild({
@@ -78,7 +81,6 @@ const routes: Routes = [
     RouterModule,
     QuestionsModule,
     CountdownModule,
-    ButtonComponent,
     ButtonsStylingDirective,
     TimerComponent,
     HeaderComponent,

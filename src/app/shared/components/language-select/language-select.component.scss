@@ -1,4 +1,4 @@
-.wrapper-lang{
+.wrapper-lang {
   position: sticky;
   display: flex;
   width: 62px;
@@ -6,17 +6,17 @@
   justify-content: space-between;
 }
 
-.language{
-  color: #4B4B4B;
+.language {
+  color: var(--color-text);
   font-style: normal;
   font-weight: 500;
 
-  &:hover{
+  &:hover {
     cursor: pointer;
     transform: scale(1.5);
   }
 }
 
-.selected{
-  color: #FFFFFF
+.selected {
+  color: var(--color-light)
 }
