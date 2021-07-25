@@ -15,6 +15,8 @@ export class QuestionsLoadingService {
   private questions: Question[] = [];
   private answers: Answer[] = [];
 
+  private tryCounter: number = 0;
+
   questionsPath: string = 'assets/questions.json';
 
   constructor(private http: HttpClient) {}
@@ -31,5 +33,9 @@ export class QuestionsLoadingService {
     return this.answers.find(
       (answer: Answer) => answer.questionId === questionId
     );
+  }
+
+  audioTryCount() {
+    
   }
 }
