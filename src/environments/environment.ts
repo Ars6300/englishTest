@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  api_URL: "https://localhost:44356/api/User/Login",
   locales: ['en', 'ru'],
   defaultLocale: 'en',
 };

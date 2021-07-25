@@ -6,23 +6,25 @@
   &-button {
     margin-top: 7vh;
   }
+
 }
 
 .title {
-  color: #fff;
+  color: var(--color-light);
   font-weight: normal;
   margin-top: 3vh;
   line-height: 30px;
-  font-size: 35px;
+  font-size: 1.8rem;
 }
 
 .message {
   &-text {
-    font-size: 25px;
+    font-size: 1.25rem;
     margin-top: 3vh;
   }
 
   &-title {
     margin-top: 7vh;
   }
+
 }

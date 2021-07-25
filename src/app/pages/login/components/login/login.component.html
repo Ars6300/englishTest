@@ -1,38 +1,60 @@
 <div class="login-form">
-  <form class="form" #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
-    <div class="logo-container">
-      <img
-        src="../../../../../assets/images/logo.png"
-        alt=""
-        class="logo-image"
-      />
+  <div class="container">
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="logo-container">
+        <img
+          src="../../../../../assets/images/logo.png"
+          alt=""
+          class="logo-image"
+        />
+      </div>
+      <div class="form-group">
+        <div class="form-control">
+          <input
+            type="email"
+            class="input-email"
+            placeholder="Email"
+            formControlName="email"
+            required
+          />
+          <div
+            class="validation"
+            *ngIf="
+              form.controls['email'].invalid && form.controls['email'].touched
+            "
+          >
+            <small>{{ "LOGIN.VALID_EMAIL" | translate }}</small>
+          </div>
+        </div>
+        <div class="form-control">
+          <input
+            type="password"
+            class="input-password"
+            placeholder="Password"
+            formControlName="password"
+            required
+          />
+          <div
+            class="validation"
+            *ngIf="
+              form.controls['password'].invalid &&
+              form.controls['password'].touched
+            "
+          >
+            <small>{{ "LOGIN.VALID_PASSWORD" | translate }}</small>
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="button-submit"
+          [disabled]="form.invalid || submitted"
+        >
+          {{ "LOGIN.SIGN_IN" | translate }}
+        </button>
+      </div>
+    </form>
+    <div class="person">
+      <img src="../../../../../assets/images/login-gates.png" alt="" />
     </div>
-    <div class="form-group">
-      <input
-        type="email"
-        class="input-email"
-        placeholder="Email"
-        name="email"
-        ngModel
-        required
-      />
-      <input
-        type="password"
-        class="input-password"
-        placeholder="Password"
-        name="password"
-        ngModel
-        required
-      />
-      <button
-        type="submit"
-        ButtonType="primary"
-        class="button-submit"
-        appButtonsStyling
-        (click)="goToProfile()"
-      >
-        {{ "LOGIN.SIGN_IN" | translate}}
-      </button>
-    </div>
-  </form>
+  </div>
 </div>

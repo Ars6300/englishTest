@@ -1,0 +1,2 @@
+export const WRITTING_TITLE = "WRITTING.TITLE"
+export const WRITTING_TEXT = "WRITTING.TEXT"

@@ -6,6 +6,11 @@
   &__left {
     width: 33%;
     height: 100vh;
-    background: rgb(255, 255, 255);
+    background-color: var(--color-light);
   }
+
+  &__right {
+    width: 67%;
+  }
+
 }

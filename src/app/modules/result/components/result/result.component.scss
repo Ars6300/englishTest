@@ -5,11 +5,10 @@
   height: 100vh;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--color-light);
 
   &-title {
-    font-size: 35px;
+    font-size: 1.75rem;
   }
 
   &-tables {
@@ -18,17 +17,18 @@
     align-items: center;
 
     &-title {
-      margin-top: 16px;
+      margin-top: 0.8rem;
     }
   }
 
   &-buttons {
-    width: 55%;
+    width: 100%;
     display: flex;
+    margin-top: 1rem;
 
     button {
       width: fit-content;
-      padding: 5px 25px;
+      padding: 0 25px;
     }
 
     button:nth-child(2) {
@@ -48,7 +48,7 @@ table {
 }
 
 td {
-  border: 1px solid #dddddd;
+  border: 1px solid #545454;
   text-align: left;
   padding: 5px 8px;
 }
@@ -59,8 +59,9 @@ td:not(:first-child) {
 
 tr {
   border: 12px solid transparent;
+  color: #545454
 }
 
-td:first-child {
-  background-color: #A2DFF7;
+td {
+  filter: invert(78%) sepia(32%) saturate(493%) hue-rotate(171deg) brightness(103%) contrast(94%);
 }

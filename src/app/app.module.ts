@@ -11,11 +11,15 @@ import {
   TranslateLoader,
   TranslateModule,
 } from '@ngx-translate/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MissingTranslationService } from './utils';
+import { MissingTranslationService } from './shared/utils/utils';
 import { QuestionsLoadingService } from './modules/questions-block/questions-loading.service';
+import { AuthInterceptor } from './core/interceptor/auth-interceptor/auth-interceptor';
 import { ReduxModule } from './redux/redux.module';
+import { QuestionsSyncService } from './core/services/questions-sync.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../assets/locale/', '.json');
@@ -42,8 +46,17 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       },
       useDefaultLang: false,
     }),
+    NoopAnimationsModule,
   ],
-  providers: [QuestionsLoadingService],
+  providers: [
+    QuestionsLoadingService, 
+    QuestionsSyncService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
+  ],
 
   bootstrap: [AppComponent],
 })

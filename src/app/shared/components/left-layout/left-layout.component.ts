@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
 
 export interface AboutText {
   title: string;
@@ -12,14 +11,10 @@ export interface AboutText {
   styleUrls: ['./left-layout.component.scss'],
 })
 export class LeftLayoutComponent implements OnInit {
-  
   @Input() about: AboutText[] = [];
-  url = window.location.pathname.split('/')[1]
+  url = window.location.pathname.split('/')[1];
 
   constructor() {}
 
-  ngOnInit() {
-
-    
-  }
+  ngOnInit() {}
 }

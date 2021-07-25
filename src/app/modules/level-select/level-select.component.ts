@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { AboutText } from 'src/app/shared/components/left-layout/left-layout.component';
+import { SELECT_LEVEL_TEXT, SELECT_LEVEL_TITLE } from './select-level.constants';
 
 
 
@@ -13,8 +14,8 @@ export class SelectLevelComponent implements OnInit{
   
   about: AboutText[] = [
     {
-      title: 'About Test', 
-      text: `The test consists of 4 blocks: Block 1)  Grammar Test. Block 2) Listening. Block 3) Essay Block 4) Speaking. You have 60 minutes for all blocks. Good luck!`
+      title: SELECT_LEVEL_TITLE, 
+      text: SELECT_LEVEL_TEXT
     }
   ]
   
