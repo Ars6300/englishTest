@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-//import { HttpClientModule } from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon'
 
 import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { QuestionsBlockComponent } from './questions-block/questions-block.component';
@@ -16,6 +16,13 @@ import { GrammarQuestion } from '../../core/models/query-types-class'
 
 import { GRAMMAR_PATH, LISTENING_PATH } from 'src/app/app-routing.constants';
 
+import { AudioComponent } from './audio/audio.component';
+
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/app.module';
+import { MissingTranslationService } from 'src/app/shared/utils/utils';
+
 const routes: Routes = [
   { path: GRAMMAR_PATH, component: QuestionsBlockComponent, canActivate: [AuthGuard] },
   { path: LISTENING_PATH, component: QuestionsBlockComponent, canActivate: [AuthGuard] },
@@ -24,14 +31,27 @@ const routes: Routes = [
 
 export const grammar = new GrammarQuestion();
 @NgModule({
-  declarations: [QuestionComponent, QuestionsBlockComponent],
+  declarations: [QuestionComponent, QuestionsBlockComponent, AudioComponent],
   imports: [
     CommonModule,
+    MatIconModule,
     RouterModule.forChild(routes),
     StoreRouterConnectingModule.forRoot({
       serializer: AppSerializer,
     }),
-    //HttpClientModule
+    HttpClientModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: MissingTranslationService,
+      },
+      useDefaultLang: false,
+    }),
   ],
   providers: [
     QuestionEffects,
@@ -41,7 +61,7 @@ export const grammar = new GrammarQuestion();
       useValue: [QuestionEffects],
     },
   ],
-  exports: [QuestionComponent, QuestionsBlockComponent],
+  exports: [QuestionComponent, QuestionsBlockComponent, AudioComponent],
 })
 
 export class QuestionsModule {}

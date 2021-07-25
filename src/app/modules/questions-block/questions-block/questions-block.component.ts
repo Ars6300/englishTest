@@ -18,7 +18,6 @@ import {
 } from '../../../app-routing.constants';
 import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
 
-//import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
 import {
   QueryHandler,
 } from 'src/app/core/models/query-handler.model';
@@ -37,6 +36,8 @@ export class QuestionsBlockComponent implements OnInit {
   index = 0;
   navigateTo = '';
 
+  listeningBlockIsActive: boolean = false;
+
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
     private router: Router,
@@ -51,10 +52,12 @@ export class QuestionsBlockComponent implements OnInit {
     this.questions$ = this.questionStore.select(getQuestions);
     const currentRoute = this.router.url;
 
-    if (currentRoute.includes(GRAMMAR_PATH)) {
+    if (currentRoute.includes(GRAMMAR_PATH)) { this.listeningBlockIsActive = false;
       this.navigateTo = `${GRAMMAR_PATH}/${QUESTION_GRAMMAR_PATH}`;
-    } else if (currentRoute.includes(LISTENING_PATH)) {
+     
+    } else if (currentRoute.includes(LISTENING_PATH)) {      this.listeningBlockIsActive = true;
       this.navigateTo = `${LISTENING_PATH}/${QUESTION_LISTENING_PATH}`;
+
     }
 
     this.router.navigate([this.navigateTo], {

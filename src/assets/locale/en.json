@@ -1,4 +1,8 @@
 {
+  "LANGUAGE": {
+    "ENG": "eng",
+    "RU": "ru"
+  },
   "LOGIN": {
     "SIGN_IN": "Sign in",
     "VALID_EMAIL": "Enter valid email",
@@ -7,7 +11,12 @@
   "PROFILE": {
     "PROFILE": "Profile",
     "RESULTS": "Results",
-    "STATISTICS": "Statistics"
+    "STATISTICS": "Statistics",
+    "NOTIFICATIONS": "Notifications",
+    "ASSIGNED": "Assigned by",
+    "NO_TEXT": "You don't have assigned tests yet. But you can pass one yourself",
+    "TEST_NOTIFICATION": "You have test assigned",
+    "ASSIGNED_ROLE": "HR"
   },
   "SELECTORS": {
     "START_BTN": "Start"
@@ -20,6 +29,31 @@
   },
   "TIMER": {
     "TIME": "Time remaining"
+  },
+  "BUTTONS": {
+    "NEXT": "Next",
+    "SUBMIT": "Submit",
+    "EXIT": "Exit",
+    "RETRY": "Try again",
+    "START_TEST": "Start a test"
+  },
+  "WRITING": {
+    "TEXTAREA_LABEL": "The field is not available until you select the topic",
+    "NUMBERS_OF_CHARACTERS": "Number of characters:"
+  },
+  "RESULT": {
+    "FIRST_SECOND": "Your grammar and listening results:",
+    "GRAMMAR_RES": "Grammar results",
+    "LISTENING_RES": "Listening results",
+    "TOTAL_POINTS": "Total points:",
+    "QUESTIONS_COUNT": "Questions count",
+    "YOUR_ANSWERS": "Your answers",
+    "POINTS": "Points"
+  },
+  "SELECT_LEVEL": {
+    "TITLE": "About Test",
+    "TEXT": "The test consists of four blocks: 1) Grammar test. 2) Listening. 3) Essay 4) Speaking. You have 60 minutes to complete all blocks. Good luck!",
+    "TITLE_LEVELS": "Select your English level"
   },
   "GRAMMAR": {
     "TITLE": "Grammar Test",
@@ -38,3 +72,4 @@
     "TEXT": "You need to select the topic of the speaking, once you select the topic, a button to start recording will be available to you. When you have finished talking, press the stop button. (Remember you have 5 minutes. Good Luck!"
   }
 }
+
