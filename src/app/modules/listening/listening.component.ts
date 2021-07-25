@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutText } from 'src/app/shared/components/left-layout/left-layout.component';
+import { LISTENING_TEXT, LISTENING_TITLE } from './listening.constants';
 
 @Component({
   selector: 'app-listening',
@@ -13,8 +14,8 @@ export class ListeningComponent implements OnInit {
 
   about: AboutText[] = [
     {
-      title: 'Listening',
-      text: `In order to start listening you need to press the Start button. This audio will be available for listening 3 times. After listening, 10 questions will be available for you to answer. Good Luck!`,
+      title: LISTENING_TITLE,
+      text: LISTENING_TEXT,
     },
   ];
 }

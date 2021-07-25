@@ -15,7 +15,13 @@ import { AppSerializer } from './questions-block/serializer';
 import { GrammarQuestion } from '../../core/models/query-types-class'
 
 import { GRAMMAR_PATH, LISTENING_PATH } from 'src/app/app-routing.constants';
+
 import { AudioComponent } from './audio/audio.component';
+
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/app.module';
+import { MissingTranslationService } from 'src/app/shared/utils/utils';
 
 const routes: Routes = [
   { path: GRAMMAR_PATH, component: QuestionsBlockComponent, canActivate: [AuthGuard] },
@@ -32,6 +38,19 @@ export const grammar = new GrammarQuestion();
     RouterModule.forChild(routes),
     StoreRouterConnectingModule.forRoot({
       serializer: AppSerializer,
+    }),
+    HttpClientModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: MissingTranslationService,
+      },
+      useDefaultLang: false,
     }),
   ],
   providers: [

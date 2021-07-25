@@ -27,13 +27,13 @@ import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationService } from './utils/utils';
 import { QuestionsModule } from '../modules/questions-block/questions.module';
 import { CountdownModule } from 'ngx-countdown';
-import { SpeakingModule } from '../modules/speaking/speaking.module';
+import { AuthGuard } from '../core/guard/auth-guard/auth.guard';
 
 const routes: Routes = [
-  { path: 'grammar', component: GrammarComponent },
-  { path: 'listening', component: ListeningComponent },
-  { path: 'writing', component: WritingComponent },
-  { path: 'speaking', component: SpeakingComponent },
+  { path: 'grammar',   component: GrammarComponent,   canActivate: [AuthGuard] },
+  { path: 'listening', component: ListeningComponent, canActivate: [AuthGuard] },
+  { path: 'writing',   component: WritingComponent,   canActivate: [AuthGuard] },
+  { path: 'speaking',  component: SpeakingComponent,  canActivate: [AuthGuard] },
 ];
 
 @NgModule({

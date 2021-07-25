@@ -1,22 +1,20 @@
 <div class="notifications">
   
-  <h1 class="title">Notifications</h1>
+  <h1 class="title">{{"PROFILE.NOTIFICATIONS" | translate}}</h1>
   <div *ngIf="notifications.length; else nothingToShow" class="message">
-    <p class="message-text">{{ notifications[0].title }}</p>
-    <h1 class="message-title title">Assigned by</h1>
-    <p class="message-text">{{ notifications[0].assignedBy }}</p>
-    <!-- <h1 class="message-title title">Deadline</h1>
-    <p class="message-text">{{ notifications[0].deadline }}</p> -->
+    <p class="message-text">{{ notifications[0].title | translate}}</p>
+    <h1 class="message-title title">{{"PROFILE.ASSIGNED" | translate}}</h1>
+    <p class="message-text">{{ notifications[0].assignedBy | translate}}</p>
   </div>
 
   <ng-template #nothingToShow>
     <p class="message-text">
-      You don't have assigned tests yet. But you can pass one yourself
+      {{"PROFILE.NOTEXT" | translate}}
     </p>
   </ng-template>
 
   <app-button class="notifications-button" (click)="goToSelectLevel()">
-    Start a test
+   {{"BUTTONS.START_TEST" | translate}}
   </app-button>
 </div>
 
