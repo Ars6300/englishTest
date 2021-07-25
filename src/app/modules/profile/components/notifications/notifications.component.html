@@ -1,5 +1,4 @@
 <div class="notifications">
-  
   <h1 class="title">{{"PROFILE.NOTIFICATIONS" | translate}}</h1>
   <div *ngIf="notifications.length; else nothingToShow" class="message">
     <p class="message-text">{{ notifications[0].title | translate}}</p>
@@ -17,4 +16,3 @@
    {{"BUTTONS.START_TEST" | translate}}
   </app-button>
 </div>
-

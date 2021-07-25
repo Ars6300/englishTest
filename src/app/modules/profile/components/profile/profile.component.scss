@@ -1,31 +1,30 @@
 .profile {
   display: flex;
-  font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
 
   &-navigation {
     max-width: 400px;
     width: 33%;
     height: 100vh;
-    background: rgb(255, 255, 255);
+    background-color: var(--color-light);
     padding: 100px 0 0 70px;
+
     ul {
       padding: 0;
       list-style: none;
 
       li {
         margin-bottom: 30px;
-        font-size: 25px;
+        font-size: 1.25rem;
 
         a {
-          color: #545454;
-          font-family: 'Montserrat';
+          color: var(--color-text);
           font-weight: 500;
           text-decoration: none;
         }
 
         &.active {
-          font-size: 30px;
+          font-size: 1.5rem;
           border-bottom: 0.5px solid #81BACF;
         }
       }

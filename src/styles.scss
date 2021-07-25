@@ -39,19 +39,37 @@ $english-client-theme: mat.define-light-theme((
   box-sizing: border-box;
 }
 
+:root {
+  --color-background: #99dbf3;
+  --color-button: #305968;
+  --color-light: #ffffff;
+  --color-text: #545454;
+  --color-warning: #d11919;
+}
+
+html,
+body {
+  font-size: 20px;
+}
+
+body {
+  font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 button {
   width: 100%;
-  height: fit-content;
-  background-color: #7ad2f4;
-  border: 0.5px solid #7ad2f4;
+  height: 2.3rem;
+  background-color: var(--color-button);
+  border: 0.5px solid var(--color-button);
   font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 20px;
-  color: #ffffff;
+  color: var(--color-light);
+  font-size: 1rem;
   border-radius: 7px;
 }
 
 button:hover {
   cursor: pointer;
+  background-color: transparent;
 }
 
 html, body { height: 100%; }
