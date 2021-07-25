@@ -1,8 +1,30 @@
+@import '../../../../assets/scss/styles.scss';
+
 .footer {
   position: fixed;
-  bottom: 50px;
+  bottom: 0px;
   right: 110px;
+  padding-bottom: 50px;
+  @include _768 {
+    // bottom: 20px;
+    // right: 40px;
+   
+  }
+  @include _1200 {
+    padding-bottom: 20px;
+        right: 40px;
+  }
 }
+
+// .footer {
+//   display: flex;
+//   justify-content: flex-end;
+//   padding: 50px 50px 50px 0px;
+//   @include _768 {
+//     bottom: 20px;
+//     right: 40px;
+//   }
+// }
 
 .footer-phrase {
   color: var(--color-text)

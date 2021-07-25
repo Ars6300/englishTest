@@ -1,3 +1,5 @@
+@import '../../../../../assets/scss/styles.scss';
+
 .login-form {
   display: flex;
   align-items: center;
@@ -13,12 +15,24 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  @include _1400 {
+    width: 90%;
+  }
+  @include _1200 {
+    width: 95%;
+  }
 }
 
 .person {
   img {
-    @media screen and (max-width: 1600px) {
+    @include _1400 {
       width: 400px;
+    }
+    @include _1200 {
+      width: 350px;
+    }
+    @include _992 {
+      display: none;
     }
   }
 }
@@ -29,16 +43,33 @@
   justify-content: center;
   align-items: center;
   max-width: 678px;
-  width: 100%;
+  width: 80%;
   background-color: var(--color-light);
   padding: 120px 140px;
   border-radius: 10px;
+  @include _1400 {
+    max-width: 578px;
+  }
+  @include _1200 {
+    width: 538px;
+  }
+  @include _992 {
+    justify-content: center;
+    margin: 0 auto;
+    height: 520px;
+  }
+  @include _768 {
+    height: 465px;
+  }
 }
 
 .logo-image {
   max-width: 316px;
   width: 100%;
   margin-bottom: 120px;
+  @include _768 {
+    margin-bottom: 60px;
+  }
 }
 
 .form-group {
