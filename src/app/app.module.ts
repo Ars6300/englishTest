@@ -20,7 +20,6 @@ import { ReduxModule } from './redux/redux.module';
 import { QuestionsSyncService } from './core/services/questions-sync.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../assets/locale/', '.json');
 }
