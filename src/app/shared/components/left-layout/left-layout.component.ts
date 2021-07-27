@@ -14,7 +14,9 @@ export class LeftLayoutComponent implements OnInit {
   @Input() about: AboutText[] = [];
   url = window.location.pathname.split('/')[1];
 
-  constructor() {}
+  constructor() {
+
+  }
 
   ngOnInit() {}
 }

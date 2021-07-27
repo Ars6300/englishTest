@@ -33,6 +33,7 @@ import { CountdownModule } from 'ngx-countdown';
 
 import { AuthGuard } from '../core/guard/auth-guard/auth.guard';
 import { MaterialModule } from './material/material.module';
+import { ThemeComponent } from './components/theme-choose/theme/theme.component';
 
 const routes: Routes = [
   { path: 'grammar',   component: GrammarComponent,   canActivate: [AuthGuard] },
@@ -55,13 +56,14 @@ const routes: Routes = [
     ProgressBarComponent,
     FooterComponent,
     ErrorComponent,
+    ThemeComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
     QuestionsModule,
-    //MaterialModule,
+    MaterialModule,
     CountdownModule,
     HttpClientModule,
     TranslateModule.forChild({

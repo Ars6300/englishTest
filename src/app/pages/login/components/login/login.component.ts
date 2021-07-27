@@ -28,8 +28,11 @@ export class LoginComponent implements OnInit {
     }
 
     // ************ real ************
-  
+    // email1@exadel.com
+    // 11111111
+    
     // this.auth.login(user).subscribe( res => {
+    //   console.log(res);
     //   this.form.reset()
     //   this.router.navigate(['/profile'])
     //   this.submitted = false
