@@ -1,0 +1,29 @@
+<div class="speaking-block-container">
+  <div class="person">
+    <img
+      src="../../../../../assets/images/undraw_speech_to_text_9uir 1.png"
+      alt=""
+    />
+  </div>
+  <div class="record">
+    <div class="player">
+      <div class="microfone">
+        <p class="microfone_align">
+          <mat-icon class="microfone_icon">mic</mat-icon>
+        </p>
+      </div>
+      <div class="audio">
+        <p class="time">0:00/5:00</p>
+        <div class="play-control" (click)="playAudio()">
+          <mat-icon class="audio-play">play_circle_outline</mat-icon>
+        </div>
+        <div class="time-control">
+          <input type="range" class="input-range" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="input-submit" type="submit">
+    {{ "BUTTONS.SUBMIT" | translate }}
+  </button>
+</div>
