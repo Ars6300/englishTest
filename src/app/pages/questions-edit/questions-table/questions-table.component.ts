@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 import { Question } from 'src/app/core/models/questions.model';
 import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
 import { QuestionsLoadingService } from 'src/app/modules/questions-block/questions-loading.service';
-import { QuestionsState } from 'src/app/redux/reducers/questions.reducers';
 import { getQuestions } from 'src/app/redux/selectors/questions.selectors';
 import { MatTable } from '@angular/material/table';
+import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 export class QuestionModel {
   id: string = '';
   text: string = '';

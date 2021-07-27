@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
-import { QuestionsState } from 'src/app/redux/reducers/questions.reducers';
+import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 import { getQuestions } from 'src/app/redux/selectors/questions.selectors';
 
 export const QUESTIONS_LOCALSTORAGE_KEY = 'grammar-questions';

@@ -2,7 +2,7 @@
   <div class="results-list">
     <h1 class="results-list-title">Your previous tests</h1>
     <ul>
-      <li routerLinkActive="active">
+      <li routerLinkActive="active" *ngFor="let result of results$ | async">
         <a routerLink="#">01.01.2021-Beginner-Success</a>
       </li>
     </ul>

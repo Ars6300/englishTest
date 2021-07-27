@@ -2,9 +2,7 @@ import { loadProfileResults } from './../actions/profile-results.actions';
 import { createReducer, on, Action } from '@ngrx/store';
 import { Level } from 'src/app/core/models/level.model';
 import { ProfileResult } from './../../core/models/profile-result.model';
-export interface ProfileResultsState {
-  results: ProfileResult[];
-}
+import { ProfileResultsState } from '../models/profile-results.state.model';
 
 export const RESULTS_MOCK: ProfileResult[] = [
   {
