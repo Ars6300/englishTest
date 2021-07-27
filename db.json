@@ -1,0 +1,44 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": "4",
+      "text": "шахматы",
+      "type": "4t45t"
+    },
+    {
+      "id": "5",
+      "text": "3435",
+      "type": "4"
+    },
+    {
+      "id": "6",
+      "text": "шахматы",
+      "type": "ee"
+    },
+    {
+      "id": "2",
+      "text": "I'm busy on Friday, so I ________ come",
+      "type": 2
+    },
+    {
+      "id": "3",
+      "text": "If he ________ one minute later, he ________ the train",
+      "type": "4"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
