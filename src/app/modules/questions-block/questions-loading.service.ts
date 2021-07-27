@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Answer, Question } from 'src/app/core/models/questions.model';
+import { QuestionModel } from 'src/app/pages/questions-edit/questions-table/questions-table.component';
 import { QUESTIONS_MOCK } from 'src/app/redux/reducers/questions.reducers';
 
 @Injectable({
@@ -36,8 +37,8 @@ export class QuestionsLoadingService {
     );
   }
 
-  postQuestion(data: any) {
-    return this.http.post<any>('http://localhost:3000/posts', data).pipe(
+  postQuestion(data: QuestionModel) {
+    return this.http.post<any>('srcenvironmentsenvironment.ts', data).pipe(
       map((res: any) => {
         return res;
       })
@@ -45,15 +46,15 @@ export class QuestionsLoadingService {
   }
 
   getQuestion() {
-    return this.http.get<any>('http://localhost:3000/posts').pipe(
-      map((res: any) => {
+    return this.http.get<any>('srcenvironmentsenvironment.ts').pipe(
+      map((res: QuestionModel) => {
         return res;
       })
     );
   }
 
-  updateQuestion(data: any, id: string) {
-    return this.http.put<any>('http://localhost:3000/posts' + id, data).pipe(
+  updateQuestion(data: QuestionModel, id: string) {
+    return this.http.put<any>('srcenvironmentsenvironment.ts' + id, data).pipe(
       map((res: any) => {
         return res;
       })
@@ -61,7 +62,7 @@ export class QuestionsLoadingService {
   }
 
   deleteQuestion(id: string) {
-    return this.http.delete<any>('http://localhost:3000/posts' + id).pipe(
+    return this.http.delete<any>('srcenvironmentsenvironment.ts' + id).pipe(
       map((res: any) => {
         return res;
       })

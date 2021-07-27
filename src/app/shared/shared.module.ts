@@ -32,6 +32,7 @@ import { QuestionsModule } from '../modules/questions-block/questions.module';
 import { CountdownModule } from 'ngx-countdown';
 
 import { AuthGuard } from '../core/guard/auth-guard/auth.guard';
+import { MaterialModule } from './material/material.module';
 
 const routes: Routes = [
   { path: 'grammar',   component: GrammarComponent,   canActivate: [AuthGuard] },
@@ -60,6 +61,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     QuestionsModule,
+    //MaterialModule,
     CountdownModule,
     HttpClientModule,
     TranslateModule.forChild({
@@ -80,6 +82,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule,
     QuestionsModule,
+    MaterialModule,
     CountdownModule,
     ButtonsStylingDirective,
     TimerComponent,

@@ -7,24 +7,6 @@
   margin-top: 3em;
 }
 
-.questions-table {
-  border-collapse: collapse;
-  margin-top: 3em;
-}
-.questions-table,
-th,
-td {
-  border: 1px solid black;
-  font-size: 1em;
-}
-input {
-  width: 225px;
-  margin: 8px 0;
-  background-color: #dfdfdf;
-  font-size: 1em;
-  box-sizing: border-box;
-}
-
 .modal-close {
   display: none;
   position: fixed;
@@ -63,6 +45,10 @@ input {
   width: auto;
 }
 
+.add-question {
+  margin-bottom: 3em;
+}
+
 .edit-button,
 .delete-button {
   background-color: transparent;
@@ -90,4 +76,13 @@ input {
 .buttons {
   display: flex;
   align-items: center;
+  margin-top: 1em;
+}
+
+.th-width-6 {
+  width: 6em;
+}
+
+.th-width-35 {
+  width: 35em;
 }

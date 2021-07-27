@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+
 import { Observable } from 'rxjs';
+
 import { Question } from 'src/app/core/models/questions.model';
 import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
 import { QuestionsLoadingService } from 'src/app/modules/questions-block/questions-loading.service';
 import { QuestionsState } from 'src/app/redux/reducers/questions.reducers';
 import { getQuestions } from 'src/app/redux/selectors/questions.selectors';
-
+import { MatTable } from '@angular/material/table';
 export class QuestionModel {
   id: string = '';
   text: string = '';
@@ -25,7 +26,11 @@ export class QuestionsTableComponent implements OnInit {
   questionsList: Question[] = [];
   questionsData: Question[] = [];
 
+  displayedColumns: string[] = ['id', 'text', 'type', 'edit', 'delete'];
+  dataSource: Question[] = [];
+
   questionModel: QuestionModel = new QuestionModel();
+  @ViewChild(MatTable) table!: MatTable<QuestionModel>;
 
   openEdit = false;
   formValue!: FormGroup;
@@ -46,6 +51,7 @@ export class QuestionsTableComponent implements OnInit {
 
     this.questionsLoadingService.getQuestions().subscribe((questions$) => {
       this.questionsList = questions$;
+      this.dataSource = [...this.questionsList];
     });
 
     this.formValue = this.formBuilder.group({
@@ -67,9 +73,8 @@ export class QuestionsTableComponent implements OnInit {
     this.questionModel.type = this.formValue.value.type;
 
     this.questionsLoadingService.postQuestion(this.questionModel).subscribe(
-      (res: any) => {
-        console.log(res);
-        let ref = document.getElementById('cancel');
+      (res: QuestionModel) => {
+        const ref = document.getElementById('cancel');
         ref?.click();
         this.formValue.reset();
         this.closeModal();
@@ -86,7 +91,7 @@ export class QuestionsTableComponent implements OnInit {
     });
   }
 
-  onDeleteQuestion(question: any) {
+  onDeleteQuestion(question: QuestionModel) {
     this.questionsLoadingService
       .deleteQuestion(question.id)
       .subscribe((res) => {
@@ -94,7 +99,7 @@ export class QuestionsTableComponent implements OnInit {
       });
   }
 
-  onEditQuestion(question: any) {
+  onEditQuestion(question: QuestionModel) {
     this.showAdd = false;
     this.showUpdate = true;
 
@@ -130,5 +135,18 @@ export class QuestionsTableComponent implements OnInit {
     modal?.classList.remove('modal-open');
     modal?.classList.add('modal-close');
     this.formValue.reset();
+  }
+
+  addData() {
+    const randomElementIndex = Math.floor(
+      Math.random() * this.questionsList.length
+    );
+    this.dataSource.push(this.questionsList[randomElementIndex]);
+    this.table.renderRows();
+  }
+
+  removeData() {
+    this.dataSource.pop();
+    this.table.renderRows();
   }
 }
