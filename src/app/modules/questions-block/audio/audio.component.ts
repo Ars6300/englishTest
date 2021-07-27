@@ -30,8 +30,8 @@ export class AudioComponent {
     this.audio.play();
     ++this.tryCount;
     if (this.tryCount > 2) {
-      let aaa = document.getElementsByClassName('player')[0];
-      aaa.classList.add('hidden');
+      let player = document.getElementsByClassName('player')[0];
+      player.classList.add('hidden');
     }
   }
 
