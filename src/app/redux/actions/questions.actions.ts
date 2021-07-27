@@ -7,5 +7,5 @@ export enum GrammarActionsQuestionsList {
 
 export const LoadQuestions = createAction(
   GrammarActionsQuestionsList.LoadQuestions,
-  props<{questions: Question }>()
+  props<{ questions: Question }>()
 );

@@ -32,6 +32,7 @@ import { QuestionsModule } from '../modules/questions-block/questions.module';
 import { CountdownModule } from 'ngx-countdown';
 
 import { AuthGuard } from '../core/guard/auth-guard/auth.guard';
+import { ThemeComponent } from './components/theme-choose/theme/theme.component';
 
 const routes: Routes = [
   { path: 'grammar',   component: GrammarComponent,   canActivate: [AuthGuard] },
@@ -54,6 +55,7 @@ const routes: Routes = [
     ProgressBarComponent,
     FooterComponent,
     ErrorComponent,
+    ThemeComponent,
   ],
   imports: [
     CommonModule,
