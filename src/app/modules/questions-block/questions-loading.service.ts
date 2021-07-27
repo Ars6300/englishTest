@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Answer, Question } from 'src/app/core/models/questions.model';
+import { QuestionModel } from 'src/app/pages/questions-edit/questions-table/questions-table.component';
 import { QUESTIONS_MOCK } from 'src/app/redux/reducers/questions.reducers';
 
 @Injectable({
@@ -35,7 +37,35 @@ export class QuestionsLoadingService {
     );
   }
 
-  audioTryCount() {
-    
+  postQuestion(data: QuestionModel) {
+    return this.http.post<any>('srcenvironmentsenvironment.ts', data).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+
+  getQuestion() {
+    return this.http.get<any>('srcenvironmentsenvironment.ts').pipe(
+      map((res: QuestionModel) => {
+        return res;
+      })
+    );
+  }
+
+  updateQuestion(data: QuestionModel, id: string) {
+    return this.http.put<any>('srcenvironmentsenvironment.ts' + id, data).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
+  }
+
+  deleteQuestion(id: string) {
+    return this.http.delete<any>('srcenvironmentsenvironment.ts' + id).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
   }
 }

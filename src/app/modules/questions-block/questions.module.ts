@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatIconModule} from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
 
 import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { QuestionsBlockComponent } from './questions-block/questions-block.component';
@@ -12,21 +12,33 @@ import { QuestionEffects } from 'src/app/redux/effects/questions.effects';
 import { USER_PROVIDED_EFFECTS } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AppSerializer } from './questions-block/serializer';
-import { GrammarQuestion } from '../../core/models/query-types-class'
+import { GrammarQuestion } from '../../core/models/query-types-class';
 
 import { GRAMMAR_PATH, LISTENING_PATH } from 'src/app/app-routing.constants';
 
 import { AudioComponent } from './audio/audio.component';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import {
+  MissingTranslationHandler,
+  TranslateLoader,
+  TranslateModule,
+} from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { MissingTranslationService } from 'src/app/shared/utils/utils';
+import { QuestionsEditModule } from 'src/app/pages/questions-edit/questions-edit/questions-edit.module';
 
 const routes: Routes = [
-  { path: GRAMMAR_PATH, component: QuestionsBlockComponent, canActivate: [AuthGuard] },
-  { path: LISTENING_PATH, component: QuestionsBlockComponent, canActivate: [AuthGuard] },
-
+  {
+    path: GRAMMAR_PATH,
+    component: QuestionsBlockComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: LISTENING_PATH,
+    component: QuestionsBlockComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 export const grammar = new GrammarQuestion();
@@ -35,6 +47,7 @@ export const grammar = new GrammarQuestion();
   imports: [
     CommonModule,
     MatIconModule,
+    QuestionsEditModule,
     RouterModule.forChild(routes),
     StoreRouterConnectingModule.forRoot({
       serializer: AppSerializer,
@@ -63,5 +76,4 @@ export const grammar = new GrammarQuestion();
   ],
   exports: [QuestionComponent, QuestionsBlockComponent, AudioComponent],
 })
-
 export class QuestionsModule {}
