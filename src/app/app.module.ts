@@ -26,6 +26,7 @@ import {
   BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
+import { AudioRecordingService } from './modules/speaking/audio-recording.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../assets/locale/', '.json');
@@ -63,6 +64,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       useClass: AuthInterceptor,
       multi: true,
     },
+    AudioRecordingService,
   ],
 
   bootstrap: [AppComponent],

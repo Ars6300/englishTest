@@ -1,11 +1,11 @@
 <div class="container">
- <app-audio *ngIf="listeningBlockIsActive;"></app-audio>
+  <app-audio *ngIf="listeningBlockIsActive"></app-audio>
   <p class="text">{{ question[index].text }}</p>
   <div class="form_radio_group">
     <div
       class="form_radio_group-item"
       *ngFor="let answer of question[index].answers"
-    > 
+    >
       <input
         class="input-text"
         id="{{ question[index].id }}"
@@ -22,6 +22,6 @@
     appButtonsStyling
     (click)="nextQuestion()"
   >
-    {{"BUTTONS.NEXT" | translate}}
+    {{ "BUTTONS.NEXT" | translate }}
   </button>
 </div>
