@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as RecordRTC from 'recordrtc';
 import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
