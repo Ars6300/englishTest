@@ -12,7 +12,13 @@ import { AppState } from 'src/app/redux/models/state.model';
 })
 export class ResultsComponent implements OnInit {
   results$: Observable<ProfileResult[]> = this.store.select(getProfileResults);
+  selectedResult: ProfileResult | undefined;
+
   constructor(private store: Store<AppState>) {}
+
+  selectResult(data: ProfileResult) {
+    this.selectedResult = data;
+  }
 
   ngOnInit(): void {}
 }

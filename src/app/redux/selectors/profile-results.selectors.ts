@@ -6,6 +6,7 @@ export const featureKey = 'profile-results';
 
 export const selectProfileResults =
   createFeatureSelector<ProfileResultsState>(featureKey);
+
 export const getProfileResults = createSelector(
   selectProfileResults,
   (state: ProfileResultsState): ProfileResult[] => state.results

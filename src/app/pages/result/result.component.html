@@ -1,8 +1,13 @@
 <h1 class="title">Result:</h1>
 
-<p class="definition">Grammar:</p>
-<p class="definition">Listening:</p>
-<p class="definition">Writing:</p>
-<p class="definition">Speaking:</p>
+<div *ngIf="result; else empty">
+  <p class="definition">Grammar: {{ result.grammarScore }}</p>
+  <p class="definition">Listening: {{ result.listeningScore }}</p>
+  <p class="definition">Writing: {{ result.writingScore }}</p>
+  <p class="definition">Speaking: {{ result.speakingScore }}</p>
 
-<p class="definition total">Total:</p>
+  <p class="definition total">Total:{{ result.totalScore }}</p>
+</div>
+<ng-template #empty>
+  <p class="definition">Choose your test date to observe</p>
+</ng-template>

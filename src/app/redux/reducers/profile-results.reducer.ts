@@ -22,8 +22,8 @@ export const RESULTS_MOCK: ProfileResult[] = [
     grammarScore: 10,
     listeningScore: 10,
     writingScore: 10,
-    speakingScore: 10,
-    totalScore: 10,
+    speakingScore: 8,
+    totalScore: 9,
   },
 ];
 

@@ -9,6 +9,7 @@ export class ProfileResultsService {
   constructor() {}
 
   getAll(): Observable<any> {
+    console.log('getall');
     return of(RESULTS_MOCK);
   }
 }
