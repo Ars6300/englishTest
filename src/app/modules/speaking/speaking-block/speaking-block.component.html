@@ -33,11 +33,7 @@
       <div>
         <div class="audio">
           <audio *ngIf="!blobUrl" controls></audio>
-          <audio
-            *ngIf="!isRecording && blobUrl"
-            controls
-            controlsList="nodownload"
-          >
+          <audio *ngIf="!isRecording && blobUrl" controls>
             <source [src]="blobUrl" type="audio/mpeg" />
           </audio>
         </div>
@@ -52,7 +48,7 @@
       </div>
     </div>
   </div>
-  <button class="input-submit" type="submit">
+  <button class="input-submit" type="submit" (click)="onGetLink()">
     {{ "BUTTONS.SUBMIT" | translate }}
   </button>
 </div>
