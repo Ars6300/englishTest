@@ -9,17 +9,42 @@
     <div class="player">
       <div class="microfone">
         <p class="microfone_align">
-          <mat-icon class="microfone_icon">mic</mat-icon>
+          <mat-icon
+            class="microfone_icon"
+            *ngIf="!isRecording && !blobUrl"
+            (click)="startRecording()"
+            >mic</mat-icon
+          >
+          <mat-icon
+            class="microfone_icon"
+            *ngIf="isRecording && !blobUrl"
+            (click)="stopRecording()"
+            >stop</mat-icon
+          >
+          <mat-icon
+            class="microfone_icon"
+            *ngIf="!isRecording && blobUrl"
+            (click)="clearRecordedData()"
+            >clear</mat-icon
+          >
         </p>
       </div>
-      <div class="audio">
-        <p class="time">0:00/5:00</p>
+      <!-- <div class="audio"> -->
+      <div class="">
+        <div class="time-color" *ngIf="isRecording && !blobUrl">{{ recordedTime }}</div>
+        <div>
+          <audio *ngIf="!isRecording && blobUrl" controls>
+            <source [src]="blobUrl" type="audio/webm" />
+          </audio>
+        </div>
+
+        <!--         <p class="time" *ngIf="isRecording && !blobUrl">0:00/5:00</p>
         <div class="play-control" (click)="playAudio()">
           <mat-icon class="audio-play">play_circle_outline</mat-icon>
         </div>
         <div class="time-control">
           <input type="range" class="input-range" />
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

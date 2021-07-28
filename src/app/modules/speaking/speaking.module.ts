@@ -8,14 +8,22 @@ import { SpeakingQuestion } from 'src/app/core/models/query-types-class';
 import { SpeakingBlockComponent } from './speaking-block/speaking-block.component';
 import { WritingRoutingModule } from '../writing/writing-routing.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import {
+  MissingTranslationHandler,
+  TranslateLoader,
+  TranslateModule,
+} from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { MissingTranslationService } from 'src/app/shared/utils/utils';
+import { AudioRecordingService } from './audio-recording.service';
 
 export const speaking = new SpeakingQuestion();
 @NgModule({
   declarations: [SpeakingComponent, SpeakingBlockComponent],
-  imports: [CommonModule, SpeakingRoutingModule, SharedModule,
+  imports: [
+    CommonModule,
+    SpeakingRoutingModule,
+    SharedModule,
     CommonModule,
     WritingRoutingModule,
     SharedModule,
@@ -31,6 +39,8 @@ export const speaking = new SpeakingQuestion();
         useClass: MissingTranslationService,
       },
       useDefaultLang: false,
-    }),],
+    }),
+  ],
+  providers: [AudioRecordingService],
 })
 export class SpeakingModule {}
