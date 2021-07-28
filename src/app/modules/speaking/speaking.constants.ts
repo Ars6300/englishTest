@@ -1,2 +1,0 @@
-export const SPEAKING_TITLE = "SPEAKING.TITLE"
-export const SPEAKING_TEXT = "SPEAKING.TEXT"
