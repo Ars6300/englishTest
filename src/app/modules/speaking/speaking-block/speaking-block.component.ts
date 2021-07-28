@@ -12,12 +12,6 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
   recordedTime: any;
   blobUrl: any;
 
-  audio!: HTMLAudioElement;
-
-  disabledAudio: boolean = false;
-
-  play = false;
-
   constructor(
     private audioRecordingService: AudioRecordingService,
     private sanitizer: DomSanitizer
@@ -35,23 +29,6 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
         URL.createObjectURL(data.blob)
       );
     });
-  }
-
-  playAudio() {
-    this.play = true;
-    this.audio = new Audio();
-    this.audio.play();
-  }
-
-  stopAudio() {
-    this.play = false;
-    this.audio.pause();
-  }
-
-  getTime(time: number) {
-    return (
-      Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
-    );
   }
 
   ngOnInit(): void {}

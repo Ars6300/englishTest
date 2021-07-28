@@ -29,22 +29,26 @@
           >
         </p>
       </div>
-      <!-- <div class="audio"> -->
-      <div class="">
-        <div class="time-color" *ngIf="isRecording && !blobUrl">{{ recordedTime }}</div>
-        <div>
-          <audio *ngIf="!isRecording && blobUrl" controls>
-            <source [src]="blobUrl" type="audio/webm" />
+
+      <div>
+        <div class="audio">
+          <audio *ngIf="!blobUrl" controls></audio>
+          <audio
+            *ngIf="!isRecording && blobUrl"
+            controls
+            controlsList="nodownload"
+          >
+            <source [src]="blobUrl" type="audio/mpeg" />
           </audio>
         </div>
-
-        <!--         <p class="time" *ngIf="isRecording && !blobUrl">0:00/5:00</p>
-        <div class="play-control" (click)="playAudio()">
-          <mat-icon class="audio-play">play_circle_outline</mat-icon>
+      </div>
+      <div class="time">
+        <div class="time-color" *ngIf="!isRecording && blobUrl">
+          {{ recordedTime }}
         </div>
-        <div class="time-control">
-          <input type="range" class="input-range" />
-        </div> -->
+        <div class="time-color" *ngIf="isRecording && !blobUrl">
+          {{ recordedTime }}
+        </div>
       </div>
     </div>
   </div>

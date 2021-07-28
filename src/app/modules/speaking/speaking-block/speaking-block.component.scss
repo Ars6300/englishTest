@@ -58,7 +58,9 @@
         }
       }
     }
-
+    .time {
+      width: 3em;
+    }
     .audio {
       display: flex;
       justify-content: center;
@@ -71,21 +73,6 @@
         padding: 1rem;
         color: #305968;
       }
-      .audio-play {
-        color: #305968;
-        cursor: pointer;
-        font-size: 2em;
-      }
-    }
-
-    .time-control {
-      width: 80%;
-      display: flex;
-      margin-left: 1em;
-      .input-range {
-        width: 100%;
-        padding: 1rem 2rem;
-      }
     }
   }
   .input-submit {
@@ -96,4 +83,10 @@
 
 .time-color {
   color: #305968;
+  padding-left: 1em;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+  background-color: #99dbf3;
 }
