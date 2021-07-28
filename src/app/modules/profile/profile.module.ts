@@ -1,3 +1,4 @@
+import { ResultComponent } from './../../pages/result/result.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ResultsComponent } from './components/results/results.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import {
+  MissingTranslationHandler,
+  TranslateLoader,
+  TranslateModule,
+} from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { MissingTranslationService } from 'src/app/shared/utils/utils';
 
@@ -17,6 +22,7 @@ import { MissingTranslationService } from 'src/app/shared/utils/utils';
     ProfileComponent,
     ResultsComponent,
     StatisticsComponent,
+    ResultComponent,
   ],
   imports: [
     CommonModule,

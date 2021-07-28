@@ -1,0 +1,33 @@
+.results {
+  display: flex;
+  color: var(--color-text);
+
+  &-list,
+  &-expand {
+    padding: 100px;
+
+    &-title {
+      font-size: 1.75rem;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 20px;
+
+      li {
+        margin-bottom: 18px;
+      }
+
+      a {
+        text-decoration: none;
+        font-size: 1.15rem;
+        color: black;
+        cursor: pointer;
+      }
+
+      .selected {
+        font-weight: bold;
+      }
+    }
+  }
+}
