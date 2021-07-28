@@ -1,0 +1,58 @@
+<div class="speaking-block-container">
+  <div class="person">
+    <img
+      src="../../../../../assets/images/undraw_speech_to_text_9uir 1.png"
+      alt=""
+    />
+  </div>
+  <div class="record">
+    <div class="player">
+      <div class="microfone">
+        <p class="microfone_align">
+          <mat-icon
+            class="microfone_icon"
+            *ngIf="!isRecording && !blobUrl"
+            (click)="startRecording()"
+            >mic</mat-icon
+          >
+          <mat-icon
+            class="microfone_icon"
+            *ngIf="isRecording && !blobUrl"
+            (click)="stopRecording()"
+            >stop</mat-icon
+          >
+          <mat-icon
+            class="microfone_icon"
+            *ngIf="!isRecording && blobUrl"
+            (click)="clearRecordedData()"
+            >clear</mat-icon
+          >
+        </p>
+      </div>
+
+      <div>
+        <div class="audio">
+          <audio *ngIf="!blobUrl" controls></audio>
+          <audio
+            *ngIf="!isRecording && blobUrl"
+            controls
+            controlsList="nodownload"
+          >
+            <source [src]="blobUrl" type="audio/mpeg" />
+          </audio>
+        </div>
+      </div>
+      <div class="time">
+        <div class="time-color" *ngIf="!isRecording && blobUrl">
+          {{ recordedTime }}
+        </div>
+        <div class="time-color" *ngIf="isRecording && !blobUrl">
+          {{ recordedTime }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="input-submit" type="submit">
+    {{ "BUTTONS.SUBMIT" | translate }}
+  </button>
+</div>
