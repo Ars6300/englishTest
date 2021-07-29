@@ -1,4 +1,4 @@
-@import '../../../../../assets/scss/styles.scss';
+@import '../../../../../scss/styles.scss';
 
 .login-form {
   display: flex;
@@ -15,9 +15,11 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+
   @include _1400 {
     width: 90%;
   }
+
   @include _1200 {
     width: 95%;
   }
@@ -28,9 +30,11 @@
     @include _1400 {
       width: 400px;
     }
+
     @include _1200 {
       width: 350px;
     }
+
     @include _992 {
       display: none;
     }
@@ -47,17 +51,21 @@
   background-color: var(--color-light);
   padding: 120px 140px;
   border-radius: 10px;
+
   @include _1400 {
     max-width: 578px;
   }
+
   @include _1200 {
     width: 538px;
   }
+
   @include _992 {
     justify-content: center;
     margin: 0 auto;
     height: 520px;
   }
+
   @include _768 {
     height: 465px;
   }
@@ -67,6 +75,7 @@
   max-width: 316px;
   width: 100%;
   margin-bottom: 120px;
+
   @include _768 {
     margin-bottom: 60px;
   }
