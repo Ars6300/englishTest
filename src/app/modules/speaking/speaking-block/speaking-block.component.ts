@@ -11,6 +11,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
   isRecording = false;
   recordedTime: any;
   blobUrl: any;
+  maximumTime: string = '05:00';
 
   constructor(
     private audioRecordingService: AudioRecordingService,
@@ -22,6 +23,9 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
 
     this.audioRecordingService.getRecordedTime().subscribe((time) => {
       this.recordedTime = time;
+      if (time === this.maximumTime) {
+        this.stopRecording();
+      }
     });
 
     this.audioRecordingService.getRecordedBlob().subscribe((data) => {
@@ -56,6 +60,10 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
 
   clearRecordedData() {
     this.blobUrl = null;
+  }
+
+  onGetLink() {
+    console.log(this.blobUrl);
   }
 
   ngOnDestroy(): void {
