@@ -14,7 +14,11 @@ import { environment } from 'src/environments/environment';
 export class AuthenticationService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(user: { email: string; password: any }) {
+  login(email: string, password: string) {
+    const user = {
+      email,
+      password,
+    };
     return this.http.post(environment.api_URL, user).pipe(tap(this.setCookies));
   }
 

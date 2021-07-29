@@ -26,7 +26,7 @@ import {
 } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { MissingTranslationService } from 'src/app/shared/utils/utils';
-import { QuestionsEditModule } from 'src/app/pages/questions-edit/questions-edit/questions-edit.module';
+import { QuestionsEditModule } from 'src/app/pages/questions-edit/questions-edit.module';
 
 const routes: Routes = [
   {

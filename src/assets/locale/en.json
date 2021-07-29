@@ -16,7 +16,10 @@
     "ASSIGNED": "Assigned by",
     "NO_TEXT": "You don't have assigned tests yet. But you can pass one yourself",
     "TEST_NOTIFICATION": "You have test assigned",
-    "ASSIGNED_ROLE": "HR"
+    "ASSIGNED_ROLE": "HR",
+    "EDIT": "Edit",
+    "ROLE": "Role",
+    "USERS": "Users"
   },
   "SELECTORS": {
     "START_BTN": "Start"
@@ -35,7 +38,8 @@
     "SUBMIT": "Submit",
     "EXIT": "Exit",
     "RETRY": "Try again",
-    "START_TEST": "Start a test"
+    "START_TEST": "Start a test",
+    "ADD_QUESTION": "Add question"
   },
   "WRITING": {
     "TEXTAREA_LABEL": "The field is not available until you select the topic",
