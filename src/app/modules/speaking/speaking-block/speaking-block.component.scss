@@ -1,4 +1,4 @@
-@import "../../../../assets/scss//styles.scss";
+@import "../../../../scss/styles.scss";
 
 .speaking-block-container {
   display: flex;
@@ -13,13 +13,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     img {
       @include _1400 {
         width: 300px;
       }
+
       @include _1200 {
         width: 250px;
       }
+
       @include _992 {
         display: none;
       }
@@ -44,12 +47,14 @@
       border-radius: 50%;
       margin-right: 1em;
       cursor: pointer;
+
       .microfone_align {
         width: 3em;
         height: 3em;
         display: flex;
         justify-content: center;
         align-items: center;
+
         .microfone_icon {
           font-size: 2em;
           color: #305968;
@@ -58,9 +63,11 @@
         }
       }
     }
+
     .time {
       width: 3em;
     }
+
     .audio {
       display: flex;
       justify-content: center;
@@ -75,6 +82,7 @@
       }
     }
   }
+
   .input-submit {
     width: fit-content;
     padding: 5px 25px;
