@@ -34,12 +34,17 @@ import { CountdownModule } from 'ngx-countdown';
 import { AuthGuard } from '../core/guard/auth-guard/auth.guard';
 import { MaterialModule } from './material/material.module';
 import { ThemeComponent } from './components/theme-choose/theme/theme.component';
+import { ForbidPastingDirective } from './directives/forbid-pasting.directive';
 
 const routes: Routes = [
-  { path: 'grammar',   component: GrammarComponent,   canActivate: [AuthGuard] },
-  { path: 'listening', component: ListeningComponent, canActivate: [AuthGuard] },
-  { path: 'writing',   component: WritingComponent,   canActivate: [AuthGuard] },
-  { path: 'speaking',  component: SpeakingComponent,  canActivate: [AuthGuard] },
+  { path: 'grammar', component: GrammarComponent, canActivate: [AuthGuard] },
+  {
+    path: 'listening',
+    component: ListeningComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'writing', component: WritingComponent, canActivate: [AuthGuard] },
+  { path: 'speaking', component: SpeakingComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -57,6 +62,7 @@ const routes: Routes = [
     FooterComponent,
     ErrorComponent,
     ThemeComponent,
+    ForbidPastingDirective,
   ],
   imports: [
     CommonModule,
@@ -94,6 +100,7 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     ErrorComponent,
+    ForbidPastingDirective,
   ],
 })
 export class SharedModule {}
