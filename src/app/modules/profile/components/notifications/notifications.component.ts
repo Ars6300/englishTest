@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 
 import { Notification } from 'src/app/core/models/notification.model';
-import { UserInfoService } from 'src/app/core/services/user-info/user-info.service';
+import { getUserName, getUserRole } from 'src/app/redux/selectors/user.selectors';
 import { ASSIGNED_ROLE, TEST_NOTIFICATION } from '../../profile-routing.constants';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/state/app.state'
 
 @Component({
   selector: 'app-notifications',
@@ -14,10 +16,15 @@ import { ASSIGNED_ROLE, TEST_NOTIFICATION } from '../../profile-routing.constant
 })
 export class NotificationsComponent implements OnInit {
 
+  getUserRole$ = this.store.select(getUserRole)
+
+
   constructor(
     private router: Router,
-    private userService: UserInfoService,
-  ) {}
+    private store: Store<State>
+  ) {
+    
+  }
 
   notifications: Notification[] = [
     {
@@ -27,11 +34,8 @@ export class NotificationsComponent implements OnInit {
     },
   ];
 
-  ngOnInit() { 
-    // this.userService.getData().subscribe(res => {
-    //   console.log(res)
-    // })
-  }
+  ngOnInit() {}
+
 
 
   goToSelectLevel() {
