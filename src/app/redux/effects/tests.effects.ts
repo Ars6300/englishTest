@@ -23,6 +23,7 @@ export class AuthEffects {
       ofType(TestsActions.getTestsData),
       concatMap((action) => 
       this.testsService.getTests(action.userId, action.engLevel).pipe(
+        // Ругается вот тут ({tests}) пишет что : Тип Object можно назначить малому количеству других типов. Возможно, вы хотели использовать тип any? В типе "Object" отсутствуют следующие свойства из типа "TestsGet": id, startTime, endTime, englishLevel, testQuestionSet
         map((tests) => TestsActions.getTestsDataSuccess({tests})),
         tap(() => this.router.navigate(['/grammar'])),
         catchError((error) => of(TestsActions.getTestsDataFailure({error})))

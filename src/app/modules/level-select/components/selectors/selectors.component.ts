@@ -49,7 +49,7 @@ export class SelectorsComponent implements OnInit {
 
     this.store.dispatch(
       TestsActions.getTestsData({
-        // Если передаю как ниже, то он возвращает ошибку [object Object]
+        //  **************************** Если передаю как ниже, то он возвращает ошибку [object Object] *****************************
         // userId: this.getUserId$,
         userId: '48c68b45-fe58-4bfa-b194-be03d5082102',
         engLevel: this.level.toLocaleLowerCase()

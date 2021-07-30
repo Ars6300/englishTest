@@ -4,7 +4,8 @@ import { createAction, props } from '@ngrx/store';
 
 export const getTestsDataSuccess = createAction(
   '[Tests API] Get Tests Data Success',
-  props<{ tests: any }>()
+  // Если передаю вместо any TestsGet , он ругается в tests.effects ----->
+  props<{ tests: any  }>()
 );
 
 export const getTestsDataFailure = createAction(
