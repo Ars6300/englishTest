@@ -15,19 +15,19 @@ import { MissingTranslationService } from 'src/app/shared/utils/utils';
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
-    // HttpClientModule,
-    // TranslateModule.forRoot({
-    //   loader: {
-    //     provide: TranslateLoader,
-    //     useFactory: HttpLoaderFactory,
-    //     deps: [HttpClient],
-    //   },
-    //   missingTranslationHandler: {
-    //     provide: MissingTranslationHandler,
-    //     useClass: MissingTranslationService,
-    //   },
-    //   useDefaultLang: false,
-    // }),
+    HttpClientModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: MissingTranslationService,
+      },
+      useDefaultLang: false,
+    }),
   ],
   exports: [QuestionsEditComponent, QuestionsTableComponent]
 })

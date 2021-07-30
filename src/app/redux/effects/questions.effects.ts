@@ -1,6 +1,4 @@
-import {
-  GrammarActionsQuestionsList,
-} from '../actions/questions.actions';
+import { GrammarActionsQuestionsList } from '../actions/questions.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { Injectable } from '@angular/core';

@@ -1,19 +1,10 @@
-import { Component } from '@angular/core';
-
-export interface audioInfo {
-  currentTime: null;
-  duration: null;
-}
-export interface setAudioInfo {
-  currentTime: null;
-  duration: null;
-}
+import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-audio',
   templateUrl: './audio.component.html',
   styleUrls: ['./audio.component.scss'],
 })
-export class AudioComponent {
+export class AudioComponent implements OnInit {
   audio!: HTMLAudioElement;
 
   disabledAudio: boolean = false;
@@ -21,6 +12,8 @@ export class AudioComponent {
   play = false;
 
   tryCount: number = 0;
+
+  constructor() {}
 
   playAudio() {
     this.play = true;
@@ -44,5 +37,8 @@ export class AudioComponent {
     return (
       Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
     );
+  }
+
+  ngOnInit() {
   }
 }

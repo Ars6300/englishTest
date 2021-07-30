@@ -1,14 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { Level } from 'src/app/core/models/level.model';
-import { Question } from 'src/app/core/models/questions.model';
-
 import * as QuestionsActions from '../actions/questions.actions';
+import { QuestionsState } from '../models/questions.state.model';
 
 export const questionsFeatureKey = 'questions';
-
-export interface QuestionsState {
-  questions: Question[];
-}
 
 export const QUESTIONS_MOCK = [
   {

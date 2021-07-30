@@ -1,2 +1,2 @@
-export const WRITTING_TITLE = "WRITTING.TITLE"
-export const WRITTING_TEXT = "WRITTING.TEXT"
+export const WRITING_TITLE = "WRITING.TITLE"
+export const WRITING_TEXT = "WRITING.TEXT"

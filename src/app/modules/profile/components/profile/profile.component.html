@@ -11,7 +11,7 @@
         <a routerLink="./statistics">{{ "PROFILE.STATISTICS" | translate }}</a>
       </li>
       <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
-        <a routerLink="./edit" *ngIf="userRole === 'couch' || userRole === 'administrator' ? true : false">{{ "PROFILE.EDIT" | translate }}</a>
+        <a routerLink="./edit" *ngIf="ableToEditRoles.includes(userRole)">{{ "PROFILE.EDIT" | translate }}</a>
       </li>
       <!-- <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
         <a routerLink="./users" *ngIf="userRole === 'couch' ? true : false">{{ "PROFILE.USERS" | translate }}</a>

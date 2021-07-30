@@ -12,21 +12,19 @@ export class RoleGuardGuard implements CanActivate {
   constructor(
     private store: Store<State>,
     private router: Router
-  ) {
-   
-    
-    
-    
+  ) {}
+  getRoleFromStore(): Observable<any> {
+    return this.store
+    .select(getUserRole)
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let getUserRole$ = this.store.select(getUserRole)
-      // if ( !== 'couch') {
-      //   this.router.navigate(['/user']);
-      // } else {
-      //   return true;
-      // }
+
+
+
+
       return false
   }
   

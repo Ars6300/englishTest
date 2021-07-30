@@ -11,15 +11,18 @@ import { State } from 'src/app/state/app.state';
 export class ProfileComponent implements OnInit {
   getUserRole$ = this.store.select(getUserRole);
 
-  isHR(role: any) {
-    role === 'HR' ? true : false;
-  }
-  isAdmin(role: any) {
-    role === 'administrator' ? true : false;
-  }
-  isCouch(role: any) {
-    role === 'couch' ? true : false;
-  }
+  ableToEditRoles = ['couch', 'administrator'];
+  ableToUsersRoles = ['HR'];
+
+  // isHR(role: any) {
+  //   return role === 'HR'
+  // }
+  // isAdmin(role: any) {
+  //   return role === 'administrator'
+  // }
+  // isCouch(role: any) {
+  //   return role === 'couch'
+  // }
 
   constructor(private store: Store<State>) {
     console.log(this.store.select(getUserRole));
