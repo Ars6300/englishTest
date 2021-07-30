@@ -4,7 +4,7 @@
   padding: 80px;
 
   &-button {
-    margin-top: 7vh;
+    margin-top: 1vh;
   }
 
 }
@@ -12,19 +12,16 @@
 .title {
   color: var(--color-light);
   font-weight: normal;
-  margin-top: 3vh;
+
   line-height: 30px;
   font-size: 1.8rem;
 }
 
 .message {
+  margin-top: 2vh;
   &-text {
     font-size: 1.25rem;
     margin-top: 3vh;
+    margin-bottom: 7vh;
   }
-
-  &-title {
-    margin-top: 7vh;
-  }
-
 }

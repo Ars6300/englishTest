@@ -16,7 +16,10 @@
     "ASSIGNED": "Assigned by",
     "NO_TEXT": "You don't have assigned tests yet. But you can pass one yourself",
     "TEST_NOTIFICATION": "You have test assigned",
-    "ASSIGNED_ROLE": "HR"
+    "ASSIGNED_ROLE": "HR",
+    "EDIT": "Edit",
+    "ROLE": "Role",
+    "USERS": "Users"
   },
   "SELECTORS": {
     "START_BTN": "Start"
@@ -35,9 +38,10 @@
     "SUBMIT": "Submit",
     "EXIT": "Exit",
     "RETRY": "Try again",
-    "START_TEST": "Start a test"
+    "START_TEST": "Start a test",
+    "ADD_QUESTION": "Add question"
   },
-  "WRITING": {
+  "WRITING_INPUT": {
     "TEXTAREA_LABEL": "The field is not available until you select the topic",
     "NUMBERS_OF_CHARACTERS": "Number of characters:"
   },
@@ -63,13 +67,18 @@
     "TITLE": "Listening",
     "TEXT": "In order to start listening you need to press the Start button. This audio will be available for listening 3 times. After listening, 10 questions will be available for you to answer. Good Luck!"
   },
-  "WRITTING": {
+  "WRITING": {
     "TITLE": "Writing",
     "TEXT": "You need to choose a topic for your essay. After selecting a topic, the writing space will become active. The maximum number of characters is 512.  Good luck!"
   },
   "SPEAKING": {
     "TITLE": "Speaking",
     "TEXT": "You need to select the topic of the speaking, once you select the topic, a button to start recording will be available to you. When you have finished talking, press the stop button. (Remember you have 5 minutes. Good Luck!"
+  },
+  "RESULTS": {
+    "PREV_TESTS": "Your previous tests",
+    "TITLE": "Result",
+    "EMPTY": "Choose your test date to observe"
   }
 }
 

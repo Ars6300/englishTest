@@ -1,8 +1,8 @@
 export enum QuestionType {
-    Grammar = '1',
-    Listening = '2',
-    Writing = '3',
-    Speaking = '4',
+    Grammar = '0',
+    Listening = '1',
+    Writing = '2',
+    Speaking = '3',
 }
 
 export interface Tests {

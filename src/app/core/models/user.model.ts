@@ -1,8 +1,10 @@
-export interface IUser {
-    userId: string;
-    email: string;
-    password: string;
-    name: string;
-    surname: string;
-    role: string;
+export interface User {
+    token: string | null;
+    user: {
+        email: string | null;
+        firstName: string | null;
+        id: string | null;
+        lastName: string | null;
+        role: string | null;
+    }
 }

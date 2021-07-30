@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutText } from 'src/app/shared/components/left-layout/left-layout.component';
-import { WRITTING_TEXT, WRITTING_TITLE } from './writing.constants';
+import { WRITING_TEXT, WRITING_TITLE } from './writing.constants';
 
 @Component({
   selector: 'app-writing',
@@ -14,8 +14,8 @@ export class WritingComponent implements OnInit {
 
   about: AboutText[] = [
     {
-      title: WRITTING_TITLE,
-      text: WRITTING_TEXT,
+      title: WRITING_TITLE,
+      text: WRITING_TEXT,
     },
   ];
 }
