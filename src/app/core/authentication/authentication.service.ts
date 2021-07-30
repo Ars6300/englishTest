@@ -19,7 +19,7 @@ export class AuthenticationService {
       email,
       password,
     };
-    return this.http.post(environment.api_URL, user).pipe(tap(this.setCookies));
+    return this.http.post(`${environment.api_URL}/api/User/Login`, user).pipe(tap(this.setCookies));
   }
 
   private setCookies(response: any) {
