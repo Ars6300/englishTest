@@ -34,12 +34,12 @@ const routes: Routes = [
   {
     path: GRAMMAR_PATH,
     component: QuestionsBlockComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: LISTENING_PATH,
     component: QuestionsBlockComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
 ];
 

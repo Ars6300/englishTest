@@ -19,6 +19,7 @@ import { QuestionsSyncService } from 'src/app/core/services/questions-sync.servi
 
 import { QueryHandler } from 'src/app/core/models/query-handler.model';
 import { QuestionsState } from 'src/app/redux/models/questions.state.model';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 @Component({
   selector: 'app-questions-block',
   templateUrl: './questions-block.component.html',
@@ -66,17 +67,25 @@ export class QuestionsBlockComponent implements OnInit {
     });
   }
 
-  navigateToQuestion(num: number) {
+  navigateToQuestion(index: number) {
     this.router.navigate([this.navigateTo], {
-      queryParams: { index: (this.index += num) },
+      queryParams: { index: index },
     });
     this.question.push(this.questionsList[this.index]);
+  }
+
+  setIndex(event: StepperSelectionEvent) {
+    this.index = event.selectedIndex;
+    this.navigateToQuestion(this.index);
+  }
+
+  nextSection() {
     if (
-      this.index === this.questionsList.length &&
+      this.index + 1 === this.questionsList.length &&
       this.navigateTo.includes(LISTENING_PATH)
     ) {
       this.router.navigate([WRITING_PATH]);
-    } else if (this.index === this.questionsList.length) {
+    } else if (this.index + 1 === this.questionsList.length) {
       this.router.navigate([LISTENING_PATH]);
     }
   }

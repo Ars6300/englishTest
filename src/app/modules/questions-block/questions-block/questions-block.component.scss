@@ -49,14 +49,36 @@
 }
 
 ::ng-deep .mat-horizontal-content-container {
-  //padding: 0 !important;
   width: 50%;
   position: absolute;
   top: 20vh;
+  padding: 0 !important;
 }
 
 ::ng-deep .mat-horizontal-stepper-header-container {
   position: absolute;
   top: 9vh;
   width: 50%;
+}
+
+::ng-deep .mat-horizontal-stepper-header,
+::ng-deep .mat-horizontal-stepper-header:hover {
+  height: fit-content !important;
+  background-color: transparent;
+  width: 25px;
+  padding: 0 !important;
+}
+
+::ng-deep .mat-step-icon {
+  margin: 0 !important;
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+  background-color: var(--color-button);
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected,
+::ng-deep .mat-step-header .mat-step-icon-state-done,
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+  background-color: var(--color-button-hover) !important;
 }

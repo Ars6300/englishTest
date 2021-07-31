@@ -1,6 +1,10 @@
 <div class="container">
   <app-audio *ngIf="listeningBlockIsActive" class="audio"></app-audio>
-  <mat-stepper class="stepper">
+  <mat-stepper
+    class="stepper"
+    [disableRipple]="true"
+    (selectionChange)="setIndex($event)"
+  >
     <mat-step *ngFor="let item of questionsList">
       <p class="text">{{ question[index].text }}</p>
       <div class="form_radio_group">
@@ -24,19 +28,27 @@
           appButtonsStyling
           matStepperPrevious
           type="button"
-          (click)="navigateToQuestion(-1)"
           class="button-next"
         >
           Back
         </button>
         <button
+          *ngIf="questionsList.length > index + 1"
           appButtonsStyling
           matStepperNext
-          (click)="navigateToQuestion(1)"
           type="button"
           class="button-next"
         >
           {{ "BUTTONS.NEXT" | translate }}
+        </button>
+        <button
+          *ngIf="questionsList.length === index + 1"
+          appButtonsStyling
+          type="button"
+          class="button-next"
+          (click)="nextSection()"
+        >
+          {{ "BUTTONS.NEXT_SECTION" | translate }}
         </button>
       </div>
     </mat-step>

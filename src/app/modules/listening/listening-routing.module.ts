@@ -18,7 +18,7 @@ const routes: Routes = [
         component: QuestionComponent,
       },
     ],
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
 ];
 
