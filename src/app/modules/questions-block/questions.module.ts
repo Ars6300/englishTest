@@ -1,3 +1,5 @@
+import { MaterialModule } from 'src/app/shared/material/material.module';
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,12 +34,12 @@ const routes: Routes = [
   {
     path: GRAMMAR_PATH,
     component: QuestionsBlockComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path: LISTENING_PATH,
     component: QuestionsBlockComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
 ];
 
@@ -48,6 +50,7 @@ export const grammar = new GrammarQuestion();
     CommonModule,
     MatIconModule,
     QuestionsEditModule,
+    MaterialModule,
     RouterModule.forChild(routes),
     StoreRouterConnectingModule.forRoot({
       serializer: AppSerializer,

@@ -66,9 +66,9 @@ export class QuestionsBlockComponent implements OnInit {
     });
   }
 
-  nextQuestion() {
+  navigateToQuestion(num: number) {
     this.router.navigate([this.navigateTo], {
-      queryParams: { index: ++this.index },
+      queryParams: { index: (this.index += num) },
     });
     this.question.push(this.questionsList[this.index]);
     if (

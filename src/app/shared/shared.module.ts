@@ -36,10 +36,14 @@ import { MaterialModule } from './material/material.module';
 import { ThemeComponent } from './components/theme-choose/theme/theme.component';
 
 const routes: Routes = [
-  { path: 'grammar',   component: GrammarComponent,   canActivate: [AuthGuard] },
-  { path: 'listening', component: ListeningComponent, canActivate: [AuthGuard] },
-  { path: 'writing',   component: WritingComponent,   canActivate: [AuthGuard] },
-  { path: 'speaking',  component: SpeakingComponent,  canActivate: [AuthGuard] },
+  { path: 'grammar', component: GrammarComponent, canActivate: [AuthGuard] },
+  {
+    path: 'listening',
+    component: ListeningComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'writing', component: WritingComponent, canActivate: [AuthGuard] },
+  { path: 'speaking', component: SpeakingComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
