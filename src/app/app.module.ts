@@ -32,6 +32,7 @@ import {
   HashLocationStrategy,
   LocationStrategy,
 } from '@angular/common';
+import { UsersHrService } from './pages/users-hr/users-hr.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -70,6 +71,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       multi: true,
     },
     AudioRecordingService,
+    UsersHrService,
   ],
 
   bootstrap: [AppComponent],

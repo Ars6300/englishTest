@@ -14,6 +14,7 @@ import {
 } from './profile-routing.constants';
 import { AuthGuard } from 'src/app/core/guard/auth-guard/auth.guard';
 import { QuestionsEditComponent } from 'src/app/pages/questions-edit/questions-edit.component';
+import { UsersHrComponent } from 'src/app/pages/users-hr/users-hr/users-hr.component';
 
 const routes: Routes = [
   {
@@ -45,11 +46,11 @@ const routes: Routes = [
         component: QuestionsEditComponent,
         canActivate: [AuthGuard],
       },
-      // {
-      //   path: USERS_PATH,
-      //   component: ,
-      //   canActivate: [AuthGuard],
-      // },
+      {
+        path: USERS_PATH,
+        component: UsersHrComponent,
+        canActivate: [AuthGuard],
+      },
     ],
     canActivate: [AuthGuard],
   },
