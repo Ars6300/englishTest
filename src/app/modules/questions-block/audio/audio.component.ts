@@ -7,38 +7,38 @@ import { Component, OnInit } from '@angular/core';
 export class AudioComponent implements OnInit {
   audio!: HTMLAudioElement;
 
-  disabledAudio: boolean = false;
-
-  play = false;
+  play: boolean = false;
 
   tryCount: number = 0;
+
+  counter: number = 3;
 
   constructor() {}
 
   playAudio() {
-    this.play = true;
     this.audio = new Audio(
       'https://zvukogram.com/index.php?r=site/download&id=38307'
     );
-    this.audio.play();
-    ++this.tryCount;
-    if (this.tryCount > 2) {
-      let player = document.getElementsByClassName('player')[0];
-      player.classList.add('hidden');
+    const but = document.querySelector('.play-control');
+    const playingAudio = this.audio;
+    playingAudio.onended = () => {
+      but!.classList.remove('button-disabled');
+      this.play = false;
+    };
+
+    if (this.tryCount >= this.counter) {
+      but!.classList.add('button-disabled');
+      return;
+    } else if (this.play === true) {
+      return;
+    } else {
+      this.play = true;
+      this.audio.play();
+      ++this.tryCount;
+
+      but!.classList.add('button-disabled');
     }
   }
 
-  stopAudio() {
-    this.play = false;
-    this.audio.pause();
-  }
-
-  getTime(time: number) {
-    return (
-      Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
-    );
-  }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }
