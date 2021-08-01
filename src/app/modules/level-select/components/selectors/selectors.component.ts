@@ -35,11 +35,7 @@ export class SelectorsComponent implements OnInit {
   getUserId$ = this.store.select(getUserId);
   level = '';
 
-  
-
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   selectLevel(event: any) {
     this.level = event.target.innerText;
@@ -47,7 +43,6 @@ export class SelectorsComponent implements OnInit {
 
   startTest() {
     this.level = this.level.split(' ')[0];
-
 
     this.store.dispatch(
       TestsActions.getTestsData({

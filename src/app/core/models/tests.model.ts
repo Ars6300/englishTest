@@ -1,5 +1,4 @@
-import { Level } from 'src/app/core/models/level.model'
-import { QuestionType } from 'src/app/core/models/test.model'
+import { Level } from 'src/app/core/models/level.model';
 
 export interface TestsGet {
   id: string;
