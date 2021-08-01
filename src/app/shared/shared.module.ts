@@ -36,6 +36,7 @@ import { MaterialModule } from './material/material.module';
 import { ThemeComponent } from './components/theme-choose/theme/theme.component';
 import { ForbidPastingDirective } from './directives/forbid-pasting.directive';
 import { UsersHrModule } from '../pages/users-hr/users-hr.module';
+import { UsersAdminModule } from '../pages/users-admin/users-admin.module';
 
 const routes: Routes = [
   { path: 'grammar', component: GrammarComponent, canActivate: [AuthGuard] },
@@ -86,6 +87,7 @@ const routes: Routes = [
       useDefaultLang: false,
     }),
     UsersHrModule,
+    UsersAdminModule,
   ],
   exports: [
     CommonModule,
@@ -93,6 +95,7 @@ const routes: Routes = [
     RouterModule,
     QuestionsModule,
     UsersHrModule,
+    UsersAdminModule,
     MaterialModule,
     CountdownModule,
     UsersHrModule,

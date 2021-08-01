@@ -28,6 +28,7 @@ import {
 } from '@angular/platform-browser/animations';
 import { AudioRecordingService } from './modules/speaking/audio-recording.service';
 import { UsersHrService } from './pages/users-hr/users-hr.service';
+import { UsersAdminService } from './pages/users-admin/users-admin.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -67,6 +68,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     },
     AudioRecordingService,
     UsersHrService,
+    UsersAdminService,
   ],
 
   bootstrap: [AppComponent],

@@ -43,7 +43,7 @@ const usersReducer = createReducer(
   initialState,
   on(UsersActions.LoadUsers, (state) => ({
     ...state,
-    questions: state.users,
+    users: state.users,
   }))
 );
 

@@ -19,7 +19,8 @@
     "ASSIGNED_ROLE": "HR",
     "EDIT": "Edit",
     "ROLE": "Role",
-    "USERS": "Users"
+    "USERS": "Users",
+    "ASSIGMENTS": "Assigments"
   },
   "SELECTORS": {
     "START_BTN": "Start"
