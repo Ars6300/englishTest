@@ -1,7 +1,9 @@
 import { TestsGet } from 'src/app/core/models/tests.model';
 import { createReducer, on } from '@ngrx/store';
 import * as TestsActions from 'src/app/redux/actions/tests.actions';
-
+import { QuestionComponent } from 'src/app/pages/question/question.component';
+import { QuestionType } from 'src/app/core/models/test.model';
+import { Level } from 'src/app/core/models/level.model'
 export const testsFeatureKey = 'tests';
 
 export interface TestsState {
@@ -16,27 +18,9 @@ const initialState: TestsState = {
   testsData: {
     startTime: '',
     endTime: '',
-    englishLevel: '',
+    englishLevel: Level.Beginner,
     id: '',
-    testQuestionSet: [
-      {
-        id: '',
-        type: 0,
-        audio: {
-          id: '',
-        },
-        question: {
-          id: '',
-          text: '',
-        },
-        answersList: [
-          {
-            id: '',
-            text: '',
-          }
-        ],
-      }
-    ],
+    testQuestionSet: [],
   },
   errors: {
     loadingError: ''
@@ -65,23 +49,7 @@ export const testsReducer = createReducer<TestsState>(
           endTime: action.tests.endTime,
           englishLevel: action.tests.englishLevel,
           id: action.tests.id,
-          testQuestionSet: [
-            {
-              id: action.tests.testQuestionSet[0].id,
-              type: action.tests.testQuestionSet[0].type,
-              audio: action.tests.testQuestionSet[0].audio,
-              question: {
-                id: action.tests.testQuestionSet[0].question.id,
-                text: action.tests.testQuestionSet[0].question.text,
-              },
-              answersList: [
-                {
-                  id: action.tests.testQuestionSet[0].answersList[0].id,
-                  text: action.tests.testQuestionSet[0].answersList[0].text,
-                }
-              ]
-            }
-          ]
+          testQuestionSet: action.tests.testQuestionSet
         },
         errors: {
           ...state.errors,

@@ -19,6 +19,7 @@ import { localStorageSync } from 'ngrx-store-localstorage';
 import * as fromProfileResultSelectors from './selectors/profile-results.selectors';
 import * as fromProfileResults from './reducers/profile-results.reducer';
 import { testsFeatureKey, testsReducer } from './reducers/tests.reducers';
+import { TestsEffects } from './effects/tests.effects';
 
 const reducers: ActionReducerMap<State> = {
   auth: authReducer,
@@ -43,6 +44,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
       QuestionEffects,
       AuthEffects,
       ProfileResultsEffects,
+      TestsEffects
     ]),
     StoreModule.forFeature(
       fromProfileResultSelectors.featureKey,

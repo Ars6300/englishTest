@@ -28,8 +28,8 @@
       color: var(--color-text);
       border-radius: 7px;
       &:focus {
-        border: 1px solid rgb(44, 44, 44);
-        background: rgb(255, 209, 149);
+        border: 1px solid var(--color-text);
+        background: var(--color-bg-focus)
       }
     }
   }

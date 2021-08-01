@@ -11,7 +11,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as TestsActions from 'src/app/redux/actions/tests.actions'
 
 @Injectable()
-export class AuthEffects {
+export class TestsEffects {
   constructor(
     private actions$: Actions,
     private testsService: TestsService,

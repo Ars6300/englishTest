@@ -4,9 +4,11 @@ import { GRAMMAR_PATH } from 'src/app/app-routing.constants';
 import { TestsService } from 'src/app/core/services/tests/tests.service';
 import { TITLE_LEVELS } from '../../select-level.constants';
 import { Store } from '@ngrx/store';
-import { State } from 'src/app/state/app.state'
+import { State } from 'src/app/state/app.state';
 import { getUserId } from 'src/app/redux/selectors/user.selectors';
-import * as TestsActions from 'src/app/redux/actions/tests.actions'
+import * as TestsActions from 'src/app/redux/actions/tests.actions';
+import { interval } from 'rxjs';
+import { switchMap, take, timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-selectors',
@@ -20,7 +22,6 @@ export class SelectorsComponent implements OnInit {
     private store: Store<State>
   ) {}
 
-  getUserId$ = this.store.select(getUserId)
   title = TITLE_LEVELS;
   buttons = [
     'A1 Beginner',
@@ -30,35 +31,29 @@ export class SelectorsComponent implements OnInit {
     'C1 Advanced',
     'C2 Proficiency',
   ];
-  ngOnInit(): void {}
 
+  getUserId$ = this.store.select(getUserId);
   level = '';
+
+  
+
+  ngOnInit(): void {
+    
+  }
+
   selectLevel(event: any) {
     this.level = event.target.innerText;
   }
 
   startTest() {
     this.level = this.level.split(' ')[0];
-    
-    // this.testsService.getTests(this.getUserId$, this.level).subscribe(res => {
-    //   if(res){
-    //     console.log(res);
-    //     // this.router.navigate([`/${GRAMMAR_PATH}`]);
-    //   }
-    // })
+
 
     this.store.dispatch(
       TestsActions.getTestsData({
-        //  **************************** Если передаю как ниже, то он возвращает ошибку [object Object] *****************************
-        // userId: this.getUserId$,
-        userId: '48c68b45-fe58-4bfa-b194-be03d5082102',
-        engLevel: this.level.toLocaleLowerCase()
+        userId: setTimeout(() => this.getUserId$, 500),
+        engLevel: this.level.toLocaleLowerCase(),
       })
-    )
-
-    
-
-
-
+    );
   }
 }
