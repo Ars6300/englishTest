@@ -1,24 +1,27 @@
 <div class="input">
   <form #essayText="ngForm" (ngSubmit)="onEssaySubmit(essayText)">
     <h2 class="input-title">
-      {{"WRITING.TEXTAREA_LABEL" | translate}}
+      {{"WRITING_INPUT.TEXTAREA_LABEL" | translate}}
     </h2>
     <textarea
       type="text"
       name="essay"
       class="input-textarea"
       placeholder="Write your essay here"
+      appForbidPasting
       maxlength="{{ charactersLimit }}"
       ngModel
       required
     ></textarea>
     <div class="input-controls">
       <p class="input-count">
-        {{"WRITING.NUMBERS_OF_CHARACTERS" | translate}} {{ essayText.value["essay"].length }}/{{
+        {{"WRITING_INPUT.NUMBERS_OF_CHARACTERS" | translate}} {{ essayText.value["essay"]?.length }}/{{
           charactersLimit
         }}
       </p>
-      <button class="input-submit" type="submit">{{"BUTTONS.SUBMIT" | translate}}</button>
+      <button class="input-submit" type="submit">
+        {{ "BUTTONS.SUBMIT" | translate }}
+      </button>
     </div>
   </form>
 </div>

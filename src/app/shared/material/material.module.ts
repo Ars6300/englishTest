@@ -78,6 +78,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
+    MatStepperModule,
     MatSlideToggleModule,
     MatSnackBarModule,
     MatSortModule,

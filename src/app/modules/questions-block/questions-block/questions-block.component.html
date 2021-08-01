@@ -1,27 +1,56 @@
 <div class="container">
-  <app-audio *ngIf="listeningBlockIsActive"></app-audio>
-  <p class="text">{{ question[index].text }}</p>
-  <div class="form_radio_group">
-    <div
-      class="form_radio_group-item"
-      *ngFor="let answer of question[index].answers"
-    >
-      <input
-        class="input-text"
-        id="{{ question[index].id }}"
-        type="radio"
-        name="radio"
-        value="{{ index }}"
-      />
-      <label for="{{ question[index].id }}">{{ answer }}</label>
-    </div>
-  </div>
-  <button
-    ButtonType="primary"
-    class="button-next"
-    appButtonsStyling
-    (click)="nextQuestion()"
+  <app-audio *ngIf="listeningBlockIsActive" class="audio"></app-audio>
+  <mat-stepper
+    class="stepper"
+    [disableRipple]="true"
+    (selectionChange)="setIndex($event)"
   >
-    {{ "BUTTONS.NEXT" | translate }}
-  </button>
+    <mat-step *ngFor="let item of questionsList">
+      <p class="text">{{ question[index].text }}</p>
+      <div class="form_radio_group">
+        <div
+          class="form_radio_group-item"
+          *ngFor="let answer of question[index].answers"
+        >
+          <input
+            class="input-text"
+            id="{{ question[index].id }}"
+            type="radio"
+            name="radio"
+            value="{{ index }}"
+          />
+          <label for="{{ question[index].id }}">{{ answer }}</label>
+        </div>
+      </div>
+      <div>
+        <button
+          *ngIf="index !== 0"
+          appButtonsStyling
+          matStepperPrevious
+          type="button"
+          class="button-next"
+        >
+          Back
+        </button>
+        <button
+          *ngIf="questionsList.length > index + 1"
+          appButtonsStyling
+          matStepperNext
+          type="button"
+          class="button-next"
+        >
+          {{ "BUTTONS.NEXT" | translate }}
+        </button>
+        <button
+          *ngIf="questionsList.length === index + 1"
+          appButtonsStyling
+          type="button"
+          class="button-next"
+          (click)="nextSection()"
+        >
+          {{ "BUTTONS.NEXT_SECTION" | translate }}
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
 </div>

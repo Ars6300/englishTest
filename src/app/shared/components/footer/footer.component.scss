@@ -1,4 +1,4 @@
-@import '../../../../assets/scss/styles.scss';
+@import '../../../../scss/styles.scss';
 
 .footer {
   // width: 100%;
@@ -11,11 +11,13 @@
   bottom: 0px;
   right: 110px;
   padding-bottom: 50px;
+
   @include _768 {
     bottom: 20px;
     right: 40px;
-   
+
   }
+
   @include _1200 {
     padding-bottom: 20px;
     right: 40px;

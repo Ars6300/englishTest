@@ -2,11 +2,7 @@
   <div class="container">
     <form class="form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="logo-container">
-        <img
-          src="../../../../../assets/images/logo.png"
-          alt=""
-          class="logo-image"
-        />
+        <img src="./assets/images/logo.png" alt="" class="logo-image" />
       </div>
       <div class="form-group">
         <div class="form-control">
@@ -51,10 +47,13 @@
         >
           {{ "LOGIN.SIGN_IN" | translate }}
         </button>
+        <!-- <p *ngIf="errorMessage$ | async as errorMessage">
+          {{ errorMessage }}
+        </p> -->
       </div>
     </form>
     <div class="person">
-      <img src="../../../../../assets/images/login-gates.png" alt="" />
+      <img src="./assets/images/login-gates.png" alt="" />
     </div>
   </div>
 </div>

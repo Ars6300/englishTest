@@ -10,9 +10,17 @@
       <li routerLinkActive="active">
         <a routerLink="./statistics">{{ "PROFILE.STATISTICS" | translate }}</a>
       </li>
-      <li routerLinkActive="active">
-        <a routerLink="./edit">{{ "PROFILE.EDIT" | translate }}</a>
+      <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
+        <a routerLink="./edit" *ngIf="ableToEditRoles.includes(userRole)">{{ "PROFILE.EDIT" | translate }}</a>
       </li>
+      <!-- <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
+        <a routerLink="./users" *ngIf="ableToEditRoles.includes(userRole)">{{ "PROFILE.USERS" | translate }}</a> -->
+        <li routerLinkActive="active">
+          <a routerLink="./users">{{ "PROFILE.USERS" | translate }}</a>
+      </li>
+      <!-- <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
+        <a routerLink="./users" *ngIf="userRole === 'couch' ? true : false">{{ "PROFILE.USERS" | translate }}</a>
+      </li> -->
     </ul>
   </nav>
   <router-outlet class="profile-view"></router-outlet>

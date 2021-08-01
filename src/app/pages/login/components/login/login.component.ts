@@ -2,9 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/state/app.state'
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { FakeAuthenticationService } from 'src/app/core/authentication/fakeAuth.service';
 import { UserInfoService } from 'src/app/core/services/user-info/user-info.service';
+import { getLoadingStatus, getLoginError } from 'src/app/redux/selectors/user.selectors';
+import * as AuthPageAction from 'src/app/redux/actions/user.actions'
+
 
 @Component({
   selector: 'app-login',
@@ -15,6 +20,8 @@ export class LoginComponent implements OnInit {
   
   form!: FormGroup
   submitted = false
+  errorMessage$ = this.store.select(getLoginError);
+  isLoading$ = this.store.select(getLoadingStatus);
 
   submit(){
     if (this.form.invalid ) {
@@ -31,18 +38,18 @@ export class LoginComponent implements OnInit {
     // email1@exadel.com
     // 11111111
     
-    // this.auth.login(user).subscribe( res => {
-    //   console.log(res);
-    //   this.form.reset()
-    //   this.router.navigate(['/profile'])
-    //   this.submitted = false
-    // }, () => {
-    //   this.submitted = false
-    // }
-    // )
+    this.store.dispatch(
+      AuthPageAction.loginUser({
+        email: user.email,
+        password: user.password
+      })
+    )
+    if (!!this.store.select(getLoadingStatus)) {
+      this.form.reset() 
+    }
 
     // ************ fake ************
-    this.fakeAuth.login(user)
+    // this.fakeAuth.login(user)
   }
   
   
@@ -50,6 +57,7 @@ export class LoginComponent implements OnInit {
     public auth: AuthenticationService,
     public fakeAuth: FakeAuthenticationService,
     private router: Router,
+    private store: Store<State>
   ) {}
   
   ngOnInit() {
@@ -57,6 +65,8 @@ export class LoginComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
     })
+    
+    
   }
 
 }

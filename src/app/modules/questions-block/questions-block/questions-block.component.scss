@@ -2,13 +2,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 6em;
+  padding-left: 5em;
   width: auto;
   height: 83vh;
+
+  .audio {
+    position: absolute;
+    bottom: 5vh
+  }
 
   .text {
     font-family: Roboto, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.5rem;
+    word-wrap: break-word;
     color: var(--color-text);
   }
 
@@ -31,5 +37,48 @@
 
   .button-next {
     width: 150px;
+    margin-right: 10px;
   }
+}
+
+.mat-stepper-horizontal {
+  background-color: inherit;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  width: 50%;
+  position: absolute;
+  top: 20vh;
+  padding: 0 !important;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+  position: absolute;
+  top: 9vh;
+  width: 50%;
+}
+
+::ng-deep .mat-horizontal-stepper-header,
+::ng-deep .mat-horizontal-stepper-header:hover {
+  height: fit-content !important;
+  background-color: transparent;
+  width: 25px;
+  padding: 0 !important;
+}
+
+::ng-deep .mat-step-icon {
+  margin: 0 !important;
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+  background-color: var(--color-button);
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected,
+::ng-deep .mat-step-header .mat-step-icon-state-done,
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+  background-color: var(--color-button-hover) !important;
 }
