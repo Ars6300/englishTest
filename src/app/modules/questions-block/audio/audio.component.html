@@ -1,22 +1,8 @@
-<!-- <div class="player">  -->
-<!-- <div class="play-control" 
-  (click)="playAudio()" 
-  >
-    <mat-icon  class="audio-play" >play_circle_outline</mat-icon>
-  </div>
-  <div class="time-control">
-    <input type="range" class="input-range">
-    <p class="time">End Time</p>
-  </div> -->
-
-<div>
-  <div class="audio">
-    <audio id="audio" *ngIf="blobUrl" controls controlsList="nodownload">
-      <source [src]="blobUrl" type="audio/mpeg" />
-    </audio>
-  </div>
+<div class="player">
+  <button class="play-control" id="play-control" (click)="playAudio()">
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+  <p class="play-attempts">
+    Your attempts: <span class="play-counter">{{ tryCount }}</span>
+  </p>
 </div>
-
-<p class="play-attempts">
-  Your attempts: <span class="play-counter">{{ tryCount }}</span>
-</p>
