@@ -27,11 +27,7 @@ import {
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { AudioRecordingService } from './modules/speaking/audio-recording.service';
-import {
-  APP_BASE_HREF,
-  HashLocationStrategy,
-  LocationStrategy,
-} from '@angular/common';
+import { UsersHrService } from './pages/users-hr/users-hr.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -70,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       multi: true,
     },
     AudioRecordingService,
+    UsersHrService,
   ],
 
   bootstrap: [AppComponent],

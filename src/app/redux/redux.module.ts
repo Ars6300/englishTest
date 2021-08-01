@@ -12,6 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { QuestionEffects } from './effects/questions.effects';
 import * as fromQuestions from '../redux/reducers/questions.reducers';
+import * as fromUsers from '../redux/reducers/users-hr.reducers';
 import { authFeatureKey, authReducer } from './reducers/user.reducers';
 import { AuthEffects } from './effects/user.effects';
 import { State } from 'src/app/state/app.state';
@@ -20,6 +21,7 @@ import * as fromProfileResultSelectors from './selectors/profile-results.selecto
 import * as fromProfileResults from './reducers/profile-results.reducer';
 import { testsFeatureKey, testsReducer } from './reducers/tests.reducers';
 import { TestsEffects } from './effects/tests.effects';
+import { UserEffects } from './effects/users-hr.effects';
 
 const reducers: ActionReducerMap<State> = {
   auth: authReducer,
@@ -45,6 +47,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
       AuthEffects,
       ProfileResultsEffects,
       TestsEffects
+      UserEffects,
     ]),
     StoreModule.forFeature(
       fromProfileResultSelectors.featureKey,
@@ -53,6 +56,10 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     StoreModule.forFeature(
       fromQuestions.questionsFeatureKey,
       fromQuestions.questionListReducer
+    ),
+    StoreModule.forFeature(
+      fromUsers.usersFeatureKey,
+      fromUsers.userListReducer
     ),
     StoreModule.forFeature(authFeatureKey, authReducer),
     StoreModule.forFeature(testsFeatureKey, testsReducer),

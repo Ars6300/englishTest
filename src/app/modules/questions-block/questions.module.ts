@@ -1,3 +1,5 @@
+import { MaterialModule } from 'src/app/shared/material/material.module';
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -48,6 +50,7 @@ export const grammar = new GrammarQuestion();
     CommonModule,
     MatIconModule,
     QuestionsEditModule,
+    MaterialModule,
     RouterModule.forChild(routes),
     StoreRouterConnectingModule.forRoot({
       serializer: AppSerializer,

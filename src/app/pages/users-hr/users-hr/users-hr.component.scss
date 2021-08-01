@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -16,7 +20,7 @@
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -29,35 +33,20 @@
   cursor: pointer;
 }
 
-.add-question,
 .close,
-.edit-button,
-.delete-button {
+.edit-button {
   width: auto;
 }
 
-.add-question {
-  margin-bottom: 3em;
-}
-
-.edit-button,
-.delete-button {
+.edit-button {
   background-color: transparent;
   border: none;
   color: var(--color-text);
+  font-size: 0.8rem;
 }
 
 .edit-button:hover {
   color: blue;
-}
-
-.delete-button:hover {
-  color: red;
-}
-
-.edit-button,
-.delete-button {
-  font-size: 0.8rem;
 }
 
 .modal-open {
@@ -79,12 +68,16 @@
   margin-top: 1em;
 }
 
+#cancel {
+  margin-right: 0.6em;
+}
+
 .th-width-6 {
-  width: 6em;
+  width: 12em;
 }
 
 .th-width-35 {
-  width: 35em;
+  width: 20em;
 }
 
 input,

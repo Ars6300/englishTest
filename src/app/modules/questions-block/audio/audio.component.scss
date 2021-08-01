@@ -5,7 +5,6 @@
 }
 
 .audio {
-  margin-top: 4em;
   margin-bottom: 2em;
   width: 45px;
   height: 45px;
@@ -36,8 +35,7 @@
 }
 
 .player {
-  margin-top: 4em;
-  min-height: 20vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -48,15 +46,18 @@
   width: 80%;
   display: flex;
   margin-left: 1em;
+
   .input-range {
     width: 100%;
     padding: 1rem 2rem;
   }
+
   .time {
     padding: 1rem;
     color: #305968;
   }
 }
+
 .hidden {
   visibility: hidden;
 }
