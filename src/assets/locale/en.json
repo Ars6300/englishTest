@@ -39,7 +39,8 @@
     "EXIT": "Exit",
     "RETRY": "Try again",
     "START_TEST": "Start a test",
-    "ADD_QUESTION": "Add question"
+    "ADD_QUESTION": "Add question",
+    "NEXT_SECTION": "Next section"
   },
   "WRITING_INPUT": {
     "TEXTAREA_LABEL": "The field is not available until you select the topic",
@@ -81,4 +82,3 @@
     "EMPTY": "Choose your test date to observe"
   }
 }
-
