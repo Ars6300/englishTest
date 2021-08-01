@@ -24,11 +24,7 @@ export class ProfileComponent implements OnInit {
   //   return role === 'couch'
   // }
 
-  constructor(private store: Store<State>) {
-    console.log(this.store.select(getUserRole));
-  }
+  constructor(private store: Store<State>) {}
 
-  ngOnInit(): void {
-    console.log();
-  }
+  ngOnInit(): void {}
 }

@@ -27,7 +27,13 @@ export const getUserRole = createSelector(
   getAuthFeatureState,
   (state) =>  state.currentUser.user.role
 )
+
 export const getUserName = createSelector(
   getAuthFeatureState,
   (state) =>  state.currentUser.user.firstName
+)
+
+export const getUserId = createSelector(
+  getAuthFeatureState,
+  (state) => state.currentUser.user.id
 )
