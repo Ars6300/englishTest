@@ -12,7 +12,7 @@ export const TESTS_DONE_MOCK = [
     firstName: 'User',
     lastName: 'User',
     role: 'user',
-    level: Level.Advanced
+    level: Level.Advanced,
   },
   {
     id: '2',
@@ -20,7 +20,7 @@ export const TESTS_DONE_MOCK = [
     firstName: 'HR',
     lastName: 'HR',
     role: 'hr',
-    level: Level.Beginner
+    level: Level.Beginner,
   },
   {
     id: '3',
@@ -28,7 +28,7 @@ export const TESTS_DONE_MOCK = [
     firstName: 'Coach',
     lastName: 'Coach',
     role: 'coach',
-    level: Level.Upperintermediate
+    level: Level.Upperintermediate,
   },
   {
     id: '4',
@@ -36,7 +36,7 @@ export const TESTS_DONE_MOCK = [
     firstName: 'Admin',
     lastName: 'Admin',
     role: 'admin',
-    level: Level.Intermediate
+    level: Level.Intermediate,
   },
 ];
 
