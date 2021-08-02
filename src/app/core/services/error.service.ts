@@ -8,7 +8,7 @@ export class ErrorService {
   constructor(private _snackBar: MatSnackBar) {}
   logError(message: string) {
     this._snackBar.open(message, 'X', {
-      //duration: 5000,
+      duration: 5000,
       panelClass: ['notification'],
     });
   }
