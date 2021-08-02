@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { QuestionEffects } from './effects/questions.effects';
 import * as fromQuestions from '../redux/reducers/questions.reducers';
 import * as fromUsers from '../redux/reducers/users-hr.reducers';
+import * as fromTestsDone from '../redux/reducers/users-admin.reducers';
 import { authFeatureKey, authReducer } from './reducers/user.reducers';
 import { AuthEffects } from './effects/user.effects';
 import { State } from 'src/app/state/app.state';
@@ -46,7 +47,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
       QuestionEffects,
       AuthEffects,
       ProfileResultsEffects,
-      TestsEffects
+      TestsEffects,
       UserEffects,
     ]),
     StoreModule.forFeature(
@@ -60,6 +61,10 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     StoreModule.forFeature(
       fromUsers.usersFeatureKey,
       fromUsers.userListReducer
+    ),
+    StoreModule.forFeature(
+      fromTestsDone.testsDoneFeatureKey,
+      fromTestsDone.testsDoneListReducer
     ),
     StoreModule.forFeature(authFeatureKey, authReducer),
     StoreModule.forFeature(testsFeatureKey, testsReducer),
