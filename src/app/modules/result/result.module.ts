@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ResultRoutingModule } from './result-routing.module';
-import { ResultComponent } from './components/result/result.component';
+import { ResultComponent } from './result/result.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';

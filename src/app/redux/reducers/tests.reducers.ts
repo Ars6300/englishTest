@@ -1,8 +1,6 @@
 import { TestsGet } from 'src/app/core/models/tests.model';
 import { createReducer, on } from '@ngrx/store';
 import * as TestsActions from 'src/app/redux/actions/tests.actions';
-import { QuestionComponent } from 'src/app/pages/question/question.component';
-import { QuestionType } from 'src/app/core/models/test.model';
 import { Level } from 'src/app/core/models/level.model';
 export const testsFeatureKey = 'tests';
 

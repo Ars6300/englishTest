@@ -7,6 +7,10 @@ export const environment = {
   api_URL: 'https://localhost:44392',
   locales: ['en', 'ru'],
   defaultLocale: 'en',
+  SPEAKING_TIME: '05:00',
+  AUDIO_FORMAT: '.mp3',
+  CHARACTERS_LIMIT: 512,
+  TIMER: 3600,
 };
 
 /*

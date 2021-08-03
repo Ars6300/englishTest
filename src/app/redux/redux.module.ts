@@ -16,13 +16,15 @@ import * as fromUsers from '../redux/reducers/users-hr.reducers';
 import * as fromTestsDone from '../redux/reducers/users-admin.reducers';
 import { authFeatureKey, authReducer } from './reducers/user.reducers';
 import { AuthEffects } from './effects/user.effects';
-import { State } from 'src/app/state/app.state';
+import { State } from 'src/app/redux/models/app.state';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import * as fromProfileResultSelectors from './selectors/profile-results.selectors';
 import * as fromProfileResults from './reducers/profile-results.reducer';
 import { testsFeatureKey, testsReducer } from './reducers/tests.reducers';
 import { TestsEffects } from './effects/tests.effects';
 import { UserEffects } from './effects/users-hr.effects';
+import { getAllQuestionsEffects } from './effects/get-all-questions.effects';
+import { getAllQuestionsFeatureKey, getAllQuestionsReducer } from './reducers/get-all-questions.reducers';
 
 const reducers: ActionReducerMap<State> = {
   auth: authReducer,
@@ -49,6 +51,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
       ProfileResultsEffects,
       TestsEffects,
       UserEffects,
+      getAllQuestionsEffects
     ]),
     StoreModule.forFeature(
       fromProfileResultSelectors.featureKey,
@@ -68,6 +71,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
     ),
     StoreModule.forFeature(authFeatureKey, authReducer),
     StoreModule.forFeature(testsFeatureKey, testsReducer),
+    StoreModule.forFeature(getAllQuestionsFeatureKey, getAllQuestionsReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

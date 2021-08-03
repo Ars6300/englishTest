@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { getUserRole } from 'src/app/redux/selectors/user.selectors';
 import { Store } from '@ngrx/store';
-import { State } from 'src/app/state/app.state';
+import { State } from 'src/app/redux/models/app.state';
 
 @Component({
   selector: 'app-profile',

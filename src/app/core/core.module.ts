@@ -10,12 +10,10 @@ import { GlobalErrorHandler } from './interceptor/error-interceptor/global-error
   imports: [CommonModule],
   providers: [
     {
-      // processes all errors
       provide: ErrorHandler,
       useClass: GlobalErrorHandler,
     },
     {
-      // interceptor for HTTP errors
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
       multi: true,

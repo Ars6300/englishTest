@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RESULT_POINTS, RESULT_QUESTIONS_COUNT, RESULT_YOUR_ANSWERS } from '../../result.constants';
+import { RESULT_POINTS, RESULT_QUESTIONS_COUNT, RESULT_YOUR_ANSWERS } from '../result.constants';
 
 @Component({
   selector: 'app-results',
@@ -7,7 +7,6 @@ import { RESULT_POINTS, RESULT_QUESTIONS_COUNT, RESULT_YOUR_ANSWERS } from '../.
   styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent implements OnInit {
-  // headers = ['Questions count', 'Your answer', 'Points'];
   headers = [
     {
       questionCount: RESULT_QUESTIONS_COUNT,

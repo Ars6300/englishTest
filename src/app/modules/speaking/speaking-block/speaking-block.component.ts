@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 import { AudioRecordingService } from '../audio-recording.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
   isRecording = false;
   recordedTime: any;
   blobUrl: any;
-  maximumTime: string = '05:00';
+  maximumTime: string = environment.SPEAKING_TIME;
 
   constructor(
     private audioRecordingService: AudioRecordingService,

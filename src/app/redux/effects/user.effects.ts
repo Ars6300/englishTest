@@ -9,6 +9,7 @@ import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as AuthPageActions from 'src/app/redux/actions/user.actions'
+import { PROFILE_PATH } from 'src/app/modules/profile/profile-routing.constants';
 
 @Injectable()
 export class AuthEffects {
@@ -24,7 +25,7 @@ export class AuthEffects {
       concatMap((action) => 
       this.authService.login(action.email, action.password).pipe(
         map((user) => AuthPageActions.loginUserSuccess({user})),
-        tap(() => this.router.navigate(['/profile'])),
+        tap(() => this.router.navigate([PROFILE_PATH])),
         catchError((error) => of(AuthPageActions.loginUserFailure({error})))
       ))
     )

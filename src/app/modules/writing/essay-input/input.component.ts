@@ -1,5 +1,6 @@
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-input',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit {
-  charactersLimit: number= 512
+  charactersLimit: number= environment.CHARACTERS_LIMIT
   constructor() {}
 
   ngOnInit(): void {}

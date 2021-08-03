@@ -1,5 +1,6 @@
 import { QuestionType } from './core/models/test.model';
 
+export const EMPTY_PATH = '/';
 export const LOGIN_PATH = 'login';
 export const LOGIN_MODULE = './pages/login/login.module';
 export const SELECT_LEVEL_PATH = 'select-level';
@@ -17,9 +18,21 @@ export const RESULT_MODULE = './modules/result/result.module';
 export const ERROR_PATH = 'error';
 export const QUESTION_GRAMMAR_PATH = QuestionType.Grammar;
 export const QUESTION_LISTENING_PATH = QuestionType.Listening;
-
 export const PROFILE_PATH = 'profile';
+
 export const appRoutingLoadChildren = {
   profileModule: () =>
     import('./modules/profile/profile.module').then((m) => m.ProfileModule),
+  loginModule: () => 
+    import(LOGIN_MODULE).then((m) => m.LoginModule),
+  selectLevelModule: () =>
+    import(SELECT_LEVEL_MODULE).then((m) => m.LevelSelectModule),
+  grammarModule: () => 
+    import(GRAMMAR_MODULE).then((m) => m.GrammarModule),
+  listeningModule: () => 
+    import(LISTENING_MODULE).then((m) => m.ListeningModule),
+  speakingModule: () => 
+    import(SPEAKING_MODULE).then((m) => m.SpeakingModule),
+  resultModule: () => 
+    import(RESULT_MODULE).then((m) => m.ResultModule),
 };

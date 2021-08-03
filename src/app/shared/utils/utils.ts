@@ -8,3 +8,7 @@ export class MissingTranslationService implements MissingTranslationHandler {
     return `WARN: '${params.key}' is missing in '${params.translateService.currentLang}' locale`;
   }
 }
+
+export function getUrlName() {
+  return window.location.pathname.split('/')[1];
+}

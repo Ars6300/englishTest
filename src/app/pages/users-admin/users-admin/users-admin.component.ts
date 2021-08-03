@@ -1,12 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Level } from 'src/app/core/models/level.model';
 import { ITestDone } from 'src/app/core/models/tests.model';
+import { ErrorService } from 'src/app/core/services/error.service';
 import { TestsDoneState } from 'src/app/redux/models/users-admin.state.model';
 import { getTestsDone } from 'src/app/redux/selectors/users-admin.selectors';
 import { UsersAdminService } from '../users-admin.service';
@@ -58,7 +56,7 @@ export class UsersAdminComponent implements OnInit {
     private usersAdminService: UsersAdminService,
     private testsDoneStore: Store<TestsDoneState>,
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
@@ -90,7 +88,7 @@ export class UsersAdminComponent implements OnInit {
         this.coachFormValue = '';
       },
       (error) => {
-        console.log('Something went wrong.');
+        this.errorService.logError(error || 'Something went wrong');
       }
     );
   }
@@ -122,6 +120,4 @@ export class UsersAdminComponent implements OnInit {
   getOption(event: any) {
     this.coachFormValue = event.target.value;
   }
-
-  
 }

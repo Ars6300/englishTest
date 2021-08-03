@@ -5,7 +5,7 @@ import {
   QUESTION_GRAMMAR_PATH,
 } from 'src/app/app-routing.constants';
 import { AuthGuard } from 'src/app/core/guard/auth-guard/auth.guard';
-import { QuestionComponent } from 'src/app/pages/question/question.component';
+import { QuestionsBlockComponent } from '../questions-block/questions-block/questions-block.component';
 import { GrammarComponent } from './grammar.component';
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       {
         path: QUESTION_GRAMMAR_PATH,
-        component: QuestionComponent,
+        component: QuestionsBlockComponent,
       },
     ],
     canActivate: [AuthGuard],

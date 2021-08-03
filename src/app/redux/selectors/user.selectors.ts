@@ -1,12 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as AppState from  '../../state/app.state'
+import * as AppState from  '../models/app.state'
 import { AuthState } from '../reducers/user.reducers'
 
 export interface State extends AppState.State {
   auth: AuthState
 }
 
-  const getAuthFeatureState = createFeatureSelector<AuthState>('auth');
+const getAuthFeatureState = createFeatureSelector<AuthState>('auth');
 
 export const getLoginError = createSelector(
   getAuthFeatureState,

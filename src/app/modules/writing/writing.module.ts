@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { WritingRoutingModule } from './writing-routing.module';
 import { WritingComponent } from './writing.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { InputComponent } from './components/input/input.component';
+import { InputComponent } from './essay-input/input.component';
 import { WritingQuestion } from 'src/app/core/models/query-types-class';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';

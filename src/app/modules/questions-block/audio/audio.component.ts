@@ -26,11 +26,8 @@ export class AudioComponent implements OnInit {
       this.play = false;
     };
 
-    if (this.tryCount >= this.counter) {
+    if (this.tryCount >= this.counter || this.play) {
       but!.classList.add('button-disabled');
-      return;
-    } else if (this.play === true) {
-      return;
     } else {
       this.play = true;
       this.audio.play();

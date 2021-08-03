@@ -1,4 +1,4 @@
-import { QuestionHandler } from './query-handler.model';
+import { QuestionHandler } from './questions-handler.model';
 import { QuestionType } from './test.model';
 
 export class GrammarQuestion extends QuestionHandler {

@@ -1,4 +1,4 @@
-import { ResultComponent } from './components/result/result.component';
+import { ResultComponent } from './result/result.component';
 import { RESULT_PATH } from './../../app-routing.constants';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';

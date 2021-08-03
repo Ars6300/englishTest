@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GRAMMAR_PATH } from 'src/app/app-routing.constants';
 import { TestsService } from 'src/app/core/services/tests/tests.service';
-import { TITLE_LEVELS } from '../../select-level.constants';
+import { TITLE_LEVELS } from '../select-level.constants';
 import { Store } from '@ngrx/store';
-import { State } from 'src/app/state/app.state';
+import { State } from 'src/app/redux/models/app.state';
 import { getUserId } from 'src/app/redux/selectors/user.selectors';
 import * as TestsActions from 'src/app/redux/actions/tests.actions';
 import { interval } from 'rxjs';
@@ -23,7 +23,7 @@ export class SelectorsComponent implements OnInit {
   ) {}
 
   title = TITLE_LEVELS;
-  buttons = [
+  SELECT_LEVEL_BUTTONS = [
     'A1 Beginner',
     'A2 Elementary',
     'B1 Intermidiate',
@@ -43,10 +43,11 @@ export class SelectorsComponent implements OnInit {
 
   startTest() {
     this.level = this.level.split(' ')[0];
-
     this.store.dispatch(
       TestsActions.getTestsData({
-        userId: setTimeout(() => this.getUserId$, 500),
+        userId: this.getUserId$.pipe(take(1)).subscribe((id) => {
+          return id;
+        }),
         engLevel: this.level.toLocaleLowerCase(),
       })
     );

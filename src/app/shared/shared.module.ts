@@ -13,7 +13,6 @@ import { ButtonsStylingDirective } from './directives/buttons-styling.directive'
 import { TimerComponent } from './components/timer/timer.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { GrammarComponent } from '../modules/grammar/grammar.component';
@@ -37,16 +36,17 @@ import { ThemeComponent } from './components/theme-choose/theme/theme.component'
 import { ForbidPastingDirective } from './directives/forbid-pasting.directive';
 import { UsersHrModule } from '../pages/users-hr/users-hr.module';
 import { UsersAdminModule } from '../pages/users-admin/users-admin.module';
+import { GRAMMAR_PATH, LISTENING_PATH, SPEAKING_PATH, WRITING_PATH } from '../app-routing.constants';
 
 const routes: Routes = [
-  { path: 'grammar', component: GrammarComponent, canActivate: [AuthGuard] },
+  { path: GRAMMAR_PATH, component: GrammarComponent, canActivate: [AuthGuard] },
   {
-    path: 'listening',
+    path: LISTENING_PATH,
     component: ListeningComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'writing', component: WritingComponent, canActivate: [AuthGuard] },
-  { path: 'speaking', component: SpeakingComponent, canActivate: [AuthGuard] },
+  { path: WRITING_PATH, component: WritingComponent, canActivate: [AuthGuard] },
+  { path: SPEAKING_PATH, component: SpeakingComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -60,7 +60,6 @@ const routes: Routes = [
     TimerComponent,
     NavigationComponent,
     HeaderComponent,
-    ProgressBarComponent,
     FooterComponent,
     ThemeComponent,
     ForbidPastingDirective,
@@ -102,7 +101,6 @@ const routes: Routes = [
     ButtonsStylingDirective,
     TimerComponent,
     HeaderComponent,
-    ProgressBarComponent,
     LeftLayoutComponent,
     HeaderComponent,
     FooterComponent,
