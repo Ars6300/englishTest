@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Level } from 'src/app/core/models/level.model';
 import { ITestDone } from 'src/app/core/models/tests.model';
 import { TestsDoneState } from 'src/app/redux/models/users-admin.state.model';
@@ -15,7 +17,8 @@ export class TestsDoneModel {
   id: string = '';
   lastName: string = '';
   role: string = '';
-  level: string = ''
+  level: string = '';
+  coach?: string = '';
 }
 
 @Component({
@@ -36,6 +39,7 @@ export class UsersAdminComponent implements OnInit {
     'role',
     'level',
     'email',
+    'coach',
     'assignCheck',
   ];
   dataSource: TestsDoneModel[] = [];
@@ -48,10 +52,13 @@ export class UsersAdminComponent implements OnInit {
   showAdd!: boolean;
   showUpdate!: boolean;
 
+  coachFormValue!: string;
+
   constructor(
     private usersAdminService: UsersAdminService,
     private testsDoneStore: Store<TestsDoneState>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -63,23 +70,39 @@ export class UsersAdminComponent implements OnInit {
     });
 
     this.formValue = this.formBuilder.group({
-      firstName: [''],
-      lastName: [''],
-      email: [''],
       role: [''],
       level: [''],
+      coach: [''],
     });
   }
 
-  postAssignCheck() {}
+  onPostAssignCheck() {
+    this.testsDoneModel.role = this.formValue.value.role;
+    this.testsDoneModel.level = this.formValue.value.level;
+    this.testsDoneModel.coach = this.formValue.value.coach;
+
+    this.usersAdminService.postAssignCheck(this.testsDoneModel).subscribe(
+      (res: TestsDoneModel) => {
+        const ref = document.getElementById('cancel');
+        ref?.click();
+        this.formValue.reset();
+        this.closeModal();
+        this.coachFormValue = '';
+      },
+      (error) => {
+        console.log('Something went wrong.');
+      }
+    );
+  }
 
   onAssignCheck(test: TestsDoneModel) {
+    this.showAdd = false;
+    this.showUpdate = true;
+
     this.testsDoneModel.id = test.id;
-    this.formValue.controls['email'].setValue(test.email);
-    this.formValue.controls['firstName'].setValue(test.firstName);
-    this.formValue.controls['lastName'].setValue(test.lastName);
     this.formValue.controls['role'].setValue(test.role);
     this.formValue.controls['level'].setValue(test.level);
+    this.formValue.controls['coach'].setValue(this.coachFormValue);
   }
 
   openModal() {
@@ -93,5 +116,12 @@ export class UsersAdminComponent implements OnInit {
     modal?.classList.remove('modal-open');
     modal?.classList.add('modal-close');
     this.formValue.reset();
+    this.coachFormValue = '';
   }
+
+  getOption(event: any) {
+    this.coachFormValue = event.target.value;
+  }
+
+  
 }

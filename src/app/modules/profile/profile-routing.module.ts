@@ -11,7 +11,7 @@ import {
   PROFILE_PATH,
   EDIT_PATH,
   USERS_PATH,
-  ASSIGMENTS_PATH,
+  ASSIGNMENTS_PATH,
 } from './profile-routing.constants';
 import { AuthGuard } from 'src/app/core/guard/auth-guard/auth.guard';
 import { QuestionsEditComponent } from 'src/app/pages/questions-edit/questions-edit.component';
@@ -54,7 +54,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: ASSIGMENTS_PATH,
+        path: ASSIGNMENTS_PATH,
         component: UsersAdminComponent,
         canActivate: [AuthGuard],
       },
