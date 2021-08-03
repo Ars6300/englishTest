@@ -11,8 +11,8 @@ import {
 } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { MissingTranslationService } from 'src/app/shared/utils/utils';
-import { UserEffects } from 'src/app/redux/effects/users-hr.effects';
 import { USER_PROVIDED_EFFECTS } from '@ngrx/effects';
+import { UserEffects } from 'src/app/redux/effects/users-admin.effects';
 
 @NgModule({
   declarations: [UsersAdminComponent],

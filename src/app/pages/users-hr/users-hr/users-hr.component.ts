@@ -1,11 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { IUser } from 'src/app/core/models/user.model';
-import { UsersState } from 'src/app/redux/models/users-hr.state.model';
-import { getUsers } from 'src/app/redux/selectors/users-hr.selectors';
+import { Hr } from 'src/app/core/models/hr.model';
 import { UsersHrService } from '../users-hr.service';
 
 export class UserModel {
@@ -23,7 +19,8 @@ export class UserModel {
   providers: [UsersHrService],
 })
 export class UsersHrComponent implements OnInit {
-  users$: Observable<IUser[]> | undefined;
+
+  users$: Hr[] | undefined;
 
   usersList: UserModel[] = [];
   usersData: UserModel[] = [];
@@ -46,12 +43,10 @@ export class UsersHrComponent implements OnInit {
 
   constructor(
     private usersHrService: UsersHrService,
-    private usersStore: Store<UsersState>,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.users$ = this.usersStore.select(getUsers);
 
     this.usersHrService.getUsers().subscribe((users$) => {
       this.usersList = users$;
