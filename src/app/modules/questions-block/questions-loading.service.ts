@@ -18,19 +18,15 @@ export class QuestionsLoadingService {
   private questions: Question[] = [];
   private answers: Answer[] = [];
 
-  private tryCounter: number = 0;
-
-  questionsPath: string = 'assets/questions.json';
-
   constructor(private http: HttpClient) {}
 
   getQuestions(): Observable<Question[]> {
     return of(QUESTIONS_MOCK);
   }
 
-  getQuestionById(id: string) {
-    return this.questions.find((question: Question) => question.id === id);
-  }
+  // getQuestionById(id: string) {
+  //   return this.questions.find((question: Question) => question.id === id);
+  // }
 
   getAnswerById(questionId: string) {
     return this.answers.find(
@@ -38,33 +34,35 @@ export class QuestionsLoadingService {
     );
   }
 
-
-
   postQuestion(data: any) {
     console.log(data);
-    return this.http.post<any>(`${environment.api_URL}/api/Question/create`, data).pipe(
-      map((res: any) => {
-        console.log(res);
-        return res;
-      })
-    );
+    return this.http
+      .post<any>(`${environment.api_URL}/api/Question/create`, data)
+      .pipe(
+        map((res: any) => {
+          console.log(res);
+          return res;
+        })
+      );
   }
-
-  getQuestion() {
-    return this.http.get<any>('srcenvironmentsenvironment.ts').pipe(
-      map((res: QuestionModel) => {
-        return res;
-      })
-    );
-  }
+  // FIXME: remove 
+  // getQuestion() {
+  //   return this.http.get<any>('srcenvironmentsenvironment.ts').pipe(
+  //     map((res: QuestionModel) => {
+  //       return res;
+  //     })
+  //   );
+  // }
 
   updateQuestion(data: QuestionModel) {
-    return this.http.post(`${environment.api_URL}/api/Question/edit`, data).pipe(
-      map((res: any) => {
-        console.log(res);
-        return res;
-      })
-    );
+    return this.http
+      .post(`${environment.api_URL}/api/Question/edit`, data)
+      .pipe(
+        map((res: any) => {
+          console.log(res);
+          return res;
+        })
+      );
   }
 
   deleteQuestion(id: string) {

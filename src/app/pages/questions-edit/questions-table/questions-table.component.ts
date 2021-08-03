@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import { interval, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Question } from 'src/app/core/models/questions.model';
 import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
@@ -13,9 +13,8 @@ import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 import { QuestionsService } from 'src/app/core/services/questions/questions.service';
 import { GetAllQuestionsState } from 'src/app/redux/models/get-all-questions.state.model';
 import * as getAllQuestionsActions from 'src/app/redux/actions/get-all-questions.actions';
-
+import { QuestionType } from 'src/app/core/models/test.model';
 import { getAllQuestions } from 'src/app/redux/selectors/get-all-questions.selectors';
-import { switchMap, take } from 'rxjs/operators';
 
 export class QuestionModel {
   id: string = '';
@@ -56,17 +55,33 @@ export class QuestionsTableComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'text', 'type', 'edit', 'delete'];
   dataSource: Question[] = [];
+  type = '';
+  level = '';
+
+  types: Types[] = [
+    { value: QuestionType.Grammar, viewValue: 'Grammar' },
+    { value: QuestionType.Listening, viewValue: 'Listening' },
+    { value: QuestionType.Writing, viewValue: 'Writing' },
+    { value: QuestionType.Speaking, viewValue: 'Speaking' },
+  ];
+
+  levels: Levels[] = [
+    { value: 'A1', viewValue: 'A1' },
+    { value: 'A2', viewValue: 'A2' },
+    { value: 'B1', viewValue: 'B1' },
+    { value: 'B2', viewValue: 'B2' },
+    { value: 'C1', viewValue: 'C1' },
+    { value: 'C2', viewValue: 'C2' },
+  ];
 
   questionModel: QuestionModel = new QuestionModel();
   @ViewChild(MatTable) table!: MatTable<QuestionModel>;
-  questionsModelForPost: QuestionsModelForPost = new QuestionsModelForPost()
-
+  questionsModelForPost: QuestionsModelForPost = new QuestionsModelForPost();
 
   openEdit = false;
   formValue!: FormGroup;
   showAdd!: boolean;
   showUpdate!: boolean;
-
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
@@ -76,12 +91,9 @@ export class QuestionsTableComponent implements OnInit {
     private questionsService: QuestionsService,
     private store: Store<GetAllQuestionsState>
   ) {}
-  
 
   ngOnInit() {
     this.questionsSyncStore.init();
-
-
 
     this.formValue = this.formBuilder.group({
       id: [''],
@@ -102,14 +114,12 @@ export class QuestionsTableComponent implements OnInit {
     this.questionsModelForPost.text = this.formValue.value.text;
     this.questionsModelForPost.type = +this.formValue.value.type;
     this.questionsModelForPost.englishLevel = this.formValue.value.englishLevel;
-    
 
     const objPost = {
-      "text": this.formValue.value.text,
-      "type": +this.formValue.value.type,
-      "englishLevel": this.formValue.value.englishLevel
-    }
-    
+      text: this.formValue.value.text,
+      type: +this.formValue.value.type,
+      englishLevel: this.formValue.value.englishLevel,
+    };
 
     this.questionsLoadingService.postQuestion(objPost).subscribe(
       (res: any) => {
@@ -153,7 +163,7 @@ export class QuestionsTableComponent implements OnInit {
     this.questionModel.id = this.formValue.value.id;
     this.questionModel.text = this.formValue.value.text;
     this.questionModel.type = this.formValue.value.type;
-    this.questionModel.englishLevel = this.formValue.value.englishLevel
+    this.questionModel.englishLevel = this.formValue.value.englishLevel;
 
     this.questionsLoadingService
       .updateQuestion(this.questionModel)
@@ -191,30 +201,7 @@ export class QuestionsTableComponent implements OnInit {
     this.table.renderRows();
   }
 
-  types: Types[] = [
-    { value: 'Grammar-0', viewValue: 'Grammar' },
-    { value: 'Listening-1', viewValue: 'Listening' },
-    { value: 'Writing-2', viewValue: 'Writing' },
-    { value: 'Speaking-3', viewValue: 'Speaking' },
-  ];
-
-  levels: Levels[] = [
-    { value: 'A1', viewValue: 'A1' },
-    { value: 'A2', viewValue: 'A2' },
-    { value: 'B1', viewValue: 'B1' },
-    { value: 'B2', viewValue: 'B2' },
-    { value: 'C1', viewValue: 'C1' },
-    { value: 'C2', viewValue: 'C2' },
-  ];
-
-  type = '';
-  level = '';
-
   getQuestions() {
-    // this.questionsService.getAllQuestions(this.type, this.level).subscribe(res => {
-    //   console.log(res);
-    // })
-
     this.store.dispatch(
       getAllQuestionsActions.getQuestions({
         typeModel: this.type,
@@ -223,15 +210,18 @@ export class QuestionsTableComponent implements OnInit {
     );
     this.questions$ = this.store.select(getAllQuestions);
 
-    this.questionsService.getAllQuestions(this.type, this.level).subscribe((questions$) => {
-      this.questionsList = questions$;
-      this.dataSource = [...this.questionsList];
-    });
+    this.questionsService
+      .getAllQuestions(this.type, this.level)
+      .subscribe((questions$) => {
+        this.questionsList = questions$;
+        this.dataSource = [...this.questionsList];
+      });
   }
-  getType(event: any) {
-    this.type = event.target.parentNode.id.split('-')[2];
+  getType(type: any) {
+    this.type = type;
   }
-  getLevel(event: any) {
-    this.level = event.target.innerText.trim();
+
+  getLevel(level: any) {
+    this.level = level;
   }
 }

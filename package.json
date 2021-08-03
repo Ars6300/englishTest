@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "deploy": "ng deploy --repo=https://github.com/team1Js21/englishTest.git",
     "update-locale": "ngx-translate-extract -i ./src -o src/assets/locale/*.json --sort --format namespaced-json"
   },
   "private": true,
@@ -28,8 +29,8 @@
     "@ngrx/store-devtools": "^12.2.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
-    "ngrx-store-localstorage": "^12.0.0",
     "moment": "^2.29.1",
+    "ngrx-store-localstorage": "^12.0.0",
     "ngx-countdown": "^12.0.1",
     "postcss-scss": "^4.0.0",
     "recordrtc": "^5.6.2",

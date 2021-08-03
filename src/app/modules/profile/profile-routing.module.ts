@@ -11,10 +11,12 @@ import {
   PROFILE_PATH,
   EDIT_PATH,
   USERS_PATH,
+  ASSIGNMENTS_PATH,
 } from './profile-routing.constants';
 import { AuthGuard } from 'src/app/core/guard/auth-guard/auth.guard';
 import { QuestionsEditComponent } from 'src/app/pages/questions-edit/questions-edit.component';
 import { UsersHrComponent } from 'src/app/pages/users-hr/users-hr/users-hr.component';
+import { UsersAdminComponent } from 'src/app/pages/users-admin/users-admin/users-admin.component';
 
 const routes: Routes = [
   {
@@ -49,6 +51,11 @@ const routes: Routes = [
       {
         path: USERS_PATH,
         component: UsersHrComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: ASSIGNMENTS_PATH,
+        component: UsersAdminComponent,
         canActivate: [AuthGuard],
       },
     ],

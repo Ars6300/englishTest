@@ -4,14 +4,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   selector: 'app-questions-edit',
   templateUrl: './questions-edit.component.html',
   styleUrls: ['./questions-edit.component.scss'],
-  // encapsulation: ViewEncapsulation.None
 })
 export class QuestionsEditComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-    
-  }
-
+  ngOnInit(): void {}
 }

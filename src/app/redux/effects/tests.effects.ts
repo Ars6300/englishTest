@@ -9,6 +9,7 @@ import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as TestsActions from 'src/app/redux/actions/tests.actions'
+import { GRAMMAR_PATH } from 'src/app/app-routing.constants';
 
 @Injectable()
 export class TestsEffects {
@@ -25,7 +26,7 @@ export class TestsEffects {
       this.testsService.getTests(action.userId, action.engLevel).pipe(
         // Ругается вот тут ({tests}) пишет что : Тип Object можно назначить малому количеству других типов. Возможно, вы хотели использовать тип any? В типе "Object" отсутствуют следующие свойства из типа "TestsGet": id, startTime, endTime, englishLevel, testQuestionSet
         map((tests) => TestsActions.getTestsDataSuccess({tests})),
-        tap(() => this.router.navigate(['/grammar'])),
+        tap(() => this.router.navigate([GRAMMAR_PATH])),
         catchError((error) => of(TestsActions.getTestsDataFailure({error})))
       ))
     )

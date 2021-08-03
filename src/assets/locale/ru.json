@@ -19,7 +19,8 @@
     "ASSIGNED_ROLE": "HR",
     "EDIT": "Редакторовать",
     "ROLE": "Роль",
-    "USERS": "Пользователи"
+    "USERS": "Пользователи",
+    "ASSIGNMENTS": "Назначения"
   },
   "SELECTORS": {
     "START_BTN": "Начать"

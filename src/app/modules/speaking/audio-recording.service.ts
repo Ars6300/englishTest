@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as RecordRTC from 'recordrtc';
 import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 interface RecordedAudioOutput {
   blob: Blob;
@@ -88,13 +89,13 @@ export class AudioRecordingService {
   stopRecording() {
     if (this.recorder) {
       this.recorder.stop(
-        (blob: any) => {
+        (blob: Blob) => {
           if (this.startTime) {
             const mp3Name = encodeURIComponent(
-              'audio_' + new Date().getTime() + '.mp3'
+              'audio_' + new Date().getTime() + environment.AUDIO_FORMAT
             );
             this.stopMedia();
-            this._recorded.next({ blob: blob, title: mp3Name });
+            this._recorded.next({ blob, title: mp3Name });
           }
         },
         () => {

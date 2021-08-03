@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-timer',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TimerComponent implements OnInit {
   title: string = 'Time remaining';
-  @Input() time = 3600;
+  @Input() time = environment.TIMER;
   constructor() {}
 
   ngOnInit(): void {}

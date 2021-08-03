@@ -36,7 +36,7 @@ import { AuthGuard } from './core/guard/auth-guard/auth.guard';
 const routes: Routes = [
   {
     path: LOGIN_PATH,
-    loadChildren: () => import(LOGIN_MODULE).then((m) => m.LoginModule),
+    loadChildren: appRoutingLoadChildren.loginModule,
   },
   {
     path: PROFILE_PATH,
@@ -44,12 +44,11 @@ const routes: Routes = [
   },
   {
     path: SELECT_LEVEL_PATH,
-    loadChildren: () =>
-      import(SELECT_LEVEL_MODULE).then((m) => m.LevelSelectModule),
+    loadChildren: appRoutingLoadChildren.selectLevelModule,
   },
   {
     path: GRAMMAR_PATH,
-    loadChildren: () => import(GRAMMAR_MODULE).then((m) => m.GrammarModule),
+    loadChildren: appRoutingLoadChildren.grammarModule,
   },
   {
     path: WRITING_PATH,
@@ -57,15 +56,15 @@ const routes: Routes = [
   },
   {
     path: LISTENING_PATH,
-    loadChildren: () => import(LISTENING_MODULE).then((m) => m.ListeningModule),
+    loadChildren: appRoutingLoadChildren.listeningModule,
   },
   {
     path: SPEAKING_PATH,
-    loadChildren: () => import(SPEAKING_MODULE).then((m) => m.SpeakingModule),
+    loadChildren: appRoutingLoadChildren.speakingModule,
   },
   {
     path: RESULT_PATH,
-    loadChildren: () => import(RESULT_MODULE).then((m) => m.ResultModule),
+    loadChildren: appRoutingLoadChildren.resultModule,
   },
   {
     path: ERROR_PATH,
@@ -74,7 +73,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: `/${ERROR_PATH}`,
+    redirectTo: `${ERROR_PATH}`,
   },
 ];
 @NgModule({

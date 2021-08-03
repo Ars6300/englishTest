@@ -1,5 +1,5 @@
 <div class="left" *ngFor="let t of about">
-  <app-navigation *ngIf="url === 'select-level' ? false : true"></app-navigation>
+  <app-navigation *ngIf="url !== 'select-level'" ></app-navigation>
   <h2 class="left-title">{{ t.title | translate  }}</h2> 
   <p  class="left-text"> {{ t.text  | translate  }}</p>
 

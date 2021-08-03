@@ -90,18 +90,18 @@ export class QuestionsBlockComponent implements OnInit {
     }
   }
 
-  getTestQuestions(handler: QueryHandler): void {
-    const testType = ['1', '2', '3', '4'];
+  // getTestQuestions(handler: QueryHandler): void {
+  //   const testType = ['1', '2', '3', '4'];
 
-    for (const type of testType) {
-      console.log(`${type}`);
+  //   for (const type of testType) {
+  //     console.log(`${type}`);
 
-      const result = handler.handle(type);
-      if (result) {
-        console.log(`${result}`);
-      } else {
-        console.log(`${type} was left untouched.`);
-      }
-    }
-  }
+  //     const result = handler.handle(type);
+  //     if (result) {
+  //       console.log(`${result}`);
+  //     } else {
+  //       console.log(`${type} was left untouched.`);
+  //     }
+  //   }
+  // }
 }

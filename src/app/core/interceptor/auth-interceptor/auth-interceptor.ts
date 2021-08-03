@@ -8,6 +8,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../../authentication/authentication.service';
 
+const APPLICATION_TYPE = 'application/json'
+const HTTP_SCHEME = 'Bearer'
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private auth: AuthenticationService) {}
@@ -18,8 +21,8 @@ export class AuthInterceptor implements HttpInterceptor {
     if (this.auth.token) {
       const cloned = req.clone({
         setHeaders: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.auth.token}`,
+          'Content-Type': APPLICATION_TYPE,
+          Authorization: `${HTTP_SCHEME} ${this.auth.token}`,
         },
       });
       return next.handle(cloned);

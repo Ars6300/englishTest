@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as AppState from  '../../state/app.state'
+import * as AppState from  '../models/app.state'
 import { AuthState } from '../reducers/user.reducers'
 
 export interface State extends AppState.State {

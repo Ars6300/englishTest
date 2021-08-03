@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
-import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { QuestionsBlockComponent } from './questions-block/questions-block.component';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -45,7 +44,7 @@ const routes: Routes = [
 
 export const grammar = new GrammarQuestion();
 @NgModule({
-  declarations: [QuestionComponent, QuestionsBlockComponent, AudioComponent],
+  declarations: [QuestionsBlockComponent, AudioComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -77,6 +76,6 @@ export const grammar = new GrammarQuestion();
       useValue: [QuestionEffects],
     },
   ],
-  exports: [QuestionComponent, QuestionsBlockComponent, AudioComponent],
+  exports: [QuestionsBlockComponent, AudioComponent],
 })
 export class QuestionsModule {}

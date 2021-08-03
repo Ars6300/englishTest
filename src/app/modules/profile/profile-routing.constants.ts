@@ -4,6 +4,7 @@ export const RESULTS_PATH = 'results'
 export const STATISTICS_PATH = 'statistics'
 export const EDIT_PATH = 'edit'
 export const USERS_PATH = 'users'
+export const ASSIGNMENTS_PATH = 'assignments'
 
 export const TEST_NOTIFICATION = 'PROFILE.TEST_NOTIFICATION'
 export const ASSIGNED_ROLE = 'PROFILE.ASSIGNED_ROLE'

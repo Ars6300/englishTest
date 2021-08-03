@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getUrlName } from 'src/app/shared/utils/utils';
 import { QuestionType } from '../../../../core/models/test.model'
 
 @Component({
@@ -11,7 +12,7 @@ export class ThemeComponent implements OnInit {
   writingType = QuestionType.Writing
   speakingType = QuestionType.Speaking
 
-  url = window.location.pathname.split('/')[1];
+  url = getUrlName()
 
   selectTheme(event: { target: any; }){
     console.log(event.target.innerText);

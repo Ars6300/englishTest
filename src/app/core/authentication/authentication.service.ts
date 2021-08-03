@@ -8,6 +8,9 @@ import {
 } from 'src/app/shared/utils/cookies';
 import { environment } from 'src/environments/environment';
 
+export const COOKIE_HOUR = '3600';
+const TOKEN = 'token';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,12 +22,14 @@ export class AuthenticationService {
       email,
       password,
     };
-    return this.http.post(`${environment.api_URL}/api/User/Login`, user).pipe(tap(this.setCookies));
+    return this.http
+      .post(`${environment.api_URL}/api/User/Login`, user)
+      .pipe(tap(this.setCookies));
   }
 
   private setCookies(response: any) {
     if (response) {
-      setCookieParams('token', response.token, '3600');
+      setCookieParams(TOKEN, response.token, COOKIE_HOUR);
     }
   }
 
@@ -36,8 +41,12 @@ export class AuthenticationService {
     return document.cookie
       .split(';')
       .map((cookie) =>
-        cookie.startsWith('token') ? cookie.split('=')[1] : null
+        cookie.startsWith(TOKEN) ? this.splitCookie(cookie) : null
       )[0];
+  }
+
+  splitCookie(cookie: string) {
+    return cookie.split('=')[1];
   }
 
   isAuthenticated() {

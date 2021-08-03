@@ -8,7 +8,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MissingTranslationService } from 'src/app/shared/utils/utils';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './login-form/login.component';
 
 
 const routes: Routes = [
