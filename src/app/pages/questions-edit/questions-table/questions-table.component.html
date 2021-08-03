@@ -1,12 +1,35 @@
 <div class="content">
-  <button class="add-question" (click)="onAddQuestion()" (click)="openModal()">
-    {{"BUTTONS.ADD_QUESTION" | translate}}
-  </button>
+  <div class="btns-wrap">
 
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    class="questions-table mat-elevation-z8 demo-table"
+    <button class="add-question" (click)="onAddQuestion()" (click)="openModal()">
+      {{"BUTTONS.ADD_QUESTION" | translate}}
+    </button>
+    <mat-form-field appearance="fill">
+      <mat-label>Select type</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let type of types" [value]="type.value" (click)="getType($event)">
+          {{type.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Select level</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let level of levels" [value]="level.value" (click)="getLevel($event)">
+          {{level.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="get-all-questions" (click)="getQuestions()">
+      get all questions
+    </button>
+  </div>
+
+<div class="table-wrap">
+  <table  
+  mat-table
+  [dataSource]="dataSource"
+  class="questions-table mat-elevation-z8 demo-table"
   >
     <ng-container matColumnDef="id">
       <th class="th-width-6" mat-header-cell *matHeaderCellDef>No.</th>
@@ -53,54 +76,64 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+</div>
 
-  <div class="modal-close" id="modal">
-    <form [formGroup]="formValue" class="modal-content">
-      <div class="form-group">
-        <label for="id">Id:</label>
-        <input
-          type="text"
-          formControlName="id"
-          name="id"
-          class="form-control"
-          id="id"
-        />
-      </div>
+<div class="modal-close" id="modal">
+  <form [formGroup]="formValue" class="modal-content">
+    <!-- <div class="form-group">
+      <label for="id">Id:</label>
+      <input
+        type="text"
+        formControlName="id"
+        name="id"
+        class="form-control"
+        id="id"
+      />
+    </div> -->
 
-      <div class="form-group">
-        <label for="text">Text:</label>
-        <textarea
-          rows="5"
-          cols="20"
-          formControlName="text"
-          name="text"
-          class="form-control"
-          id="text"
-        ></textarea>
-      </div>
+    <div class="form-group">
+      <label for="text">Text:</label>
+      <textarea
+        rows="5"
+        cols="20"
+        formControlName="text"
+        name="text"
+        class="form-control"
+        id="text"
+      ></textarea>
+    </div>
 
-      <div class="form-group">
-        <label for="type">Type:</label>
-        <input
-          formControlName="type"
-          name="type"
-          class="form-control"
-          id="type"
-        />
-      </div>
-      <div class="buttons">
-        <button class="close" id="cancel" (click)="closeModal()">Close</button>
-        <button class="close" *ngIf="showAdd" (click)="postQuestionDetails()">
-          Add
-        </button>
-        <button
-          class="close"
-          *ngIf="showUpdate"
-          (click)="onUpdateQuestionDetails()"
-        >
-          Update
-        </button>
-      </div>
-    </form>
-  </div>
+    <div class="form-group">
+      <label for="type">Type:</label>
+      <input
+        formControlName="type"
+        name="type"
+        class="form-control"
+        id="type"
+      />
+    </div>
+    <div class="form-group">
+      <label for="type">English Level:</label>
+      <input
+        formControlName="englishLevel"
+        name="englishLevel"
+        class="form-control"
+        id="englishLevel"
+      />
+    </div>
+    <div class="buttons">
+      <button class="close" id="cancel" (click)="closeModal()">Close</button>
+      <button class="close" *ngIf="showAdd" (click)="postQuestionDetails()">
+        Add
+      </button>
+      <button
+        class="close"
+        *ngIf="showUpdate"
+        (click)="onUpdateQuestionDetails()"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</div>
 </div>

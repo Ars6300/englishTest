@@ -6,7 +6,7 @@ export interface State extends AppState.State {
   auth: AuthState
 }
 
-  const getAuthFeatureState = createFeatureSelector<AuthState>('auth');
+const getAuthFeatureState = createFeatureSelector<AuthState>('auth');
 
 export const getLoginError = createSelector(
   getAuthFeatureState,

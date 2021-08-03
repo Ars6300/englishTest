@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Answer, Question } from 'src/app/core/models/questions.model';
 import { QuestionModel } from 'src/app/pages/questions-edit/questions-table/questions-table.component';
 import { QUESTIONS_MOCK } from 'src/app/redux/reducers/questions.reducers';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -37,9 +38,13 @@ export class QuestionsLoadingService {
     );
   }
 
-  postQuestion(data: QuestionModel) {
-    return this.http.post<any>('srcenvironmentsenvironment.ts', data).pipe(
+
+
+  postQuestion(data: any) {
+    console.log(data);
+    return this.http.post<any>(`${environment.api_URL}/api/Question/create`, data).pipe(
       map((res: any) => {
+        console.log(res);
         return res;
       })
     );
@@ -53,9 +58,10 @@ export class QuestionsLoadingService {
     );
   }
 
-  updateQuestion(data: QuestionModel, id: string) {
-    return this.http.put<any>('srcenvironmentsenvironment.ts' + id, data).pipe(
+  updateQuestion(data: QuestionModel) {
+    return this.http.post(`${environment.api_URL}/api/Question/edit`, data).pipe(
       map((res: any) => {
+        console.log(res);
         return res;
       })
     );
