@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  api_URL: 'https://localhost:44392',
+  api_URL: 'https://localhost:44356',
   locales: ['en', 'ru'],
   defaultLocale: 'en',
   SPEAKING_TIME: '05:00',
