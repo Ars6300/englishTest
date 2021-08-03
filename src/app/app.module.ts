@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -29,6 +30,7 @@ import {
 import { AudioRecordingService } from './modules/speaking/audio-recording.service';
 import { UsersHrService } from './pages/users-hr/users-hr.service';
 import { UsersAdminService } from './pages/users-admin/users-admin.service';
+import { HttpErrorInterceptor } from './core/interceptor/error-interceptor/http-error.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -44,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     LevelSelectModule,
     HttpClientModule,
     ReduxModule,
+    CoreModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -61,11 +64,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   providers: [
     QuestionsLoadingService,
     QuestionsSyncService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
     AudioRecordingService,
     UsersHrService,
     UsersAdminService,

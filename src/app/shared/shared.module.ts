@@ -1,3 +1,4 @@
+import { ErrorComponent } from './../pages/error/error.component';
 import { LeftLayoutComponent } from './components/left-layout/left-layout.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,6 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { HeaderComponent } from './components/header/header.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ErrorComponent } from '../pages/error/error.component';
 import { RouterModule, Routes } from '@angular/router';
 import { GrammarComponent } from '../modules/grammar/grammar.component';
 import { ListeningComponent } from '../modules/listening/listening.component';
@@ -62,9 +62,9 @@ const routes: Routes = [
     HeaderComponent,
     ProgressBarComponent,
     FooterComponent,
-    ErrorComponent,
     ThemeComponent,
     ForbidPastingDirective,
+    ErrorComponent,
   ],
   imports: [
     CommonModule,
@@ -106,8 +106,8 @@ const routes: Routes = [
     LeftLayoutComponent,
     HeaderComponent,
     FooterComponent,
-    ErrorComponent,
     ForbidPastingDirective,
+    ErrorComponent,
   ],
 })
 export class SharedModule {}

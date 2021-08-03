@@ -13,4 +13,5 @@ export interface ITestDone {
   firstName: string;
   lastName: string;
   role: string;
+  coach?: string;
 }
