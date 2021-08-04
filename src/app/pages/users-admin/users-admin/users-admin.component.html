@@ -23,6 +23,7 @@
       <th class="th-width-6" mat-header-cell *matHeaderCellDef>Assign</th>
       <td mat-cell mat-cell *matCellDef="let element">
         <select class="select" (change)="getOption($event)">
+          <option>Choose</option>
           <ng-container *ngFor="let coach of dataUsers">
             <option
               *ngIf="coach.id !== element.userId && coach.role === 'couch'"
