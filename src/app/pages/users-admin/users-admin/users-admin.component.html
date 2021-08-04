@@ -4,14 +4,9 @@
     [dataSource]="dataSource"
     class="mat-elevation-z8 demo-table"
   >
-    <ng-container matColumnDef="firstName">
-      <th class="th-width-6" mat-header-cell *matHeaderCellDef>First Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="lastName">
-      <th class="th-width-6" mat-header-cell *matHeaderCellDef>Last Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+    <ng-container matColumnDef="date">
+      <th class="th-width-6" mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.examDate }}</td>
     </ng-container>
 
     <ng-container matColumnDef="role">
@@ -24,18 +19,15 @@
       <td mat-cell *matCellDef="let element">{{ element.level }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="email">
-      <th class="th-width-15" mat-header-cell *matHeaderCellDef>Email</th>
-      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
-    </ng-container>
-
     <ng-container matColumnDef="coach">
       <th class="th-width-6" mat-header-cell *matHeaderCellDef>Assign</th>
       <td mat-cell mat-cell *matCellDef="let element">
         <select class="select" (change)="getOption($event)">
           <option>Choose</option>
-          <ng-container *ngFor="let coach of dataSource">
-            <option *ngIf="coach.id !== element.id && coach.role === 'coach'">
+          <ng-container *ngFor="let coach of dataUsers">
+            <option
+              *ngIf="coach.id !== element.userId && coach.role === 'couch'"
+            >
               {{ coach.lastName }}
             </option>
           </ng-container>
