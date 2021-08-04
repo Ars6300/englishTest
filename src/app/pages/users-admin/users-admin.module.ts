@@ -12,7 +12,7 @@ import {
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { MissingTranslationService } from 'src/app/shared/utils/utils';
 import { USER_PROVIDED_EFFECTS } from '@ngrx/effects';
-import { UserEffects } from 'src/app/redux/effects/users-admin.effects';
+//import { UserEffects } from 'src/app/redux/effects/users-admin.effects';
 
 @NgModule({
   declarations: [UsersAdminComponent],
@@ -35,12 +35,12 @@ import { UserEffects } from 'src/app/redux/effects/users-admin.effects';
     }),
   ],
   providers: [
-    UserEffects,
+    /* UserEffects,
     {
       provide: USER_PROVIDED_EFFECTS,
       multi: true,
       useValue: [UserEffects],
-    },
+    }, */
   ],
   exports: [UsersAdminComponent],
 })

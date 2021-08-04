@@ -2,27 +2,35 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ITestDone } from 'src/app/core/models/tests.model';
-import { TESTS_DONE_MOCK } from 'src/app/redux/reducers/users-admin.reducers';
-import { TestsDoneModel } from './users-admin/users-admin.component';
+import { Admin } from 'src/app/core/models/admin.model';
+import { Hr } from 'src/app/core/models/hr.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersAdminService {
-
   constructor(private http: HttpClient) {}
 
-  getTestsDone(): Observable<ITestDone[]> {
-    return of(TESTS_DONE_MOCK);
+  getUnassignedTests(): Observable<Admin[]> {
+    return this.http.get<Admin[]>(`${environment.api_URL}/unassign`);
   }
 
-  postAssignCheck(data: TestsDoneModel) {
-    return this.http.post<any>('srcenvironmentsenvironment.ts', data).pipe(
-      map((res: any) => {
-        console.log(res)
-        return res;
-      })
-    );
+  getUsers(): Observable<Hr[]> {
+    return this.http.get<Hr[]>(`${environment.api_URL}/api/User/GetAllUsers`);
+  }
+
+  postAssignCheck(testId: string, couchId: string) {
+    return this.http
+      .post<any>(
+        `${environment.api_URL}/assign?Id=${testId}&CouchId=${couchId}`,
+        {}
+      )
+      .pipe(
+        map((res: any) => {
+          console.log(res);
+          return res;
+        })
+      );
   }
 }

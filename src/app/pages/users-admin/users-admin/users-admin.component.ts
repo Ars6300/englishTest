@@ -1,22 +1,28 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ITestDone } from 'src/app/core/models/tests.model';
+import { Admin } from 'src/app/core/models/admin.model';
+import { Hr } from 'src/app/core/models/hr.model';
 import { ErrorService } from 'src/app/core/services/error.service';
-import { TestsDoneState } from 'src/app/redux/models/users-admin.state.model';
-import { getTestsDone } from 'src/app/redux/selectors/users-admin.selectors';
+
 import { UsersAdminService } from '../users-admin.service';
 
 export class TestsDoneModel {
+  testId: string = '';
+  examDate: string = '';
+  userId: string = '';
+  role: string = '';
+  level: string = '';
+  couchId?: string = '';
+}
+
+export class UserModelAdmin {
   email: string = '';
   firstName: string = '';
   id: string = '';
   lastName: string = '';
   role: string = '';
-  level: string = '';
-  coach?: string = '';
 }
 
 @Component({
@@ -26,23 +32,30 @@ export class TestsDoneModel {
   providers: [UsersAdminService],
 })
 export class UsersAdminComponent implements OnInit {
-  testsDone$: Observable<ITestDone[]> | undefined;
+  testsDone$: Observable<Admin[]> | undefined;
 
   testsDoneList: TestsDoneModel[] = [];
   testsDoneData: TestsDoneModel[] = [];
 
+  users$: Hr[] | undefined;
+
+  couchId: string = '';
+
+  usersList: UserModelAdmin[] = [];
+
   displayedColumns: string[] = [
-    'firstName',
-    'lastName',
+    'date',
     'role',
     'level',
-    'email',
     'coach',
     'assignCheck',
   ];
   dataSource: TestsDoneModel[] = [];
+  dataUsers: UserModelAdmin[] = [];
 
   testsDoneModel: TestsDoneModel = new TestsDoneModel();
+  userModel: UserModelAdmin = new UserModelAdmin();
+
   @ViewChild(MatTable) table!: MatTable<TestsDoneModel>;
 
   openEdit = false;
@@ -54,17 +67,21 @@ export class UsersAdminComponent implements OnInit {
 
   constructor(
     private usersAdminService: UsersAdminService,
-    private testsDoneStore: Store<TestsDoneState>,
     private formBuilder: FormBuilder,
     private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
-    this.testsDone$ = this.testsDoneStore.select(getTestsDone);
-
-    this.usersAdminService.getTestsDone().subscribe((testsDone$) => {
+    this.usersAdminService.getUnassignedTests().subscribe((testsDone$) => {
       this.testsDoneList = testsDone$;
       this.dataSource = [...this.testsDoneList];
+      console.log(this.dataSource);
+      console.log(this.testsDoneList);
+    });
+
+    this.usersAdminService.getUsers().subscribe((users$) => {
+      this.usersList = users$;
+      this.dataUsers = [...this.usersList];
     });
 
     this.formValue = this.formBuilder.group({
@@ -74,30 +91,36 @@ export class UsersAdminComponent implements OnInit {
     });
   }
 
-  onPostAssignCheck() {
+  onPostAssignCheck(): any {
     this.testsDoneModel.role = this.formValue.value.role;
     this.testsDoneModel.level = this.formValue.value.level;
-    this.testsDoneModel.coach = this.formValue.value.coach;
+    this.testsDoneModel.couchId = this.formValue.value.coach;
 
-    this.usersAdminService.postAssignCheck(this.testsDoneModel).subscribe(
-      (res: TestsDoneModel) => {
-        const ref = document.getElementById('cancel');
-        ref?.click();
-        this.formValue.reset();
-        this.closeModal();
-        this.coachFormValue = '';
-      },
-      (error) => {
-        this.errorService.logError(error || 'Something went wrong');
-      }
-    );
+    this.usersAdminService
+      .postAssignCheck(this.testsDoneModel.testId, this.couchId)
+      .subscribe(
+        (res: any) => {
+          const ref = document.getElementById('cancel');
+          ref?.click();
+          this.formValue.reset();
+          this.closeModal();
+          this.coachFormValue = '';
+        },
+        (error) => {
+          this.errorService.logError(error || 'Something went wrong');
+        }
+      );
+
+    this.removeItem(this.testsDoneModel.userId);
   }
 
   onAssignCheck(test: TestsDoneModel) {
     this.showAdd = false;
     this.showUpdate = true;
 
-    this.testsDoneModel.id = test.id;
+    this.testsDoneModel.userId = test.userId;
+    this.testsDoneModel.testId = test.testId;
+
     this.formValue.controls['role'].setValue(test.role);
     this.formValue.controls['level'].setValue(test.level);
     this.formValue.controls['coach'].setValue(this.coachFormValue);
@@ -114,10 +137,18 @@ export class UsersAdminComponent implements OnInit {
     modal?.classList.remove('modal-open');
     modal?.classList.add('modal-close');
     this.formValue.reset();
-    this.coachFormValue = '';
   }
 
-  getOption(event: any) {
+  getOption(event: any): any {
     this.coachFormValue = event.target.value;
+    for (let i = 0; i < this.dataUsers.length; i++) {
+      if (this.coachFormValue === this.dataUsers[i].lastName) {
+        this.couchId = this.dataUsers[i].id;
+      }
+    }
+  }
+
+  removeItem(id: string) {
+    this.dataSource = this.dataSource.filter((user) => user.userId !== id);
   }
 }
