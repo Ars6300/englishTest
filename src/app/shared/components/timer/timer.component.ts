@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent implements OnInit {
-  title: string = 'Time remaining';
   @Input() time = environment.TIMER;
   constructor() {}
 
