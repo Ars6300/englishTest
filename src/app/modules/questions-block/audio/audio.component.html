@@ -1,8 +1,19 @@
-<div class="player">
-  <button class="play-control" id="play-control" (click)="playAudio()" >
-    <mat-icon>play_arrow</mat-icon>
-  </button>
-  <p class="play-attempts">
-    Your attempts: <span class="play-counter">{{ tryCount }}</span>
-  </p>
+<div class="audio-container">
+  <div class="player">
+    <div class="microfone">
+      <p class="microfone_align">
+        <mat-icon class="microfone_icon" id="play-control" (click)="playAudio()"
+          >play_arrow</mat-icon
+        >
+      </p>
+    </div>
+
+    <p class="play-attempts">
+      Your attempts: <span class="play-counter">{{ tryCount }}</span>
+    </p>
+  </div>
+
+  <div class="person">
+    <img src="./assets/images/listening.png" alt="" />
+  </div>
 </div>
