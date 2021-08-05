@@ -19,11 +19,11 @@
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 20%;
+  width: 40%;
+  height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 .close:hover,
@@ -69,7 +69,9 @@
 }
 
 #cancel {
-  margin-right: 0.6em;
+  margin-left: 0.6em;
+  background-color: var(--color-warning);
+  border: 0.5px solid var(--color-warning);
 }
 
 .th-width-6 {
@@ -78,20 +80,6 @@
 
 .th-width-15 {
   width: 15em;
-}
-
-input,
-label {
-  display: block;
-  font-family: Roboto, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-label {
-  margin-top: 1em;
-}
-
-input {
-  padding: 0.2em;
 }
 
 .select {
@@ -114,4 +102,22 @@ input {
 .select:focus {
   outline: 0;
   border-color: #99dbf3;
+}
+
+.modal-wrapper {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
