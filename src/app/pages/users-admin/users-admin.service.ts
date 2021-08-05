@@ -13,7 +13,7 @@ export class UsersAdminService {
   constructor(private http: HttpClient) {}
 
   getUnassignedTests(): Observable<Admin[]> {
-    return this.http.get<Admin[]>(`${environment.api_URL}/unassign`);
+    return this.http.get<Admin[]>(`${environment.api_URL}/getUnassigned`);
   }
 
   getUsers(): Observable<Hr[]> {
