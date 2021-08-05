@@ -41,7 +41,12 @@
     "RETRY": "Try again",
     "START_TEST": "Start a test",
     "ADD_QUESTION": "Add question",
-    "NEXT_SECTION": "Next section"
+    "NEXT_SECTION": "Next section",
+    "ASSIGN": "Assign",
+    "TEST": "Test",
+    "CLOSE": "Close",
+    "CHOOSE": "Choose"
+    
   },
   "WRITING_INPUT": {
     "TEXTAREA_LABEL": "The field is not available until you select the topic",
@@ -81,5 +86,15 @@
     "PREV_TESTS": "Your previous tests",
     "TITLE": "Result",
     "EMPTY": "Choose your test date to observe"
+  },
+  "TABLE_HEADER": {
+    "DATE": "Date",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "ROLE": "Role",
+    "LEVEL": "Level",
+    "COACH": "Coach",
+    "ASSIGN": "Assign",
+    "EMAIL": "Email"
   }
 }
