@@ -11,17 +11,14 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private translateService: TranslateService,
     private languageService: LanguageService,
     private storage: StorageService
   ) {}
   ngOnInit(): void {
     const lang: string | null = this.storage.getItem('lang');
-    if (lang) {
-      this.languageService.changeLanguage(lang);
-    } else {
+    if (!lang) {
       this.storage.setItem('lang', environment.defaultLocale);
-      this.translateService.use(environment.defaultLocale);
     }
+    this.languageService.changeLanguage(lang || environment.defaultLocale);
   }
 }
