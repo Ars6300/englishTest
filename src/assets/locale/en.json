@@ -36,12 +36,35 @@
   },
   "BUTTONS": {
     "NEXT": "Next",
+    "BACK": "Back",
     "SUBMIT": "Submit",
     "EXIT": "Exit",
     "RETRY": "Try again",
     "START_TEST": "Start a test",
     "ADD_QUESTION": "Add question",
-    "NEXT_SECTION": "Next section"
+    "NEXT_SECTION": "Next section",
+    "ALL_QUESTIONS": "Get all questions"
+  },
+  "EDIT": {
+    "TEXT": "Text",
+    "TYPE": "Type",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "ENG_LVL": "English Level",
+    "CLOSE": "Close",
+    "ADD": "Add",
+    "UPDATE": "Update",
+    "SELECT_TYPE": "Select type",
+    "SELECT_LEVEL": "Select level"
+  },
+  "USERS": {
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "ROLE": "Role",
+    "ASSIGN_TEST": "Assign test",
+    "ASSIGN": "Assign",
+    "LEVEL": "Level",
+    "COACH": "Coach"
   },
   "WRITING_INPUT": {
     "TEXTAREA_LABEL": "The field is not available until you select the topic",
@@ -58,7 +81,7 @@
   },
   "SELECT_LEVEL": {
     "TITLE": "About Test",
-    "TEXT": "The test consists of four blocks: 1) Grammar test. 2) Listening. 3) Essay 4) Speaking. You have 60 minutes to complete all blocks. Good luck!",
+    "TEXT": "You have 60 minutes to complete all blocks. Good luck!",
     "TITLE_LEVELS": "Select your English level"
   },
   "GRAMMAR": {
@@ -67,7 +90,7 @@
   },
   "LISTENING": {
     "TITLE": "Listening",
-    "TEXT": "In order to start listening you need to press the Start button. This audio will be available for listening 3 times. After listening, 10 questions will be available for you to answer. Good Luck!"
+    "TEXT": "In order to start listening you need to click the Start button. This audio will be available for listening 3 times. After listening, 10 questions will be available for you to answer. Good Luck!"
   },
   "WRITING": {
     "TITLE": "Writing",
@@ -75,7 +98,7 @@
   },
   "SPEAKING": {
     "TITLE": "Speaking",
-    "TEXT": "You need to select the topic of the speaking, once you select the topic, a button to start recording will be available to you. When you have finished talking, press the stop button. (Remember you have 5 minutes. Good Luck!"
+    "TEXT": "You need to select the topic of the speaking, once you select the topic, a button to start recording will be available to you. When you have finished talking, click the stop button. (Remember you have 5 minutes. Good Luck!"
   },
   "RESULTS": {
     "PREV_TESTS": "Your previous tests",

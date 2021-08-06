@@ -15,6 +15,6 @@ export class QuestionsService {
       "skip": 8,
       "take": 20
     }
-    return this.http.post(`${environment.api_URL}/api/Question/getAll`, allQuestionsObj);
+    return this.http.put(`${environment.api_URL}/api/Question/getAll`, allQuestionsObj);
   }
 }

@@ -9,8 +9,8 @@ export class TestsService {
 
   constructor(private http: HttpClient) { }
 
-
-  getTests(userId: any, engLevel: any){
+  
+  getTests(userId: string, engLevel: string){
     return this.http.post(`${environment.api_URL}/create?UserId=${userId}&EnglishLevel=${engLevel}`, {})
   }
 }

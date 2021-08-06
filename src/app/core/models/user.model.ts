@@ -1,5 +1,5 @@
 export interface User {
-  token: string | null;
+  // token: string | null;
   user: {
     email: string | null;
     firstName: string | null;

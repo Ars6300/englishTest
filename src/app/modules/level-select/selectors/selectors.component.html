@@ -1,6 +1,5 @@
 <div class="selectors">
   <h1 class="selectors-title">{{ title  | translate }}</h1>
-
   <div class="selectors-container">
     <button class="selectors-container-button" (click)="selectLevel($event)" *ngFor="let button of SELECT_LEVEL_BUTTONS">
       {{ button | uppercase }}

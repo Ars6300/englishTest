@@ -20,6 +20,7 @@ import { QuestionsSyncService } from 'src/app/core/services/questions-sync.servi
 import { QueryHandler } from 'src/app/core/models/query-handler.model';
 import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { QuestionType } from 'src/app/core/models/test.model';
 @Component({
   selector: 'app-questions-block',
   templateUrl: './questions-block.component.html',
@@ -44,6 +45,8 @@ export class QuestionsBlockComponent implements OnInit {
     private questionsSyncStore: QuestionsSyncService
   ) {}
 
+  currentType: number = 0;
+
   ngOnInit() {
     this.questionsSyncStore.init();
 
@@ -51,20 +54,27 @@ export class QuestionsBlockComponent implements OnInit {
     const currentRoute = this.router.url;
 
     if (currentRoute.includes(GRAMMAR_PATH)) {
+      this.currentType = Number(QuestionType.Grammar);
       this.listeningBlockIsActive = false;
+      console.log(this.currentType);
       this.navigateTo = `${GRAMMAR_PATH}/${QUESTION_GRAMMAR_PATH}`;
     } else if (currentRoute.includes(LISTENING_PATH)) {
+      this.currentType = Number(QuestionType.Listening);
+      console.log(this.currentType);
       this.listeningBlockIsActive = true;
       this.navigateTo = `${LISTENING_PATH}/${QUESTION_LISTENING_PATH}`;
     }
-
     this.router.navigate([this.navigateTo], {
       queryParams: { index: this.index },
     });
     this.questionsLoadingService.getQuestions().subscribe((questions$) => {
       this.questionsList = questions$;
-      this.question.push(this.questionsList[this.index]);
+      this.question = this.getQuestionsByType();
     });
+  }
+
+  getQuestionsByType() {
+    return this.questionsList.filter((el) => el.type === this.currentType);
   }
 
   navigateToQuestion(index: number) {
@@ -81,11 +91,11 @@ export class QuestionsBlockComponent implements OnInit {
 
   nextSection() {
     if (
-      this.index + 1 === this.questionsList.length &&
+      this.index + 1 === this.getQuestionsByType().length &&
       this.navigateTo.includes(LISTENING_PATH)
     ) {
       this.router.navigate([WRITING_PATH]);
-    } else if (this.index + 1 === this.questionsList.length) {
+    } else if (this.index + 1 === this.getQuestionsByType().length) {
       this.router.navigate([LISTENING_PATH]);
     }
   }

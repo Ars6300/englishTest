@@ -21,8 +21,6 @@ export class AudioRecordingService {
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
 
-
-
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
   }
@@ -55,6 +53,7 @@ export class AudioRecordingService {
   abortRecording() {
     this.stopMedia();
   }
+  
 
   private record() {
     this.recorder = new RecordRTC.StereoAudioRecorder(this.stream, {
@@ -96,6 +95,10 @@ export class AudioRecordingService {
             );
             this.stopMedia();
             this._recorded.next({ blob, title: mp3Name });
+
+            
+
+            
           }
         },
         () => {
@@ -112,7 +115,9 @@ export class AudioRecordingService {
       clearInterval(this.interval);
       this.startTime = null;
       if (this.stream) {
-        this.stream.getAudioTracks().forEach((track: { stop: () => any; }) => track.stop());
+        this.stream
+          .getAudioTracks()
+          .forEach((track: { stop: () => any }) => track.stop());
         this.stream = null;
       }
     }

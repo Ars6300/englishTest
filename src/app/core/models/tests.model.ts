@@ -4,7 +4,8 @@ export interface TestsGet {
   startTime: string;
   endTime: string;
   englishLevel: Level;
-  testQuestionSet: [];
+  couchId: string,
+  userAnswerSet: [];
 }
 export interface ITestDone {
   id: string;

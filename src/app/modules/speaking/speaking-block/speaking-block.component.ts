@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SpeakingService } from 'src/app/core/services/speaking/speaking.service';
 import { environment } from 'src/environments/environment';
 import { AudioRecordingService } from '../audio-recording.service';
 
@@ -16,7 +17,8 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
 
   constructor(
     private audioRecordingService: AudioRecordingService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private speakingService: SpeakingService
   ) {
     this.audioRecordingService.recordingFailed().subscribe(() => {
       this.isRecording = false;
@@ -64,7 +66,25 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
   }
 
   onGetLink() {
+    // TODO: create file wav with blobUrl
+    let downLoadFile = this.getBlobId()
+    // let downLoadFile = this.getBlobId()
+    
+    this.speakingService.postAudioSpeaking(downLoadFile).subscribe(res => {
+      // console.log(res);
+    })
     console.log(this.blobUrl);
+    
+    
+    
+    
+    
+    
+  }
+
+  getBlobId(){
+    let postFile = this.blobUrl
+    return `${postFile.changingThisBreaksApplicationSecurity.split('/')[3]}.wav`
   }
 
   ngOnDestroy(): void {
