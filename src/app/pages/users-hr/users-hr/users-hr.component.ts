@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { IUser } from 'src/app/core/models/user.model';
-import { UsersState } from 'src/app/redux/models/users-hr.state.model';
-import { getUsers } from 'src/app/redux/selectors/users-hr.selectors';
+import { Hr } from 'src/app/core/models/hr.model';
+import { ErrorService } from 'src/app/core/services/error.service';
 import { UsersHrService } from '../users-hr.service';
 
 export class UserModel {
@@ -23,17 +20,12 @@ export class UserModel {
   providers: [UsersHrService],
 })
 export class UsersHrComponent implements OnInit {
-  users$: Observable<IUser[]> | undefined;
+  users$: Hr[] | undefined;
 
   usersList: UserModel[] = [];
   usersData: UserModel[] = [];
 
-  displayedColumns: string[] = [
-    'firstName',
-    'lastName',
-    'role',
-    'assignTest',
-  ];
+  displayedColumns: string[] = ['firstName', 'lastName', 'role', 'assignTest'];
   dataSource: UserModel[] = [];
 
   userModel: UserModel = new UserModel();
@@ -46,13 +38,11 @@ export class UsersHrComponent implements OnInit {
 
   constructor(
     private usersHrService: UsersHrService,
-    private usersStore: Store<UsersState>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
-    this.users$ = this.usersStore.select(getUsers);
-
     this.usersHrService.getUsers().subscribe((users$) => {
       this.usersList = users$;
       this.dataSource = [...this.usersList];
@@ -66,7 +56,19 @@ export class UsersHrComponent implements OnInit {
     });
   }
 
-  postAssignTest() {}
+  postAssignTest() {
+    this.usersHrService.assignTest(this.userModel.id).subscribe(
+      (res: any) => {
+        const ref = document.getElementById('cancel');
+        ref?.click();
+        this.formValue.reset();
+        this.closeModal();
+      },
+      (error) => {
+        this.errorService.logError(error || 'Something went wrong');
+      }
+    );
+  }
 
   onAssignTest(user: UserModel) {
     this.userModel.id = user.id;

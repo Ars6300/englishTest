@@ -1,25 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
-import { Hr } from 'src/app/core/models/hr.model';
 import { environment } from 'src/environments/environment';
+import { EssayText } from './essay-input/input.component';
+
 @Injectable({
   providedIn: 'root',
 })
-export class UsersHrService {
+export class WritingService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<Hr[]> {
-    return this.http.get<Hr[]>(`${environment.api_URL}/api/User/GetAllUsers`);
-  }
-
-  assignTest(id: string) {
+  postEssay(data: EssayText) {
     return this.http
-      .post<any>(`${environment.api_URL}/assign?Id=${id}`, id)
+      .post<any>(`${environment.api_URL}/api/Writing/create`, data)
       .pipe(
         map((res: any) => {
-          console.log(res);
           return res;
         })
       );

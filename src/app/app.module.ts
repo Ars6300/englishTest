@@ -31,6 +31,7 @@ import { AudioRecordingService } from './modules/speaking/audio-recording.servic
 import { UsersHrService } from './pages/users-hr/users-hr.service';
 import { UsersAdminService } from './pages/users-admin/users-admin.service';
 import { HttpErrorInterceptor } from './core/interceptor/error-interceptor/http-error.interceptor';
+import { WritingService } from './modules/writing/writing.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -67,6 +68,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     AudioRecordingService,
     UsersHrService,
     UsersAdminService,
+    WritingService,
   ],
 
   bootstrap: [AppComponent],

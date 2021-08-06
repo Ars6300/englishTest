@@ -1,5 +1,12 @@
-.wrapper{
+.wrapper {
   position: fixed;
-  top: 20px;
-  right: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px 40px;
+
+  .selector {
+    margin-left: auto;
+  }
 }

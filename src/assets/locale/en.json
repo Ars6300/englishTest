@@ -32,7 +32,7 @@
     "SPEAKING": "Speaking"
   },
   "TIMER": {
-    "TIME": "Time remaining"
+    "TITLE": "Time remaining"
   },
   "BUTTONS": {
     "NEXT": "Next",
@@ -43,7 +43,8 @@
     "START_TEST": "Start a test",
     "ADD_QUESTION": "Add question",
     "NEXT_SECTION": "Next section",
-    "ALL_QUESTIONS": "Get all questions"
+    "ALL_QUESTIONS": "Get all questions",
+    "TEST": "Assign"
   },
   "EDIT": {
     "TEXT": "Text",
@@ -55,16 +56,10 @@
     "ADD": "Add",
     "UPDATE": "Update",
     "SELECT_TYPE": "Select type",
-    "SELECT_LEVEL": "Select level"
-  },
-  "USERS": {
-    "FIRST_NAME": "First name",
-    "LAST_NAME": "Last name",
-    "ROLE": "Role",
-    "ASSIGN_TEST": "Assign test",
+    "SELECT_LEVEL": "Select level",
     "ASSIGN": "Assign",
-    "LEVEL": "Level",
-    "COACH": "Coach"
+    "TEST": "Test",
+    "CHOOSE": "Choose"
   },
   "WRITING_INPUT": {
     "TEXTAREA_LABEL": "The field is not available until you select the topic",
@@ -104,5 +99,15 @@
     "PREV_TESTS": "Your previous tests",
     "TITLE": "Result",
     "EMPTY": "Choose your test date to observe"
+  },
+  "TABLE_HEADER": {
+    "DATE": "Date",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "ROLE": "Role",
+    "LEVEL": "Level",
+    "COACH": "Coach",
+    "ASSIGN": "Assign",
+    "EMAIL": "Email"
   }
 }

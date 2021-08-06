@@ -59,6 +59,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
       this.audioRecordingService.stopRecording();
       this.isRecording = false;
     }
+    console.log(this.blobUrl)
   }
 
   clearRecordedData() {

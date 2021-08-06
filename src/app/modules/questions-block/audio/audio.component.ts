@@ -19,7 +19,7 @@ export class AudioComponent implements OnInit {
     this.audio = new Audio(
       'https://zvukogram.com/index.php?r=site/download&id=38307'
     );
-    const but = document.querySelector('.play-control');
+    const but = document.querySelector('.microfone');
     const playingAudio = this.audio;
     playingAudio.onended = () => {
       but!.classList.remove('button-disabled');

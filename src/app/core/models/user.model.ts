@@ -8,11 +8,3 @@ export interface User {
     role: string | null;
   };
 }
-
-export interface IUser {
-  email: string;
-  firstName: string;
-  id: string;
-  lastName: string;
-  role: string;
-}

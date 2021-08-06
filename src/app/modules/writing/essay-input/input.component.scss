@@ -1,34 +1,65 @@
+@import "../../../../scss/styles.scss";
+
 :host {
   width: 100%;
 }
 
-.input {
+.writing-block-container {
   display: flex;
   flex-direction: column;
-  padding: 100px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
   width: 100%;
-  color: var(--color-light);
 
-  &-textarea {
-    width: 100%;
-    height: 60vh;
-    margin-top: 20px;
-    resize: none;
-    border-radius: 7px;
-    outline: none;
-    border: none;
-    padding: 10px;
-  }
-
-  &-controls {
+  .person {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-top: 20px;
+
+    img {
+      @include _1400 {
+        width: 300px;
+      }
+
+      @include _1200 {
+        width: 250px;
+      }
+
+      @include _992 {
+        display: none;
+      }
+    }
   }
 
-  &-submit {
-    width: fit-content;
-    padding: 5px 25px;
+  .input {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 100px 100px 100px;
+    width: 100%;
+    color: var(--color-light);
+
+    &-textarea {
+      width: 100%;
+      height: 25vh;
+      margin-top: 20px;
+      resize: none;
+      border-radius: 7px;
+      outline: none;
+      border: none;
+      padding: 10px;
+    }
+
+    &-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    &-submit {
+      width: fit-content;
+      padding: 5px 25px;
+    }
   }
 }

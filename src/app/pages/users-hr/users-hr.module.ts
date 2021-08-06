@@ -9,7 +9,6 @@ import {
   TranslateModule,
 } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
-import { UserEffects } from 'src/app/redux/effects/users-hr.effects';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { MissingTranslationService } from 'src/app/shared/utils/utils';
 import { UsersHrComponent } from './users-hr/users-hr.component';
@@ -34,14 +33,7 @@ import { UsersHrComponent } from './users-hr/users-hr.component';
       useDefaultLang: false,
     }),
   ],
-  providers: [
-    UserEffects,
-    {
-      provide: USER_PROVIDED_EFFECTS,
-      multi: true,
-      useValue: [UserEffects],
-    },
-  ],
+  providers: [],
   exports: [UsersHrComponent],
 })
 export class UsersHrModule {}

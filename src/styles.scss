@@ -20,11 +20,15 @@ $english-client-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$english-client-theme: mat.define-light-theme((color: (primary: $english-client-primary,
+$english-client-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $english-client-primary,
       accent: $english-client-accent,
       warn: $english-client-warn,
     ),
-  ));
+  )
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -43,7 +47,7 @@ $english-client-theme: mat.define-light-theme((color: (primary: $english-client-
   --color-button-hover: #397286;
   --color-light: #ffffff;
   --color-text: #545454;
-  --color-warning: #d11919;
+  --color-warning: #d03327;
   --color-bg-focus: rgb(255, 209, 149);
 }
 
@@ -67,6 +71,7 @@ button {
   font-size: 1rem;
   border-radius: 7px;
   transition: 0.3s ease;
+  padding: 0.5rem;
 }
 
 button:hover {

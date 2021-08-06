@@ -1,21 +1,33 @@
 <div class="content">
   <div class="btns-wrap">
-    <button class="add-question" (click)="onAddQuestion()" (click)="openModal()">
-      {{"BUTTONS.ADD_QUESTION" | translate}}
+    <button
+      class="add-question"
+      (click)="onAddQuestion()"
+      (click)="openModal()"
+    >
+      {{ "BUTTONS.ADD_QUESTION" | translate }}
     </button>
     <mat-form-field appearance="fill">
       <mat-label>{{"EDIT.SELECT_TYPE" | translate}}</mat-label>
       <mat-select>
-        <mat-option *ngFor="let type of types" [value]="type.value" (click)="getType(type.value)">
-          {{type.viewValue}}
+        <mat-option
+          *ngFor="let type of types"
+          [value]="type.value"
+          (click)="getType(type.value)"
+        >
+          {{ type.viewValue }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{"EDIT.SELECT_LEVEL" | translate}}</mat-label>
       <mat-select>
-        <mat-option *ngFor="let level of levels" [value]="level.value" (click)="getLevel(level.value)">
-          {{level.viewValue}}
+        <mat-option
+          *ngFor="let level of levels"
+          [value]="level.value"
+          (click)="getLevel(level.value)"
+        >
+          {{ level.viewValue }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -23,8 +35,6 @@
       {{"BUTTONS.ALL_QUESTIONS" | translate}}
     </button>
   </div>
-
-  
   <div class="table-wrap">
     <table
       mat-table

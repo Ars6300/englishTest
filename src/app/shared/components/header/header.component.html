@@ -1,4 +1,11 @@
 <div class="wrapper">
-  <app-language-select></app-language-select>
+  <app-timer
+    *ngIf="
+      url.includes('grammar') ||
+      url.includes('listening') ||
+      url.includes('speaking') ||
+      url.includes('writing')
+    "
+  ></app-timer>
+  <app-language-select class="selector"></app-language-select>
 </div>
-
