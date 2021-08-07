@@ -21,12 +21,16 @@
         <a routerLink="./users">{{ "PROFILE.USERS" | translate }}</a>
       </li>
       <li routerLinkActive="active">
-        <a routerLink="./assignments">{{ "PROFILE.ASSIGNMENTS" | translate }}</a>
+        <a routerLink="./assignments">{{
+          "PROFILE.ASSIGNMENTS" | translate
+        }}</a>
       </li>
       <!-- <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
         <a routerLink="./users" *ngIf="userRole === 'couch' ? true : false">{{ "PROFILE.USERS" | translate }}</a>
       </li> -->
     </ul>
   </nav>
-  <router-outlet class="profile-view"></router-outlet>
+  <div class="profile-view">
+    <router-outlet></router-outlet>
+  </div>
 </div>

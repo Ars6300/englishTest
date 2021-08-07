@@ -17,7 +17,7 @@
     "NO_TEXT": "You don't have assigned tests yet. But you can pass one yourself",
     "TEST_NOTIFICATION": "You have test assigned",
     "ASSIGNED_ROLE": "HR",
-    "EDIT": "Edit",
+    "EDIT": "Edit questions",
     "ROLE": "Role",
     "USERS": "Users",
     "ASSIGNMENTS": "Assignments"
@@ -41,12 +41,12 @@
     "RETRY": "Try again",
     "START_TEST": "Start a test",
     "ADD_QUESTION": "Add question",
+    "GET_ALL": "Show all",
     "NEXT_SECTION": "Next section",
     "ASSIGN": "Assign",
     "TEST": "Test",
     "CLOSE": "Close",
     "CHOOSE": "Choose"
-    
   },
   "WRITING_INPUT": {
     "TEXTAREA_LABEL": "The field is not available until you select the topic",

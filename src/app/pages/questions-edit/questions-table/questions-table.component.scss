@@ -1,29 +1,18 @@
 .content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-left: 3em;
-  margin-top: 3em;
 }
 
 .modal-close {
   display: none;
 }
 
-.btns-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .get-all-questions {
-    height: 7vh;
-    margin-bottom: 1.34375em;
-  }
-}
-
 .table-wrap {
   width: 100%;
-  height: 80vh;
+  max-height: 80vh;
+  justify-content: center;
+  display: flex;
   overflow-y: auto;
 }
 
@@ -38,6 +27,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .close:hover,
 .close:focus {
   color: black;
@@ -45,16 +35,20 @@
   cursor: pointer;
 }
 
+.btns-wrap {
+  margin-top: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
 .add-question,
+.get-all,
 .close,
 .edit-button,
 .delete-button {
-  width: auto;
-}
-
-.add-question {
-  height: 7vh;
-  margin-bottom: 1.34375em;
+  width: 20%;
 }
 
 .edit-button,
@@ -77,6 +71,23 @@
   font-size: 0.8rem;
 }
 
+::ng-deep .mat-form-field {
+  &-wrapper {
+    padding-bottom: 0;
+  }
+
+  &-underline {
+    bottom: 0;
+  }
+
+  &-appearance-fill,
+  &-flex {
+    background-color: transparent !important;
+  }
+}
+
+
+
 .modal-open {
   display: block;
   position: fixed;
@@ -95,6 +106,7 @@
   align-items: center;
   margin-top: 1em;
 }
+
 #cancel {
   margin-left: 0.6em;
   background-color: var(--color-warning);
