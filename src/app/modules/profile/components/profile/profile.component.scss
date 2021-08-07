@@ -3,11 +3,12 @@
   width: 100%;
 
   &-navigation {
-    max-width: 400px;
-    width: 33%;
+    //max-width: 400px;
+    width: 25vw;
     height: 100vh;
     background-color: var(--color-light);
     padding: 100px 0 0 70px;
+    position: fixed;
 
     ul {
       padding: 0;
@@ -29,5 +30,11 @@
         }
       }
     }
+  }
+
+  &-view {
+    position: absolute;
+    width: 75vw;
+    right: 0;
   }
 }

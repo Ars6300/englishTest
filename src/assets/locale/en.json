@@ -17,7 +17,7 @@
     "NO_TEXT": "You don't have assigned tests yet. But you can pass one yourself",
     "TEST_NOTIFICATION": "You have test assigned",
     "ASSIGNED_ROLE": "HR",
-    "EDIT": "Edit",
+    "EDIT": "Edit questions",
     "ROLE": "Role",
     "USERS": "Users",
     "ASSIGNMENTS": "Assignments"
@@ -42,6 +42,7 @@
     "RETRY": "Try again",
     "START_TEST": "Start a test",
     "ADD_QUESTION": "Add question",
+    "GET_ALL": "Show all",
     "NEXT_SECTION": "Next section",
     "ALL_QUESTIONS": "Get all questions",
     "TEST": "Assign"
