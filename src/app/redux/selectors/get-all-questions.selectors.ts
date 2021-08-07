@@ -3,7 +3,7 @@ import * as AppState from  '../models/app.state'
 import { QuestionsState } from '../reducers/get-all-questions.reducers'
 
 export interface AllQuestionsState extends AppState.State {
-  auth: QuestionsState
+  allQuestions: QuestionsState
 }
 
 const getAllQuestionsFeatureState = createFeatureSelector<QuestionsState>('allQuestions')

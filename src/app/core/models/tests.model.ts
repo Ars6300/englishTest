@@ -4,5 +4,15 @@ export interface TestsGet {
   startTime: string;
   endTime: string;
   englishLevel: Level;
-  testQuestionSet: [];
+  couchId: string,
+  userAnswerSet: [];
+}
+export interface ITestDone {
+  id: string;
+  email: string;
+  level: Level;
+  firstName: string;
+  lastName: string;
+  role: string;
+  coach?: string;
 }

@@ -18,10 +18,10 @@ export const getLoadingStatus = createSelector(
   (state) => state.isLoading
 );
 
-export const getUserToken = createSelector(
-  getAuthFeatureState,
-  (state) => state.currentUser.token
-);
+// export const getUserToken = createSelector(
+//   getAuthFeatureState,
+//   (state) => state.currentUser.token
+// );
 
 export const getUserRole = createSelector(
   getAuthFeatureState,

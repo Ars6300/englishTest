@@ -26,7 +26,7 @@ export class SelectorsComponent implements OnInit {
   SELECT_LEVEL_BUTTONS = [
     'A1 Beginner',
     'A2 Elementary',
-    'B1 Intermidiate',
+    'B1 Intermediate',
     'B2 Upper Int.',
     'C1 Advanced',
     'C2 Proficiency',
@@ -34,20 +34,22 @@ export class SelectorsComponent implements OnInit {
 
   getUserId$ = this.store.select(getUserId);
   level = '';
-
-  ngOnInit(): void {}
+  initId: string | null = '' 
+  ngOnInit(): void {
+    this.getUserId$.pipe(take(1)).subscribe((id) => this.initId = id)
+  }
 
   selectLevel(event: any) {
     this.level = event.target.innerText;
   }
 
+
+  
   startTest() {
     this.level = this.level.split(' ')[0];
     this.store.dispatch(
       TestsActions.getTestsData({
-        userId: this.getUserId$.pipe(take(1)).subscribe((id) => {
-          return id;
-        }),
+        userId: this.initId,
         engLevel: this.level.toLocaleLowerCase(),
       })
     );
