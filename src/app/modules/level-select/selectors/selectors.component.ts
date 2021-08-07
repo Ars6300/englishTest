@@ -8,6 +8,7 @@ import { State } from 'src/app/redux/models/app.state';
 import { getUserId } from 'src/app/redux/selectors/user.selectors';
 import * as TestsActions from 'src/app/redux/actions/tests.actions';
 import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-selectors',
@@ -16,7 +17,7 @@ import { take } from 'rxjs/operators';
 })
 export class SelectorsComponent implements OnInit {
   constructor(private store: Store<State>) {}
-
+  userIdSubscription!: Subscription;
   title = TITLE_LEVELS;
   SELECT_LEVEL_BUTTONS = [
     'A1 Beginner',
@@ -31,7 +32,15 @@ export class SelectorsComponent implements OnInit {
   level = '';
   initId: string | null = '';
   ngOnInit(): void {
-    this.getUserId$.pipe(take(1)).subscribe((id) => (this.initId = id));
+    this.userIdSubscription = this.getUserId$
+      .pipe(take(1))
+      .subscribe((id) => (this.initId = id));
+  }
+
+  ngOnDestroy(): void {
+    if (this.userIdSubscription) {
+      this.userIdSubscription.unsubscribe();
+    }
   }
 
   selectLevel(event: any) {

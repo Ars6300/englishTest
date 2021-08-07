@@ -5,6 +5,7 @@ import { TestDataState } from 'src/app/redux/models/tests.state.model';
 import { environment } from 'src/environments/environment';
 import { take } from 'rxjs/operators';
 import { getTimeLeft } from '../../utils/utils';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-timer',
@@ -13,13 +14,20 @@ import { getTimeLeft } from '../../utils/utils';
 })
 export class TimerComponent implements OnInit {
   time!: number;
+  timeSubscription!: Subscription;
   constructor(private store: Store<TestDataState>) {}
 
   starttime$ = this.store.select(getTestStartTime);
 
   ngOnInit(): void {
-    this.starttime$
+    this.timeSubscription = this.starttime$
       .pipe(take(1))
       .subscribe((startTime) => (this.time = getTimeLeft(startTime)));
+  }
+
+  ngOnDestroy(): void {
+    if (this.timeSubscription) {
+      this.timeSubscription.unsubscribe();
+    }
   }
 }

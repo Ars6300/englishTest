@@ -6,7 +6,7 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { Question } from '../../../core/models/questions.model';
 import { QuestionsLoadingService } from '../questions-loading.service';
@@ -32,7 +32,7 @@ export class QuestionsBlockComponent implements OnInit {
   questionsList: Question[] = [];
   questions$: Observable<Question[]> | undefined;
   listeningType = Number(QuestionType.Listening);
-
+  questionsSubscription!: Subscription;
   index = 0;
   navigateTo = '';
 
@@ -65,6 +65,12 @@ export class QuestionsBlockComponent implements OnInit {
       this.questionsList = questions$;
       this.question = this.getQuestionsByType();
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.questionsSubscription) {
+      this.questionsSubscription.unsubscribe();
+    }
   }
 
   getQuestionsByType() {
