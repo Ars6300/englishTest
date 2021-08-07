@@ -8,7 +8,7 @@ import { Question } from 'src/app/core/models/questions.model';
 import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
 import { QuestionsLoadingService } from 'src/app/modules/questions-block/questions-loading.service';
 import { getQuestions } from 'src/app/redux/selectors/questions.selectors';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 import { QuestionsService } from 'src/app/core/services/questions/questions.service';
 import { GetAllQuestionsState } from 'src/app/redux/models/get-all-questions.state.model';
@@ -51,10 +51,8 @@ export class QuestionsTableComponent implements OnInit {
   questionsList: any;
   questionsData: Question[] = [];
 
-  getQuestions$ = this.store.select(getAllQuestions);
-
   displayedColumns: string[] = ['id', 'text', 'type', 'edit', 'delete'];
-  dataSource: Question[] = [];
+  dataSource: any
   type = '';
   level = '';
 
@@ -101,7 +99,12 @@ export class QuestionsTableComponent implements OnInit {
       type: [''],
       englishLevel: [''],
     });
+
+  
+    
+
   }
+
 
   onAddQuestion() {
     this.formValue.reset();
@@ -123,7 +126,6 @@ export class QuestionsTableComponent implements OnInit {
 
     this.questionsLoadingService.postQuestion(objPost).subscribe(
       (res: any) => {
-        console.log(res);
         const ref = document.getElementById('cancel');
         ref?.click();
         this.formValue.reset();
@@ -149,14 +151,17 @@ export class QuestionsTableComponent implements OnInit {
       });
   }
 
-  onEditQuestion(question: QuestionModel) {
+  // FIX: method edit return questionId not Id. QuestionModel changed on any for short!!!
+  onEditQuestion(question: any) {
     this.showAdd = false;
     this.showUpdate = true;
 
-    this.questionModel.id = question.id;
-    this.formValue.controls['id'].setValue(question.id);
+    this.questionModel.id = question.questionId;
+    this.formValue.controls['id'].setValue(question.questionId);
     this.formValue.controls['text'].setValue(question.text);
     this.formValue.controls['type'].setValue(question.type);
+    console.log(question.questionId);
+    
   }
 
   onUpdateQuestionDetails() {
@@ -165,6 +170,8 @@ export class QuestionsTableComponent implements OnInit {
     this.questionModel.type = this.formValue.value.type;
     this.questionModel.englishLevel = this.formValue.value.englishLevel;
 
+    
+    
     this.questionsLoadingService
       .updateQuestion(this.questionModel)
       .subscribe((res) => {
@@ -208,7 +215,9 @@ export class QuestionsTableComponent implements OnInit {
         level: this.level,
       })
     );
+    
     this.questions$ = this.store.select(getAllQuestions);
+
 
     this.questionsService
       .getAllQuestions(this.type, this.level)

@@ -1,10 +1,30 @@
 import { Level } from './level.model';
 export interface Question {
-  id: string;
-  answers: string[];
-  text: string;
+  userAnswerId: string;
+  answersList: [
+    {
+      answerId: string
+      text: string 
+    },
+    {
+      answerId: string
+      text: string 
+    },
+    {
+      answerId: string
+      text: string 
+    },
+    {
+      answerId: string
+      text: string 
+    },
+  ];
+  question: {
+    questionId: string;
+    text: string;
+  };
   type: number;
-  audioLink: string;
+  audioId: string;
   level: Level;
 }
 

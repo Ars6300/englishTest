@@ -7,8 +7,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 3em;
-  margin-top: 3em;
+
+  .table {
+    margin-top: 3em;
+  }
 }
 
 .modal-close {
@@ -26,6 +28,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .close:hover,
 .close:focus {
   color: black;
@@ -39,14 +42,14 @@
 }
 
 .edit-button {
-  background-color: transparent;
-  border: none;
-  color: var(--color-text);
+  background-color: var(--color-button);
   font-size: 0.8rem;
+  border: none;
+  width: 6rem;
 }
 
 .edit-button:hover {
-  color: blue;
+  opacity: 0.7;
 }
 
 .modal-open {
@@ -120,4 +123,9 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+.input-disabled {
+  pointer-events: none;
+  opacity: 0.8;
 }

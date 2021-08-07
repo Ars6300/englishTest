@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { Answer, Question } from 'src/app/core/models/questions.model';
 import { QuestionModel } from 'src/app/pages/questions-edit/questions-table/questions-table.component';
-import { QUESTIONS_MOCK } from 'src/app/redux/reducers/questions.reducers';
+import { TestDataState } from 'src/app/redux/models/tests.state.model';
+// import { QUESTIONS_MOCK } from 'src/app/redux/reducers/questions.reducers';
+import { getAllTests } from 'src/app/redux/selectors/tests.selectors';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -18,10 +21,14 @@ export class QuestionsLoadingService {
   private questions: Question[] = [];
   private answers: Answer[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store<TestDataState>) {}
+  tests$ = this.store.select(getAllTests);
+  testsData = [];
 
   getQuestions(): Observable<Question[]> {
-    return of(QUESTIONS_MOCK);
+    this.tests$.pipe(take(1)).subscribe((tests) => this.testsData = tests);
+    
+    return of(this.testsData);
   }
 
   // getQuestionById(id: string) {
@@ -40,12 +47,11 @@ export class QuestionsLoadingService {
       .post<any>(`${environment.api_URL}/api/Question/create`, data)
       .pipe(
         map((res: any) => {
-          console.log(res);
           return res;
         })
       );
   }
-  // FIXME: remove 
+  // FIXME: remove
   // getQuestion() {
   //   return this.http.get<any>('srcenvironmentsenvironment.ts').pipe(
   //     map((res: QuestionModel) => {
@@ -55,8 +61,9 @@ export class QuestionsLoadingService {
   // }
 
   updateQuestion(data: QuestionModel) {
+    console.log(`${environment.api_URL}/api/Question/edit`, data);
     return this.http
-      .post(`${environment.api_URL}/api/Question/edit`, data)
+      .patch(`${environment.api_URL}/api/Question/edit`, data)
       .pipe(
         map((res: any) => {
           console.log(res);

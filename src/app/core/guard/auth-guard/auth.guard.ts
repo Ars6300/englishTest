@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { EMPTY_PATH } from 'src/app/app-routing.constants';
+import { ROOT_PATH  } from 'src/app/app-routing.constants';
 import { AuthenticationService } from '../../authentication/authentication.service';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
         return true;
       } else {
         this.auth.deleteCookie()
-        this.router.navigate([EMPTY_PATH]) 
+        this.router.navigate([ROOT_PATH ]) 
       }
       return false
   }

@@ -5,6 +5,7 @@
   padding-left: 5em;
   width: auto;
   height: 83vh;
+  
 
   .audio {
     position: absolute;
@@ -16,11 +17,13 @@
     font-size: 1.5rem;
     word-wrap: break-word;
     color: var(--color-text);
+    // height: 9vh;
   }
 
   .form_radio_group {
-    padding-top: 2em;
-    padding-bottom: 2em;
+    margin-top: 2em;
+    height: 28vh;
+    margin-bottom: 2em;
 
     .form_radio_group-item {
       font-family: Roboto, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

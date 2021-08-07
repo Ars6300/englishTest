@@ -14,7 +14,7 @@ export interface AuthState {
 
 const initialState: AuthState = {
   currentUser: {
-    token: '',
+    // token: '',
     user: {
       firstName: '',
       lastName: '',
@@ -48,7 +48,7 @@ export const authReducer = createReducer<AuthState>(
       return {
         ...state,
         currentUser: {
-          token: action.user.token,
+          // token: action.user.token,
           user: {
             firstName: action.user.user.firstName,
             lastName: action.user.user.lastName,
@@ -83,7 +83,7 @@ export const authReducer = createReducer<AuthState>(
       return {
         ...state,
         currentUser: {
-          token: '',
+          // token: '',
           user: {
             firstName: '',
             lastName: '',

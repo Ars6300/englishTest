@@ -18,7 +18,8 @@ const initialState: TestsState = {
     endTime: '',
     englishLevel: Level.Beginner,
     id: '',
-    testQuestionSet: [],
+    couchId: '',
+    userAnswerSet: []
   },
   errors: {
     loadingError: '',
@@ -42,7 +43,8 @@ export const testsReducer = createReducer<TestsState>(
         endTime: action.tests.endTime,
         englishLevel: action.tests.englishLevel,
         id: action.tests.id,
-        testQuestionSet: action.tests.testQuestionSet,
+        couchId: action.tests.couchId,
+        userAnswerSet: action.tests.userAnswerSet,
       },
       errors: {
         ...state.errors,

@@ -1,6 +1,6 @@
 import { QuestionType } from './core/models/test.model';
 
-export const EMPTY_PATH = '/';
+export const ROOT_PATH  = '/';
 export const LOGIN_PATH = 'login';
 export const LOGIN_MODULE = './pages/login/login.module';
 export const SELECT_LEVEL_PATH = 'select-level';

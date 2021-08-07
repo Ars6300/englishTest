@@ -10,7 +10,7 @@ import {
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
-import { QuestionEffects } from './effects/questions.effects';
+// import { QuestionEffects } from './effects/questions.effects';
 import * as fromQuestions from '../redux/reducers/questions.reducers';
 import { authFeatureKey, authReducer } from './reducers/user.reducers';
 import { AuthEffects } from './effects/user.effects';
@@ -25,13 +25,15 @@ import { getAllQuestionsFeatureKey, getAllQuestionsReducer } from './reducers/ge
 
 const reducers: ActionReducerMap<State> = {
   auth: authReducer,
+  allQuestions: getAllQuestionsReducer,
+  tests: testsReducer
 };
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<State>
 ): ActionReducer<State> {
   return localStorageSync({
-    keys: ['auth'],
+    keys: ['auth', 'allQuestions', 'tests'],
     rehydrate: true,
   })(reducer);
 }
@@ -43,7 +45,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
   imports: [
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([
-      QuestionEffects,
+      // QuestionEffects,
       AuthEffects,
       ProfileResultsEffects,
       TestsEffects,
