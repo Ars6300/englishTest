@@ -29,14 +29,12 @@ import { QuestionType } from 'src/app/core/models/test.model';
 })
 export class QuestionsBlockComponent implements OnInit {
   question: Question[] = [];
-
   questionsList: Question[] = [];
   questions$: Observable<Question[]> | undefined;
+  listeningType = Number(QuestionType.Listening);
 
   index = 0;
   navigateTo = '';
-
-  listeningBlockIsActive: boolean = false;
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
@@ -55,13 +53,9 @@ export class QuestionsBlockComponent implements OnInit {
 
     if (currentRoute.includes(GRAMMAR_PATH)) {
       this.currentType = Number(QuestionType.Grammar);
-      this.listeningBlockIsActive = false;
-      console.log(this.currentType);
       this.navigateTo = `${GRAMMAR_PATH}/${QUESTION_GRAMMAR_PATH}`;
     } else if (currentRoute.includes(LISTENING_PATH)) {
-      this.currentType = Number(QuestionType.Listening);
-      console.log(this.currentType);
-      this.listeningBlockIsActive = true;
+      this.currentType = this.listeningType;
       this.navigateTo = `${LISTENING_PATH}/${QUESTION_LISTENING_PATH}`;
     }
     this.router.navigate([this.navigateTo], {

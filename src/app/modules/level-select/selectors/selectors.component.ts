@@ -7,8 +7,7 @@ import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/models/app.state';
 import { getUserId } from 'src/app/redux/selectors/user.selectors';
 import * as TestsActions from 'src/app/redux/actions/tests.actions';
-import { interval } from 'rxjs';
-import { switchMap, take, timeout } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-selectors',
@@ -16,11 +15,7 @@ import { switchMap, take, timeout } from 'rxjs/operators';
   styleUrls: ['./selectors.component.scss'],
 })
 export class SelectorsComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private testsService: TestsService,
-    private store: Store<State>
-  ) {}
+  constructor(private store: Store<State>) {}
 
   title = TITLE_LEVELS;
   SELECT_LEVEL_BUTTONS = [
@@ -34,17 +29,15 @@ export class SelectorsComponent implements OnInit {
 
   getUserId$ = this.store.select(getUserId);
   level = '';
-  initId: string | null = '' 
+  initId: string | null = '';
   ngOnInit(): void {
-    this.getUserId$.pipe(take(1)).subscribe((id) => this.initId = id)
+    this.getUserId$.pipe(take(1)).subscribe((id) => (this.initId = id));
   }
 
   selectLevel(event: any) {
     this.level = event.target.innerText;
   }
 
-
-  
   startTest() {
     this.level = this.level.split(' ')[0];
     this.store.dispatch(

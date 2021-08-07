@@ -1,5 +1,5 @@
 <div class="container">
-  <app-audio *ngIf="listeningBlockIsActive" class="audio"></app-audio>
+  <app-audio *ngIf="currentType === listeningType" class="audio"></app-audio>
   <mat-stepper
     class="stepper"
     [disableRipple]="true"
@@ -19,7 +19,9 @@
             name="radio"
             value="{{ index }}"
           />
-          <label for="{{ question[index].userAnswerId }}">{{ answer.text }}</label>
+          <label for="{{ question[index].userAnswerId }}">{{
+            answer.text
+          }}</label>
         </div>
       </div>
       <div>
@@ -30,7 +32,7 @@
           type="button"
           class="button-next"
         >
-          {{"BUTTONS.BACK" | translate}}
+          {{ "BUTTONS.BACK" | translate }}
         </button>
         <button
           *ngIf="getQuestionsByType().length > index + 1"
