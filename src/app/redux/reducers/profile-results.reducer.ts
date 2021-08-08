@@ -28,7 +28,7 @@ export const RESULTS_MOCK: ProfileResult[] = [
 ];
 
 export const initialState: ProfileResultsState = {
-  results: RESULTS_MOCK,
+  results: [],
 };
 
 const profileResultsReducer = createReducer(

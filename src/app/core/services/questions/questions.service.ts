@@ -10,11 +10,14 @@ export class QuestionsService {
 
   getAllQuestions(type: any, level: any) {
     const allQuestionsObj = {
-      "type": +type,
-      "level": level,
-      "skip": 8,
-      "take": 20
-    }
-    return this.http.put(`${environment.api_URL}/api/Question/getAll`, allQuestionsObj);
+      type: +type,
+      level: level,
+      skip: 8,
+      take: 20,
+    };
+    return this.http.put(
+      `${environment.api_URL}/api/Question/getAll`,
+      allQuestionsObj
+    );
   }
 }
