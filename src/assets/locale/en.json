@@ -45,7 +45,9 @@
     "GET_ALL": "Show all",
     "NEXT_SECTION": "Next section",
     "ALL_QUESTIONS": "Get all questions",
-    "TEST": "Assign"
+    "TEST": "Assign",
+    "CHOOSE": "Choose",
+    "ASSIGN": "Assign"
   },
   "EDIT": {
     "TEXT": "Text",
