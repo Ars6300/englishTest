@@ -3,14 +3,15 @@
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  max-height: 80vh;
   justify-content: center;
-  align-items: center;
+  display: flex;
+  overflow-y: auto;
+}
 
-  .table {
-    margin-top: 3em;
-  }
+.table {
+  margin-top: 3em;
 }
 
 .modal-close {
@@ -109,7 +110,7 @@
 }
 
 .search-container {
-  margin: 3rem 3rem 0 0;
+  margin: 3rem 3rem 1rem 0;
   text-align: right;
   .input-search {
     width: 30%;
