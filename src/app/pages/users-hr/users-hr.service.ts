@@ -14,9 +14,25 @@ export class UsersHrService {
     return this.http.get<Hr[]>(`${environment.api_URL}/api/User/GetAllUsers`);
   }
 
-  assignTest(id: string) {
+  assignTest(id: string, level: string) {
     return this.http
-      .post<any>(`${environment.api_URL}/assign?Id=${id}`, id)
+      .put<any>(
+        `${environment.api_URL}/assignUser?UserId=${id}&Level=${level}`,
+        {}
+      )
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  assignTestOfUser(id: string, level: string) {
+    return this.http
+      .post<any>(
+        `${environment.api_URL}/api/User/sendEmail?userId=${id}&message=${level}`,
+        {}
+      )
       .pipe(
         map((res: any) => {
           console.log(res);
