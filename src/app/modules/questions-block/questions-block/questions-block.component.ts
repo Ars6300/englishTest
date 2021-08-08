@@ -6,7 +6,7 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { Question } from '../../../core/models/questions.model';
 import { QuestionsLoadingService } from '../questions-loading.service';
@@ -29,14 +29,12 @@ import { QuestionType } from 'src/app/core/models/test.model';
 })
 export class QuestionsBlockComponent implements OnInit {
   question: Question[] = [];
-
   questionsList: Question[] = [];
   questions$: Observable<Question[]> | undefined;
-
+  listeningType = Number(QuestionType.Listening);
+  questionsSubscription!: Subscription;
   index = 0;
   navigateTo = '';
-
-  listeningBlockIsActive: boolean = false;
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
@@ -55,13 +53,9 @@ export class QuestionsBlockComponent implements OnInit {
 
     if (currentRoute.includes(GRAMMAR_PATH)) {
       this.currentType = Number(QuestionType.Grammar);
-      this.listeningBlockIsActive = false;
-      console.log(this.currentType);
       this.navigateTo = `${GRAMMAR_PATH}/${QUESTION_GRAMMAR_PATH}`;
     } else if (currentRoute.includes(LISTENING_PATH)) {
-      this.currentType = Number(QuestionType.Listening);
-      console.log(this.currentType);
-      this.listeningBlockIsActive = true;
+      this.currentType = this.listeningType;
       this.navigateTo = `${LISTENING_PATH}/${QUESTION_LISTENING_PATH}`;
     }
     this.router.navigate([this.navigateTo], {
@@ -71,6 +65,12 @@ export class QuestionsBlockComponent implements OnInit {
       this.questionsList = questions$;
       this.question = this.getQuestionsByType();
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.questionsSubscription) {
+      this.questionsSubscription.unsubscribe();
+    }
   }
 
   getQuestionsByType() {

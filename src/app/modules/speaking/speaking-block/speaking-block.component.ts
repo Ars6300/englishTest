@@ -59,7 +59,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
       this.audioRecordingService.stopRecording();
       this.isRecording = false;
     }
-    console.log(this.blobUrl)
+    console.log(this.blobUrl);
   }
 
   clearRecordedData() {
@@ -68,24 +68,20 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
 
   onGetLink() {
     // TODO: create file wav with blobUrl
-    let downLoadFile = this.getBlobId()
+    let downLoadFile = this.getBlobId();
     // let downLoadFile = this.getBlobId()
-    
-    this.speakingService.postAudioSpeaking(downLoadFile).subscribe(res => {
+
+    this.speakingService.postAudioSpeaking(downLoadFile).subscribe((res) => {
       // console.log(res);
-    })
+    });
     console.log(this.blobUrl);
-    
-    
-    
-    
-    
-    
   }
 
-  getBlobId(){
-    let postFile = this.blobUrl
-    return `${postFile.changingThisBreaksApplicationSecurity.split('/')[3]}.wav`
+  getBlobId() {
+    let postFile = this.blobUrl;
+    return `${
+      postFile.changingThisBreaksApplicationSecurity.split('/')[3]
+    }.wav`;
   }
 
   ngOnDestroy(): void {

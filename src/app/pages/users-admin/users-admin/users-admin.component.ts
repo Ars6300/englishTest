@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Admin } from 'src/app/core/models/admin.model';
 import { Hr } from 'src/app/core/models/hr.model';
 import { ErrorService } from 'src/app/core/services/error.service';
@@ -62,6 +62,8 @@ export class UsersAdminComponent implements OnInit {
   formValue!: FormGroup;
   showAdd!: boolean;
   showUpdate!: boolean;
+  unassignedTestsSubscription!: Subscription;
+  usersSubscription!: Subscription;
 
   coachFormValue!: string;
 
@@ -72,12 +74,14 @@ export class UsersAdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.usersAdminService.getUnassignedTests().subscribe((testsDone$) => {
-      this.testsDoneList = testsDone$;
-      this.dataSource = [...this.testsDoneList];
-      console.log(this.dataSource);
-      console.log(this.testsDoneList);
-    });
+    this.unassignedTestsSubscription = this.usersAdminService
+      .getUnassignedTests()
+      .subscribe((testsDone$) => {
+        this.testsDoneList = testsDone$;
+        this.dataSource = [...this.testsDoneList];
+        console.log(this.dataSource);
+        console.log(this.testsDoneList);
+      });
 
     this.usersAdminService.getUsers().subscribe((users$) => {
       this.usersList = users$;
@@ -89,6 +93,15 @@ export class UsersAdminComponent implements OnInit {
       level: [''],
       coach: [''],
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.unassignedTestsSubscription) {
+      this.unassignedTestsSubscription.unsubscribe();
+    }
+    if (this.usersSubscription) {
+      this.usersSubscription.unsubscribe();
+    }
   }
 
   onPostAssignCheck(): any {
