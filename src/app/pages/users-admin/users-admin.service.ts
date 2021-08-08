@@ -22,8 +22,8 @@ export class UsersAdminService {
 
   postAssignCheck(testId: string, couchId: string) {
     return this.http
-      .post<any>(
-        `${environment.api_URL}/assign?Id=${testId}&CouchId=${couchId}`,
+      .put<any>(
+        `${environment.api_URL}/assignCouch?TestId=${testId}&CouchId=${couchId}`,
         {}
       )
       .pipe(

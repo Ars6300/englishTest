@@ -1,5 +1,13 @@
+<div class="search-container">
+  <input
+    class="input-search"
+    type="text"
+    (keyup)="applyFilter($event)"
+    placeholder="search"
+  />
+</div>
 <div class="content">
-  <table mat-table [dataSource]="dataSource" class="table">
+  <table mat-table [dataSource]="userListMatTabDataSource" class="table">
     <ng-container matColumnDef="firstName">
       <th class="th-width-6" mat-header-cell *matHeaderCellDef>
         {{ "TABLE_HEADER.FIRST_NAME" | translate }}
@@ -19,6 +27,21 @@
         {{ "TABLE_HEADER.ROLE" | translate }}
       </th>
       <td mat-cell *matCellDef="let element">{{ element.role }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="level">
+      <th class="th-width-6" mat-header-cell *matHeaderCellDef>{{ "TABLE_HEADER.LEVEL" | translate }}</th>
+      <td mat-cell mat-cell *matCellDef="let element">
+        <select class="select" (change)="getOption($event)">
+          <option>{{ "BUTTONS.CHOOSE" | translate }}</option>
+          <ng-container *ngFor="let item of levelData">
+            <option
+            >
+              {{ item }}
+            </option>
+          </ng-container>
+        </select>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="assignTest">
@@ -90,6 +113,22 @@
                 name="role"
                 class="form-control"
                 id="role"
+                readonly
+              />
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="input-disabled">
+              <mat-label for="level">{{
+                "TABLE_HEADER.LEVEL" | translate
+              }}</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="level"
+                name="level"
+                class="form-control"
+                id="level"
                 readonly
               />
             </mat-form-field>
