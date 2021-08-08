@@ -26,8 +26,7 @@ export class QuestionsLoadingService {
   testsData = [];
 
   getQuestions(): Observable<Question[]> {
-    this.tests$.pipe(take(1)).subscribe((tests) => this.testsData = tests);
-    
+    this.tests$.pipe(take(1)).subscribe((tests) => (this.testsData = tests));
     return of(this.testsData);
   }
 

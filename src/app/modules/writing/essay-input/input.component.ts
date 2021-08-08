@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -16,7 +17,7 @@ export class EssayText {
 })
 export class InputComponent implements OnInit {
   charactersLimit: number = environment.CHARACTERS_LIMIT;
-
+  writingSubscription!: Subscription;
   essayTextModel: EssayText = new EssayText();
 
   constructor(private writingService: WritingService, private router: Router) {}
@@ -33,5 +34,11 @@ export class InputComponent implements OnInit {
         console.log('Something went wrong.');
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    if (this.writingSubscription) {
+      this.writingSubscription.unsubscribe();
+    }
   }
 }
