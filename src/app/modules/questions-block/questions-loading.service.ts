@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { filter, map, take } from 'rxjs/operators';
 
 import { Answer, Question } from 'src/app/core/models/questions.model';
 import { QuestionModel } from 'src/app/pages/questions-edit/questions-table/questions-table.component';
@@ -26,8 +26,8 @@ export class QuestionsLoadingService {
   testsData = [];
 
   getQuestions(): Observable<Question[]> {
-    this.tests$.pipe(take(1)).subscribe((tests) => this.testsData = tests);
-    
+    this.tests$.pipe(take(1)).subscribe((tests) => (this.testsData = tests));
+
     return of(this.testsData);
   }
 
@@ -77,6 +77,15 @@ export class QuestionsLoadingService {
       map((res: any) => {
         return res;
       })
+    );
+  }
+
+  downloadAudio(id: string): Observable<Blob> {
+    const url = `${environment.api_URL}/api/Audio/id?id=` + id;
+
+    return this.http.get(url, { responseType: 'blob' }).pipe(
+      take(1),
+      filter((audio) => !!audio)
     );
   }
 }

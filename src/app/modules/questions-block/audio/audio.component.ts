@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Question } from 'src/app/core/models/questions.model';
+import { QuestionsLoadingService } from '../questions-loading.service';
 @Component({
   selector: 'app-audio',
   templateUrl: './audio.component.html',
@@ -9,16 +12,19 @@ export class AudioComponent implements OnInit {
 
   play: boolean = false;
 
-  tryCount: number = 0;
+  tryCount: number = 3;
 
-  counter: number = 3;
+  counter: number = 0;
+  audioSrc: any;
+  questionsList: Question[] = [];
+  questions$: Observable<Question[]> | undefined;
 
-  constructor() {}
+  constructor(private questionsLoadingService: QuestionsLoadingService) {}
 
   playAudio() {
-    this.audio = new Audio(
-      'https://zvukogram.com/index.php?r=site/download&id=38307'
-    );
+    this.getAudioSrc();
+
+    this.audio = new Audio();
     const but = document.querySelector('.microfone');
     const playingAudio = this.audio;
     playingAudio.onended = () => {
@@ -26,16 +32,37 @@ export class AudioComponent implements OnInit {
       this.play = false;
     };
 
-    if (this.tryCount >= this.counter || this.play) {
+    if (this.tryCount === this.counter || this.play) {
       but!.classList.add('button-disabled');
     } else {
       this.play = true;
       this.audio.play();
-      ++this.tryCount;
+      --this.tryCount;
 
       but!.classList.add('button-disabled');
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.questionsLoadingService.getQuestions().subscribe((questions$) => {
+      this.questionsList = questions$;
+    });
+    this.audioSrc = this.getAudioId();
+  }
+
+  getAudioId() {
+    return this.questionsList.find((el) => el.audioId);
+  }
+
+  getAudioSrc() {
+    this.questionsLoadingService.downloadAudio(this.audioSrc.audioId).subscribe(
+      (audio) => {
+        const url = window.URL.createObjectURL(audio);
+        this.audio.src = url;
+      },
+      (error) => {
+        console.log('error downloading: ', error);
+      }
+    );
+  }
 }
