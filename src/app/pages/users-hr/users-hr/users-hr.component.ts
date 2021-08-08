@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Hr } from 'src/app/core/models/hr.model';
 import { ErrorService } from 'src/app/core/services/error.service';
 import { UsersHrService } from '../users-hr.service';
@@ -43,6 +43,10 @@ export class UsersHrComponent implements OnInit {
   userModel: UserModel = new UserModel();
   @ViewChild(MatTable) table!: MatTable<UserModel>;
 
+  userListMatTabDataSource = new MatTableDataSource<UserModel>(
+    this.dataSource
+  );
+
   openEdit = false;
   formValue!: FormGroup;
   showAdd!: boolean;
@@ -58,6 +62,7 @@ export class UsersHrComponent implements OnInit {
     this.usersHrService.getUsers().subscribe((users$) => {
       this.usersList = users$;
       this.dataSource = [...this.usersList];
+      this.userListMatTabDataSource.data = this.dataSource;
     });
 
     this.formValue = this.formBuilder.group({
@@ -128,5 +133,10 @@ export class UsersHrComponent implements OnInit {
     for (let i = 0; i < this.levelData.length; i++) {
       this.level = this.levelData[i];
     }
+  }
+
+  applyFilter(event: any) {
+    const filterValue = event.target.value;
+    this.userListMatTabDataSource.filter = filterValue.trim().toLowerCase();
   }
 }

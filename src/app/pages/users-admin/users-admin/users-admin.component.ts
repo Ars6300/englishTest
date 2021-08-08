@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription } from 'rxjs';
 import { Admin } from 'src/app/core/models/admin.model';
 import { Hr } from 'src/app/core/models/hr.model';
@@ -57,6 +57,10 @@ export class UsersAdminComponent implements OnInit {
   userModel: UserModelAdmin = new UserModelAdmin();
 
   @ViewChild(MatTable) table!: MatTable<TestsDoneModel>;
+ 
+  userListMatTabDataSource = new MatTableDataSource<TestsDoneModel>(
+    this.dataSource
+  );
 
   openEdit = false;
   formValue!: FormGroup;
@@ -79,6 +83,7 @@ export class UsersAdminComponent implements OnInit {
       .subscribe((testsDone$) => {
         this.testsDoneList = testsDone$;
         this.dataSource = [...this.testsDoneList];
+        this.userListMatTabDataSource.data = this.dataSource;
         console.log(this.dataSource);
         console.log(this.testsDoneList);
       });
@@ -163,5 +168,10 @@ export class UsersAdminComponent implements OnInit {
 
   removeItem(id: string) {
     this.dataSource = this.dataSource.filter((user) => user.userId !== id);
+  }
+
+  applyFilter(event: any) {
+    const filterValue = event.target.value;
+    this.userListMatTabDataSource.filter = filterValue.trim().toLowerCase();
   }
 }

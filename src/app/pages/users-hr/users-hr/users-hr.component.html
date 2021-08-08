@@ -1,5 +1,13 @@
+<div class="search-container">
+  <input
+    class="input-search"
+    type="text"
+    (keyup)="applyFilter($event)"
+    placeholder="search"
+  />
+</div>
 <div class="content">
-  <table mat-table [dataSource]="dataSource" class="table">
+  <table mat-table [dataSource]="userListMatTabDataSource" class="table">
     <ng-container matColumnDef="firstName">
       <th class="th-width-6" mat-header-cell *matHeaderCellDef>
         {{ "TABLE_HEADER.FIRST_NAME" | translate }}
