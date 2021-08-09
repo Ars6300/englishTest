@@ -21,6 +21,7 @@ import { QueryHandler } from 'src/app/core/models/query-handler.model';
 import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { QuestionType } from 'src/app/core/models/test.model';
+import { ErrorService } from 'src/app/core/services/error.service';
 @Component({
   selector: 'app-questions-block',
   templateUrl: './questions-block.component.html',
@@ -36,11 +37,16 @@ export class QuestionsBlockComponent implements OnInit {
   index = 0;
   navigateTo = '';
 
+  moduleQuestion: string = '';
+  moduleAnswer: string = '';
+  checkedInput: boolean = false;
+
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
     private router: Router,
     private questionStore: Store<QuestionsState>,
-    private questionsSyncStore: QuestionsSyncService
+    private questionsSyncStore: QuestionsSyncService,
+    private errorService: ErrorService
   ) {}
 
   currentType: number = 0;
@@ -98,6 +104,20 @@ export class QuestionsBlockComponent implements OnInit {
     } else if (this.index + 1 === this.getQuestionsByType().length) {
       this.router.navigate([LISTENING_PATH]);
     }
+  }
+
+  getOption(event: any): any {
+    this.moduleQuestion = event.target.id;
+    this.moduleAnswer = event.target.value;
+
+    this.questionsLoadingService
+      .postAnswer(this.moduleQuestion, this.moduleAnswer)
+      .subscribe(
+        (res: any) => {},
+        (error) => {
+          this.errorService.logError(error || 'Something went wrong');
+        }
+      );
   }
 
   // getTestQuestions(handler: QueryHandler): void {
