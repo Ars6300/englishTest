@@ -18,4 +18,4 @@ export const getTestsData = createAction(
   props<{ userId: any; engLevel: string }>()
 );
 
-export const cleatTestsData = createAction('[Tests Page] Clean Tests Data');
+export const cleanTestsData = createAction('[Tests Page] Clean Tests Data');

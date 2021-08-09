@@ -1,14 +1,18 @@
 import { RESULTS_MOCK } from './../../../redux/reducers/profile-results.reducer';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileResultsService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getAll(): Observable<any> {
-    return of(RESULTS_MOCK);
+  getAllResults(userId: string | null): Observable<any> {
+    return this.http.get(
+      `${environment.api_URL}/allTestsOfUser?userId=${userId}`
+    );
   }
 }
