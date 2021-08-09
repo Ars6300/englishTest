@@ -17,7 +17,8 @@
             id="{{ question[index].userAnswerId }}"
             type="radio"
             name="radio"
-            value="{{ index }}"
+            value="{{ answer.answerId }}"
+            (click)="getOption($event)"
           />
           <label for="{{ question[index].userAnswerId }}">{{
             answer.text

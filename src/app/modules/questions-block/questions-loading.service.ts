@@ -88,4 +88,17 @@ export class QuestionsLoadingService {
       filter((audio) => !!audio)
     );
   }
+
+  postAnswer(id: string, answerId: string) {
+    return this.http
+      .post<any>(
+        `${environment.api_URL}/postAnswer?Id=${id}&AnswerId=${answerId}`,
+        {}
+      )
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
 }
