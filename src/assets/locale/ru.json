@@ -20,7 +20,8 @@
     "EDIT": "Редакторовать вопросы",
     "ROLE": "Роль",
     "USERS": "Пользователи",
-    "ASSIGNMENTS": "Назначения"
+    "ASSIGNMENTS": "Назначения",
+    "TESTS": "Тесты"
   },
   "SELECTORS": {
     "START_BTN": "Начать"

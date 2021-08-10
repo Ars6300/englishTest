@@ -17,7 +17,7 @@ const initialState: TestsState = {
     startTime: '',
     endTime: '',
     englishLevel: Level.Beginner,
-    id: '',
+    testId: '',
     couchId: '',
     userAnswerSet: []
   },
@@ -42,7 +42,7 @@ export const testsReducer = createReducer<TestsState>(
         startTime: action.tests.startTime,
         endTime: action.tests.endTime,
         englishLevel: action.tests.englishLevel,
-        id: action.tests.id,
+        testId: action.tests.testId,
         couchId: action.tests.couchId,
         userAnswerSet: action.tests.userAnswerSet,
       },

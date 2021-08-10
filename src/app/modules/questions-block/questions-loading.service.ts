@@ -89,6 +89,16 @@ export class QuestionsLoadingService {
     );
   }
 
+  audioTriesCheck(audioId: string, count: number, canPlay: boolean) {
+    return this.http
+      .post<any>(`${environment.api_URL}/api/Audio/Check`, {audioId, count, canPlay})
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   postAnswer(id: string, answerId: string) {
     return this.http
       .post<any>(

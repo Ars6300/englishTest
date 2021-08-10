@@ -37,6 +37,7 @@ import { ForbidPastingDirective } from './directives/forbid-pasting.directive';
 import { UsersHrModule } from '../pages/users-hr/users-hr.module';
 import { UsersAdminModule } from '../pages/users-admin/users-admin.module';
 import { GRAMMAR_PATH, LISTENING_PATH, SPEAKING_PATH, WRITING_PATH } from '../app-routing.constants';
+import { UsersCoachModule } from '../pages/users-coach/users-coach.module';
 
 const routes: Routes = [
   { path: GRAMMAR_PATH, component: GrammarComponent, canActivate: [AuthGuard] },
@@ -87,6 +88,7 @@ const routes: Routes = [
     }),
     UsersHrModule,
     UsersAdminModule,
+    UsersCoachModule,
   ],
   exports: [
     CommonModule,
@@ -98,6 +100,7 @@ const routes: Routes = [
     MaterialModule,
     CountdownModule,
     UsersHrModule,
+    UsersCoachModule,
     ButtonsStylingDirective,
     TimerComponent,
     HeaderComponent,
