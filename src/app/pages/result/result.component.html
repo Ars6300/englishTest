@@ -1,13 +1,21 @@
-<h1 class="title">{{"RESULTS.TITLE" | translate}}:</h1>
+<h1 class="title">{{ "RESULTS.TITLE" | translate }}:</h1>
 
 <div *ngIf="result; else empty">
-  <p class="definition">{{"GRAMMAR.TITLE" | translate}}: {{ result.grammarScore }}</p>
-  <p class="definition">{{"LISTENING.TITLE" | translate}}: {{ result.listeningScore }}</p>
-  <p class="definition">{{"WRITING.TITLE" | translate}}: {{ result.writingScore }}</p>
-  <p class="definition">{{"SPEAKING.TITLE" | translate}}: {{ result.speakingScore }}</p>
+  <p class="definition">
+    {{ "GRAMMAR.TITLE" | translate }}: {{ result.grammarMark }}
+  </p>
+  <p class="definition">
+    {{ "LISTENING.TITLE" | translate }}: {{ result.auditionMark }}
+  </p>
+  <p class="definition">
+    {{ "WRITING.TITLE" | translate }}: {{ result.writingMark }}
+  </p>
+  <p class="definition">
+    {{ "SPEAKING.TITLE" | translate }}: {{ result.speakingMark }}
+  </p>
 
-  <p class="definition total">Total:{{ result.totalScore }}</p>
+  <p class="definition total">Total: {{ result.totalMark }}</p>
 </div>
 <ng-template #empty>
-  <p class="definition">{{"RESULTS.EMPTY" | translate}}</p>
+  <p class="definition">{{ "RESULTS.EMPTY" | translate }}</p>
 </ng-template>

@@ -19,3 +19,12 @@ export const getTestsData = createAction(
 );
 
 export const cleanTestsData = createAction('[Tests Page] Clean Tests Data');
+
+export const completeTest = createAction(
+  '[Tests Page] Complete Test',
+  props<{ testId: string }>()
+);
+
+export function TestsActions(): import('rxjs').Observable<any> {
+  throw new Error('Function not implemented.');
+}

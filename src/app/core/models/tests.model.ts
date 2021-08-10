@@ -1,14 +1,14 @@
 import { Level } from 'src/app/core/models/level.model';
 export interface TestsGet {
-  id: string;
+  testId: string;
   startTime: string;
   endTime: string;
   englishLevel: Level;
-  couchId: string,
+  couchId: string;
   userAnswerSet: [];
 }
 export interface ITestDone {
-  id: string;
+  testId: string;
   email: string;
   level: Level;
   firstName: string;

@@ -2,28 +2,42 @@
   <nav class="profile-navigation">
     <ul>
       <li routerLinkActive="active">
-        <a routerLink="./notifications">{{ "PROFILE.PROFILE" | translate }}</a>
+        <a routerLink="./notifications"
+          ><mat-icon>person</mat-icon
+          ><span>{{ "PROFILE.PROFILE" | translate }}</span></a
+        >
       </li>
       <li routerLinkActive="active">
-        <a routerLink="./results">{{ "PROFILE.RESULTS" | translate }}</a>
+        <a routerLink="./results"
+          ><mat-icon>rule</mat-icon
+          ><span>{{ "PROFILE.RESULTS" | translate }}</span></a
+        >
       </li>
       <li routerLinkActive="active">
-        <a routerLink="./statistics">{{ "PROFILE.STATISTICS" | translate }}</a>
+        <a routerLink="./statistics"
+          ><mat-icon>bar_chart</mat-icon
+          ><span>{{ "PROFILE.STATISTICS" | translate }}</span></a
+        >
       </li>
       <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
-        <a routerLink="./edit" *ngIf="ableToEditRoles.includes(userRole)">{{
-          "PROFILE.EDIT" | translate
-        }}</a>
+        <a routerLink="./edit" *ngIf="ableToEditRoles.includes(userRole)"
+          ><mat-icon>edit</mat-icon
+          ><span>{{ "PROFILE.EDIT" | translate }}</span></a
+        >
       </li>
       <!-- <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
         <a routerLink="./users" *ngIf="ableToEditRoles.includes(userRole)">{{ "PROFILE.USERS" | translate }}</a> -->
       <li routerLinkActive="active">
-        <a routerLink="./users">{{ "PROFILE.USERS" | translate }}</a>
+        <a routerLink="./users"
+          ><mat-icon>people</mat-icon
+          ><span>{{ "PROFILE.USERS" | translate }}</span></a
+        >
       </li>
       <li routerLinkActive="active">
-        <a routerLink="./assignments">{{
-          "PROFILE.ASSIGNMENTS" | translate
-        }}</a>
+        <a routerLink="./assignments">
+          <mat-icon>assignment</mat-icon>
+          <span>{{ "PROFILE.ASSIGNMENTS" | translate }}</span></a
+        >
       </li>
       <!-- <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
         <a routerLink="./users" *ngIf="userRole === 'couch' ? true : false">{{ "PROFILE.USERS" | translate }}</a>

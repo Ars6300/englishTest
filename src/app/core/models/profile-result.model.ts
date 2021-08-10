@@ -1,11 +1,11 @@
 import { Level } from './level.model';
 export interface ProfileResult {
-  date: Date;
+  examDate: Date;
   level: Level;
   status: string;
-  grammarScore: number;
-  listeningScore: number;
-  writingScore: number;
-  speakingScore: number;
-  totalScore: number;
+  grammarMark: number;
+  auditionMark: number;
+  writingMark: number;
+  speakingMark: number;
+  totalMark: number;
 }

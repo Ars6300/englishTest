@@ -17,3 +17,8 @@ export const getTestStartTime = createSelector(
   getAllTestFeatureState,
   (state) => state.testsData.startTime
 );
+
+export const getTestId = createSelector(
+  getAllTestFeatureState,
+  (state) => state.testsData.testId
+);

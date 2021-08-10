@@ -1,4 +1,3 @@
-import { RESULTS_MOCK } from './../../../redux/reducers/profile-results.reducer';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
