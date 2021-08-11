@@ -11,7 +11,7 @@ export class UsersHrService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<Hr[]> {
-    return this.http.get<Hr[]>(`${environment.api_URL}/api/User/GetAllUsers`);
+    return this.http.get<Hr[]>(`${environment.api_URL}/api/user/`);
   }
 
   assignTest(id: string) {
@@ -23,5 +23,11 @@ export class UsersHrService {
           return res;
         })
       );
+  }
+
+  allowStartTest(userId: string){
+    return this.http.put(`${environment.api_URL}/api/User/allowStartTest`, {userId}).subscribe(res => {
+      console.log(res);
+    })
   }
 }

@@ -2,7 +2,6 @@
   <div class="person">
     <img src="./assets/images/speaking.png" alt="" />
   </div>
-  <div class="record">
     <div class="player">
       <div class="microfone">
         <p class="microfone_align">
@@ -31,7 +30,7 @@
         <div class="audio">
           <audio *ngIf="!blobUrl" controls></audio>
           <audio *ngIf="!isRecording && blobUrl" controls>
-            <source [src]="blobUrl" type="audio/mpeg" />
+            <source class="source-audio" [src]="blobUrl" type="audio/mpeg" />
           </audio>
         </div>
       </div>
@@ -44,8 +43,7 @@
         </div>
       </div>
     </div>
-  </div>
-  <button class="input-submit" type="submit" (click)="onGetLink()">
-    {{ "BUTTONS.SUBMIT" | translate }}
-  </button>
+    <button (click)="onGetLink()">{{ "BUTTONS.SUBMIT" | translate }}</button>
+ 
+
 </div>

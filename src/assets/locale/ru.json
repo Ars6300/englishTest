@@ -44,7 +44,10 @@
     "ADD_QUESTION": "Добавить вопрос",
     "NEXT_SECTION": "Следующая секция",
     "ALL_QUESTIONS": "Получить все вопросы",
-    "TEST": "Назначить"
+    "TEST": "Назначить",
+    "CLOSE": "Закрыть",
+    "ASSIGN": "Назначить",
+    "ASSIGN_AGAIN": "Назаначить заново"
   },
   "EDIT": {
     "TEXT": "Текст",
@@ -109,6 +112,7 @@
     "LEVEL": "Уровень",
     "COACH": "Коуч",
     "ASSIGN": "Назначить",
-    "EMAIL": "Email"
+    "EMAIL": "Email",
+    "ASSIGN_AGAIN": "Назаначить заново"
   }
 }

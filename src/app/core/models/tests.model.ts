@@ -1,6 +1,6 @@
 import { Level } from 'src/app/core/models/level.model';
 export interface TestsGet {
-  id: string;
+  testId: string;
   startTime: string;
   endTime: string;
   englishLevel: Level;

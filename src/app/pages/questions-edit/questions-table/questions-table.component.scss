@@ -25,18 +25,49 @@
   height: 80vh;
   overflow-y: auto;
 }
+.stepper-table {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 10%;
+  width: 90%;
+  height: 70%;
+  justify-content: space-between;
+}
+.table-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .table-textarea {
+    width: 90%;
+  }
+  .table-input {
+    width: 90%;
+  }
+}
+.form-answers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.input-answer {
+  width: 80%;
+}
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 8% auto;
   padding: 20px;
-  width: 40%;
+  width: 90%;
   height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .close:hover,
 .close:focus {
   color: black;

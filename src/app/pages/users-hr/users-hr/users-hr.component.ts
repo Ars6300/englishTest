@@ -44,6 +44,8 @@ export class UsersHrComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersHrService.getUsers().subscribe((users$) => {
+      console.log(users$);
+      
       this.usersList = users$;
       this.dataSource = [...this.usersList];
     });
@@ -89,5 +91,10 @@ export class UsersHrComponent implements OnInit {
     modal?.classList.remove('modal-open');
     modal?.classList.add('modal-close');
     this.formValue.reset();
+  }
+  onAssignTestAgain(user: UserModel){
+    console.log(user.id);
+    
+    this.usersHrService.allowStartTest(user.id)
   }
 }

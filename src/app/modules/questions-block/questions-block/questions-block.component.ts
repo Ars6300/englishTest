@@ -56,7 +56,6 @@ export class QuestionsBlockComponent implements OnInit {
     if (currentRoute.includes(GRAMMAR_PATH)) {
       this.currentType = Number(QuestionType.Grammar);
       this.listeningBlockIsActive = false;
-      console.log(this.currentType);
       this.navigateTo = `${GRAMMAR_PATH}/${QUESTION_GRAMMAR_PATH}`;
     } else if (currentRoute.includes(LISTENING_PATH)) {
       this.currentType = Number(QuestionType.Listening);

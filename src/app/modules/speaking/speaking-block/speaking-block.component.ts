@@ -14,6 +14,8 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
   recordedTime: any;
   blobUrl: any;
   maximumTime: string = environment.SPEAKING_TIME;
+  blobPost: any;
+  blobData: any;
 
   constructor(
     private audioRecordingService: AudioRecordingService,
@@ -32,6 +34,8 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
     });
 
     this.audioRecordingService.getRecordedBlob().subscribe((data) => {
+      this.blobPost = data.blob;
+
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(
         URL.createObjectURL(data.blob)
       );
@@ -59,7 +63,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
       this.audioRecordingService.stopRecording();
       this.isRecording = false;
     }
-    console.log(this.blobUrl)
+    // console.log(this.blobUrl)
   }
 
   clearRecordedData() {
@@ -67,26 +71,10 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
   }
 
   onGetLink() {
-    // TODO: create file wav with blobUrl
-    let downLoadFile = this.getBlobId()
-    // let downLoadFile = this.getBlobId()
-    
-    this.speakingService.postAudioSpeaking(downLoadFile).subscribe(res => {
-      // console.log(res);
-    })
-    console.log(this.blobUrl);
-    
-    
-    
-    
-    
-    
+
+    this.speakingService.uploadFile(this.blobPost)
   }
 
-  getBlobId(){
-    let postFile = this.blobUrl
-    return `${postFile.changingThisBreaksApplicationSecurity.split('/')[3]}.wav`
-  }
 
   ngOnDestroy(): void {
     this.abortRecording();

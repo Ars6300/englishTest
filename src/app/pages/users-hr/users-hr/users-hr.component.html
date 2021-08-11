@@ -21,7 +21,7 @@
 
     <ng-container matColumnDef="assignTest">
       <th class="th-width-6" mat-header-cell *matHeaderCellDef>{{ "TABLE_HEADER.ASSIGN" | translate }}</th>
-      <td mat-cell mat-cell *matCellDef="let element">
+      <td class="users-hr-btns-wrap" mat-cell mat-cell *matCellDef="let element">
         <button
           type="button"
           class="edit-button"
@@ -29,6 +29,14 @@
           (click)="openModal()"
         >
         {{ "BUTTONS.TEST" | translate }}
+        </button>
+
+        <button
+          type="button"
+          class="edit-button"
+          (click)="onAssignTestAgain(element)"
+        >
+        {{ "BUTTONS.ASSIGN_AGAIN" | translate }}
         </button>
       </td>
     </ng-container>
