@@ -99,6 +99,7 @@ const routes: Routes = [
     UsersAdminModule,
     MaterialModule,
     CountdownModule,
+    ThemeComponent,
     UsersHrModule,
     UsersCoachModule,
     ButtonsStylingDirective,

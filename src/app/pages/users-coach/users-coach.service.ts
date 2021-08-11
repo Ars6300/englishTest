@@ -15,6 +15,11 @@ export class UsersCoachService {
   }
 
   getResultsForCoach(testId: string): any {
-    return this.http.get<string>(`${environment.api_URL}/api/test/getResultForCouch?testId=${testId}`);
+    return this.http.get<string>(`${environment.api_URL}/api/test/resultForCouch?testId=${testId}`);
+  }
+
+  getWritingText(id: string): any {
+    return this.http.get<string>(`${environment.api_URL}/api/writing?id=${id}`);
+
   }
 }

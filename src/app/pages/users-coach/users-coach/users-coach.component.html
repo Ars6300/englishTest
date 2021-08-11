@@ -82,15 +82,15 @@
       <div>
         <div class="answers">
           <h3 class="answer-module">Grammar</h3>
-          <div >
-          <ng-container *ngFor="let answer of userAnswerSet" >
-            <p *ngIf="answer.type === 0" class="answers-container">
-              {{ answer.questionText }}
-              <br />
-              <span class="answer-text">{{ answer.userAnswer }}</span>
-            </p>
-          </ng-container>
-        </div>
+          <div>
+            <ng-container *ngFor="let answer of userAnswerSet">
+              <p *ngIf="answer.type === 0" class="answers-container">
+                {{ answer.questionText }}
+                <br />
+                <span class="answer-text">{{ answer.userAnswer }}</span>
+              </p>
+            </ng-container>
+          </div>
         </div>
         <div class="answers">
           <h3 class="answer-module">Listening</h3>
@@ -108,7 +108,7 @@
             <p *ngIf="answer.type === 2" class="answers-container">
               {{ answer.questionText }}
               <br />
-              <span class="answer-text">{{ answer.userAnswer }}</span>
+              <span class="answer-text">{{ writingText }}</span>
             </p>
           </ng-container>
         </div>

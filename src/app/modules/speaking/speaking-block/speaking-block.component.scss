@@ -15,12 +15,13 @@
     align-items: center;
 
     img {
+      width: 300px;
       @include _1400 {
-        width: 300px;
+        width: 250px;
       }
 
       @include _1200 {
-        width: 250px;
+        width: 200px;
       }
 
       @include _992 {
@@ -97,4 +98,33 @@
 audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-panel {
   background-color: #99dbf3;
+}
+
+.themes-wrap {
+  width: 100%;
+  height: auto;
+  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  ul {
+    list-style: none;
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #545454;
+      font-family: "Roboto";
+      font-weight: normal;
+      padding: 5px 41px;
+      border: 1px solid #545454;
+      border-radius: 10px;
+      margin: 0px 0px 15px 15px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      &:hover {
+        border: 1px solid #3f3f3f;
+        background-color: rgb(224, 224, 224);
+      }
+    }
+  }
 }

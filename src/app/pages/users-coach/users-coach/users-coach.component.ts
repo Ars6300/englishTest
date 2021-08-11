@@ -40,6 +40,9 @@ export class UsersCoachComponent implements OnInit {
   level: string = '';
 
   userAnswerSet: UserAnswerSet[] = [];
+  testResults: CoachTestModel[] = [];
+
+  writingText: string = '';
 
   testsModel: CoachTestModel = new CoachTestModel();
   userAnswerSetModel: UserAnswerSet = new UserAnswerSet();
@@ -82,7 +85,6 @@ export class UsersCoachComponent implements OnInit {
     this.formValue.controls['level'].setValue(test.englishLevel);
 
     this.onGetTest();
-
   }
 
   onGetTest() {
@@ -90,8 +92,19 @@ export class UsersCoachComponent implements OnInit {
       .getResultsForCoach(this.testId)
       .subscribe((tests$: any) => {
         this.testsData = tests$;
+        this.testResults = [this.testsData];
         this.userAnswerSet = [...this.testsData.userAnswerSet];
-        console.log(this.userAnswerSet)
+        for (let i = 0; i < this.userAnswerSet.length; i++) {
+          if (this.userAnswerSet[i].type === 2) {
+            const writingId = this.userAnswerSet[i].userAnswer;
+
+            this.usersCoachService
+              .getWritingText(writingId)
+              .subscribe((res: any) => {
+                this.writingText = res.writingText;
+              });
+          }
+        }
       });
   }
 

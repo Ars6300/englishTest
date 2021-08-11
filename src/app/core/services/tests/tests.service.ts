@@ -11,6 +11,6 @@ export class TestsService {
 
   
   getTests(userId: string, englishLevel: string){
-    return this.http.post(`${environment.api_URL}/api/test/create`, {userId, englishLevel})
+    return this.http.post(`${environment.api_URL}/api/test`, {userId, englishLevel})
   }
 }
