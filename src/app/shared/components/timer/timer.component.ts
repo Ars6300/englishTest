@@ -1,5 +1,5 @@
 import { getTestStartTime } from './../../../redux/selectors/tests.selectors';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TestDataState } from 'src/app/redux/models/tests.state.model';
 import { environment } from 'src/environments/environment';
@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent implements OnInit {
+  @Output() timeEnded = new EventEmitter();
   time!: number;
   timeSubscription!: Subscription;
   constructor(private store: Store<TestDataState>) {}
@@ -28,6 +29,12 @@ export class TimerComponent implements OnInit {
   ngOnDestroy(): void {
     if (this.timeSubscription) {
       this.timeSubscription.unsubscribe();
+    }
+  }
+
+  timerEvent(event: any) {
+    if (event.action === 'done') {
+      this.timeEnded.emit();
     }
   }
 }

@@ -1,31 +1,6 @@
 import { loadProfileResults } from './../actions/profile-results.actions';
 import { createReducer, on, Action } from '@ngrx/store';
-import { Level } from 'src/app/core/models/level.model';
-import { ProfileResult } from './../../core/models/profile-result.model';
 import { ProfileResultsState } from '../models/profile-results.state.model';
-
-export const RESULTS_MOCK: ProfileResult[] = [
-  {
-    date: new Date(),
-    level: Level.Advanced,
-    status: 'PASSED',
-    grammarScore: 10,
-    listeningScore: 10,
-    writingScore: 10,
-    speakingScore: 10,
-    totalScore: 10,
-  },
-  {
-    date: new Date(),
-    level: Level.Advanced,
-    status: 'PASSED',
-    grammarScore: 10,
-    listeningScore: 10,
-    writingScore: 10,
-    speakingScore: 8,
-    totalScore: 9,
-  },
-];
 
 export const initialState: ProfileResultsState = {
   results: [],

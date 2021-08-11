@@ -7,6 +7,11 @@
   padding: 20px 40px 0 70px;
   z-index: 1;
 
+  .complete {
+    width: fit-content;
+    margin-left: 10px;
+  }
+
   .selector {
     margin-left: auto;
   }

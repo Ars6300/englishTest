@@ -19,7 +19,7 @@ const initialState: TestsState = {
     englishLevel: Level.Beginner,
     testId: '',
     couchId: '',
-    userAnswerSet: []
+    userAnswerSet: [],
   },
   errors: {
     loadingError: '',
@@ -61,5 +61,8 @@ export const testsReducer = createReducer<TestsState>(
       },
       isLoading: false,
     };
+  }),
+  on(TestsActions.cleanTestsData, () => {
+    return initialState;
   })
 );

@@ -1,8 +1,12 @@
+:host {
+  align-self: flex-start;
+}
+
 .wrapper-lang {
   position: sticky;
   display: flex;
   width: 75px;
-  height: 18px;
+  height: fit-content;
   justify-content: space-between;
 }
 
