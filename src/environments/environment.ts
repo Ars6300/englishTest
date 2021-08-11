@@ -7,8 +7,7 @@ import { commonEnvironment } from './environment.common';
 export const environment = {
   ...commonEnvironment,
   production: false,
-  // api_URL: 'https://localhost:44356',
-  api_URL: 'https://localhost:44392',
+  api_URL: 'https://localhost:44356',
   locales: ['en', 'ru'],
   defaultLocale: 'en',
   SPEAKING_TIME: '05:00',

@@ -1,13 +1,22 @@
+@import "../../../../../scss/styles.scss";
+
 .profile {
   display: flex;
   width: 100%;
 
   &-navigation {
-    max-width: 400px;
-    width: 33%;
+    width: 25vw;
     height: 100vh;
     background-color: var(--color-light);
     padding: 100px 0 0 70px;
+    position: fixed;
+
+    @include _992 {
+      width: 10vw;
+      padding: 90px 0;
+      display: flex;
+      justify-content: center;
+    }
 
     ul {
       padding: 0;
@@ -17,17 +26,49 @@
         margin-bottom: 30px;
         font-size: 1.25rem;
 
+        mat-icon {
+          font-size: 3rem;
+          color: var(--color-text);
+          display: none;
+          width: fit-content;
+          height: auto;
+
+          @include _992 {
+            display: block;
+          }
+        }
+
         a {
           color: var(--color-text);
           font-weight: 500;
           text-decoration: none;
+
+          span {
+            @include _992 {
+              display: none;
+            }
+          }
         }
 
         &.active {
           font-size: 1.5rem;
           border-bottom: 0.5px solid #81bacf;
+
+          mat-icon {
+            color: black;
+          }
         }
       }
+    }
+  }
+
+  &-view {
+    position: absolute;
+    width: 75vw;
+    right: 0;
+
+    @include _992 {
+      width: 90vw;
     }
   }
 }

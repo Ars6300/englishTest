@@ -32,6 +32,7 @@ import { UsersHrService } from './pages/users-hr/users-hr.service';
 import { UsersAdminService } from './pages/users-admin/users-admin.service';
 import { HttpErrorInterceptor } from './core/interceptor/error-interceptor/http-error.interceptor';
 import { WritingService } from './modules/writing/writing.service';
+import { UsersCoachService } from './pages/users-coach/users-coach.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -69,6 +70,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     UsersHrService,
     UsersAdminService,
     WritingService,
+    UsersCoachService
   ],
 
   bootstrap: [AppComponent],

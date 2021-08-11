@@ -4,5 +4,5 @@ export enum Level {
   Intermediate = 'B1',
   Upperintermediate = 'B2',
   Advanced = 'C1',
-  Proficiency = 'B2',
+  Proficiency = 'B2'
 }

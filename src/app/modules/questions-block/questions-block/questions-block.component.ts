@@ -6,7 +6,7 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { Question } from '../../../core/models/questions.model';
 import { QuestionsLoadingService } from '../questions-loading.service';
@@ -21,6 +21,7 @@ import { QueryHandler } from 'src/app/core/models/query-handler.model';
 import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { QuestionType } from 'src/app/core/models/test.model';
+import { ErrorService } from 'src/app/core/services/error.service';
 @Component({
   selector: 'app-questions-block',
   templateUrl: './questions-block.component.html',
@@ -29,20 +30,24 @@ import { QuestionType } from 'src/app/core/models/test.model';
 })
 export class QuestionsBlockComponent implements OnInit {
   question: Question[] = [];
-
   questionsList: Question[] = [];
   questions$: Observable<Question[]> | undefined;
-
+  listeningType = Number(QuestionType.Listening);
+  questionsSubscription!: Subscription;
   index = 0;
   navigateTo = '';
 
-  listeningBlockIsActive: boolean = false;
+  moduleQuestion: string = '';
+  moduleAnswer: string = '';
+  checkedInput: boolean = false;
+  listeningBlockIsActive: boolean = false
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
     private router: Router,
     private questionStore: Store<QuestionsState>,
-    private questionsSyncStore: QuestionsSyncService
+    private questionsSyncStore: QuestionsSyncService,
+    private errorService: ErrorService
   ) {}
 
   currentType: number = 0;
@@ -58,9 +63,7 @@ export class QuestionsBlockComponent implements OnInit {
       this.listeningBlockIsActive = false;
       this.navigateTo = `${GRAMMAR_PATH}/${QUESTION_GRAMMAR_PATH}`;
     } else if (currentRoute.includes(LISTENING_PATH)) {
-      this.currentType = Number(QuestionType.Listening);
-      console.log(this.currentType);
-      this.listeningBlockIsActive = true;
+      this.currentType = this.listeningType;
       this.navigateTo = `${LISTENING_PATH}/${QUESTION_LISTENING_PATH}`;
     }
     this.router.navigate([this.navigateTo], {
@@ -70,6 +73,12 @@ export class QuestionsBlockComponent implements OnInit {
       this.questionsList = questions$;
       this.question = this.getQuestionsByType();
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.questionsSubscription) {
+      this.questionsSubscription.unsubscribe();
+    }
   }
 
   getQuestionsByType() {
@@ -97,6 +106,20 @@ export class QuestionsBlockComponent implements OnInit {
     } else if (this.index + 1 === this.getQuestionsByType().length) {
       this.router.navigate([LISTENING_PATH]);
     }
+  }
+
+  getOption(event: any): any {
+    this.moduleQuestion = event.target.id;
+    this.moduleAnswer = event.target.value;
+
+    this.questionsLoadingService
+      .postAnswer(this.moduleQuestion, this.moduleAnswer)
+      .subscribe(
+        (res: any) => {},
+        (error) => {
+          this.errorService.logError(error || 'Something went wrong');
+        }
+      );
   }
 
   // getTestQuestions(handler: QueryHandler): void {

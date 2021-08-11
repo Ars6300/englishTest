@@ -4,11 +4,11 @@ export interface TestsGet {
   startTime: string;
   endTime: string;
   englishLevel: Level;
-  couchId: string,
+  couchId: string;
   userAnswerSet: [];
 }
 export interface ITestDone {
-  id: string;
+  testId: string;
   email: string;
   level: Level;
   firstName: string;

@@ -14,11 +14,12 @@ export class ProfileResultsEffects {
   loadResults$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fetchProfileResults),
-      mergeMap(() =>
-        this.profileResultsService.getAll().pipe(
-          map((results) =>
-            loadProfileResults({ payload: results as ProfileResult[] })
-          ),
+      mergeMap((action) =>
+        this.profileResultsService.getAllResults(action.userId).pipe(
+          map((results) => {
+            console.log(results);
+            return loadProfileResults({ payload: results as ProfileResult[] });
+          }),
           catchError(() => EMPTY)
         )
       )

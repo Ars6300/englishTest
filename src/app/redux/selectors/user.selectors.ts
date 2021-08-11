@@ -1,10 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as AppState from  '../models/app.state'
-import { AuthState } from '../reducers/user.reducers'
-
-export interface State extends AppState.State {
-  auth: AuthState
-}
+import { AuthState } from '../models/auth.model';
 
 const getAuthFeatureState = createFeatureSelector<AuthState>('auth');
 
@@ -25,15 +20,15 @@ export const getLoadingStatus = createSelector(
 
 export const getUserRole = createSelector(
   getAuthFeatureState,
-  (state) =>  state.currentUser.user.role
-)
+  (state) => state.currentUser.user.role
+);
 
 export const getUserName = createSelector(
   getAuthFeatureState,
-  (state) =>  state.currentUser.user.firstName
-)
+  (state) => state.currentUser.user.firstName
+);
 
 export const getUserId = createSelector(
   getAuthFeatureState,
   (state) => state.currentUser.user.id
-)
+);

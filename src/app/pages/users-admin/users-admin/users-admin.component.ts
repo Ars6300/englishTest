@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatTable } from '@angular/material/table';
-import { Observable } from 'rxjs';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Observable, Subscription } from 'rxjs';
 import { Admin } from 'src/app/core/models/admin.model';
 import { Hr } from 'src/app/core/models/hr.model';
 import { ErrorService } from 'src/app/core/services/error.service';
@@ -57,11 +57,17 @@ export class UsersAdminComponent implements OnInit {
   userModel: UserModelAdmin = new UserModelAdmin();
 
   @ViewChild(MatTable) table!: MatTable<TestsDoneModel>;
+ 
+  userListMatTabDataSource = new MatTableDataSource<TestsDoneModel>(
+    this.dataSource
+  );
 
   openEdit = false;
   formValue!: FormGroup;
   showAdd!: boolean;
   showUpdate!: boolean;
+  unassignedTestsSubscription!: Subscription;
+  usersSubscription!: Subscription;
 
   coachFormValue!: string;
 
@@ -72,12 +78,15 @@ export class UsersAdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.usersAdminService.getUnassignedTests().subscribe((testsDone$) => {
-      this.testsDoneList = testsDone$;
-      this.dataSource = [...this.testsDoneList];
-      console.log(this.dataSource);
-      console.log(this.testsDoneList);
-    });
+    this.unassignedTestsSubscription = this.usersAdminService
+      .getUnassignedTests()
+      .subscribe((testsDone$) => {
+        this.testsDoneList = testsDone$;
+        this.dataSource = [...this.testsDoneList];
+        this.userListMatTabDataSource.data = this.dataSource;
+        console.log(this.dataSource);
+        console.log(this.testsDoneList);
+      });
 
     this.usersAdminService.getUsers().subscribe((users$) => {
       this.usersList = users$;
@@ -89,6 +98,15 @@ export class UsersAdminComponent implements OnInit {
       level: [''],
       coach: [''],
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.unassignedTestsSubscription) {
+      this.unassignedTestsSubscription.unsubscribe();
+    }
+    if (this.usersSubscription) {
+      this.usersSubscription.unsubscribe();
+    }
   }
 
   onPostAssignCheck(): any {
@@ -150,5 +168,10 @@ export class UsersAdminComponent implements OnInit {
 
   removeItem(id: string) {
     this.dataSource = this.dataSource.filter((user) => user.userId !== id);
+  }
+
+  applyFilter(event: any) {
+    const filterValue = event.target.value;
+    this.userListMatTabDataSource.filter = filterValue.trim().toLowerCase();
   }
 }

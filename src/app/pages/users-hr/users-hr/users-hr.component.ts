@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Hr } from 'src/app/core/models/hr.model';
 import { ErrorService } from 'src/app/core/services/error.service';
 import { UsersHrService } from '../users-hr.service';
@@ -11,6 +11,7 @@ export class UserModel {
   id: string = '';
   lastName: string = '';
   role: string = '';
+  level: string = '';
 }
 
 @Component({
@@ -25,11 +26,26 @@ export class UsersHrComponent implements OnInit {
   usersList: UserModel[] = [];
   usersData: UserModel[] = [];
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'role', 'assignTest'];
+  displayedColumns: string[] = [
+    'firstName',
+    'lastName',
+    'role',
+    'level',
+    'assignTest',
+  ];
   dataSource: UserModel[] = [];
+
+  levelData = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+
+  userLevel: string = '';
+  level: string = '';
 
   userModel: UserModel = new UserModel();
   @ViewChild(MatTable) table!: MatTable<UserModel>;
+
+  userListMatTabDataSource = new MatTableDataSource<UserModel>(
+    this.dataSource
+  );
 
   openEdit = false;
   formValue!: FormGroup;
@@ -48,6 +64,7 @@ export class UsersHrComponent implements OnInit {
       
       this.usersList = users$;
       this.dataSource = [...this.usersList];
+      this.userListMatTabDataSource.data = this.dataSource;
     });
 
     this.formValue = this.formBuilder.group({
@@ -55,21 +72,40 @@ export class UsersHrComponent implements OnInit {
       lastName: [''],
       email: [''],
       role: [''],
+      level: [''],
     });
   }
 
   postAssignTest() {
-    this.usersHrService.assignTest(this.userModel.id).subscribe(
-      (res: any) => {
-        const ref = document.getElementById('cancel');
-        ref?.click();
-        this.formValue.reset();
-        this.closeModal();
-      },
-      (error) => {
-        this.errorService.logError(error || 'Something went wrong');
-      }
-    );
+    this.userModel.level = this.formValue.value.level;
+
+    this.usersHrService
+      .assignTest(this.userModel.id, this.userModel.level)
+      .subscribe(
+        (res: any) => {
+          const ref = document.getElementById('cancel');
+          ref?.click();
+          this.formValue.reset();
+          this.closeModal();
+        },
+        (error) => {
+          this.errorService.logError(error || 'Something went wrong');
+        }
+      );
+
+    this.usersHrService
+      .assignTestOfUser(this.userModel.id, this.userModel.level)
+      .subscribe(
+        (res: any) => {
+          const ref = document.getElementById('cancel');
+          ref?.click();
+          this.formValue.reset();
+          this.closeModal();
+        },
+        (error) => {
+          this.errorService.logError(error || 'Something went wrong');
+        }
+      );
   }
 
   onAssignTest(user: UserModel) {
@@ -78,6 +114,7 @@ export class UsersHrComponent implements OnInit {
     this.formValue.controls['firstName'].setValue(user.firstName);
     this.formValue.controls['lastName'].setValue(user.lastName);
     this.formValue.controls['role'].setValue(user.role);
+    this.formValue.controls['level'].setValue(this.userLevel);
   }
 
   openModal() {
@@ -93,8 +130,20 @@ export class UsersHrComponent implements OnInit {
     this.formValue.reset();
   }
   onAssignTestAgain(user: UserModel){
-    console.log(user.id);
+    console.log(user);
     
     this.usersHrService.allowStartTest(user.id)
+  }
+
+  getOption(event: any): any {
+    this.userLevel = event.target.value;
+    for (let i = 0; i < this.levelData.length; i++) {
+      this.level = this.levelData[i];
+    }
+  }
+
+  applyFilter(event: any) {
+    const filterValue = event.target.value;
+    this.userListMatTabDataSource.filter = filterValue.trim().toLowerCase();
   }
 }

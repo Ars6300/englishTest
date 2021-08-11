@@ -1,4 +1,8 @@
 <p class="timer timer-title">
-  {{ "TIMER.TITLE" | translate }}:
-  <countdown class="timer-time" [config]="{ leftTime: time }"></countdown>
+  {{ "TIMER.TITLE" | translate }}:<br />
+  <countdown
+    class="timer-time"
+    (event)="timerEvent($event)"
+    [config]="{ leftTime: time }"
+  ></countdown>
 </p>

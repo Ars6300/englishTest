@@ -1,18 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import {
-  MissingTranslationHandler,
-  TranslateLoader,
-  TranslateModule,
-} from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
-import { MaterialModule } from 'src/app/shared/material/material.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MissingTranslationService } from 'src/app/shared/utils/utils';
-import { UsersHrComponent } from './users-hr/users-hr.component';
+import { UsersCoachComponent } from './users-coach/users-coach.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/shared/material/material.module';
+
 @NgModule({
-  declarations: [UsersHrComponent],
+  declarations: [UsersCoachComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -31,7 +28,6 @@ import { UsersHrComponent } from './users-hr/users-hr.component';
       useDefaultLang: false,
     }),
   ],
-  providers: [],
-  exports: [UsersHrComponent],
+  exports: [UsersCoachComponent]
 })
-export class UsersHrModule {}
+export class UsersCoachModule { }

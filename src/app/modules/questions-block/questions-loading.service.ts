@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { filter, map, take } from 'rxjs/operators';
 
 import { Answer, Question } from 'src/app/core/models/questions.model';
 import { QuestionModel } from 'src/app/pages/questions-edit/questions-table/questions-table.component';
@@ -26,11 +26,8 @@ export class QuestionsLoadingService {
   testsData = [];
 
   getQuestions(): Observable<Question[]> {
-    this.tests$.pipe(take(1)).subscribe((tests) => this.testsData = tests);
-    console.log(this.testsData);
-    
+    this.tests$.pipe(take(1)).subscribe((tests) => (this.testsData = tests));
     return of(this.testsData);
-    
   }
 
   // getQuestionById(id: string) {
@@ -78,5 +75,41 @@ export class QuestionsLoadingService {
       questionId: id
     }
     return this.http.delete(`${environment.api_URL}/api/question`, {body: obj})
+  }
+
+  downloadAudio(id: string): Observable<Blob> {
+    const url = `${environment.api_URL}/api/audio?id=` + id;
+
+    return this.http.get(url, { responseType: 'blob' }).pipe(
+      take(1),
+      filter((audio) => !!audio)
+    );
+  }
+
+  audioTriesCheck(audioId: string, count: number, canPlay: boolean) {
+    return this.http
+      .post<any>(`${environment.api_URL}/api/Audio/Check`, {
+        audioId,
+        count,
+        canPlay,
+      })
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  postAnswer(id: string, answerId: string) {
+    return this.http
+      .post<any>(`${environment.api_URL}/api/userAnswer/answer`, {
+        id,
+        answerId,
+      })
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
   }
 }

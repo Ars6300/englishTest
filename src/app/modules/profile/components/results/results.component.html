@@ -1,13 +1,13 @@
 <div class="results">
   <div class="results-list">
-    <h1 class="results-list-title">{{"RESULTS.PREV_TESTS" | translate}}</h1>
+    <h1 class="results-list-title">{{ "RESULTS.PREV_TESTS" | translate }}</h1>
     <ul>
       <li *ngFor="let result of results$ | async">
         <a
           type="button"
           (click)="selectResult(result)"
           [class.selected]="result === selectedResult"
-          >{{ result.date | date: "shortDate" }} - {{ result.level }} -
+          >{{ result.examDate }} - {{ result.level }} -
           {{ result.status }}
         </a>
       </li>
