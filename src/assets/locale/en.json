@@ -20,7 +20,8 @@
     "EDIT": "Edit questions",
     "ROLE": "Role",
     "USERS": "Users",
-    "ASSIGNMENTS": "Assignments"
+    "ASSIGNMENTS": "Assignments",
+    "TESTS": "Tests"
   },
   "SELECTORS": {
     "START_BTN": "Start"
@@ -46,6 +47,7 @@
     "NEXT_SECTION": "Next section",
     "ALL_QUESTIONS": "Get all questions",
     "TEST": "Assign",
+    "CLOSE": "Close",
     "CHOOSE": "Choose",
     "ASSIGN": "Assign"
   },

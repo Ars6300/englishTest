@@ -26,12 +26,6 @@ export class ThemeComponent implements OnInit {
       themeName: 'test1',
     },
     {
-      themeName: 'testtest test1',
-    },
-    {
-      themeName: 'test test1',
-    },
-    {
       themeName: 'test1',
     },
   ]
@@ -41,12 +35,6 @@ export class ThemeComponent implements OnInit {
     },
     {
       themeName: 'test2',
-    },
-    {
-      themeName: 'testtest test2',
-    },
-    {
-      themeName: 'test test2',
     },
     {
       themeName: 'test2',

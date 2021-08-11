@@ -1,8 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { Question } from 'src/app/core/models/questions.model';
 import { SpeakingService } from 'src/app/core/services/speaking/speaking.service';
 import { environment } from 'src/environments/environment';
 import { AudioRecordingService } from '../audio-recording.service';
+import { getQuestions } from 'src/app/redux/selectors/questions.selectors';
+import { QuestionsLoadingService } from '../../questions-block/questions-loading.service';
+import { QuestionType } from 'src/app/core/models/test.model';
+import { ErrorService } from 'src/app/core/services/error.service';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 
 @Component({
   selector: 'app-speaking-block',
@@ -15,10 +24,28 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
   blobUrl: any;
   maximumTime: string = environment.SPEAKING_TIME;
 
+  question: Question[] = [];
+  questionsList: Question[] = [];
+  questions$: Observable<Question[]> | undefined;
+
+  listeningType = Number(QuestionType.Writing);
+
+  currentType: number = 0;
+
+  condition: boolean = false;
+
+  moduleQuestion: string = '';
+  moduleAnswer: string = '';
+  postAnswer: string = '';
+
   constructor(
     private audioRecordingService: AudioRecordingService,
     private sanitizer: DomSanitizer,
-    private speakingService: SpeakingService
+    private speakingService: SpeakingService,
+    private questionsLoadingService: QuestionsLoadingService,
+    private router: Router,
+    private questionStore: Store<QuestionsState>,
+    private errorService: ErrorService
   ) {
     this.audioRecordingService.recordingFailed().subscribe(() => {
       this.isRecording = false;
@@ -38,7 +65,23 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.questions$ = this.questionStore.select(getQuestions);
+
+    this.currentType = this.listeningType;
+
+    this.questionsLoadingService.getQuestions().subscribe((questions$) => {
+      this.questionsList = questions$;
+      this.question = this.getQuestionsByType();
+      this.moduleAnswer = this.question[0].userAnswerId;
+    });
+  }
+
+  selectTheme(event: { target: any }) {
+    this.condition = true;
+    this.moduleQuestion = event.target.id;
+    console.log(this.moduleQuestion, this.moduleAnswer);
+  }
 
   startRecording() {
     if (!this.isRecording) {
@@ -86,5 +129,9 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.abortRecording();
+  }
+
+  getQuestionsByType() {
+    return this.questionsList.filter((el) => el.type === this.currentType);
   }
 }

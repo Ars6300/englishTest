@@ -25,6 +25,11 @@
           ><span>{{ "PROFILE.EDIT" | translate }}</span></a
         >
       </li>
+      <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
+        <a routerLink="./tests" *ngIf="ableToEditRoles.includes(userRole)">{{
+          "PROFILE.TESTS" | translate
+        }}</a>
+      </li>
       <!-- <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
         <a routerLink="./users" *ngIf="ableToEditRoles.includes(userRole)">{{ "PROFILE.USERS" | translate }}</a> -->
       <li routerLinkActive="active">

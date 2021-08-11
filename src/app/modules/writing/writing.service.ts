@@ -13,7 +13,21 @@ export class WritingService {
 
   postEssay(data: EssayText) {
     return this.http
-      .post<any>(`${environment.api_URL}/api/Writing/create`, data)
+      .post<any>(`${environment.api_URL}/api/writing`, data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  postTopic(id: string, answerId: string) {
+    return this.http
+      .post<any>(`${environment.api_URL}/api/userAnswer/topic`, {
+        answerId,
+        id
+        
+      })
       .pipe(
         map((res: any) => {
           return res;

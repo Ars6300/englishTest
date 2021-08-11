@@ -2,11 +2,18 @@
   <div class="person">
     <img src="./assets/images/writing.png" alt="" />
   </div>
-  <div class="input">
+  <div class="themes-wrap">
+    <ul class="themes-wrap__list" *ngFor="let item of question[0].answersList">
+      <li (click)="selectTheme($event)" id="{{item.answerId}}" >
+        {{item.text}}
+      </li>
+    </ul>
+  </div>
+  <div class="input" *ngIf="condition">
     <form #essayText="ngForm" (ngSubmit)="onEssaySubmit(essayText)">
-      <h2 class="input-title">
+<!--       <h2 class="input-title">
         {{ "WRITING_INPUT.TEXTAREA_LABEL" | translate }}
-      </h2>
+      </h2> -->
       <textarea
         type="text"
         name="essay"

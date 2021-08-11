@@ -15,10 +15,16 @@ export class TestsService {
     );
   }
 
+
+  
+  getTests(userId: string, englishLevel: string){
+    return this.http.post(`${environment.api_URL}/api/test`, {userId, englishLevel})
+  }
+
   completeTest(testId: string) {
     return this.http.patch(
       `${environment.api_URL}/complete?TestId=${testId}`,
       {}
     );
-  }
+}
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Question } from 'src/app/core/models/questions.model';
+import { ErrorService } from 'src/app/core/services/error.service';
 import { QuestionsLoadingService } from '../questions-loading.service';
 @Component({
   selector: 'app-audio',
@@ -15,11 +16,15 @@ export class AudioComponent implements OnInit {
   tryCount: number = 3;
 
   counter: number = 0;
+  canPlay: boolean = true;
   audioSrc: any;
   questionsList: Question[] = [];
   questions$: Observable<Question[]> | undefined;
 
-  constructor(private questionsLoadingService: QuestionsLoadingService) {}
+  constructor(
+    private questionsLoadingService: QuestionsLoadingService,
+    private errorService: ErrorService
+  ) {}
 
   playAudio() {
     this.getAudioSrc();
@@ -30,16 +35,31 @@ export class AudioComponent implements OnInit {
     playingAudio.onended = () => {
       but!.classList.remove('button-disabled');
       this.play = false;
+      if (this.tryCount === this.counter) {
+        but!.classList.add('button-disabled');
+        this.canPlay = false;
+      }
     };
 
     if (this.tryCount === this.counter || this.play) {
       but!.classList.add('button-disabled');
+      this.canPlay = false;
     } else {
       this.play = true;
       this.audio.play();
-      --this.tryCount;
-
       but!.classList.add('button-disabled');
+
+      this.questionsLoadingService
+        .audioTriesCheck(this.audioSrc.audioId, this.tryCount, this.canPlay)
+        .subscribe(
+          (res: any) => {
+            console.log(res);
+          },
+          (error) => {
+            this.errorService.logError(error || 'Something went wrong');
+          }
+        );
+      --this.tryCount;
     }
   }
 

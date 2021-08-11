@@ -12,11 +12,13 @@ import {
   EDIT_PATH,
   USERS_PATH,
   ASSIGNMENTS_PATH,
+  TESTS_PATH,
 } from './profile-routing.constants';
 import { AuthGuard } from 'src/app/core/guard/auth-guard/auth.guard';
 import { QuestionsEditComponent } from 'src/app/pages/questions-edit/questions-edit.component';
 import { UsersHrComponent } from 'src/app/pages/users-hr/users-hr/users-hr.component';
 import { UsersAdminComponent } from 'src/app/pages/users-admin/users-admin/users-admin.component';
+import { UsersCoachComponent } from 'src/app/pages/users-coach/users-coach/users-coach.component';
 
 const routes: Routes = [
   {
@@ -46,6 +48,11 @@ const routes: Routes = [
       {
         path: EDIT_PATH,
         component: QuestionsEditComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: TESTS_PATH,
+        component: UsersCoachComponent,
         canActivate: [AuthGuard],
       },
       {
