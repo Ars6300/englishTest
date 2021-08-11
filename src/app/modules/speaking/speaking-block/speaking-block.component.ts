@@ -120,16 +120,14 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
   moduleQuestion: string = '';
   moduleAnswer: string = '';
   postAnswer: string = '';
-  blobPost: any
+  blobPost: any;
 
   constructor(
     private audioRecordingService: AudioRecordingService,
     private sanitizer: DomSanitizer,
     private speakingService: SpeakingService,
     private questionsLoadingService: QuestionsLoadingService,
-    private router: Router,
-    private questionStore: Store<QuestionsState>,
-    private errorService: ErrorService
+    private questionStore: Store<QuestionsState>
   ) {
     this.audioRecordingService.recordingFailed().subscribe(() => {
       this.isRecording = false;
@@ -143,7 +141,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
     });
 
     this.audioRecordingService.getRecordedBlob().subscribe((data) => {
-      this.blobPost = data.blob
+      this.blobPost = data.blob;
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(
         URL.createObjectURL(data.blob)
       );
@@ -166,6 +164,13 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
     this.condition = true;
     this.moduleQuestion = event.target.id;
     console.log(this.moduleQuestion, this.moduleAnswer);
+  }
+
+  showButton(id: string) {
+    if (this.condition) {
+      return this.moduleQuestion == id;
+    }
+    return true;
   }
 
   startRecording() {
@@ -195,8 +200,9 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
   }
 
   onGetLink() {
-    this.speakingService.uploadFile(this.blobPost)
-    .then(res => console.log(res))
+    this.speakingService
+      .uploadFile(this.blobPost)
+      .then((res) => console.log(res));
   }
 
   getBlobId() {

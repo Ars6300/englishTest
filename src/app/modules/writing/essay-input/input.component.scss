@@ -19,6 +19,7 @@
 
     img {
       width: 300px;
+
       @include _1400 {
         width: 200px;
       }
@@ -71,8 +72,11 @@
   margin-top: 60px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+
   ul {
     list-style: none;
+
     li {
       display: flex;
       justify-content: center;
@@ -86,6 +90,7 @@
       margin: 0px 0px 15px 15px;
       cursor: pointer;
       transition: 0.2s ease;
+
       &:hover {
         border: 1px solid #3f3f3f;
         background-color: rgb(224, 224, 224);

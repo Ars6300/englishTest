@@ -76,7 +76,7 @@ export class InputComponent implements OnInit {
         this.router.navigate([SPEAKING_PATH]);
       },
       (error) => {
-        console.log('Something went wrong.');
+        this.errorService.logError(error || 'Something went wrong');
       }
     );
   }
@@ -106,6 +106,13 @@ export class InputComponent implements OnInit {
 
   getQuestionsByType() {
     return this.questionsList.filter((el) => el.type === this.currentType);
+  }
+
+  showButton(id: string) {
+    if (this.condition) {
+      return this.moduleQuestion == id;
+    }
+    return true;
   }
 
   ngOnDestroy(): void {

@@ -42,6 +42,7 @@
     "EXIT": "Exit",
     "RETRY": "Try again",
     "START_TEST": "Start a test",
+    "COMPLETE_TEST": "Complete test",
     "ADD_QUESTION": "Add question",
     "GET_ALL": "Show all",
     "NEXT_SECTION": "Next section",

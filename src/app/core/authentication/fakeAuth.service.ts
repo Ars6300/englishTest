@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -14,12 +15,16 @@ export class FakeAuthenticationService {
   login(user: { email: string; password: any }) {
     if (user.email === user.email && user.password === user.password) {
       this.router.navigate(['/profile']);
-      setCookieParams('token', 'token123123123', '3600');
+      setCookieParams(
+        'token',
+        'token123123123',
+        environment.COOKIE_KEEP_SECONDS
+      );
     }
   }
 
   deleteCookie() {
-    deleteCookieParams();      
+    deleteCookieParams();
   }
 
   get token() {
