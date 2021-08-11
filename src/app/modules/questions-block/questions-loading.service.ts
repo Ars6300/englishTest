@@ -27,7 +27,6 @@ export class QuestionsLoadingService {
 
   getQuestions(): Observable<Question[]> {
     this.tests$.pipe(take(1)).subscribe((tests) => (this.testsData = tests));
-
     return of(this.testsData);
   }
 
@@ -44,7 +43,7 @@ export class QuestionsLoadingService {
   postQuestion(data: any) {
     console.log(data);
     return this.http
-      .post<any>(`${environment.api_URL}/api/Question/create`, data)
+      .post<any>(`${environment.api_URL}/api/question`, data)
       .pipe(
         map((res: any) => {
           return res;
@@ -61,23 +60,21 @@ export class QuestionsLoadingService {
   // }
 
   updateQuestion(data: QuestionModel) {
-    console.log(`${environment.api_URL}/api/Question/edit`, data);
+    console.log(data);
     return this.http
-      .patch(`${environment.api_URL}/api/Question/edit`, data)
+      .put(`${environment.api_URL}/api/question`, data)
       .pipe(
         map((res: any) => {
-          console.log(res);
           return res;
         })
       );
   }
 
   deleteQuestion(id: string) {
-    return this.http.delete<any>('srcenvironmentsenvironment.ts' + id).pipe(
-      map((res: any) => {
-        return res;
-      })
-    );
+    let obj = {
+      questionId: id
+    }
+    return this.http.delete(`${environment.api_URL}/api/question`, {body: obj})
   }
 
   downloadAudio(id: string): Observable<Blob> {

@@ -1,22 +1,36 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { QuestionsLoadingService } from 'src/app/modules/questions-block/questions-loading.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SpeakingService {
+  constructor(private http: HttpClient, private questionsLoadingService: QuestionsLoadingService) {}
 
-  constructor(private http: HttpClient) { }
-  
-  
-  postAudioSpeaking(audioSpeaking: any){
-    const headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data'});
-    let body = { filename: audioSpeaking };
-    return this.http.post(`${environment.api_URL}/api/Audio/create`, body, { headers, responseType: 'blob' })
+  async uploadFile(blob: any) {
+    let file = new File([blob], 'audio', { lastModified: new Date().getTime(), type: blob.type });
+    const formData = new FormData();
+    formData.append("uploadedFile", file);
+
+
+    fetch(`${environment.api_URL}/api/audio`, {method: "POST", body: formData})
+      .then(res => res.json())
+      .then(result => {result.audioId})
+      .catch(e => console.log(e))
   }
 
-
+  // onPostAnswer() {
+  //   this.questionsLoadingService
+  //     .postAnswer(this.moduleAnswer, this.postAnswer)
+  //     .subscribe(
+  //       (res: any) => {},
+  //       (error) => {
+  //         this.errorService.logError(error || 'Something went wrong');
+  //       }
+  //     );
+  // }
+  
 }
-
 

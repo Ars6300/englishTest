@@ -60,6 +60,8 @@ export class UsersHrComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersHrService.getUsers().subscribe((users$) => {
+      console.log(users$);
+      
       this.usersList = users$;
       this.dataSource = [...this.usersList];
       this.userListMatTabDataSource.data = this.dataSource;
@@ -126,6 +128,11 @@ export class UsersHrComponent implements OnInit {
     modal?.classList.remove('modal-open');
     modal?.classList.add('modal-close');
     this.formValue.reset();
+  }
+  onAssignTestAgain(user: UserModel){
+    console.log(user);
+    
+    this.usersHrService.allowStartTest(user.id)
   }
 
   getOption(event: any): any {

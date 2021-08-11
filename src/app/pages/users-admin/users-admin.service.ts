@@ -13,11 +13,12 @@ export class UsersAdminService {
   constructor(private http: HttpClient) {}
 
   getUnassignedTests(): Observable<Admin[]> {
-    return this.http.get<Admin[]>(`${environment.api_URL}/getUnassignedToCouch`);
+    return this.http.get<Admin[]>(`${environment.api_URL}/api/test/unassignedToCouch`);
+    
   }
 
   getUsers(): Observable<Hr[]> {
-    return this.http.get<Hr[]>(`${environment.api_URL}/api/User/GetAllUsers`);
+    return this.http.get<Hr[]>(`${environment.api_URL}/api/user?Page=0&Skip=10&Take=10`);
   }
 
   postAssignCheck(testId: string, couchId: string) {

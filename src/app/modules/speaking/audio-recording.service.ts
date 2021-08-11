@@ -3,6 +3,8 @@ import * as RecordRTC from 'recordrtc';
 import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SpeakingService } from 'src/app/core/services/speaking/speaking.service';
+import { HttpClient } from '@angular/common/http';
 
 interface RecordedAudioOutput {
   blob: Blob;
@@ -21,6 +23,7 @@ export class AudioRecordingService {
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
 
+
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
   }
@@ -32,6 +35,7 @@ export class AudioRecordingService {
   recordingFailed(): Observable<string> {
     return this._recordingFailed.asObservable();
   }
+  
 
   startRecording() {
     if (this.recorder) {
@@ -53,12 +57,11 @@ export class AudioRecordingService {
   abortRecording() {
     this.stopMedia();
   }
-  
 
   private record() {
     this.recorder = new RecordRTC.StereoAudioRecorder(this.stream, {
       type: 'audio',
-      mimeType: 'audio/mpeg',
+      mimeType: 'audio/wav',
     });
 
     this.recorder.record();
@@ -95,11 +98,8 @@ export class AudioRecordingService {
             );
             this.stopMedia();
             this._recorded.next({ blob, title: mp3Name });
-
-            
-
-            
           }
+
         },
         () => {
           this.stopMedia();
@@ -110,18 +110,28 @@ export class AudioRecordingService {
   }
 
   private stopMedia() {
+    let dataArray: any[]
     if (this.recorder) {
       this.recorder = null;
       clearInterval(this.interval);
       this.startTime = null;
       if (this.stream) {
+        
+        this.stream.getAudioTracks().forEach((track: any) => {
+          
+          // const postUrl = `${track.id}.wav`
+          // this.speakingService.postAudioSpeaking(postUrl).subscribe(res => console.log(res))
+          // this.recorder.getFromDisk() 
+        },
+       
         this.stream
           .getAudioTracks()
-          .forEach((track: { stop: () => any }) => track.stop());
-        this.stream = null;
-      }
+          .forEach((track: { stop: () => any }) => track.stop()),
+        this.stream = null,
+        )}
+    
     }
   }
 
-  constructor() {}
+  constructor(private speakingService: SpeakingService, private http: HttpClient) {}
 }

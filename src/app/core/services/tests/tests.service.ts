@@ -8,23 +8,17 @@ import { environment } from 'src/environments/environment';
 export class TestsService {
   constructor(private http: HttpClient) {}
 
-  getTests(userId: string, engLevel: string) {
-    return this.http.post(
-      `${environment.api_URL}/create?UserId=${userId}&EnglishLevel=${engLevel}`,
-      {}
-    );
-  }
-
-
-  
-  getTests(userId: string, englishLevel: string){
-    return this.http.post(`${environment.api_URL}/api/test`, {userId, englishLevel})
+  getTests(userId: string, englishLevel: string) {
+    return this.http.post(`${environment.api_URL}/api/test`, {
+      userId,
+      englishLevel,
+    });
   }
 
   completeTest(testId: string) {
-    return this.http.patch(
-      `${environment.api_URL}/complete?TestId=${testId}`,
+    return this.http.put(
+      `${environment.api_URL}/api/test/completeUser?testId=${testId}`,
       {}
-    );
-}
+    );    
+  }
 }

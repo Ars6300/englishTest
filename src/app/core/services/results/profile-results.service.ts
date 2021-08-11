@@ -11,7 +11,7 @@ export class ProfileResultsService {
 
   getAllResults(userId: string | null): Observable<any> {
     return this.http.get(
-      `${environment.api_URL}/allTestsOfUser?userId=${userId}`
+      `${environment.api_URL}/api/test/history?userId=${userId}`
     );
   }
 }

@@ -10,12 +10,16 @@
   overflow-y: auto;
 }
 
-.table {
-  margin-top: 3em;
-}
 
 .modal-close {
   display: none;
+}
+.users-hr-btns-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+.hr-tabel-wrap {
+  overflow-y: scroll;
 }
 
 .modal-content {

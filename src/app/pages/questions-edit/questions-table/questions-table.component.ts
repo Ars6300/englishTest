@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
@@ -15,13 +15,15 @@ import { GetAllQuestionsState } from 'src/app/redux/models/get-all-questions.sta
 import * as getAllQuestionsActions from 'src/app/redux/actions/get-all-questions.actions';
 import { QuestionType } from 'src/app/core/models/test.model';
 import { getAllQuestions } from 'src/app/redux/selectors/get-all-questions.selectors';
+import { SpeakingService } from 'src/app/core/services/speaking/speaking.service';
 
 export class QuestionModel {
-  id: string = '';
+  questionId: string = '';
   type: string = '';
-  status: number = 0;
+  questionStatus: number = 2;
   text: string = '';
   englishLevel: string = '';
+  isActive: boolean | undefined;
 }
 
 export class QuestionsModelForPost {
@@ -46,13 +48,16 @@ interface Levels {
   styleUrls: ['./questions-table.component.scss'],
 })
 export class QuestionsTableComponent implements OnInit {
+  firstFormGroup!: FormGroup;
+  secondFormGroup!: FormGroup;
+
   questions$: Observable<Question[]> | undefined;
 
   questionsList: any;
   questionsData: Question[] = [];
 
   displayedColumns: string[] = ['id', 'text', 'type', 'edit', 'delete'];
-  dataSource: any
+  dataSource: any;
   type = '';
   level = '';
 
@@ -87,10 +92,19 @@ export class QuestionsTableComponent implements OnInit {
     private formBuilder: FormBuilder,
     private questionsSyncStore: QuestionsSyncService,
     private questionsService: QuestionsService,
-    private store: Store<GetAllQuestionsState>
+    private store: Store<GetAllQuestionsState>,
+    private _formBuilder: FormBuilder,
+    private speakingService: SpeakingService
   ) {}
 
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required],
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
+
     this.questionsSyncStore.init();
 
     this.formValue = this.formBuilder.group({
@@ -99,12 +113,7 @@ export class QuestionsTableComponent implements OnInit {
       type: [''],
       englishLevel: [''],
     });
-
-  
-    
-
   }
-
 
   onAddQuestion() {
     this.formValue.reset();
@@ -112,24 +121,34 @@ export class QuestionsTableComponent implements OnInit {
     this.showUpdate = false;
   }
 
+  file = '';
+  getFile(event: any) {
+    this.file = event.target.files[0];
+  }
+  submitFile() {
+    this.speakingService.uploadFile(this.file);
+  }
+
   postQuestionDetails() {
     /* this.questionModel.id = this.formValue.value.id; */
-    this.questionsModelForPost.text = this.formValue.value.text;
-    this.questionsModelForPost.type = +this.formValue.value.type;
-    this.questionsModelForPost.englishLevel = this.formValue.value.englishLevel;
-
+    // this.questionsModelForPost.text = this.formValue.value.text;
+    // this.questionsModelForPost.type = +this.formValue.value.type;
+    // this.questionsModelForPost.englishLevel = this.formValue.value.englishLevel;
     const objPost = {
       text: this.formValue.value.text,
       type: +this.formValue.value.type,
       englishLevel: this.formValue.value.englishLevel,
+      // audioId: "" || ,
+      questionStatus: 2,
     };
 
     this.questionsLoadingService.postQuestion(objPost).subscribe(
       (res: any) => {
-        const ref = document.getElementById('cancel');
-        ref?.click();
-        this.formValue.reset();
-        this.closeModal();
+        console.log(res);
+        // const ref = document.getElementById('cancel');
+        // ref?.click();
+        // this.formValue.reset();
+        // this.closeModal();
       },
       (error) => {
         console.log('Something went wrong.');
@@ -141,13 +160,14 @@ export class QuestionsTableComponent implements OnInit {
     this.questionsLoadingService.getQuestions().subscribe((res) => {
       this.questionsData = res;
     });
+    console.log(this.questionsData);
   }
 
-  onDeleteQuestion(question: QuestionModel) {
+  onDeleteQuestion(question: any) {
     this.questionsLoadingService
-      .deleteQuestion(question.id)
+      .deleteQuestion(question.questionId)
       .subscribe((res) => {
-        this.getAllQuestions();
+        console.log(res);
       });
   }
 
@@ -156,22 +176,18 @@ export class QuestionsTableComponent implements OnInit {
     this.showAdd = false;
     this.showUpdate = true;
 
-    this.questionModel.id = question.questionId;
+    this.questionModel.questionId = question.questionId;
     this.formValue.controls['id'].setValue(question.questionId);
     this.formValue.controls['text'].setValue(question.text);
     this.formValue.controls['type'].setValue(question.type);
-    console.log(question.questionId);
-    
   }
 
   onUpdateQuestionDetails() {
-    this.questionModel.id = this.formValue.value.id;
+    this.questionModel.questionId = this.formValue.value.id;
     this.questionModel.text = this.formValue.value.text;
     this.questionModel.type = this.formValue.value.type;
     this.questionModel.englishLevel = this.formValue.value.englishLevel;
 
-    
-    
     this.questionsLoadingService
       .updateQuestion(this.questionModel)
       .subscribe((res) => {
@@ -215,9 +231,8 @@ export class QuestionsTableComponent implements OnInit {
         level: this.level,
       })
     );
-    
-    this.questions$ = this.store.select(getAllQuestions);
 
+    this.questions$ = this.store.select(getAllQuestions);
 
     this.questionsService
       .getAllQuestions(this.type, this.level)

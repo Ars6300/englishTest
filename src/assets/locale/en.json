@@ -48,6 +48,7 @@
     "ALL_QUESTIONS": "Get all questions",
     "TEST": "Assign",
     "CLOSE": "Close",
+    "ASSIGN_AGAIN": "Assign again",
     "CHOOSE": "Choose",
     "ASSIGN": "Assign"
   },
@@ -113,6 +114,7 @@
     "LEVEL": "Level",
     "COACH": "Coach",
     "ASSIGN": "Assign",
-    "EMAIL": "Email"
+    "EMAIL": "Email",
+    "ASSIGN_AGAIN": "Assign again"
   }
 }

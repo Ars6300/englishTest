@@ -40,6 +40,7 @@ export class QuestionsBlockComponent implements OnInit {
   moduleQuestion: string = '';
   moduleAnswer: string = '';
   checkedInput: boolean = false;
+  listeningBlockIsActive: boolean = false
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
@@ -59,6 +60,7 @@ export class QuestionsBlockComponent implements OnInit {
 
     if (currentRoute.includes(GRAMMAR_PATH)) {
       this.currentType = Number(QuestionType.Grammar);
+      this.listeningBlockIsActive = false;
       this.navigateTo = `${GRAMMAR_PATH}/${QUESTION_GRAMMAR_PATH}`;
     } else if (currentRoute.includes(LISTENING_PATH)) {
       this.currentType = this.listeningType;
