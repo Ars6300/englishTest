@@ -8,7 +8,6 @@ import {
 } from 'src/app/shared/utils/cookies';
 import { environment } from 'src/environments/environment';
 
-export const COOKIE_HOUR = '3600';
 const TOKEN = 'token';
 
 @Injectable({
@@ -23,13 +22,13 @@ export class AuthenticationService {
       password,
     };
     return this.http
-      .post(`${environment.api_URL}/api/user`, user)
+      .post(`${environment.api_URL}/api/users`, user)
       .pipe(tap(this.setCookies));
   }
 
   private setCookies(response: any) {
     if (response) {
-      setCookieParams(TOKEN, response.token, COOKIE_HOUR);
+      setCookieParams(TOKEN, response.token, environment.COOKIE_KEEP_SECONDS);
     }
   }
 
