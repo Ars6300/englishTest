@@ -3,44 +3,68 @@
     <ul>
       <li routerLinkActive="active">
         <a routerLink="./notifications"
-          ><mat-icon>person</mat-icon
+          ><mat-icon
+            [matTooltip]="'PROFILE.PROFILE' | translate"
+            [matTooltipPosition]="tooltipPosition"
+            >person</mat-icon
           ><span>{{ "PROFILE.PROFILE" | translate }}</span></a
         >
       </li>
       <li routerLinkActive="active">
         <a routerLink="./results"
-          ><mat-icon>rule</mat-icon
+          ><mat-icon
+            [matTooltip]="'PROFILE.RESULTS' | translate"
+            [matTooltipPosition]="tooltipPosition"
+            >rule</mat-icon
           ><span>{{ "PROFILE.RESULTS" | translate }}</span></a
         >
       </li>
       <li routerLinkActive="active">
         <a routerLink="./statistics"
-          ><mat-icon>bar_chart</mat-icon
+          ><mat-icon
+            [matTooltip]="'PROFILE.STATISTICS' | translate"
+            [matTooltipPosition]="tooltipPosition"
+            >bar_chart</mat-icon
           ><span>{{ "PROFILE.STATISTICS" | translate }}</span></a
         >
       </li>
       <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
         <a routerLink="./edit" *ngIf="ableToEditRoles.includes(userRole)"
-          ><mat-icon>edit</mat-icon
+          ><mat-icon
+            [matTooltip]="'PROFILE.EDIT' | translate"
+            [matTooltipPosition]="tooltipPosition"
+            >edit</mat-icon
           ><span>{{ "PROFILE.EDIT" | translate }}</span></a
         >
       </li>
       <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
-        <a routerLink="./tests" *ngIf="ableToEditRoles.includes(userRole)">{{
-          "PROFILE.TESTS" | translate
-        }}</a>
+        <a routerLink="./tests" *ngIf="ableToEditRoles.includes(userRole)">
+          <mat-icon
+            [matTooltip]="'PROFILE.TESTS' | translate"
+            [matTooltipPosition]="tooltipPosition"
+            >edit</mat-icon
+          >
+          <span> {{ "PROFILE.TESTS" | translate }}</span></a
+        >
       </li>
       <!-- <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
         <a routerLink="./users" *ngIf="ableToEditRoles.includes(userRole)">{{ "PROFILE.USERS" | translate }}</a> -->
       <li routerLinkActive="active">
         <a routerLink="./users"
-          ><mat-icon>people</mat-icon
+          ><mat-icon
+            [matTooltip]="'PROFILE.USERS' | translate"
+            [matTooltipPosition]="tooltipPosition"
+            >people</mat-icon
           ><span>{{ "PROFILE.USERS" | translate }}</span></a
         >
       </li>
       <li routerLinkActive="active">
         <a routerLink="./assignments">
-          <mat-icon>assignment</mat-icon>
+          <mat-icon
+            [matTooltip]="'PROFILE.ASSIGNMENTS' | translate"
+            [matTooltipPosition]="tooltipPosition"
+            >assignment</mat-icon
+          >
           <span>{{ "PROFILE.ASSIGNMENTS" | translate }}</span></a
         >
       </li>
