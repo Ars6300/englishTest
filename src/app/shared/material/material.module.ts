@@ -8,6 +8,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   exports: [
@@ -20,6 +22,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatFormFieldModule,
     MatCardModule,
     MatTooltipModule,
+    MatSidenavModule,
+    MatDividerModule,
   ],
 })
 export class MaterialModule {}

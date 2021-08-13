@@ -1,19 +1,29 @@
-<div class="results">
-  <div class="results-list">
-    <h1 class="results-list-title">{{ "RESULTS.PREV_TESTS" | translate }}</h1>
+<mat-sidenav-container style="width: 100%; height: 100vh">
+  <mat-sidenav class="results-list" mode="side" [opened]="opened" disableClose>
+    <p class="results-list-title">{{ "RESULTS.PREV_TESTS" | translate }}</p>
+    <mat-divider></mat-divider>
     <ul>
       <li *ngFor="let result of results$ | async">
-        <a
+        <div
+          class="results-list-item"
           type="button"
           (click)="selectResult(result)"
           [class.selected]="result === selectedResult"
-          >{{ result.examDate }} - {{ result.level }} -
-          {{ result.status }}
-        </a>
+        >
+          <p class="level">{{ result.level }}</p>
+          <div class="info">
+            <p>{{ result.examDate }}</p>
+            <p>{{ result.status }}</p>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
       </li>
     </ul>
-  </div>
-  <div class="results-expand">
+  </mat-sidenav>
+  <mat-sidenav-content class="results-expand">
+    <button class="results-list-open" (click)="opened = !opened">
+      {{ opened ? "<" : ">" }}
+    </button>
     <app-result [result]="selectedResult"></app-result>
-  </div>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

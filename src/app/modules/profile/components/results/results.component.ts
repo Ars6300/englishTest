@@ -18,9 +18,11 @@ import { take } from 'rxjs/operators';
 })
 export class ResultsComponent implements OnInit {
   results$: Observable<ProfileResult[]> = this.store.select(getProfileResults);
+  opened!: boolean;
   userId$ = this.store.select(getUserId);
   selectedResult: ProfileResult | undefined;
   userIdSubscription!: Subscription;
+  resultsSubscription!: Subscription;
   userId!: string | null;
   constructor(private store: Store<AppState>) {}
 
@@ -32,11 +34,17 @@ export class ResultsComponent implements OnInit {
     this.userIdSubscription = this.userId$.pipe(take(1)).subscribe((id) => {
       this.store.dispatch(fetchProfileResults({ userId: id }));
     });
+    this.resultsSubscription = this.results$.subscribe((res) =>
+      res.length ? (this.opened = true) : (this.opened = false)
+    );
   }
 
   ngOnDestroy(): void {
     if (this.userIdSubscription) {
       this.userIdSubscription.unsubscribe();
+    }
+    if (this.resultsSubscription) {
+      this.resultsSubscription.unsubscribe();
     }
   }
 }
