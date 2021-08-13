@@ -62,7 +62,7 @@ export class InputComponent implements OnInit {
   selectTheme(event: { target: any }) {
     this.condition = true;
     this.moduleQuestion = event.target.id;
-    console.log(this.moduleQuestion, this.moduleAnswer);
+    this.onPostTopic();
   }
 
   onEssaySubmit(essayText: NgForm) {
@@ -72,11 +72,11 @@ export class InputComponent implements OnInit {
       (res: any) => {
         this.postAnswer = res;
         console.log(res);
-        this.onPostTopic();
+        this.onPostAnswer();
         this.router.navigate([SPEAKING_PATH]);
       },
       (error) => {
-        this.errorService.logError(error || 'Something went wrong');
+        console.log('Something went wrong.');
       }
     );
   }
@@ -89,8 +89,6 @@ export class InputComponent implements OnInit {
           this.errorService.logError(error || 'Something went wrong');
         }
       );
-
-    this.onPostAnswer();
   }
 
   onPostAnswer() {

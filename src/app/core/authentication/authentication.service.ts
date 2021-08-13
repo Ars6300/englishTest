@@ -22,7 +22,7 @@ export class AuthenticationService {
       password,
     };
     return this.http
-      .post(`${environment.api_URL}/api/users`, user)
+      .post(`${environment.api_URL}/api/user`, user)
       .pipe(tap(this.setCookies));
   }
 

@@ -11,7 +11,7 @@ export class UsersHrService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<Hr[]> {
-    return this.http.get<Hr[]>(`${environment.api_URL}/api/user?Page=0&Skip=10&Take=20`);
+    return this.http.get<Hr[]>(`${environment.api_URL}/api/user?Page=0&Skip=10&Take=40`);
   }
 
   assignTest(id: string, level: string) {

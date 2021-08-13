@@ -115,6 +115,10 @@ export class QuestionsTableComponent implements OnInit {
     });
   }
 
+  textFromArea = ''
+  textInputType = ''
+  textInputLevel = ''
+
   onAddQuestion() {
     this.formValue.reset();
     this.showAdd = true;
@@ -126,21 +130,27 @@ export class QuestionsTableComponent implements OnInit {
     this.file = event.target.files[0];
   }
   submitFile() {
-    this.speakingService.uploadFile(this.file);
+    this.speakingService.uploadFile(this.file)
+  }
+  getText(event: any){
+    this.textFromArea = event.target.value
+  }
+  getInputTextType(event: any) {
+    this.textInputType = event.target.value
+  }
+  getInputTextLevel(event: any) {
+    this.textInputLevel = event.target.value
   }
 
   postQuestionDetails() {
-    /* this.questionModel.id = this.formValue.value.id; */
-    // this.questionsModelForPost.text = this.formValue.value.text;
-    // this.questionsModelForPost.type = +this.formValue.value.type;
-    // this.questionsModelForPost.englishLevel = this.formValue.value.englishLevel;
+
     const objPost = {
-      text: this.formValue.value.text,
-      type: +this.formValue.value.type,
-      englishLevel: this.formValue.value.englishLevel,
-      // audioId: "" || ,
+      text: this.textFromArea,
+      type: +this.textInputType,
+      englishLevel: this.textInputLevel,
       questionStatus: 2,
-    };
+      
+    }
 
     this.questionsLoadingService.postQuestion(objPost).subscribe(
       (res: any) => {
@@ -154,6 +164,10 @@ export class QuestionsTableComponent implements OnInit {
         console.log('Something went wrong.');
       }
     );
+    /* this.questionModel.id = this.formValue.value.id; */
+    // this.questionsModelForPost.text = this.formValue.value.text;
+    // this.questionsModelForPost.type = +this.formValue.value.type;
+    // this.questionsModelForPost.englishLevel = this.formValue.value.englishLevel;
   }
 
   getAllQuestions() {
@@ -223,6 +237,7 @@ export class QuestionsTableComponent implements OnInit {
     this.dataSource.pop();
     this.table.renderRows();
   }
+
 
   getQuestions() {
     this.store.dispatch(

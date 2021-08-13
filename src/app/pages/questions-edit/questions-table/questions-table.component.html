@@ -96,7 +96,7 @@
   <div class="modal-close" id="modal">
     <mat-stepper #stepper class="stepper-table">
       <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="formValue" class="modal-content">
+        <!-- <form [formGroup]="formValue" class="modal-content">
           <div class="form-group">
             <ng-template matStepLabel>Create Question</ng-template>
             <label class="textarea-label" for="text"
@@ -142,110 +142,105 @@
               </div>
           </div>
           <div class="buttons">
-            <!-- <button
-              class="close"
-              *ngIf="showAdd"
-              (click)="postQuestionDetails()"
-            >
-              {{ "EDIT.ADD" | translate }}
-            </button> -->
             <div>
               <button mat-button matStepperNext (click)="postQuestionDetails()">Next</button>
             </div>
           </div>
+        </form> -->
+
+        <form [formGroup]="firstFormGroup" class="table-form">
+          <ng-template matStepLabel>Create Question</ng-template>
+
+          <mat-form-field appearance="fill" class="table-textarea">
+            <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+            <textarea
+              class="form-control textarea"
+              matInput
+              (change)="getText($event)"
+            >
+            </textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="table-input">
+            <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+            <input
+              matInput
+              class="form-control input"
+              (change)="getInputTextType($event)"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="table-input">
+            <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+            <input
+              matInput
+              class="form-control input"
+              (change)="getInputTextLevel($event)"
+            />
+          </mat-form-field>
+
+          <div class="form-group">
+            <div class="form-group-wrapper">
+              <label for="file" class="form-group-file"
+                >Choose file to upload</label
+              >
+              <input
+                type="file"
+                hidden
+                id="file"
+                name="file"
+                (change)="getFile($event)"
+                multiple
+              />
+              <button (click)="submitFile()">Submit</button>
+            </div>
+          </div>
+
+          <div>
+            <button mat-button matStepperNext (click)="postQuestionDetails()">
+              Next
+            </button>
+          </div>
         </form>
-        <!-- <form [formGroup]="firstFormGroup" class="table-form">
-        <ng-template matStepLabel>Create Question</ng-template>
-
-        <mat-form-field appearance="fill" class="table-textarea">
-          <mat-label>{{"EDIT.TEXT"| translate}}:</mat-label>
-          <textarea 
-            formControlName="text"
-            name="text"
-            class="form-control textarea"
-            id="text"
-            matInput
-          >
-          </textarea>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="table-input">
-          <mat-label>{{"EDIT.TYPE" | translate}}:</mat-label>
-          <input
-            matInput
-            formControlName="type"
-            name="type"
-            class="form-control input"
-            id="type"
-          >
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="table-input">
-          <mat-label>{{"EDIT.ENG_LVL" | translate}}:</mat-label>
-          <input
-            matInput
-            formControlName="type"
-            name="type"
-            class="form-control input"
-            id="type"
-          >
-        </mat-form-field>
-       
-        <div>
-          <button mat-button matStepperNext (click)="postQuestionDetails()">Next</button>
-        </div>
-      </form> -->
       </mat-step>
       <mat-step [stepControl]="secondFormGroup" label="Create answers">
         <form [formGroup]="secondFormGroup" class="form-answers">
           <mat-form-field class="input-answer" appearance="fill">
             <mat-label>Answer 1</mat-label>
-            <input
-              matInput
-              formControlName="secondCtrl"
-            />
+            <input matInput formControlName="secondCtrl" />
           </mat-form-field>
           <mat-form-field class="input-answer" appearance="fill">
             <mat-label>Answer 2</mat-label>
-            <input
-              matInput
-              formControlName="secondCtrl"
-            />
+            <input matInput formControlName="secondCtrl" />
           </mat-form-field>
           <mat-form-field class="input-answer" appearance="fill">
             <mat-label>Answer 3</mat-label>
-            <input
-              matInput
-              formControlName="secondCtrl"
-            />
+            <input matInput formControlName="secondCtrl" />
           </mat-form-field>
           <mat-form-field class="input-answer" appearance="fill">
             <mat-label>Answer 4</mat-label>
-            <input
-              matInput
-              formControlName="secondCtrl"
-            />
+            <input matInput formControlName="secondCtrl" />
           </mat-form-field>
           <mat-form-field class="input-answer" appearance="fill">
             <mat-label>Answer 5</mat-label>
-            <input
-              matInput
-              formControlName="secondCtrl"
-            />
+            <input matInput formControlName="secondCtrl" />
           </mat-form-field>
-          <div>
+          <div class="create-answers-btns">
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
       <mat-step>
-        <ng-template matStepLabel>Confirm</ng-template>
-        <p>You are now done.</p>
-        <div>
+        <ng-template matStepLabel>Confirm Test</ng-template>
+        <div class="confirm-test-wrap">
+          <h2>Please Confirm your test</h2>
+          <button>Confirm</button>
+        </div>
+        <div class="confirm-test-btns">
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
-          <button class="close" id="cancel" (click)="closeModal()">
+          <button (click)="closeModal()">
             {{ "EDIT.CLOSE" | translate }}
           </button>
         </div>
