@@ -49,7 +49,7 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
       AuthEffects,
       ProfileResultsEffects,
       TestsEffects,
-      getAllQuestionsEffects
+      getAllQuestionsEffects,
     ]),
     StoreModule.forFeature(
       fromProfileResultSelectors.featureKey,

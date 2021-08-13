@@ -7,7 +7,7 @@
   />
 </div>
 <div class="content">
-  <table mat-table [dataSource]="testsListMatTabDataSource" class="table">
+  <table mat-table [dataSource]="testsListMatTabDataSource" class="table-couch">
     <ng-container matColumnDef="date">
       <th class="th-width-6" mat-header-cell *matHeaderCellDef>
         {{ "TABLE_HEADER.DATE" | translate }}
@@ -116,11 +116,16 @@
           <h3 class="answer-module">Speaking</h3>
           <ng-container *ngFor="let answer of userAnswerSet">
             <p *ngIf="answer.type === 3" class="answers-container">
-              {{ answer.questionText }}
+              <!-- {{ answer.userAnswer }} -->
               <br />
-              <span class="answer-text">{{ answer.userAnswer }}</span>
             </p>
+            <strong></strong>
           </ng-container>
+          <div class="audio-couch">
+            <audio *ngIf="!isRecording && blobUrl" controls>
+              <source [src]="sanitize(blobUrl)" type="audio/mpeg" />
+            </audio>
+          </div>
         </div>
       </div>
       <div class="buttons">

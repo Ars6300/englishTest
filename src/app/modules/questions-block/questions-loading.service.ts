@@ -103,8 +103,8 @@ export class QuestionsLoadingService {
   postAnswer(id: string, answerId: string) {
     return this.http
       .post<any>(`${environment.api_URL}/api/userAnswer/answer`, {
-        id,
-        answerId,
+        answerId, id
+
       })
       .pipe(
         map((res: any) => {
