@@ -24,9 +24,13 @@
         font-size: 1.15rem;
         color: black;
         cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       .selected {
+        color: rgb(25, 0, 255);
         font-weight: bold;
       }
     }

@@ -14,6 +14,25 @@
   display: flex;
   overflow-y: auto;
 }
+.table{
+  width: 90%;
+}
+.confirm-test-wrap {
+  display: flex;
+  width: 60%;
+  color: rgb(58, 58, 58);
+  margin: 100px 0px 300px 0px;
+}
+.confirm-test-btns {
+  display: flex;
+}
+.confirm-test {
+  margin-top: 60px;
+}
+.create-answers-btns {
+  display: flex;
+  margin-top: 50px;
+}
 .stepper-table {
   display: flex;
   flex-direction: column;
@@ -21,20 +40,31 @@
   margin-top: 10%;
   width: 90%;
   height: 70%;
-  justify-content: space-between;
+  // justify-content: space-between;
 }
 .table-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 50px;
   .table-textarea {
     width: 90%;
+    margin-bottom: 60px;
   }
   .table-input {
     width: 90%;
+    margin-bottom: 60px;
   }
 }
+.form-group {
+  width: 90%;
+  display: flex;
+  .wrapper {
+    display: flex;
+  }
+}
+
 .form-answers {
   display: flex;
   flex-direction: column;
@@ -70,6 +100,7 @@
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .add-question,
@@ -114,8 +145,6 @@
     background-color: transparent !important;
   }
 }
-
-
 
 .modal-open {
   display: block;

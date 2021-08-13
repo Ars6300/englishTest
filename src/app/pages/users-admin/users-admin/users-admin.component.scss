@@ -10,8 +10,12 @@
   overflow-y: auto;
 }
 
-.table {
+.table-admin {
   margin-top: 3em;
+  width: 92%;
+}
+.assign-admin {
+  cursor: pointer;
 }
 
 .modal-close {
@@ -22,7 +26,7 @@
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
-  width: 40%;
+  width: 90%;
   height: 80%;
   display: flex;
   flex-direction: column;
@@ -125,6 +129,13 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+.form-group {
+  width: 50%;
+}
+.input-disabled {
+  width: 100%;
 }
 
 .input-disabled {

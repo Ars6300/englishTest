@@ -26,7 +26,7 @@ export class WritingService {
       .post<any>(`${environment.api_URL}/api/userAnswer/topic`, {
         answerId,
         id
-        
+
       })
       .pipe(
         map((res: any) => {
@@ -35,3 +35,4 @@ export class WritingService {
       );
   }
 }
+

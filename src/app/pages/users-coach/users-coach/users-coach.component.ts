@@ -7,6 +7,8 @@ import { UsersCoachService } from '../users-coach.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CoachTestModel } from 'src/app/core/models/coach-test.model';
+import { QuestionsLoadingService } from 'src/app/modules/questions-block/questions-loading.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export class UserAnswerSet {
   'type': number;
@@ -43,6 +45,8 @@ export class UsersCoachComponent implements OnInit {
   testResults: CoachTestModel[] = [];
 
   writingText: string = '';
+  blobUrl: any;
+  isRecording = false;
 
   testsModel: CoachTestModel = new CoachTestModel();
   userAnswerSetModel: UserAnswerSet = new UserAnswerSet();
@@ -58,7 +62,9 @@ export class UsersCoachComponent implements OnInit {
   constructor(
     private usersCoachService: UsersCoachService,
     private store: Store<State>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private questionsLoadingService: QuestionsLoadingService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -88,6 +94,7 @@ export class UsersCoachComponent implements OnInit {
   }
 
   onGetTest() {
+    this.writingText = '';
     this.usersCoachService
       .getResultsForCoach(this.testId)
       .subscribe((tests$: any) => {
@@ -97,15 +104,31 @@ export class UsersCoachComponent implements OnInit {
         for (let i = 0; i < this.userAnswerSet.length; i++) {
           if (this.userAnswerSet[i].type === 2) {
             const writingId = this.userAnswerSet[i].userAnswer;
-
             this.usersCoachService
               .getWritingText(writingId)
               .subscribe((res: any) => {
                 this.writingText = res.writingText;
               });
           }
+          if (this.userAnswerSet[i].type === 3) {
+            this.blobUrl = '';
+            const speakingId = this.userAnswerSet[i].userAnswer;
+
+            this.questionsLoadingService
+              .downloadAudio(speakingId)
+              .subscribe((res) => {
+                this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(
+                  URL.createObjectURL(res)
+                );
+                this.blobUrl =
+                  this.blobUrl.changingThisBreaksApplicationSecurity;
+              });
+          }
         }
       });
+  }
+  sanitize(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   openModal() {
