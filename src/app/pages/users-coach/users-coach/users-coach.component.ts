@@ -41,6 +41,8 @@ export class UsersCoachComponent implements OnInit {
   writingUserAnswerId: string = '';
   speakingUserAnswerId: string = '';
 
+  commentCoach: string = '';
+
   testsList: CoachTestModel[] = [];
   testsData!: CoachTestModel;
 
@@ -116,6 +118,7 @@ export class UsersCoachComponent implements OnInit {
     this.userMarkSpeaking = 0;
     this.writingUserAnswerId = '';
     this.speakingUserAnswerId = '';
+    this.commentCoach = '';
 
     this.usersCoachService
       .getResultsForCoach(this.testId)
@@ -199,6 +202,7 @@ export class UsersCoachComponent implements OnInit {
       this.formValue.controls['listeningEstimation'].value;
     this.userMarkWriting = this.formValue.controls['writingEstimation'].value;
     this.userMarkSpeaking = this.formValue.controls['speakingEstimation'].value;
+    this.commentCoach = this.formValue.controls['textarea'].value;
 
     this.onPostEstimate();
   }
@@ -210,6 +214,10 @@ export class UsersCoachComponent implements OnInit {
 
     this.usersCoachService
       .estimateTest(this.speakingUserAnswerId, this.userMarkSpeaking)
+      .subscribe((res: any) => {});
+
+    this.usersCoachService
+      .completeCoach(this.testsModel.testId, this.commentCoach)
       .subscribe((res: any) => {});
   }
 }

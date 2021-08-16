@@ -37,4 +37,17 @@ export class UsersCoachService {
         })
       );
   }
+
+  completeCoach(testId: string, comment: string) {
+    return this.http
+      .put<any>(`${environment.api_URL}/api/test/completeCouch`, {
+        testId,
+        comment,
+      })
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
 }
