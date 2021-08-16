@@ -51,7 +51,9 @@
     "CLOSE": "Закрыть",
     "ASSIGN": "Назначить",
     "ASSIGN_AGAIN": "Назаначить заново",
-    "CHOOSE": "Выбрать"
+    "SEARCH": "Поиск",
+    "CHOOSE": "Выбрать",
+    "CHECK": "Проверить"
   },
   "EDIT": {
     "TEXT": "Текст",
@@ -118,5 +120,9 @@
     "ASSIGN": "Назначить",
     "EMAIL": "Email",
     "ASSIGN_AGAIN": "Назаначить заново"
+  },
+  "COACH": {
+    "COMMENT": "Комментарий",
+    "ESTIMATION": "Оценка"
   }
 }

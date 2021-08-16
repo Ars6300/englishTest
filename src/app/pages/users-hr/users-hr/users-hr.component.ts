@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/redux/models/app.state';
+import { getUserId } from 'src/app/redux/selectors/user.selectors';
 import { Hr } from 'src/app/core/models/hr.model';
-import { ErrorService } from 'src/app/core/services/error.service';
 import { UsersHrService } from '../users-hr.service';
+import { take } from 'rxjs/operators';
 
 export class UserModel {
   email: string = '';
@@ -22,6 +25,9 @@ export class UserModel {
 })
 export class UsersHrComponent implements OnInit {
   users$: Hr[] | undefined;
+
+  getUserId$ = this.store.select(getUserId);
+  userId: any;
 
   usersList: UserModel[] = [];
   usersData: UserModel[] = [];
@@ -55,10 +61,12 @@ export class UsersHrComponent implements OnInit {
   constructor(
     private usersHrService: UsersHrService,
     private formBuilder: FormBuilder,
-    private errorService: ErrorService
+    private store: Store<State>,
   ) {}
 
   ngOnInit(): void {
+    this.getUserId$.pipe(take(1)).subscribe((id) => (this.userId = id));
+
     this.usersHrService.getUsers().subscribe((users$) => {
       console.log(users$);
       
@@ -80,20 +88,17 @@ export class UsersHrComponent implements OnInit {
     this.userModel.level = this.formValue.value.level;
 
     this.usersHrService
-      .assignTest(this.userModel.id, this.userModel.level)
+      .assignTest(this.userModel.id, this.userId, this.userModel.level)
       .subscribe(
         (res: any) => {
           const ref = document.getElementById('cancel');
           ref?.click();
           this.formValue.reset();
           this.closeModal();
-        },
-        (error) => {
-          this.errorService.logError(error || 'Something went wrong');
         }
       );
 
-    this.usersHrService
+    /* this.usersHrService
       .assignTestOfUser(this.userModel.id, this.userModel.level)
       .subscribe(
         (res: any) => {
@@ -101,11 +106,8 @@ export class UsersHrComponent implements OnInit {
           ref?.click();
           this.formValue.reset();
           this.closeModal();
-        },
-        (error) => {
-          this.errorService.logError(error || 'Something went wrong');
         }
-      );
+      ); */
   }
 
   onAssignTest(user: UserModel) {

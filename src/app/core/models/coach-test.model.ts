@@ -13,6 +13,7 @@ export class CoachTestModel {
     {
       type: number;
       audioId: null;
+      questionId: string;
       questionText: string;
       userAnswer: string;
     }

@@ -91,6 +91,21 @@
 .form-content {
   display: flex;
   align-self: flex-end;
+
+  .form-control {
+    text-align: center;
+  }
+}
+
+.textarea-content {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 100%;
+
+  .textarea {
+    width: 80%;
+  }
 }
 
 .input-disabled {
@@ -118,25 +133,29 @@
   }
 }
 
-.answers {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid var(--color-text);
-  padding-top: 1rem;
+.test-content {
+  width: 90%;
 
-  .answer-module {
-    font-size: 1.5rem;
-    font-weight: 500;
-  }
+  .answers {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--color-text);
+    padding-top: 1rem;
 
-  .answers-container {
-    padding-top: 1em;
-    padding-bottom: 1em;
-
-    .answer-text {
-      padding-left: 1em;
-      font-size: 1.1rem;
+    .answer-module {
+      font-size: 1.5rem;
       font-weight: 500;
+    }
+
+    .answers-container {
+      padding-top: 1em;
+      padding-bottom: 1em;
+
+      .answer-text {
+        padding-left: 1em;
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
     }
   }
 }

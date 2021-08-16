@@ -49,9 +49,11 @@
     "ALL_QUESTIONS": "Get all questions",
     "TEST": "Assign",
     "CLOSE": "Close",
+    "ASSIGN": "Assign",
     "ASSIGN_AGAIN": "Assign again",
+    "SEARCH": "Search",
     "CHOOSE": "Choose",
-    "ASSIGN": "Assign"
+    "CHECK": "Check"
   },
   "EDIT": {
     "TEXT": "Text",
@@ -117,5 +119,9 @@
     "ASSIGN": "Assign",
     "EMAIL": "Email",
     "ASSIGN_AGAIN": "Assign again"
+  },
+  "COACH": {
+    "COMMENT": "Comment",
+    "ESTIMATION": "Estimation"
   }
 }
