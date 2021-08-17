@@ -19,6 +19,6 @@ export class TestsService {
     return this.http.put(
       `${environment.api_URL}/api/test/completeUser?testId=${testId}`,
       {}
-    );    
+    );
   }
 }

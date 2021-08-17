@@ -10,7 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 @NgModule({
   exports: [
     MatStepperModule,
@@ -24,6 +25,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTooltipModule,
     MatSidenavModule,
     MatDividerModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
   ],
 })
 export class MaterialModule {}

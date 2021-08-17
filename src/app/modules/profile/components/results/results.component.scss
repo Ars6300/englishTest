@@ -52,6 +52,30 @@
   }
 }
 
+.notifications {
+  display: flex;
+  flex-direction: column;
+  padding: 80px;
+
+  .title {
+    color: var(--color-light);
+    font-weight: normal;
+
+    line-height: 30px;
+    font-size: 1.8rem;
+  }
+
+  .message {
+    margin-top: 2vh;
+
+    &-text {
+      font-size: 1.25rem;
+      margin-top: 3vh;
+      margin-bottom: 7vh;
+    }
+  }
+}
+
 .mat-sidenav {
   background-color: #FAFAFA;
 

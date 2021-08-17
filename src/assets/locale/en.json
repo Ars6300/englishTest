@@ -87,7 +87,7 @@
     "TITLE_LEVELS": "Select your English level"
   },
   "GRAMMAR": {
-    "TITLE": "Grammar Test",
+    "TITLE": "Grammar",
     "TEXT": "You need to answer 15 questions. Each question can have from 3 to 5 answers. Good luck!"
   },
   "LISTENING": {
@@ -105,7 +105,9 @@
   "RESULTS": {
     "PREV_TESTS": "Your previous tests",
     "TITLE": "Result",
-    "EMPTY": "Choose your test date to observe"
+    "NO_TESTS": "You don't have passed tests to observe",
+    "EMPTY": "Choose your test date to observe",
+    "TOTAL": "Total"
   },
   "TABLE_HEADER": {
     "DATE": "Date",

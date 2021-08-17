@@ -1,20 +1,37 @@
 <h1 class="title">{{ "RESULTS.TITLE" | translate }}:</h1>
 
 <div *ngIf="result; else empty">
-  <p class="definition">
-    {{ "GRAMMAR.TITLE" | translate }}: {{ result.grammarMark }}
-  </p>
-  <p class="definition">
-    {{ "LISTENING.TITLE" | translate }}: {{ result.auditionMark }}
-  </p>
-  <p class="definition">
-    {{ "WRITING.TITLE" | translate }}: {{ result.writingMark }}
-  </p>
-  <p class="definition">
-    {{ "SPEAKING.TITLE" | translate }}: {{ result.speakingMark }}
-  </p>
-
-  <p class="definition total">Total: {{ result.totalMark }}</p>
+  <div class="container">
+    <app-result-item
+      class="container-item"
+      [result]="result.grammarMark"
+      title="{{ 'GRAMMAR.TITLE' | translate }}"
+    ></app-result-item>
+    <app-result-item
+      class="container-item"
+      [result]="result.auditionMark"
+      title="{{ 'LISTENING.TITLE' | translate }}"
+    ></app-result-item>
+    <app-result-item
+      class="container-item"
+      [result]="result.writingMark"
+      title="{{ 'WRITING.TITLE' | translate }}"
+    ></app-result-item>
+    <app-result-item
+      class="container-item"
+      [result]="result.speakingMark"
+      title="{{ 'SPEAKING.TITLE' | translate }}"
+    ></app-result-item>
+  </div>
+  <div class="total">
+    <p class="total-result">{{ result.totalMark }}</p>
+    <mat-progress-bar
+      class="progress"
+      mode="determinate"
+      value="{{ result.totalMark * 10 }}"
+    ></mat-progress-bar>
+    <p class="total-title">{{ "RESULTS.TOTAL" | translate }}</p>
+  </div>
 </div>
 <ng-template #empty>
   <p class="definition">{{ "RESULTS.EMPTY" | translate }}</p>

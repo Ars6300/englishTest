@@ -18,6 +18,7 @@ import { take } from 'rxjs/operators';
 })
 export class ResultsComponent implements OnInit {
   results$: Observable<ProfileResult[]> = this.store.select(getProfileResults);
+  results!: ProfileResult[];
   opened!: boolean;
   userId$ = this.store.select(getUserId);
   selectedResult: ProfileResult | undefined;
@@ -34,9 +35,10 @@ export class ResultsComponent implements OnInit {
     this.userIdSubscription = this.userId$.pipe(take(1)).subscribe((id) => {
       this.store.dispatch(fetchProfileResults({ userId: id }));
     });
-    this.resultsSubscription = this.results$.subscribe((res) =>
-      res.length ? (this.opened = true) : (this.opened = false)
-    );
+    this.resultsSubscription = this.results$.subscribe((res) => {
+      res.length ? (this.opened = true) : (this.opened = false);
+      this.results = res;
+    });
   }
 
   ngOnDestroy(): void {

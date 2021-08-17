@@ -1,0 +1,16 @@
+<div class="definition-item">
+  <div class="definition-result">
+    <div>
+      <div class="definition-percent">
+        {{ result }}
+      </div>
+      <mat-progress-spinner
+        class="definition-spinner"
+        [value]="result * 10"
+        diameter="100"
+      >
+      </mat-progress-spinner>
+    </div>
+  </div>
+  <span class="definition-title">{{ title }}</span>
+</div>
