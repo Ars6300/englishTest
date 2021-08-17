@@ -37,9 +37,7 @@
         <select class="select" (change)="getOption($event)">
           <option>{{ "BUTTONS.CHOOSE" | translate }}</option>
           <ng-container *ngFor="let coach of dataUsers">
-            <option
-              *ngIf="coach.id !== element.userId && coach.role === 'couch'"
-            >
+            <option *ngIf="coach.id !== element.userId">
               {{ coach.lastName }}
             </option>
           </ng-container>
