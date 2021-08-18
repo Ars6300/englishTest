@@ -11,7 +11,7 @@
     padding: 100px 0 0 70px;
     position: fixed;
 
-    @include _992 {
+    @include _1200 {
       width: 10vw;
       padding: 90px 0;
       display: flex;
@@ -33,7 +33,7 @@
           width: fit-content;
           height: auto;
 
-          @include _992 {
+          @include _1200 {
             display: block;
           }
         }
@@ -44,7 +44,7 @@
           text-decoration: none;
 
           span {
-            @include _992 {
+            @include _1200 {
               display: none;
             }
           }
@@ -67,7 +67,7 @@
     width: 75vw;
     right: 0;
 
-    @include _992 {
+    @include _1200 {
       width: 90vw;
     }
   }

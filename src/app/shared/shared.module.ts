@@ -36,8 +36,14 @@ import { ThemeComponent } from './components/theme-choose/theme/theme.component'
 import { ForbidPastingDirective } from './directives/forbid-pasting.directive';
 import { UsersHrModule } from '../pages/users-hr/users-hr.module';
 import { UsersAdminModule } from '../pages/users-admin/users-admin.module';
-import { GRAMMAR_PATH, LISTENING_PATH, SPEAKING_PATH, WRITING_PATH } from '../app-routing.constants';
+import {
+  GRAMMAR_PATH,
+  LISTENING_PATH,
+  SPEAKING_PATH,
+  WRITING_PATH,
+} from '../app-routing.constants';
 import { UsersCoachModule } from '../pages/users-coach/users-coach.module';
+import { ResultItemComponent } from './components/result-item/result-item.component';
 
 const routes: Routes = [
   { path: GRAMMAR_PATH, component: GrammarComponent, canActivate: [AuthGuard] },
@@ -47,7 +53,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: WRITING_PATH, component: WritingComponent, canActivate: [AuthGuard] },
-  { path: SPEAKING_PATH, component: SpeakingComponent, canActivate: [AuthGuard] },
+  {
+    path: SPEAKING_PATH,
+    component: SpeakingComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
@@ -65,6 +75,7 @@ const routes: Routes = [
     ThemeComponent,
     ForbidPastingDirective,
     ErrorComponent,
+    ResultItemComponent,
   ],
   imports: [
     CommonModule,
@@ -110,6 +121,7 @@ const routes: Routes = [
     FooterComponent,
     ForbidPastingDirective,
     ErrorComponent,
+    ResultItemComponent,
   ],
 })
 export class SharedModule {}
