@@ -1,3 +1,4 @@
+import { ProfileResult } from './../../models/profile-result.model';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
