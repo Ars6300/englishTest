@@ -30,9 +30,11 @@ import {
 import { AudioRecordingService } from './modules/speaking/audio-recording.service';
 import { UsersHrService } from './pages/users-hr/users-hr.service';
 import { UsersAdminService } from './pages/users-admin/users-admin.service';
-import { HttpErrorInterceptor } from './core/interceptor/error-interceptor/http-error.interceptor';
 import { WritingService } from './modules/writing/writing.service';
 import { UsersCoachService } from './pages/users-coach/users-coach.service';
+import { AuthConfigModule } from './auth-config.module';
+import { filter } from 'rxjs/operators';
+import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -48,7 +50,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     LevelSelectModule,
     HttpClientModule,
     ReduxModule,
-    CoreModule,
+
+    AuthConfigModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -63,16 +66,31 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     }),
     NoopAnimationsModule,
   ],
-  providers: [
+  providers: [  
     QuestionsLoadingService,
     QuestionsSyncService,
     AudioRecordingService,
     UsersHrService,
     UsersAdminService,
     WritingService,
-    UsersCoachService
+    UsersCoachService,
+    // CoreModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
 
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  // constructor(private readonly eventService: PublicEventsService) {
+  //   this.eventService
+  //     .registerForEvents()
+  //     .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
+  //     .subscribe((config) => {
+  //       console.log('ConfigLoaded', config);
+  //     });
+  // }
+}

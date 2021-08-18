@@ -10,6 +10,7 @@ import {
   getLoginError,
 } from 'src/app/redux/selectors/user.selectors';
 import * as AuthPageAction from 'src/app/redux/actions/user.actions';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -41,12 +42,29 @@ export class LoginComponent implements OnInit {
         password: user.password,
       })
     );
+
+    
     if (!!this.store.select(getLoadingStatus)) {
       this.form.reset();
     }
 
     // ************ fake ************
     // this.fakeAuth.login(user)
+
+    // ***********************************************
+
+    // this.auth.login(user.email, user.password)
+    //   .pipe(finalize(() => {
+    //   }))  
+    //   .subscribe(
+    //   result => {         
+    //      if(result) {
+    //        this.success = true;
+    //      }
+    //   },
+    //   error => {
+    //     this.error = error;       
+    //   });
   }
 
   constructor(
@@ -63,5 +81,6 @@ export class LoginComponent implements OnInit {
         Validators.minLength(8),
       ]),
     });
+    
   }
 }

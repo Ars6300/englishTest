@@ -85,6 +85,7 @@ export class QuestionsTableComponent implements OnInit {
   formValue!: FormGroup;
   showAdd!: boolean;
   showUpdate!: boolean;
+  materialValue!: FormGroup
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
@@ -113,6 +114,13 @@ export class QuestionsTableComponent implements OnInit {
       type: [''],
       englishLevel: [''],
     });
+    this.materialValue = this.formBuilder.group({
+      answer1: [''],
+      answer2: [''],
+      answer3: [''],
+      answer4: [''],
+      answer5: ['']
+    })
   }
 
   textFromArea = ''
@@ -139,7 +147,7 @@ export class QuestionsTableComponent implements OnInit {
     this.textInputType = event.target.value
   }
   getInputTextLevel(event: any) {
-    this.textInputLevel = event.target.value
+    this.textInputLevel = event.target.innerHTML.trim()
   }
 
   postQuestionDetails() {
@@ -148,9 +156,10 @@ export class QuestionsTableComponent implements OnInit {
       text: this.textFromArea,
       type: +this.textInputType,
       englishLevel: this.textInputLevel,
-      questionStatus: 2,
-      
+      questionStatus: 0,
     }
+    console.log(objPost);
+    
 
     this.questionsLoadingService.postQuestion(objPost).subscribe(
       (res: any) => {
@@ -165,16 +174,19 @@ export class QuestionsTableComponent implements OnInit {
       }
     );
     /* this.questionModel.id = this.formValue.value.id; */
-    // this.questionsModelForPost.text = this.formValue.value.text;
-    // this.questionsModelForPost.type = +this.formValue.value.type;
-    // this.questionsModelForPost.englishLevel = this.formValue.value.englishLevel;
+    this.questionsModelForPost.text = this.formValue.value.text;
+    this.questionsModelForPost.type = +this.formValue.value.type;
+    this.questionsModelForPost.englishLevel = this.formValue.value.englishLevel;
+
+    console.log(this.questionsModelForPost);
+    
   }
 
   getAllQuestions() {
+    console.log('asd');
     this.questionsLoadingService.getQuestions().subscribe((res) => {
       this.questionsData = res;
     });
-    console.log(this.questionsData);
   }
 
   onDeleteQuestion(question: any) {
@@ -189,11 +201,21 @@ export class QuestionsTableComponent implements OnInit {
   onEditQuestion(question: any) {
     this.showAdd = false;
     this.showUpdate = true;
+    
+    this.materialValue.controls['answer1'].setValue(question.text);
+    this.materialValue.controls['answer2'].setValue(question.text);
+    this.materialValue.controls['answer3'].setValue(question.text);
+    this.materialValue.controls['answer4'].setValue(question.text);
+    this.materialValue.controls['answer5'].setValue(question.text);
 
-    this.questionModel.questionId = question.questionId;
-    this.formValue.controls['id'].setValue(question.questionId);
     this.formValue.controls['text'].setValue(question.text);
-    this.formValue.controls['type'].setValue(question.type);
+    this.formValue.controls['englishLevel'].setValue(this.questionsModelForPost.englishLevel)
+    // this.questionsModelForPost.text = this.formValue.value.text;
+    // this.questionsModelForPost.type = +this.formValue.value.type;
+    // this.questionsModelForPost.englishLevel = this.formValue.value.englishLevel;
+    
+    
+
   }
 
   onUpdateQuestionDetails() {

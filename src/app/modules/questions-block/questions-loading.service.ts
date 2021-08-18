@@ -50,7 +50,6 @@ export class QuestionsLoadingService {
         })
       );
   }
-  // FIXME: remove
   // getQuestion() {
   //   return this.http.get<any>('srcenvironmentsenvironment.ts').pipe(
   //     map((res: QuestionModel) => {

@@ -148,7 +148,7 @@
           </div>
         </form> -->
 
-        <form [formGroup]="firstFormGroup" class="table-form">
+        <form [formGroup]="formValue" class="table-form">
           <ng-template matStepLabel>Create Question</ng-template>
 
           <mat-form-field appearance="fill" class="table-textarea">
@@ -156,27 +156,45 @@
             <textarea
               class="form-control textarea"
               matInput
+              formControlName="text"
+              name="text"
               (change)="getText($event)"
             >
             </textarea>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="table-input">
-            <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
-            <input
-              matInput
-              class="form-control input"
-              (change)="getInputTextType($event)"
-            />
+            <mat-label>{{ "EDIT.SELECT_TYPE" | translate }}</mat-label>
+            <mat-select>
+              <mat-option
+                *ngFor="let type of types"
+                [value]="type.value"
+                matInput
+                name="type"
+                class="form-control input"
+                (click)="getType(type.value)"
+              >
+                {{ type.viewValue }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
+ 
+
 
           <mat-form-field appearance="fill" class="table-input">
-            <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
-            <input
-              matInput
-              class="form-control input"
-              (change)="getInputTextLevel($event)"
-            />
+            <mat-label>{{ "EDIT.SELECT_LEVEL" | translate }}</mat-label>
+            <mat-select>
+              <mat-option
+                *ngFor="let level of levels"
+                matInput
+                name=""
+                class="form-control input"
+                [value]="level.value"
+                (click)="getInputTextLevel($event)"
+              >
+                {{ level.viewValue }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <div class="form-group">
@@ -203,27 +221,27 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroup" label="Create answers">
-        <form [formGroup]="secondFormGroup" class="form-answers">
+      <mat-step [stepControl]="materialValue" label="Create answers">
+        <form [formGroup]="materialValue" class="form-answers">
           <mat-form-field class="input-answer" appearance="fill">
             <mat-label>Answer 1</mat-label>
-            <input matInput formControlName="secondCtrl" />
+            <input matInput formControlName="answer1" name="answer1" />
           </mat-form-field>
           <mat-form-field class="input-answer" appearance="fill">
             <mat-label>Answer 2</mat-label>
-            <input matInput formControlName="secondCtrl" />
+            <input matInput formControlName="answer2" name="answer2" />
           </mat-form-field>
           <mat-form-field class="input-answer" appearance="fill">
             <mat-label>Answer 3</mat-label>
-            <input matInput formControlName="secondCtrl" />
+            <input matInput formControlName="answer3" name="answer3" />
           </mat-form-field>
           <mat-form-field class="input-answer" appearance="fill">
             <mat-label>Answer 4</mat-label>
-            <input matInput formControlName="secondCtrl" />
+            <input matInput formControlName="answer4" name="answer4" />
           </mat-form-field>
           <mat-form-field class="input-answer" appearance="fill">
             <mat-label>Answer 5</mat-label>
-            <input matInput formControlName="secondCtrl" />
+            <input matInput formControlName="answer5" name="answer5" />
           </mat-form-field>
           <div class="create-answers-btns">
             <button mat-button matStepperPrevious>Back</button>

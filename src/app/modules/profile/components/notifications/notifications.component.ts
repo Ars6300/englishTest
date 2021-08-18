@@ -29,7 +29,7 @@ export class NotificationsComponent implements OnInit {
   notifications: Notification[] = [
     {
       title: TEST_NOTIFICATION,
-      assignedBy: ASSIGNED_ROLE
+      assignedBy: ASSIGNED_ROLE,
     },
   ];
 

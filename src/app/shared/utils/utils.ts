@@ -21,3 +21,5 @@ export function getTimeLeft(date: string) {
   let nowTime: any = new Date();
   return Math.round((deadlineTime - nowTime) / 1000);
 }
+
+

@@ -8,9 +8,8 @@ import { environment } from 'src/environments/environment';
 export class TestsService {
   constructor(private http: HttpClient) {}
 
-  getTests(userId: string, englishLevel: string) {
+  getTests(englishLevel: string) {
     return this.http.post(`${environment.api_URL}/api/test`, {
-      userId,
       englishLevel,
     });
   }
