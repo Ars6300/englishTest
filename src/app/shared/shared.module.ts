@@ -43,8 +43,8 @@ import {
   WRITING_PATH,
 } from '../app-routing.constants';
 import { UsersCoachModule } from '../pages/users-coach/users-coach.module';
+import { RegisterComponent } from '../account/register/register.component';
 import { ResultItemComponent } from './components/result-item/result-item.component';
-
 const routes: Routes = [
   { path: GRAMMAR_PATH, component: GrammarComponent, canActivate: [AuthGuard] },
   {
@@ -75,6 +75,7 @@ const routes: Routes = [
     ThemeComponent,
     ForbidPastingDirective,
     ErrorComponent,
+    RegisterComponent,
     ResultItemComponent,
   ],
   imports: [

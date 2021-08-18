@@ -6,13 +6,15 @@
 .modal-close {
   display: none;
 }
-
 .table-wrap {
   width: 100%;
   max-height: 80vh;
   justify-content: center;
   display: flex;
   overflow-y: auto;
+}
+.form-group-wrapper {
+  display: flex;
 }
 .table{
   width: 90%;

@@ -30,8 +30,10 @@ import {
   WRITING_PATH,
   WRITING_MODULE,
   appRoutingLoadChildren,
+  ACCOUNT_PATH,
 } from './app-routing.constants';
 import { AuthGuard } from './core/guard/auth-guard/auth.guard';
+import { AccountModule } from './account/account.module';
 
 const routes: Routes = [
   {
@@ -67,6 +69,10 @@ const routes: Routes = [
     loadChildren: appRoutingLoadChildren.resultModule,
   },
   {
+    path: ACCOUNT_PATH,
+    loadChildren: appRoutingLoadChildren.accountModule
+  },
+  {
     path: ERROR_PATH,
     component: ErrorComponent,
     canActivate: [AuthGuard],
@@ -87,6 +93,7 @@ const routes: Routes = [
     SharedModule,
     ProfileModule,
     ResultModule,
+    AccountModule,
     RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],

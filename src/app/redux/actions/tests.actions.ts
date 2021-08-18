@@ -15,7 +15,7 @@ export const getTestsDataFailure = createAction(
 
 export const getTestsData = createAction(
   '[Tests Page] Get Tests Data',
-  props<{ userId: any; engLevel: string }>()
+  props<{ englishLevel: string }>()
 );
 
 export const cleanTestsData = createAction('[Tests Page] Clean Tests Data');
