@@ -11,14 +11,14 @@ export class UsersHrService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<Hr[]> {
-    return this.http.get<Hr[]>(`${environment.api_URL}/api/user?Page=0&Skip=10&Take=40`);
+    return this.http.get<Hr[]>(`${environment.api_URL}/api/users?Page=0&Skip=10&Take=40`);
   }
 
-  assignTest(id: string, level: string) {
+  assignTest(userId: string, hrId: string, level: string) {
     return this.http
       .put<any>(
-        `${environment.api_URL}/assignUser?UserId=${id}&Level=${level}`,
-        {}
+        `${environment.api_URL}/api/test/assignToUser`,
+        {userId, hrId, level}
       )
       .pipe(
         map((res: any) => {
@@ -27,7 +27,7 @@ export class UsersHrService {
       );
   }
 
-  assignTestOfUser(id: string, level: string) {
+  /* assignTestOfUser(id: string, level: string) {
     return this.http
       .post<any>(
         `${environment.api_URL}/api/User/sendEmail?userId=${id}&message=${level}`,
@@ -39,7 +39,7 @@ export class UsersHrService {
           return res;
         })
       );
-  }
+  } */
 
   allowStartTest(userId: string){
     console.log(userId);

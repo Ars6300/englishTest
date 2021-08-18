@@ -9,10 +9,11 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CoachTestModel } from 'src/app/core/models/coach-test.model';
 import { QuestionsLoadingService } from 'src/app/modules/questions-block/questions-loading.service';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { QuestionType } from 'src/app/core/models/test.model';
 export class UserAnswerSet {
   'type': number;
   'audioId': null;
+  'questionId': string;
   'questionText': string;
   'userAnswer': string;
 }
@@ -32,6 +33,16 @@ export class UsersCoachComponent implements OnInit {
   getUserId$ = this.store.select(getUserId);
   userId: any;
 
+  userMarkGrammar!: number;
+  userMarkListening!: number;
+  userMarkWriting: number = 0;
+  userMarkSpeaking: number = 0;
+
+  writingUserAnswerId: string = '';
+  speakingUserAnswerId: string = '';
+
+  commentCoach: string = '';
+
   testsList: CoachTestModel[] = [];
   testsData!: CoachTestModel;
 
@@ -46,6 +57,7 @@ export class UsersCoachComponent implements OnInit {
 
   writingText: string = '';
   blobUrl: any;
+  blobUrlAudio: any;
   isRecording = false;
 
   testsModel: CoachTestModel = new CoachTestModel();
@@ -81,6 +93,11 @@ export class UsersCoachComponent implements OnInit {
     this.formValue = this.formBuilder.group({
       date: [''],
       level: [''],
+      grammarEstimation: [''],
+      listeningEstimation: [''],
+      writingEstimation: [''],
+      speakingEstimation: [''],
+      textarea: [''],
     });
   }
 
@@ -89,12 +106,20 @@ export class UsersCoachComponent implements OnInit {
     this.testsModel.testId = test.testId;
     this.formValue.controls['date'].setValue(test.examDate);
     this.formValue.controls['level'].setValue(test.englishLevel);
+    this.formValue.controls['grammarEstimation'].setValue(test.grammarMark);
+    this.formValue.controls['listeningEstimation'].setValue(test.auditionMark);
 
     this.onGetTest();
   }
 
   onGetTest() {
     this.writingText = '';
+    this.userMarkWriting = 0;
+    this.userMarkSpeaking = 0;
+    this.writingUserAnswerId = '';
+    this.speakingUserAnswerId = '';
+    this.commentCoach = '';
+
     this.usersCoachService
       .getResultsForCoach(this.testId)
       .subscribe((tests$: any) => {
@@ -102,17 +127,38 @@ export class UsersCoachComponent implements OnInit {
         this.testResults = [this.testsData];
         this.userAnswerSet = [...this.testsData.userAnswerSet];
         for (let i = 0; i < this.userAnswerSet.length; i++) {
-          if (this.userAnswerSet[i].type === 2) {
+          if (this.userAnswerSet[i].type === +QuestionType.Listening) {
+            this.blobUrlAudio = '';
+            const audioLink = this.userAnswerSet[i].audioId;
+
+            this.questionsLoadingService
+              .downloadAudio(audioLink!)
+              .subscribe((res) => {
+                this.blobUrlAudio = this.sanitizer.bypassSecurityTrustUrl(
+                  URL.createObjectURL(res)
+                );
+                this.blobUrlAudio =
+                  this.blobUrlAudio.changingThisBreaksApplicationSecurity;
+              });
+          }
+
+          if (this.userAnswerSet[i].type === +QuestionType.Writing) {
             const writingId = this.userAnswerSet[i].userAnswer;
+
+            this.writingUserAnswerId = this.userAnswerSet[i].questionId;
+
             this.usersCoachService
               .getWritingText(writingId)
               .subscribe((res: any) => {
                 this.writingText = res.writingText;
               });
           }
-          if (this.userAnswerSet[i].type === 3) {
+
+          if (this.userAnswerSet[i].type === +QuestionType.Speaking) {
             this.blobUrl = '';
             const speakingId = this.userAnswerSet[i].userAnswer;
+
+            this.speakingUserAnswerId = this.userAnswerSet[i].questionId;
 
             this.questionsLoadingService
               .downloadAudio(speakingId)
@@ -127,6 +173,7 @@ export class UsersCoachComponent implements OnInit {
         }
       });
   }
+
   sanitize(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
@@ -147,5 +194,30 @@ export class UsersCoachComponent implements OnInit {
   applyFilter(event: any) {
     const filterValue = event.target.value;
     this.testsListMatTabDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  onEstimate() {
+    this.userMarkGrammar = this.formValue.controls['grammarEstimation'].value;
+    this.userMarkListening =
+      this.formValue.controls['listeningEstimation'].value;
+    this.userMarkWriting = this.formValue.controls['writingEstimation'].value;
+    this.userMarkSpeaking = this.formValue.controls['speakingEstimation'].value;
+    this.commentCoach = this.formValue.controls['textarea'].value;
+
+    this.onPostEstimate();
+  }
+
+  onPostEstimate() {
+    this.usersCoachService
+      .estimateTest(this.writingUserAnswerId, this.userMarkWriting)
+      .subscribe((res: any) => {});
+
+    this.usersCoachService
+      .estimateTest(this.speakingUserAnswerId, this.userMarkSpeaking)
+      .subscribe((res: any) => {});
+
+    this.usersCoachService
+      .completeCoach(this.testsModel.testId, this.commentCoach)
+      .subscribe((res: any) => {});
   }
 }

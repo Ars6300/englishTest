@@ -57,7 +57,7 @@ export class UsersAdminComponent implements OnInit {
   userModel: UserModelAdmin = new UserModelAdmin();
 
   @ViewChild(MatTable) table!: MatTable<TestsDoneModel>;
- 
+
   userListMatTabDataSource = new MatTableDataSource<TestsDoneModel>(
     this.dataSource
   );
@@ -124,9 +124,6 @@ export class UsersAdminComponent implements OnInit {
           this.closeModal();
           this.coachFormValue = '';
         },
-        (error) => {
-          this.errorService.logError(error || 'Something went wrong');
-        }
       );
 
     this.removeItem(this.testsDoneModel.userId);

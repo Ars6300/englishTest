@@ -3,7 +3,7 @@
     class="input-search"
     type="text"
     (keyup)="applyFilter($event)"
-    placeholder="search"
+    placeholder="{{ 'BUTTONS.SEARCH' | translate }}"
   />
 </div>
 <div class="content">
@@ -24,7 +24,7 @@
 
     <ng-container matColumnDef="check">
       <th class="th-width-6" mat-header-cell *matHeaderCellDef>
-        {{ "TABLE_HEADER.ASSIGN" | translate }}
+        {{ "BUTTONS.CHECK" | translate }}
       </th>
       <td mat-cell mat-cell *matCellDef="let element">
         <button
@@ -33,7 +33,7 @@
           (click)="openModal()"
           (click)="onCheckTest(element)"
         >
-          {{ "BUTTONS.TEST" | translate }}
+          {{ "BUTTONS.CHECK" | translate }}
         </button>
       </td>
     </ng-container>
@@ -79,21 +79,42 @@
           </mat-form-field>
         </div>
       </form>
-      <div>
+      <div class="test-content">
         <div class="answers">
-          <h3 class="answer-module">Grammar</h3>
-          <div>
-            <ng-container *ngFor="let answer of userAnswerSet">
-              <p *ngIf="answer.type === 0" class="answers-container">
-                {{ answer.questionText }}
-                <br />
-                <span class="answer-text">{{ answer.userAnswer }}</span>
-              </p>
-            </ng-container>
-          </div>
+          <h3 class="answer-module">{{ "GRAMMAR.TITLE" | translate }}</h3>
+
+          <ng-container *ngFor="let answer of userAnswerSet">
+            <p *ngIf="answer.type === 0" class="answers-container">
+              {{ answer.questionText }}
+              <br />
+              <span class="answer-text">{{ answer.userAnswer }}</span>
+            </p>
+          </ng-container>
+          <form [formGroup]="formValue" class="form-content">
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label for="grammarEstimation">{{
+                  "COACH.ESTIMATION" | translate
+                }}</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  formControlName="grammarEstimation"
+                  name="grammarEstimation"
+                  class="form-control"
+                  id="grammarEstimation"
+                />
+              </mat-form-field>
+            </div>
+          </form>
         </div>
         <div class="answers">
-          <h3 class="answer-module">Listening</h3>
+          <h3 class="answer-module">{{ "LISTENING.TITLE" | translate }}</h3>
+          <div class="audio-couch">
+            <audio *ngIf="!isRecording && blobUrlAudio" controls>
+              <source [src]="sanitize(blobUrlAudio)" type="audio/mpeg" />
+            </audio>
+          </div>
           <ng-container *ngFor="let answer of userAnswerSet">
             <p *ngIf="answer.type === 1" class="answers-container">
               {{ answer.questionText }}
@@ -101,9 +122,26 @@
               <span class="answer-text">{{ answer.userAnswer }}</span>
             </p>
           </ng-container>
+          <form [formGroup]="formValue" class="form-content">
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label for="listeningEstimation">{{
+                  "COACH.ESTIMATION" | translate
+                }}</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  formControlName="listeningEstimation"
+                  name="listeningEstimation"
+                  class="form-control"
+                  id="listeningEstimation"
+                />
+              </mat-form-field>
+            </div>
+          </form>
         </div>
         <div class="answers">
-          <h3 class="answer-module">Writing</h3>
+          <h3 class="answer-module">{{ "WRITING.TITLE" | translate }}</h3>
           <ng-container *ngFor="let answer of userAnswerSet">
             <p *ngIf="answer.type === 2" class="answers-container">
               {{ answer.questionText }}
@@ -111,26 +149,80 @@
               <span class="answer-text">{{ writingText }}</span>
             </p>
           </ng-container>
+          <form [formGroup]="formValue" class="form-content">
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label for="writingEstimation">{{
+                  "COACH.ESTIMATION" | translate
+                }}</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  formControlName="writingEstimation"
+                  name="writingEstimation"
+                  class="form-control"
+                  id="writingEstimation"
+                />
+              </mat-form-field>
+            </div>
+          </form>
         </div>
         <div class="answers">
-          <h3 class="answer-module">Speaking</h3>
+          <h3 class="answer-module">{{ "SPEAKING.TITLE" | translate }}</h3>
           <ng-container *ngFor="let answer of userAnswerSet">
             <p *ngIf="answer.type === 3" class="answers-container">
-              <!-- {{ answer.userAnswer }} -->
+              {{ answer.questionText }}
               <br />
             </p>
-            <strong></strong>
           </ng-container>
           <div class="audio-couch">
             <audio *ngIf="!isRecording && blobUrl" controls>
               <source [src]="sanitize(blobUrl)" type="audio/mpeg" />
             </audio>
           </div>
+          <form [formGroup]="formValue" class="form-content">
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label for="speakingEstimation">{{
+                  "COACH.ESTIMATION" | translate
+                }}</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  formControlName="speakingEstimation"
+                  name="speakingEstimation"
+                  class="form-control"
+                  id="speakingEstimation"
+                />
+              </mat-form-field>
+            </div>
+          </form>
         </div>
       </div>
+      <br />
+      <div class="textarea-content">
+        <form [formGroup]="formValue" class="textarea">
+          <div class="textarea">
+            <mat-form-field class="textarea">
+              <mat-label for="textarea">{{
+                "COACH.COMMENT" | translate
+              }}</mat-label>
+              <textarea
+                matInput
+                formControlName="textarea"
+                name="textarea"
+                class="form-control"
+                id="textarea"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
       <div class="buttons">
-        <button class="close">
-          {{ "BUTTONS.ASSIGN" | translate }}
+        <button class="close" (click)="onEstimate()">
+          {{ "COACH.ESTIMATION" | translate }}
         </button>
         <button class="close" id="cancel" (click)="closeModal()">
           {{ "BUTTONS.CLOSE" | translate }}
