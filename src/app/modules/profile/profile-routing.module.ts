@@ -40,11 +40,11 @@ const routes: Routes = [
         component: ResultsComponent,
         canActivate: [AuthGuard],
       },
-      {
-        path: STATISTICS_PATH,
-        component: StatisticsComponent,
-        canActivate: [AuthGuard],
-      },
+      // {
+      //   path: STATISTICS_PATH,
+      //   component: StatisticsComponent,
+      //   canActivate: [AuthGuard],
+      // },
       {
         path: EDIT_PATH,
         component: QuestionsEditComponent,

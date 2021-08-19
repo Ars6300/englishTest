@@ -5,10 +5,10 @@ import { createAction, props } from '@ngrx/store';
 
 /* Login */
 
-export const loginUserSuccess = createAction(
-  '[Auth API] Login User Success',
-  props<{ user: User }>()
-);
+// export const loginUserSuccess = createAction(
+//   '[Auth API] Login User Success',
+//   props<{ user: User }>()
+// );
 
 export const loginUserFailure = createAction(
   '[Auth API] Login User Fail',

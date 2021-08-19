@@ -73,13 +73,13 @@ const routes: Routes = [
     loadChildren: appRoutingLoadChildren.accountModule
   },
   {
-    path: ERROR_PATH,
+    path: PROFILE_PATH,
     component: ErrorComponent,
     canActivate: [AuthGuard],
   },
   {
     path: '**',
-    redirectTo: `${ERROR_PATH}`,
+    redirectTo: `${PROFILE_PATH}`,
   },
 ];
 @NgModule({

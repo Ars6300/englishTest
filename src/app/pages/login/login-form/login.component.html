@@ -1,11 +1,12 @@
 <div class="login-form">
   <div class="container">
-    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <!-- [formGroup]="form" -->
+    <form class="form" (ngSubmit)="submit()">
       <div class="logo-container">
         <img src="./assets/images/logo.png" alt="" class="logo-image" />
       </div>
-      <div class="form-group">
-        <div class="form-control">
+      <!-- <div class="form-group"> -->
+      <!-- <div class="form-control">
           <input
             type="email"
             class="input-email"
@@ -39,18 +40,20 @@
           >
             <small>{{ "LOGIN.VALID_PASSWORD" | translate }}</small>
           </div>
-        </div>
-        <button
-          type="submit"
-          class="button-submit"
-          [disabled]="form.invalid || submitted"
-        >
-          {{ "LOGIN.SIGN_IN" | translate }}
-        </button>
-        <!-- <p *ngIf="errorMessage$ | async as errorMessage">
+        </div> -->
+
+      <!-- <p *ngIf="errorMessage$ | async as errorMessage">
           {{ errorMessage }}
         </p> -->
-      </div>
+      <!-- </div> -->
+      <button
+        type="submit"
+        class="button-submit"
+        (click)="login(configurations[0].configId!)"
+      >
+        <!-- [disabled]="form.invalid || submitted" -->
+        {{ "LOGIN.SIGN_IN" | translate }}
+      </button>
     </form>
     <div class="person">
       <img src="./assets/images/login-gates.png" alt="" />

@@ -1,3 +1,4 @@
+import { NOTIFICATION_PATH, PROFILE_PATH } from '../modules/profile/profile-routing.constants';
 import { LogLevel } from './log-level';
 import { OpenIdConfiguration } from './openid-configuration';
 
@@ -5,12 +6,12 @@ export const DEFAULT_CONFIG: OpenIdConfiguration = {
   authority: 'https://localhost:5001',
   authWellknownEndpointUrl: 'https://localhost:5001/.well-known/openid-configuration',
   // authWellknownEndpoints: null,
-  redirectUrl: 'https://localhost:4200/account',
+  redirectUrl: `https://localhost:4200`,
   clientId: 'client_tye',
   responseType: 'code',
-  scope: 'openid profile role Front',
+  scope: 'openid role Front',
   hdParam: '',
-  postLogoutRedirectUri: 'https://localhost:4200/account',
+  postLogoutRedirectUri: 'https://localhost:4200',
   startCheckSession: false,
   silentRenew: true,
   silentRenewUrl: 'https://localhost:5001',
@@ -22,7 +23,7 @@ export const DEFAULT_CONFIG: OpenIdConfiguration = {
   postLoginRoute: '/',
   forbiddenRoute: '/forbidden',
   unauthorizedRoute: '/unauthorized',
-  autoUserInfo: true,
+  autoUserInfo: false,
   autoCleanStateAfterAuthentication: true,
   triggerAuthorizationResultEvent: false,
   logLevel: LogLevel.Warn,

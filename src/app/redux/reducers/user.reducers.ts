@@ -29,26 +29,26 @@ export const authReducer = createReducer<AuthState>(
       isLoading: true,
     };
   }),
-  on(AuthPageActions.loginUserSuccess, (state, action): AuthState => {
-    return {
-      ...state,
-      currentUser: {
-        // token: action.user.token,
-        user: {
-          firstName: action.user.user.firstName,
-          lastName: action.user.user.lastName,
-          email: action.user.user.email,
-          id: action.user.user.id,
-          role: action.user.user.role,
-        },
-      },
-      errors: {
-        ...state.errors,
-        loginError: '',
-      },
-      isLoading: false,
-    };
-  }),
+  // on(AuthPageActions.loginUserSuccess, (state, action): AuthState => {
+  //   return {
+  //     ...state,
+  //     currentUser: {
+  //       // token: action.user.token,
+  //       user: {
+  //         firstName: action.user.user.firstName,
+  //         lastName: action.user.user.lastName,
+  //         email: action.user.user.email,
+  //         id: action.user.user.id,
+  //         role: action.user.user.role,
+  //       },
+  //     },
+  //     errors: {
+  //       ...state.errors,
+  //       loginError: '',
+  //     },
+  //     isLoading: false,
+  //   };
+  // }),
   on(AuthPageActions.loginUserFailure, (state, action): AuthState => {
     return {
       ...state,
