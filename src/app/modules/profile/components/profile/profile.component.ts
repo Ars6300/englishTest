@@ -24,7 +24,6 @@ export class ProfileComponent implements OnInit {
   // isCouch(role: any) {
   //   return role === 'couch'
   // }
-  getToken() {}
 
   constructor(private store: Store<State>) {}
 

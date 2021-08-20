@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { tap } from 'rxjs/operators';
 import {
   deleteCookieParams,
@@ -13,25 +14,39 @@ export const TOKEN = 'token';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationService {
-  constructor(private http: HttpClient, private router: Router) {
+export class AuthenticationService implements OnInit {
+  constructor(private http: HttpClient, private router: Router, public oidcSecurityService: OidcSecurityService) {
+    console.log(this.token[0]);
   }
+  ngOnInit(){
+    // this.oidcSecurityService
+    //   .checkAuthMultiple()
+    //   .subscribe(([{ isAuthenticated, userData, accessToken }]) => {
+    //     console.log(`Current access token is '${isAuthenticated}'`);
+    //     console.log(`Current access token is '${userData}'`);
+    //     console.log(`Current access token is '${accessToken}'`);
+    //     setCookieParams(TOKEN, accessToken, environment.COOKIE_KEEP_SECONDS)
+    //   });
+  }
+ 
+  // login(email: string, password: string) {
+  //   const user = {
+  //     email,
+  //     password,
+  //   };
+  //   return this.http
+  //     .post(`${environment.api_URL}/api/users`, user)
+  //     .pipe(tap(this.setCookies));
+  // }
+  
 
-  login(email: string, password: string) {
-    const user = {
-      email,
-      password,
-    };
-    return this.http
-      .post(`${environment.api_URL}/api/users`, user)
-      .pipe(tap(this.setCookies));
-  }
-
-  private setCookies(response: any) {
-    if (response) {
-      setCookieParams(TOKEN, response.token, environment.COOKIE_KEEP_SECONDS);
-    }
-  }
+  // private setCookies(response: any) {
+    
+  //   if (response) {
+  //     setCookieParams(TOKEN, response.token, environment.COOKIE_KEEP_SECONDS);
+  //   }
+  // }
+ 
 
   deleteCookie() {
     deleteCookieParams();
@@ -39,7 +54,7 @@ export class AuthenticationService {
 
   get token() {
     return document.cookie
-      .split(';').map(el => el.trim().startsWith('token') === true ? this.splitCookie(el) : '')[1]
+      .split(';').map(el => el.startsWith('token') === true ? this.splitCookie(el) : '')
   }
 
   splitCookie(cookie: string) {

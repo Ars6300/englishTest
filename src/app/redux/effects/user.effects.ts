@@ -19,15 +19,15 @@ export class AuthEffects {
     private router: Router
   ) {}
   
-  loginUser$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AuthPageActions.loginUser),
-      concatMap((action) => 
-      this.authService.login(action.email, action.password).pipe(
-        map((user) => AuthPageActions.loginUserSuccess({user})),
-        tap(() => this.router.navigate([PROFILE_PATH])),
-        catchError((error) => of(AuthPageActions.loginUserFailure({error})))
-      ))
-    )
-  })
+  // loginUser$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(AuthPageActions.loginUser),
+  //     concatMap((action) => 
+  //     this.authService.login(action.email, action.password).pipe(
+  //       map((user) => AuthPageActions.loginUserSuccess({user})),
+  //       tap(() => this.router.navigate([PROFILE_PATH])),
+  //       catchError((error) => of(AuthPageActions.loginUserFailure({error})))
+  //     ))
+  //   )
+  // })
 }
