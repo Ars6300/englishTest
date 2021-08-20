@@ -14,6 +14,7 @@ import { Store } from '@ngrx/store';
 import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 import { HttpClient } from '@angular/common/http';
 import { filter, take } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
   selector: 'app-speaking-block',
@@ -47,7 +48,8 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
     private speakingService: SpeakingService,
     private questionsLoadingService: QuestionsLoadingService,
     private questionStore: Store<QuestionsState>,
-    private http: HttpClient
+    private http: HttpClient,
+    private auth: AuthenticationService
   ) {
     this.audioRecordingService.recordingFailed().subscribe(() => {
       this.isRecording = false;
@@ -128,20 +130,26 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
     const formData = new FormData();
     formData.append("uploadedFile", file);
 
+    let text = 'text'
 
-    fetch(`${environment.api_URL}/api/audio`, {method: "POST", body: formData})
+    fetch(`${environment.api_URL}/api/audio?AudioDescription=${text}`, {method: "POST", body: formData,
+      headers: {
+        Authorization: `Bearer ${this.auth.token[1]}`
+      }
+    })
       .then(res => res.json())
       .then(result => {
-        return this.http.get(`${environment.api_URL}/api/audio?id=${result.audioId}`, {responseType: 'blob'})
+        this.onPostAnswer(result.audioId)
+        return this.http.get(`${environment.api_URL}/api/audio/id?audioId=${result.audioId}`, {responseType: 'blob'})
         .subscribe(response => {
-          this.onPostAnswer(result.audioId)
+          console.log(response);
         })
         
       })
       .catch(e => console.log(e))
 }
   
-
+  
   onPostAnswer(audioId: any) {
     this.questionsLoadingService
       .postAnswer(this.moduleAnswer, audioId)
@@ -149,6 +157,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
         (res: any) => {},
       );
   }
+
 
 
 

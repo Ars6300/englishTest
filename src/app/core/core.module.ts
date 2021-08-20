@@ -17,12 +17,7 @@ import { GlobalErrorHandler } from './interceptor/error-interceptor/global-error
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
       multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+    }
   ],
 })
 export class CoreModule {}

@@ -27,7 +27,6 @@ export class TestsEffects {
       ofType(TestsActions.getTestsData),
       concatMap((action) =>
         this.testsService.getTests(action.englishLevel).pipe(
-          // Ругается вот тут ({tests}) пишет что : Тип Object можно назначить малому количеству других типов. Возможно, вы хотели использовать тип any? В типе "Object" отсутствуют следующие свойства из типа "TestsGet": id, startTime, endTime, englishLevel, testQuestionSet
           map((tests) => TestsActions.getTestsDataSuccess({ tests })),
           tap(() => this.router.navigate([GRAMMAR_PATH])),
           catchError((error) => of(TestsActions.getTestsDataFailure({ error })))
@@ -36,15 +35,15 @@ export class TestsEffects {
     );
   });
 
-  completeTests$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TestsActions.completeTest),
-      concatMap((action) =>
-        this.testsService.completeTest(action.testId).pipe(
-          map(() => TestsActions.cleanTestsData()),
-          tap(() => this.router.navigate([PROFILE_PATH]))
-        )
-      )
-    );
-  });
+  // completeTests$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(TestsActions.completeTest),
+  //     concatMap((action) =>
+  //       this.testsService.completeTest(action.testId).pipe(
+  //         map(() => TestsActions.cleanTestsData()),
+  //         tap(() => this.router.navigate([PROFILE_PATH]))
+  //       )
+  //     )
+  //   );
+  // });
 }

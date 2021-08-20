@@ -25,8 +25,8 @@ export class SpeakingService {
   postTopic(id: string, answerId: string) {
     return this.http
       .post<any>(`${environment.api_URL}/api/userAnswer/topic`, {
-        answerId,
-        id
+        id,
+        answerId
 
       })
       .pipe(

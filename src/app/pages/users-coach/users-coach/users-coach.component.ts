@@ -132,7 +132,7 @@ export class UsersCoachComponent implements OnInit {
             const audioLink = this.userAnswerSet[i].audioId;
 
             this.questionsLoadingService
-              .downloadAudio(audioLink!)
+              .downloadAudio(audioLink)
               .subscribe((res) => {
                 this.blobUrlAudio = this.sanitizer.bypassSecurityTrustUrl(
                   URL.createObjectURL(res)
