@@ -88,7 +88,7 @@ export class UsersHrComponent implements OnInit {
     this.userModel.level = this.formValue.value.level;
 
     this.usersHrService
-      .assignTest(this.userModel.id, this.userId, this.userModel.level)
+      .assignTest(this.userModel.id, this.userModel.level)
       .subscribe(
         (res: any) => {
           const ref = document.getElementById('cancel');

@@ -14,11 +14,11 @@ export class UsersHrService {
     return this.http.get<Hr[]>(`${environment.api_URL}/api/users?Page=0&Skip=10&Take=40`);
   }
 
-  assignTest(userId: string, hrId: string, level: string) {
+  assignTest(userId: string, level: string) {
     return this.http
       .put<any>(
         `${environment.api_URL}/api/test/assignToUser`,
-        {userId, hrId, level}
+        {userId, level}
       )
       .pipe(
         map((res: any) => {
@@ -42,9 +42,9 @@ export class UsersHrService {
   } */
 
   allowStartTest(userId: string){
-    console.log(userId);
-    return this.http.put(`${environment.api_URL}/api/user/allowStart?userId=${userId}`, {}).subscribe(res => {
+    return this.http.put(`${environment.api_URL}/api/users/allowStart?userId=${userId}`, {}).subscribe(res => {
       console.log(res);
     })
   }
 }
+// https://localhost:44356/api/users/allowStart?userId=EC05634A-5C36-4981-92A7-5E5DDFAEA306

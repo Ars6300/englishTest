@@ -35,6 +35,7 @@ import { UsersCoachService } from './pages/users-coach/users-coach.service';
 import { AuthConfigModule } from './auth-config.module';
 import { filter } from 'rxjs/operators';
 import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
+import { AuthenticationService } from './core/authentication/authentication.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -73,7 +74,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     UsersAdminService,
     WritingService,
     UsersCoachService,
-    // CoreModule,
+    CoreModule,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

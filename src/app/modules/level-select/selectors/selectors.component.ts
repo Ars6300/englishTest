@@ -51,7 +51,7 @@ export class SelectorsComponent implements OnInit {
     this.level = this.level.split(' ')[0];
     this.store.dispatch(
       TestsActions.getTestsData({
-        englishLevel: this.level.toLocaleLowerCase()
+        englishLevel: this.level.toLocaleUpperCase()
       })
     );
   }

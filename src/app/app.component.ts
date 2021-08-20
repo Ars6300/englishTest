@@ -5,8 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { setCookieParams } from './shared/utils/cookies';
-import { TOKEN } from './core/authentication/authentication.service';
+import { AuthenticationService, TOKEN } from './core/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -18,28 +19,22 @@ export class AppComponent implements OnInit, AfterContentInit {
     private languageService: LanguageService,
     private storage: StorageService,
     public oidcSecurityService: OidcSecurityService,
-    private route: Router
-  ) {}
+    private route: Router,
+    private serviceAuth: AuthenticationService
+  ) {
+  }
   ngAfterContentInit() {
     // this.oidcSecurityService
     //   .checkAuthMultiple()
     //   .subscribe(([{ isAuthenticated, userData, accessToken }]) => {
     //
-
     //   });
-    this.oidcSecurityService
-      .checkAuth()
-      .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
-        let authToken = this.oidcSecurityService.getAccessToken()
-        if (authToken) {
-          setCookieParams(TOKEN, authToken, environment.COOKIE_KEEP_SECONDS);
-          this.route.navigate(['/profile/notification'])
-        } else {
-          this.route.navigate(['/'])
-        }
-      });
+    // this.oidcSecurityService
+    //   .checkAuth()
+      
   }
   ngOnInit(): void {
+
     // this.oidcSecurityService
     //   .checkAuthMultiple()
     //   .subscribe(([{ isAuthenticated, userData, accessToken }]) => {

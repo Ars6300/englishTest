@@ -7,6 +7,7 @@ import { filter, take } from 'rxjs/operators';
 import { completeTest } from 'src/app/redux/actions/tests.actions';
 import { TestDataState } from 'src/app/redux/models/tests.state.model';
 import { getTestStartTime } from 'src/app/redux/selectors/tests.selectors';
+import { TestsService } from 'src/app/core/services/tests/tests.service';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
   startTime$ = this.store.select(getTestStartTime).pipe(take(1));
   testIdSubscription!: Subscription;
 
-  constructor(private router: Router, private store: Store<TestDataState>) {
+  constructor(private router: Router, private store: Store<TestDataState>, private testsService: TestsService) {
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event) => {
@@ -40,16 +41,16 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  completeTest() {
-    this.testIdSubscription = this.testId$.pipe(take(1)).subscribe((testId) => {
-      this.store.dispatch(completeTest({ testId: testId }));
-    });
-  }
+  // completeTest() {
+  //   this.testIdSubscription = this.testId$.pipe(take(1)).subscribe((testId) => {
+  //     this.store.dispatch(completeTest({ testId: testId }));
+  //   });
+  // }
   onCompleteClick() {
-    this.completeTest();
+    this.testsService.completeTest();
   }
 
   timerEnded() {
-    this.completeTest();
+    this.testsService.completeTest();
   }
 }
