@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { getUserRole } from 'src/app/redux/selectors/user.selectors';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/models/app.state';
+import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ import { State } from 'src/app/redux/models/app.state';
 })
 export class ProfileComponent implements OnInit {
   getUserRole$ = this.store.select(getUserRole);
-
+  tooltipPosition: TooltipPosition = 'after';
   ableToEditRoles = ['couch', 'administrator'];
   ableToUsersRoles = ['HR'];
 

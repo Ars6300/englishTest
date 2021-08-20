@@ -1,0 +1,49 @@
+@import '../../../../scss/styles.scss';
+
+.definition {
+
+  &-item {
+    width: 100%;
+    min-width: 9rem;
+    background-color: var(--color-light);
+    height: 28vh;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+    border-radius: 10px;
+
+    @include _992 {
+      height: 20vh;
+    }
+  }
+
+  &-result {
+    color: var(--color-text);
+    font-size: 6rem;
+    height: 65%;
+    margin: 0 auto;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+  }
+
+  &-title {
+    color: var(--color-text);
+    font-size: 1.3rem;
+    margin-top: 1rem;
+  }
+
+  &-percent {
+    font-size: 3rem;
+    position: relative;
+    top: 4.3rem;
+    text-align: center;
+  }
+}
+
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: var(--color-button);
+}
