@@ -1,12 +1,9 @@
-import {
-  fetchProfileResults,
-  loadProfileResults,
-} from './../../../../redux/actions/profile-results.actions';
+import { fetchProfileResults } from './../../../../redux/actions/profile-results.actions';
 import { getProfileResults } from './../../../../redux/selectors/profile-results.selectors';
 import { ProfileResult } from './../../../../core/models/profile-result.model';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppState } from 'src/app/redux/models/state.model';
 import { getUserId } from 'src/app/redux/selectors/user.selectors';
 import { take } from 'rxjs/operators';
@@ -16,7 +13,7 @@ import { take } from 'rxjs/operators';
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss'],
 })
-export class ResultsComponent implements OnInit {
+export class ResultsComponent implements OnInit, OnDestroy {
   results$: Observable<ProfileResult[]> = this.store.select(getProfileResults);
   results!: ProfileResult[];
   opened!: boolean;

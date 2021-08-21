@@ -1,8 +1,11 @@
 <div class="audio-container">
   <div class="player">
-    <div class="microfone">
+    <div class="microfone" #microphone>
       <p class="microfone_align">
-        <mat-icon class="microfone_icon" id="play-control" (click)="playAudio()"
+        <mat-icon
+          class="microfone_icon"
+          id="play-control"
+          (click)="playAudioClick()"
           >play_arrow</mat-icon
         >
       </p>

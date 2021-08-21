@@ -1,6 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { StorageService } from './../../../core/services/storage.service';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  OnDestroy,
+  AfterViewChecked,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Question } from 'src/app/core/models/questions.model';
 import { ErrorService } from 'src/app/core/services/error.service';
@@ -12,72 +20,79 @@ import { getTestId } from 'src/app/redux/selectors/tests.selectors';
   templateUrl: './audio.component.html',
   styleUrls: ['./audio.component.scss'],
 })
-export class AudioComponent implements OnInit {
+export class AudioComponent implements OnInit, OnDestroy, AfterViewChecked {
   audio!: HTMLAudioElement;
+  @ViewChild('microphone') microphone!: ElementRef;
 
-  play: boolean = false;
-
-  tryCount: number = 3;
-
-  counter: number = 0;
-  canPlay: boolean = true;
+  tryCount!: number;
   audioSrc: any;
   questionsList: Question[] = [];
   questions$: Observable<Question[]> | undefined;
   getTestId$ = this.store.select(getTestId);
   testId: string = '';
+  questionsSubsc!: Subscription;
+
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
     private errorService: ErrorService,
-    private store: Store<State>
+    private store: Store<State>,
+    private storage: StorageService
   ) {}
 
-  playAudio() {
-    this.getAudioSrc();
+  ngOnInit() {
+    this.questionsSubsc = this.questionsLoadingService
+      .getQuestions()
+      .subscribe((questions$) => {
+        this.questionsList = questions$;
+      });
+    this.audioSrc = this.getAudioId();
+    this.getTestId$.pipe(take(1)).subscribe((id) => (this.testId = id));
+    this.tryCount = this.storage.getItem('audioTryCount') || 0;
+  }
 
-    this.audio = new Audio();
-    const but = document.querySelector('.microfone');
-    const playingAudio = this.audio;
-    playingAudio.onended = () => {
-      but!.classList.remove('button-disabled');
-      this.play = false;
-      if (this.tryCount === this.counter) {
-        but!.classList.add('button-disabled');
-        this.canPlay = false;
-      }
-    };
-
-    if (this.tryCount === this.counter || this.play) {
-      but!.classList.add('button-disabled');
-      this.canPlay = false;
-    } else {
-      this.play = true;
-      this.audio.play();
-      but!.classList.add('button-disabled');
-
-      this.questionsLoadingService
-        // .audioTriesCheck(this.audioSrc.audioId, this.tryCount, this.canPlay)
-        .audioTriesCheck(this.audioSrc.audioId, this.tryCount, this.canPlay)
-        .subscribe(
-          (res: any) => {
-            console.log(res);
-          },
-          (error) => {
-            this.errorService.logError(error || 'Something went wrong');
-          }
-        );
-      --this.tryCount;
+  ngAfterViewChecked(): void {
+    if (this.tryCount == 0 || this.storage.getItem('audioPlaying')) {
+      this.editButton.disableButton();
     }
   }
 
-  ngOnInit() {
-    this.questionsLoadingService.getQuestions().subscribe((questions$) => {
-      this.questionsList = questions$;
-    });
-    this.audioSrc = this.getAudioId();
-    this.getTestId$.pipe(take(1)).subscribe((id) => (this.testId = id));
-    console.log(this.testId);
+  ngOnDestroy(): void {
+    if (this.questionsSubsc) {
+      this.questionsSubsc.unsubscribe();
+    }
   }
+
+  playAudioClick() {
+    this.editButton.disableButton();
+    this.getAudioSrc();
+
+    this.audio = new Audio();
+
+    const playingAudio = this.audio;
+
+    if (this.tryCount > 0 || !this.storage.getItem('audioPlaying')) {
+      this.storage.setItem('audioPlaying', true);
+      this.audio.play();
+      --this.tryCount;
+      this.storage.setItem('audioTryCount', this.tryCount);
+    }
+
+    playingAudio.onended = () => {
+      this.storage.setItem('audioPlaying', false);
+      if (this.tryCount > 0) {
+        this.editButton.enableButton();
+      }
+    };
+  }
+
+  editButton = {
+    disableButton: () => {
+      this.microphone.nativeElement.classList.add('button-disabled');
+    },
+    enableButton: () => {
+      this.microphone.nativeElement.classList.remove('button-disabled');
+    },
+  };
 
   getAudioId() {
     return this.questionsList.find((el) => el.audioId);
