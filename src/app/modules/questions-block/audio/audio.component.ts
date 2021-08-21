@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Question } from 'src/app/core/models/questions.model';
 import { ErrorService } from 'src/app/core/services/error.service';
+import { TestDataState } from 'src/app/redux/models/tests.state.model';
+import { getTestId } from 'src/app/redux/selectors/tests.selectors';
 import { QuestionsLoadingService } from '../questions-loading.service';
 @Component({
   selector: 'app-audio',
@@ -20,10 +23,12 @@ export class AudioComponent implements OnInit {
   audioSrc: any;
   questionsList: Question[] = [];
   questions$: Observable<Question[]> | undefined;
+  testId$ = this.store.select(getTestId);
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private store: Store<TestDataState>
   ) {}
 
   playAudio() {
@@ -50,6 +55,7 @@ export class AudioComponent implements OnInit {
       but!.classList.add('button-disabled');
 
       this.questionsLoadingService
+        // .audioTriesCheck(this.audioSrc.audioId, this.tryCount, this.canPlay)
         .audioTriesCheck(this.audioSrc.audioId, this.tryCount, this.canPlay)
         .subscribe(
           (res: any) => {
@@ -81,7 +87,9 @@ export class AudioComponent implements OnInit {
         this.audio.src = url;
       },
       (error) => {
-        console.log('error downloading: ', error);
+        this.errorService.logError(
+          `Error downloading: ${error}` || 'Something went wrong'
+        );
       }
     );
   }

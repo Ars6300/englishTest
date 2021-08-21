@@ -85,9 +85,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
     this.moduleQuestion = event.target.id;
     this.speakingService
       .postTopic(this.moduleAnswer, this.moduleQuestion)
-      .subscribe(
-        (res: any) => {},
-      );
+      .subscribe((res: any) => {});
   }
 
   showButton(id: string) {
@@ -124,34 +122,35 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
 
   onGetLink() {
     // this.speakingService.uploadFile(this.blobPost)
-    let file = new File([this.blobPost], 'audio', { lastModified: new Date().getTime(), type: this.blobPost.type });
+    let file = new File([this.blobPost], 'audio', {
+      lastModified: new Date().getTime(),
+      type: this.blobPost.type,
+    });
     const formData = new FormData();
-    formData.append("uploadedFile", file);
+    formData.append('uploadedFile', file);
 
-
-    fetch(`${environment.api_URL}/api/audio`, {method: "POST", body: formData})
-      .then(res => res.json())
-      .then(result => {
-        return this.http.get(`${environment.api_URL}/api/audio?id=${result.audioId}`, {responseType: 'blob'})
-        .subscribe(response => {
-          this.onPostAnswer(result.audioId)
-        })
-        
+    fetch(`${environment.api_URL}/api/audio`, {
+      method: 'POST',
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        return this.http
+          .get(`${environment.api_URL}/api/audio?id=${result.audioId}`, {
+            responseType: 'blob',
+          })
+          .subscribe((response) => {
+            this.onPostAnswer(result.audioId);
+          });
       })
-      .catch(e => console.log(e))
-}
-  
+      .catch((e) => console.log(e));
+  }
 
   onPostAnswer(audioId: any) {
     this.questionsLoadingService
       .postAnswer(this.moduleAnswer, audioId)
-      .subscribe(
-        (res: any) => {},
-      );
+      .subscribe((res: any) => {});
   }
-
-
-
 
   ngOnDestroy(): void {
     this.abortRecording();
