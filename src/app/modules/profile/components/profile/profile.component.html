@@ -19,7 +19,7 @@
           ><span>{{ "PROFILE.RESULTS" | translate }}</span></a
         >
       </li>
-      <li routerLinkActive="active">
+      <!-- <li routerLinkActive="active">
         <a routerLink="./statistics"
           ><mat-icon
             [matTooltip]="'PROFILE.STATISTICS' | translate"
@@ -27,7 +27,7 @@
             >bar_chart</mat-icon
           ><span>{{ "PROFILE.STATISTICS" | translate }}</span></a
         >
-      </li>
+      </li> -->
       <li routerLinkActive="active" *ngIf="getUserRole$ | async as userRole">
         <a routerLink="./edit" *ngIf="ableToEditRoles.includes(userRole)"
           ><mat-icon

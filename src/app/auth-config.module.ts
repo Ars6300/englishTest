@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
+import { NOTIFICATION_PATH, PROFILE_PATH } from './modules/profile/profile-routing.constants';
 
 @NgModule({
   imports: [
@@ -7,10 +8,10 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
       config: [
         {
           authority: 'https://localhost:5001',
-          redirectUrl: 'https://localhost:4200/account',
-          postLogoutRedirectUri: 'https://localhost:4200/account',
+          redirectUrl: `https://localhost:4200`,
+          postLogoutRedirectUri: 'https://localhost:4200',
           clientId: 'client_tye',
-          scope: 'openid profile role Front',
+          scope: 'openid role Front',
           responseType: 'code',
           silentRenew: true,
           useRefreshToken: true,

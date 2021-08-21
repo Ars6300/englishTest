@@ -50,9 +50,9 @@ export class RegisterComponent implements OnInit {
     this.oidcSecurityService.logoff(configId);
   }
 
-  refreshSessionId4(configId: string) {
-    this.oidcSecurityService.forceRefreshSession(null || undefined, configId).subscribe((result) => console.log(result));
-  }
+  // refreshSessionId4(configId: string) {
+  //   this.oidcSecurityService.forceRefreshSession(undefined, configId).subscribe((result) => console.log(result));
+  // }
 
   refreshSessionAuth0(configId: string) {
     this.oidcSecurityService

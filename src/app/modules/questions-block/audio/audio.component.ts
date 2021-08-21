@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Question } from 'src/app/core/models/questions.model';
 import { ErrorService } from 'src/app/core/services/error.service';
-import { TestDataState } from 'src/app/redux/models/tests.state.model';
-import { getTestId } from 'src/app/redux/selectors/tests.selectors';
 import { QuestionsLoadingService } from '../questions-loading.service';
+import { State } from 'src/app/redux/models/app.state';
+import { getTestId } from 'src/app/redux/selectors/tests.selectors';
 @Component({
   selector: 'app-audio',
   templateUrl: './audio.component.html',
@@ -23,12 +24,12 @@ export class AudioComponent implements OnInit {
   audioSrc: any;
   questionsList: Question[] = [];
   questions$: Observable<Question[]> | undefined;
-  testId$ = this.store.select(getTestId);
-
+  getTestId$ = this.store.select(getTestId);
+  testId: string = '';
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
     private errorService: ErrorService,
-    private store: Store<TestDataState>
+    private store: Store<State>
   ) {}
 
   playAudio() {
@@ -74,6 +75,8 @@ export class AudioComponent implements OnInit {
       this.questionsList = questions$;
     });
     this.audioSrc = this.getAudioId();
+    this.getTestId$.pipe(take(1)).subscribe((id) => (this.testId = id));
+    console.log(this.testId);
   }
 
   getAudioId() {

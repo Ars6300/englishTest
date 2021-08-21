@@ -35,6 +35,7 @@ import { UsersCoachService } from './pages/users-coach/users-coach.service';
 import { AuthConfigModule } from './auth-config.module';
 import { filter } from 'rxjs/operators';
 import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
+import { AuthenticationService } from './core/authentication/authentication.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -50,8 +51,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     LevelSelectModule,
     HttpClientModule,
     ReduxModule,
-
-    AuthConfigModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -65,6 +64,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       useDefaultLang: false,
     }),
     NoopAnimationsModule,
+    AuthConfigModule,
   ],
   providers: [  
     QuestionsLoadingService,
@@ -74,7 +74,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     UsersAdminService,
     WritingService,
     UsersCoachService,
-    // CoreModule,
+    CoreModule,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
@@ -85,12 +85,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  // constructor(private readonly eventService: PublicEventsService) {
-  //   this.eventService
-  //     .registerForEvents()
-  //     .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
-  //     .subscribe((config) => {
-  //       console.log('ConfigLoaded', config);
-  //     });
-  // }
+  constructor(private readonly eventService: PublicEventsService) {
+    this.eventService
+      .registerForEvents()
+      .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
+      .subscribe((config) => {
+        console.log('ConfigLoaded', config);
+      });
+  }
 }
