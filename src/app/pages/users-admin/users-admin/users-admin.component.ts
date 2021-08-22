@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription } from 'rxjs';
@@ -31,7 +31,7 @@ export class UserModelAdmin {
   styleUrls: ['./users-admin.component.scss'],
   providers: [UsersAdminService],
 })
-export class UsersAdminComponent implements OnInit {
+export class UsersAdminComponent implements OnInit, OnDestroy {
   testsDone$: Observable<Admin[]> | undefined;
 
   testsDoneList: TestsDoneModel[] = [];
@@ -116,15 +116,13 @@ export class UsersAdminComponent implements OnInit {
 
     this.usersAdminService
       .postAssignCheck(this.testsDoneModel.testId, this.couchId)
-      .subscribe(
-        (res: any) => {
-          const ref = document.getElementById('cancel');
-          ref?.click();
-          this.formValue.reset();
-          this.closeModal();
-          this.coachFormValue = '';
-        },
-      );
+      .subscribe((res: any) => {
+        const ref = document.getElementById('cancel');
+        ref?.click();
+        this.formValue.reset();
+        this.closeModal();
+        this.coachFormValue = '';
+      });
 
     this.removeItem(this.testsDoneModel.userId);
   }

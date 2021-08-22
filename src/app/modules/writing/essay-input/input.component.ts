@@ -1,6 +1,6 @@
 import { Observable, Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { WritingService } from '../writing.service';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class EssayText {
   styleUrls: ['./input.component.scss'],
   providers: [WritingService, QuestionsLoadingService],
 })
-export class InputComponent implements OnInit {
+export class InputComponent implements OnInit, OnDestroy {
   charactersLimit: number = environment.CHARACTERS_LIMIT;
   writingSubscription!: Subscription;
   essayTextModel: EssayText = new EssayText();

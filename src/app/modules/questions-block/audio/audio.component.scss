@@ -1,16 +1,16 @@
 @import "../../../../scss/styles.scss";
+
 .audio-container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1em;
 }
+
 .player {
-  margin-top: 2em;
-  min-height: 20vh;
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
   justify-content: flex-start;
+  height: fit-content;
+  align-self: flex-end;
 
   .microfone {
     display: flex;
@@ -40,8 +40,8 @@
   }
 
   .play-attempts {
+    align-self: center;
     margin-left: 2em;
-    margin-bottom: 2em;
     font-family: Roboto, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 0.8rem;
     color: #3e3e3e;

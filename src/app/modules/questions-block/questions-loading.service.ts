@@ -60,24 +60,23 @@ export class QuestionsLoadingService {
 
   updateQuestion(data: QuestionModel) {
     console.log(data);
-    return this.http
-      .put(`${environment.api_URL}/api/question`, data)
-      .pipe(
-        map((res: any) => {
-          return res;
-        })
-      );
+    return this.http.put(`${environment.api_URL}/api/question`, data).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
   }
 
   deleteQuestion(id: string) {
     let obj = {
-      questionId: id
-    }
-    return this.http.delete(`${environment.api_URL}/api/question`, {body: obj})
+      questionId: id,
+    };
+    return this.http.delete(`${environment.api_URL}/api/question`, {
+      body: obj,
+    });
   }
 
   downloadAudio(audioId: any): Observable<Blob> {
-    console.log(audioId);
     const url = `${environment.api_URL}/api/audio/id?audioId=${audioId}`;
     // https://localhost:44356/api/audio?audioId=E8C5DD54-E297-4227-A026-C766453E7001&testId=5f56d726-1f15-4234-9ec7-190e36d22ad1
     return this.http.get(url, { responseType: 'blob' }).pipe(
@@ -86,12 +85,10 @@ export class QuestionsLoadingService {
     );
   }
 
-  audioTriesCheck(audioId: string, count: number, canPlay: boolean) {
+  audioTriesCheck(testId: string) {
     return this.http
-      .post<any>(`${environment.api_URL}/api/Audio/Check`, {
-        audioId,
-        count,
-        canPlay,
+      .post<any>(`${environment.api_URL}/api/audio/check`, {
+        testId,
       })
       .pipe(
         map((res: any) => {
@@ -103,7 +100,8 @@ export class QuestionsLoadingService {
   postAnswer(id: string, answerId: string) {
     return this.http
       .post<any>(`${environment.api_URL}/api/userAnswer/answer`, {
-        id, answerId 
+        id,
+        answerId,
       })
       .pipe(
         map((res: any) => {

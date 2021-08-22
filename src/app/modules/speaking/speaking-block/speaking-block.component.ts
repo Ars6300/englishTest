@@ -87,9 +87,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
     this.moduleQuestion = event.target.id;
     this.speakingService
       .postTopic(this.moduleAnswer, this.moduleQuestion)
-      .subscribe(
-        (res: any) => {},
-      );
+      .subscribe((res: any) => {});
   }
 
   showButton(id: string) {
@@ -126,41 +124,42 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
 
   onGetLink() {
     // this.speakingService.uploadFile(this.blobPost)
-    let file = new File([this.blobPost], 'audio', { lastModified: new Date().getTime(), type: this.blobPost.type });
+    let file = new File([this.blobPost], 'audio', {
+      lastModified: new Date().getTime(),
+      type: this.blobPost.type,
+    });
     const formData = new FormData();
-    formData.append("uploadedFile", file);
+    formData.append('uploadedFile', file);
 
-    let text = 'text'
+    let text = 'text';
 
-    fetch(`${environment.api_URL}/api/audio?AudioDescription=${text}`, {method: "POST", body: formData,
+    fetch(`${environment.api_URL}/api/audio?AudioDescription=${text}`, {
+      method: 'POST',
+      body: formData,
       headers: {
-        Authorization: `Bearer ${this.auth.token[1]}`
-      }
+        Authorization: `Bearer ${this.auth.token[1]}`,
+      },
     })
-      .then(res => res.json())
-      .then(result => {
-        this.onPostAnswer(result.audioId)
-        return this.http.get(`${environment.api_URL}/api/audio/id?audioId=${result.audioId}`, {responseType: 'blob'})
-        .subscribe(response => {
-          console.log(response);
-        })
-        
+      .then((res) => res.json())
+      .then((result) => {
+        this.onPostAnswer(result.audioId);
+        return this.http
+          .get(
+            `${environment.api_URL}/api/audio/id?audioId=${result.audioId}`,
+            { responseType: 'blob' }
+          )
+          .subscribe((response) => {
+            console.log(response);
+          });
       })
-      .catch(e => console.log(e))
-}
-  
-  
+      .catch((e) => console.log(e));
+  }
+
   onPostAnswer(audioId: any) {
     this.questionsLoadingService
       .postAnswer(this.moduleAnswer, audioId)
-      .subscribe(
-        (res: any) => {},
-      );
+      .subscribe((res: any) => {});
   }
-
-
-
-
 
   ngOnDestroy(): void {
     this.abortRecording();

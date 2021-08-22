@@ -3,7 +3,7 @@ import {
   QUESTION_LISTENING_PATH,
   WRITING_PATH,
 } from 'src/app/app-routing.constants';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -16,8 +16,6 @@ import {
   QUESTION_GRAMMAR_PATH,
 } from '../../../app-routing.constants';
 import { QuestionsSyncService } from 'src/app/core/services/questions-sync.service';
-
-import { QueryHandler } from 'src/app/core/models/query-handler.model';
 import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { QuestionType } from 'src/app/core/models/test.model';
@@ -28,7 +26,7 @@ import { ErrorService } from 'src/app/core/services/error.service';
   styleUrls: ['./questions-block.component.scss'],
   providers: [QuestionsLoadingService, QuestionsSyncService],
 })
-export class QuestionsBlockComponent implements OnInit {
+export class QuestionsBlockComponent implements OnInit, OnDestroy {
   question: Question[] = [];
   questionsList: Question[] = [];
   questions$: Observable<Question[]> | undefined;
@@ -40,7 +38,7 @@ export class QuestionsBlockComponent implements OnInit {
   moduleQuestion: string = '';
   moduleAnswer: string = '';
   checkedInput: boolean = false;
-  listeningBlockIsActive: boolean = false
+  listeningBlockIsActive: boolean = false;
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
@@ -54,7 +52,6 @@ export class QuestionsBlockComponent implements OnInit {
 
   ngOnInit() {
     this.questionsSyncStore.init();
-
     this.questions$ = this.questionStore.select(getQuestions);
     const currentRoute = this.router.url;
 
@@ -121,19 +118,4 @@ export class QuestionsBlockComponent implements OnInit {
         }
       );
   }
-
-  // getTestQuestions(handler: QueryHandler): void {
-  //   const testType = ['1', '2', '3', '4'];
-
-  //   for (const type of testType) {
-  //     console.log(`${type}`);
-
-  //     const result = handler.handle(type);
-  //     if (result) {
-  //       console.log(`${result}`);
-  //     } else {
-  //       console.log(`${type} was left untouched.`);
-  //     }
-  //   }
-  // }
 }
