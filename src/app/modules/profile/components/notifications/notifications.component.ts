@@ -1,11 +1,9 @@
+import { StorageService } from 'src/app/core/services/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Notification } from 'src/app/core/models/notification.model';
-import {
-  getUserName,
-  getUserRole,
-} from 'src/app/redux/selectors/user.selectors';
+import { getUserRole } from 'src/app/redux/selectors/user.selectors';
 import {
   ASSIGNED_ROLE,
   TEST_NOTIFICATION,
@@ -20,9 +18,13 @@ import { SELECT_LEVEL_PATH } from 'src/app/app-routing.constants';
   styleUrls: ['./notifications.component.scss'],
 })
 export class NotificationsComponent implements OnInit {
-  getUserRole$ = this.store.select(getUserRole);
+  role: string = this.storage.getSessionItem('role') || '';
 
-  constructor(private router: Router, private store: Store<State>) {}
+  constructor(
+    private router: Router,
+    private store: Store<State>,
+    private storage: StorageService
+  ) {}
 
   notifications: Notification[] = [
     {

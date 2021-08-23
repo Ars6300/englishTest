@@ -1,3 +1,4 @@
+import { StorageService } from 'src/app/core/services/storage.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private store: Store<State>,
     public oidcSecurityService: OidcSecurityService,
-    private route: Router
+    private route: Router,
+    private storage: StorageService
   ) {
     this._configurations = this.oidcSecurityService.getConfigurations();
     this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$;
@@ -45,12 +47,18 @@ export class LoginComponent implements OnInit {
       .checkAuth()
       .pipe(take(1))
       .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
-        let authToken = this.oidcSecurityService.getAccessToken();
+        const authToken = this.oidcSecurityService.getAccessToken();
+        const user = this.oidcSecurityService.getUserData();
         console.log(authToken);
         console.log(isAuthenticated);
-
         if (isAuthenticated) {
           setCookieParams(TOKEN, authToken, environment.COOKIE_KEEP_SECONDS);
+          setCookieParams(
+            'role',
+            user[Object.keys(user)[0]],
+            environment.COOKIE_KEEP_SECONDS
+          );
+          this.storage.setSessionItem('role', user[Object.keys(user)[0]]);
           this.route.navigate(['/profile']);
         } else {
           this.route.navigate(['/login']);

@@ -47,11 +47,11 @@ export class AudioComponent implements OnInit, OnDestroy, AfterViewChecked {
       });
     this.audioSrc = this.getAudioId();
     this.getTestId$.pipe(take(1)).subscribe((id) => (this.testId = id));
-    this.tryCount = this.storage.getItem('audioTryCount') || 0;
+    this.tryCount = this.storage.getLocalItem('audioTryCount') || 0;
   }
 
   ngAfterViewChecked(): void {
-    if (this.tryCount == 0 || this.storage.getItem('audioPlaying')) {
+    if (this.tryCount == 0 || this.storage.getLocalItem('audioPlaying')) {
       this.editButton.disableButton();
     }
   }
@@ -70,15 +70,15 @@ export class AudioComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     const playingAudio = this.audio;
 
-    if (this.tryCount > 0 || !this.storage.getItem('audioPlaying')) {
-      this.storage.setItem('audioPlaying', true);
+    if (this.tryCount > 0 || !this.storage.getLocalItem('audioPlaying')) {
+      this.storage.setLocalItem('audioPlaying', true);
       this.audio.play();
       --this.tryCount;
-      this.storage.setItem('audioTryCount', this.tryCount);
+      this.storage.setLocalItem('audioTryCount', this.tryCount);
     }
 
     playingAudio.onended = () => {
-      this.storage.setItem('audioPlaying', false);
+      this.storage.setLocalItem('audioPlaying', false);
       if (this.tryCount > 0) {
         this.editButton.enableButton();
       }
