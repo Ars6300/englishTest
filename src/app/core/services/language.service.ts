@@ -33,7 +33,7 @@ export class LanguageService {
         return { ...item, selected: true };
       }
       this.translate.use(lang);
-      this.storage.setItem('lang', lang);
+      this.storage.setLocalItem('lang', lang);
       return { ...item, selected: false };
     });
   }

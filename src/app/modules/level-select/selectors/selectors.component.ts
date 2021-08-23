@@ -48,7 +48,7 @@ export class SelectorsComponent implements OnInit, OnDestroy {
 
   startTest() {
     this.level = this.level.split(' ')[0];
-    this.storage.setItem('audioTryCount', environment.AUDIO_ATTEMPTS);
+    this.storage.setLocalItem('audioTryCount', environment.AUDIO_ATTEMPTS);
     this.store.dispatch(
       TestsActions.getTestsData({
         englishLevel: this.level.toLocaleUpperCase(),
