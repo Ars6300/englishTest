@@ -10,6 +10,8 @@ import { CoachTestModel } from 'src/app/core/models/coach-test.model';
 import { QuestionsLoadingService } from 'src/app/modules/questions-block/questions-loading.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { QuestionType } from 'src/app/core/models/test.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 export class UserAnswerSet {
   'type': number;
   'audioId': null;
@@ -76,14 +78,14 @@ export class UsersCoachComponent implements OnInit {
     private store: Store<State>,
     private formBuilder: FormBuilder,
     private questionsLoadingService: QuestionsLoadingService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
     this.getUserId$.pipe(take(1)).subscribe((id) => (this.userId = id));
 
     this.usersCoachService
-      .getAssignedTests(this.userId)
+      .getAssignedTests()
       .subscribe((usersTests$: CoachTestModel[]) => {
         this.testsList = usersTests$;
         this.dataSource = [...this.testsList];
@@ -108,14 +110,16 @@ export class UsersCoachComponent implements OnInit {
     this.formValue.controls['level'].setValue(test.englishLevel);
     this.formValue.controls['grammarEstimation'].setValue(test.grammarMark);
     this.formValue.controls['listeningEstimation'].setValue(test.auditionMark);
+    this.formValue.controls['writingEstimation'].setValue(0);
+    this.formValue.controls['speakingEstimation'].setValue(0);
 
     this.onGetTest();
   }
 
   onGetTest() {
     this.writingText = '';
-    this.userMarkWriting = 0;
-    this.userMarkSpeaking = 0;
+    //this.userMarkWriting = 0;
+    //this.userMarkSpeaking = 0;
     this.writingUserAnswerId = '';
     this.speakingUserAnswerId = '';
     this.commentCoach = '';
@@ -132,7 +136,7 @@ export class UsersCoachComponent implements OnInit {
             const audioLink = this.userAnswerSet[i].audioId;
 
             this.questionsLoadingService
-              .downloadAudio(audioLink)
+              .downloadAudioForCoach(audioLink, this.testId)
               .subscribe((res) => {
                 this.blobUrlAudio = this.sanitizer.bypassSecurityTrustUrl(
                   URL.createObjectURL(res)
@@ -148,7 +152,7 @@ export class UsersCoachComponent implements OnInit {
             this.writingUserAnswerId = this.userAnswerSet[i].questionId;
 
             this.usersCoachService
-              .getWritingText(writingId)
+              .getWritingText(writingId, this.testId)
               .subscribe((res: any) => {
                 this.writingText = res.writingText;
               });
@@ -161,7 +165,7 @@ export class UsersCoachComponent implements OnInit {
             this.speakingUserAnswerId = this.userAnswerSet[i].questionId;
 
             this.questionsLoadingService
-              .downloadAudio(speakingId)
+              .downloadAudioForCoach(speakingId, this.testId)
               .subscribe((res) => {
                 this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(
                   URL.createObjectURL(res)
@@ -196,28 +200,25 @@ export class UsersCoachComponent implements OnInit {
     this.testsListMatTabDataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onEstimate() {
-    this.userMarkGrammar = this.formValue.controls['grammarEstimation'].value;
-    this.userMarkListening =
-      this.formValue.controls['listeningEstimation'].value;
+  onPostEstimateWriting() {
     this.userMarkWriting = this.formValue.controls['writingEstimation'].value;
-    this.userMarkSpeaking = this.formValue.controls['speakingEstimation'].value;
-    this.commentCoach = this.formValue.controls['textarea'].value;
-
-    this.onPostEstimate();
-  }
-
-  onPostEstimate() {
     this.usersCoachService
       .estimateTest(this.writingUserAnswerId, this.userMarkWriting)
       .subscribe((res: any) => {});
-
+  }
+  onPostEstimateSpeaking() {
+    this.userMarkSpeaking = this.formValue.controls['speakingEstimation'].value;
     this.usersCoachService
       .estimateTest(this.speakingUserAnswerId, this.userMarkSpeaking)
       .subscribe((res: any) => {});
+  }
 
+  onEstimate() {
+    this.commentCoach = this.formValue.controls['textarea'].value;
     this.usersCoachService
       .completeCoach(this.testsModel.testId, this.commentCoach)
       .subscribe((res: any) => {});
+
+    this.closeModal();
   }
 }
