@@ -164,15 +164,9 @@
                   name="writingEstimation"
                   class="form-control"
                   id="writingEstimation"
+                  (change)="onPostEstimateWriting($event)"
                 />
               </mat-form-field>
-              <button
-                type="button"
-                class="edit-button"
-                (click)="onPostEstimateWriting()"
-              >
-                {{ "BUTTONS" | translate }}
-              </button>
             </div>
           </form>
         </div>
@@ -202,15 +196,9 @@
                   name="speakingEstimation"
                   class="form-control"
                   id="speakingEstimation"
+                  (change)="onPostEstimateSpeaking($event)"
                 />
               </mat-form-field>
-              <button
-                type="button"
-                class="edit-button"
-                (click)="onPostEstimateSpeaking()"
-              >
-                {{ "BUTTONS" | translate }}
-              </button>
             </div>
           </form>
         </div>

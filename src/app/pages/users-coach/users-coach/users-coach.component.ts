@@ -10,8 +10,6 @@ import { CoachTestModel } from 'src/app/core/models/coach-test.model';
 import { QuestionsLoadingService } from 'src/app/modules/questions-block/questions-loading.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { QuestionType } from 'src/app/core/models/test.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 export class UserAnswerSet {
   'type': number;
   'audioId': null;
@@ -78,7 +76,7 @@ export class UsersCoachComponent implements OnInit {
     private store: Store<State>,
     private formBuilder: FormBuilder,
     private questionsLoadingService: QuestionsLoadingService,
-    private sanitizer: DomSanitizer,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -118,8 +116,6 @@ export class UsersCoachComponent implements OnInit {
 
   onGetTest() {
     this.writingText = '';
-    //this.userMarkWriting = 0;
-    //this.userMarkSpeaking = 0;
     this.writingUserAnswerId = '';
     this.speakingUserAnswerId = '';
     this.commentCoach = '';
@@ -200,13 +196,13 @@ export class UsersCoachComponent implements OnInit {
     this.testsListMatTabDataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onPostEstimateWriting() {
+  onPostEstimateWriting(event: any) {
     this.userMarkWriting = this.formValue.controls['writingEstimation'].value;
     this.usersCoachService
       .estimateTest(this.writingUserAnswerId, this.userMarkWriting)
       .subscribe((res: any) => {});
   }
-  onPostEstimateSpeaking() {
+  onPostEstimateSpeaking(event: any) {
     this.userMarkSpeaking = this.formValue.controls['speakingEstimation'].value;
     this.usersCoachService
       .estimateTest(this.speakingUserAnswerId, this.userMarkSpeaking)
