@@ -25,8 +25,11 @@ export class AppComponent implements OnInit, AfterContentInit {
     private route: Router,
     private serviceAuth: AuthenticationService
   ) {}
-  ngAfterContentInit() {}
+  ngAfterContentInit() {
+
+  }
   ngOnInit(): void {
+
     const lang: string | null = this.storage.getLocalItem('lang');
     if (!lang) {
       this.storage.setLocalItem('lang', environment.defaultLocale);
