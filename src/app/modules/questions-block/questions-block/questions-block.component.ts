@@ -35,7 +35,6 @@ export class QuestionsBlockComponent implements OnInit, OnDestroy {
   index = 0;
   navigateTo = '';
 
-  moduleQuestion: string = '';
   moduleAnswer: string = '';
   checkedInput: boolean = false;
   listeningBlockIsActive: boolean = false;
@@ -105,17 +104,12 @@ export class QuestionsBlockComponent implements OnInit, OnDestroy {
     }
   }
 
-  getOption(event: any): any {
-    this.moduleQuestion = event.target.id;
-    this.moduleAnswer = event.target.value;
-
-    this.questionsLoadingService
-      .postAnswer(this.moduleQuestion, this.moduleAnswer)
-      .subscribe(
-        (res: any) => {},
-        (error) => {
-          this.errorService.logError(error || 'Something went wrong');
-        }
-      );
+  getOption(answerId: string, questionId: string): any {
+    this.questionsLoadingService.postAnswer(questionId, answerId).subscribe(
+      (res: any) => {},
+      (error) => {
+        this.errorService.logError(error || 'Something went wrong');
+      }
+    );
   }
 }

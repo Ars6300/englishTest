@@ -4,20 +4,21 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class StorageService {
-  storage = window.localStorage;
+  local = window.localStorage;
+  session = window.sessionStorage;
   constructor() {}
 
-  setItem(key: string, value: any): void {
+  setLocalItem(key: string, value: any): void {
     try {
-      this.storage.setItem(key, JSON.stringify(value));
+      this.local.setItem(key, JSON.stringify(value));
     } catch (e) {
       console.error('Error saving to localStorage', e);
     }
   }
 
-  getItem<T>(key: string): T | null {
+  getLocalItem<T>(key: string): T | null {
     try {
-      const data = this.storage.getItem(key);
+      const data = this.local.getItem(key);
       return data !== null ? JSON.parse(data) : null;
     } catch (error) {
       console.error(error);
@@ -27,7 +28,7 @@ export class StorageService {
 
   removeItem(key: string): void {
     try {
-      this.storage.removeItem(key);
+      this.local.removeItem(key);
     } catch (error) {
       console.error(error);
     }
@@ -35,9 +36,27 @@ export class StorageService {
 
   clear(): void {
     try {
-      this.storage.clear();
+      this.local.clear();
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  setSessionItem(key: string, value: any): void {
+    try {
+      this.session.setItem(key, JSON.stringify(value));
+    } catch (e) {
+      console.error('Error saving to localStorage', e);
+    }
+  }
+
+  getSessionItem<T>(key: string): T | null {
+    try {
+      const data = this.session.getItem(key);
+      return data !== null ? JSON.parse(data) : null;
+    } catch (error) {
+      console.error(error);
+      return null;
     }
   }
 }

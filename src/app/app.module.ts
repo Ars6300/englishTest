@@ -66,7 +66,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     NoopAnimationsModule,
     AuthConfigModule,
   ],
-  providers: [  
+  providers: [
     QuestionsLoadingService,
     QuestionsSyncService,
     AudioRecordingService,
@@ -75,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     WritingService,
     UsersCoachService,
     CoreModule,
+    AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

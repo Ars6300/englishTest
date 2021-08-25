@@ -1,7 +1,7 @@
 <div class="notifications">
   <div *ngIf="notifications.length; else nothingToShow" class="message">
     <h1 class="title">{{ "PROFILE.ROLE" | translate }}</h1>
-    <p class="message-text">{{getUserRole$ | async}}</p>
+    <p class="message-text">{{ role | titlecase }}</p>
     <h1 class="title">{{ "PROFILE.NOTIFICATIONS" | translate }}</h1>
     <p class="message-text">{{ notifications[0].title | translate }}</p>
     <h1 class="title">{{ "PROFILE.ASSIGNED" | translate }}</h1>

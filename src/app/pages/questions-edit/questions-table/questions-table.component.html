@@ -163,7 +163,7 @@
       <div class="form-group" *ngIf="textInputType == '1'"> 
         <div class="form-group-wrapper">
           <label for="file" class="form-group-file" 
-            >Choose file to upload</label
+            >{{"BUTTONS.UPLOAD_FILE" | translate}}</label
           >
           <input
             type="file"
@@ -173,11 +173,11 @@
             (change)="getFile($event)"
             multiple
           />
-          <button (click)="submitFile()">Submit</button>
+          <button (click)="submitFile()">{{"BUTTONS.SUBMIT" | translate}}</button>
         </div>
       </div>
-      <form [formGroup]="materialValue" class="form-answers">
-        <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+      <form [formGroup]="materialValue" class="form-answers" *ngIf="textInputType != '3'">
+        <h4 class='form-answers__title' *ngIf="textInputType != '1'">{{"EDIT.TITLE_ANSWER" | translate}}</h4>
         <mat-form-field class="input-answer" *ngIf="textInputType != '1'">
           <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
           <input matInput formControlName="answer1" name="answer1" />
@@ -203,7 +203,6 @@
           <button class="edit-btn" (click)="onUpdateQuestionDetails()" >{{ "PROFILE.EDIT_QUESTION" | translate }}</button>
         </div>
       </form>
-      <!-- stepper -->
       <mat-stepper class="stepper-edit" linear #stepper *ngIf="textInputType == '1'">
         <mat-step [stepControl]="firstFormGroup" [editable]="isEditable" class="scroll-edit" >
           <div class="stepper-wrap">

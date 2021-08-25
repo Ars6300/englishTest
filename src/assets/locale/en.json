@@ -25,10 +25,11 @@
     "TESTS": "Tests"
   },
   "SELECTORS": {
-    "START_BTN": "Start"
+    "START_BTN": "Start",
+    "AVAILABLE": "Next test available in"
   },
   "NAVIGATION": {
-    "GRAMMAR": "Grammar Test",
+    "GRAMMAR": "Grammar",
     "LISTENING": "Listening",
     "WRITING": "Essay",
     "SPEAKING": "Speaking"
@@ -55,7 +56,8 @@
     "SEARCH": "Search",
     "CHOOSE": "Choose",
     "CHECK": "Check",
-    "ADD_AND_CONFIRM": "Add and confirm"
+    "ADD_AND_CONFIRM": "Add and confirm",
+    "UPLOAD_FILE": "Choose file to upload"
   },
   "EDIT": {
     "TEXT": "Text",
@@ -115,9 +117,12 @@
   "RESULTS": {
     "PREV_TESTS": "Your previous tests",
     "TITLE": "Result",
+    "FOR": "for",
     "NO_TESTS": "You don't have passed tests to observe",
     "EMPTY": "Choose your test date to observe",
-    "TOTAL": "Total"
+    "TOTAL": "Total",
+    "CONFIRMED": "You confirmed new level",
+    "FAILED": "You couldn't achieve new level"
   },
   "TABLE_HEADER": {
     "DATE": "Date",

@@ -21,8 +21,11 @@ export class QuestionsLoadingService {
   }
   private questions: Question[] = [];
   private answers: Answer[] = [];
-
-  constructor(private http: HttpClient, private store: Store<TestDataState>, private auth: AuthenticationService) {}
+  constructor(
+    private http: HttpClient,
+    private store: Store<TestDataState>,
+    private auth: AuthenticationService
+  ) {}
   tests$ = this.store.select(getAllTests);
   testsData = [];
 
@@ -77,6 +80,18 @@ export class QuestionsLoadingService {
   downloadAudio(audioId: any): Observable<Blob> {
     const url = `${environment.api_URL}/api/audio/id?audioId=${audioId}`;
     return this.http.get(url, { responseType: 'blob' }).pipe(
+      take(1),
+      filter((audio) => !!audio)
+    );
+  }
+
+  downloadAudioForCoach(audioId: any, testId: string): Observable<Blob> {
+    let header = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.auth.token[1]}`
+    );
+    const url = `${environment.api_URL}/api/audio?audioId=${audioId}&testId=${testId}`;
+    return this.http.get(url, { responseType: 'blob', headers: header }).pipe(
       take(1),
       filter((audio) => !!audio)
     );
