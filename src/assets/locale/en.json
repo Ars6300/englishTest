@@ -108,9 +108,12 @@
   "RESULTS": {
     "PREV_TESTS": "Your previous tests",
     "TITLE": "Result",
+    "FOR": "for",
     "NO_TESTS": "You don't have passed tests to observe",
     "EMPTY": "Choose your test date to observe",
-    "TOTAL": "Total"
+    "TOTAL": "Total",
+    "CONFIRMED": "You confirmed new level",
+    "FAILED": "You couldn't achieve new level"
   },
   "TABLE_HEADER": {
     "DATE": "Date",

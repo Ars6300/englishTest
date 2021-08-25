@@ -15,8 +15,9 @@ export class ProfileResultsEffects {
     this.actions$.pipe(
       ofType(fetchProfileResults),
       mergeMap((action) =>
-        this.profileResultsService.getAllResults(action.userId).pipe(
+        this.profileResultsService.getAllResults().pipe(
           map((results) => {
+            console.log(results);
             return loadProfileResults({ payload: results as ProfileResult[] });
           }),
           catchError(() => EMPTY)
