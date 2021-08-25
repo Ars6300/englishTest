@@ -23,7 +23,6 @@ export class AudioRecordingService {
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
 
-
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
   }
@@ -35,7 +34,6 @@ export class AudioRecordingService {
   recordingFailed(): Observable<string> {
     return this._recordingFailed.asObservable();
   }
-  
 
   startRecording() {
     if (this.recorder) {
@@ -99,7 +97,6 @@ export class AudioRecordingService {
             this.stopMedia();
             this._recorded.next({ blob, title: mp3Name });
           }
-
         },
         () => {
           this.stopMedia();
@@ -110,28 +107,30 @@ export class AudioRecordingService {
   }
 
   private stopMedia() {
-    let dataArray: any[]
+    let dataArray: any[];
     if (this.recorder) {
       this.recorder = null;
       clearInterval(this.interval);
       this.startTime = null;
       if (this.stream) {
-        
-        this.stream.getAudioTracks().forEach((track: any) => {
-          
-          // const postUrl = `${track.id}.wav`
-          // this.speakingService.postAudioSpeaking(postUrl).subscribe(res => console.log(res))
-          // this.recorder.getFromDisk() 
-        },
-       
-        this.stream
-          .getAudioTracks()
-          .forEach((track: { stop: () => any }) => track.stop()),
-        this.stream = null,
-        )}
-    
+        this.stream.getAudioTracks().forEach(
+          (track: any) => {
+            // const postUrl = `${track.id}.wav`
+            // this.speakingService.postAudioSpeaking(postUrl).subscribe(res => console.log(res))
+            // this.recorder.getFromDisk()
+          },
+
+          this.stream
+            .getAudioTracks()
+            .forEach((track: { stop: () => any }) => track.stop()),
+          (this.stream = null)
+        );
+      }
     }
   }
 
-  constructor(private speakingService: SpeakingService, private http: HttpClient) {}
+  constructor(
+    private speakingService: SpeakingService,
+    private http: HttpClient
+  ) {}
 }

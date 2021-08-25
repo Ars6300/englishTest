@@ -21,15 +21,11 @@ export class AppComponent implements OnInit, AfterContentInit {
   constructor(
     private languageService: LanguageService,
     private storage: StorageService,
-
     private route: Router,
     private serviceAuth: AuthenticationService
   ) {}
-  ngAfterContentInit() {
-
-  }
+  ngAfterContentInit() {}
   ngOnInit(): void {
-
     const lang: string | null = this.storage.getLocalItem('lang');
     if (!lang) {
       this.storage.setLocalItem('lang', environment.defaultLocale);
