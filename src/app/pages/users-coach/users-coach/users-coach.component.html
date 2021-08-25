@@ -103,6 +103,7 @@
                   name="grammarEstimation"
                   class="form-control"
                   id="grammarEstimation"
+                  readonly
                 />
               </mat-form-field>
             </div>
@@ -135,6 +136,7 @@
                   name="listeningEstimation"
                   class="form-control"
                   id="listeningEstimation"
+                  readonly
                 />
               </mat-form-field>
             </div>
@@ -162,6 +164,7 @@
                   name="writingEstimation"
                   class="form-control"
                   id="writingEstimation"
+                  (change)="onPostEstimateWriting($event)"
                 />
               </mat-form-field>
             </div>
@@ -193,6 +196,7 @@
                   name="speakingEstimation"
                   class="form-control"
                   id="speakingEstimation"
+                  (change)="onPostEstimateSpeaking($event)"
                 />
               </mat-form-field>
             </div>
