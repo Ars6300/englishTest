@@ -24,7 +24,8 @@
     "TESTS": "Тесты"
   },
   "SELECTORS": {
-    "START_BTN": "Начать"
+    "START_BTN": "Начать",
+    "AVAILABLE": "Следующий тест через"
   },
   "NAVIGATION": {
     "GRAMMAR": "Грамматика",

@@ -66,7 +66,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     NoopAnimationsModule,
     AuthConfigModule,
   ],
-  providers: [  
+  providers: [
     QuestionsLoadingService,
     QuestionsSyncService,
     AudioRecordingService,
@@ -89,7 +89,9 @@ export class AppModule {
   constructor(private readonly eventService: PublicEventsService) {
     this.eventService
       .registerForEvents()
-      .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
+      .pipe(
+        filter((notification) => notification.type === EventTypes.ConfigLoaded)
+      )
       .subscribe((config) => {
         console.log('ConfigLoaded', config);
       });
