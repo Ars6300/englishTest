@@ -9,9 +9,7 @@ import { environment } from 'src/environments/environment';
 export class ProfileResultsService {
   constructor(private http: HttpClient) {}
 
-  getAllResults(userId: string | null): Observable<any> {
-    return this.http.get(
-      `${environment.api_URL}/api/test/history?userId=${userId}`
-    );
+  getAllResults(): Observable<any> {
+    return this.http.get(`${environment.api_URL}/api/test/history`);
   }
 }

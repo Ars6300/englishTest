@@ -26,6 +26,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
   selectResult(data: ProfileResult) {
     this.selectedResult = data;
+    console.log(data);
   }
 
   ngOnInit(): void {

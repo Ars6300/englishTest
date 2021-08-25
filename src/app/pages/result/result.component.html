@@ -1,4 +1,10 @@
-<h1 class="title">{{ "RESULTS.TITLE" | translate }}:</h1>
+<h1 class="title">
+  {{ "RESULTS.TITLE" | translate }}
+  <span *ngIf="result"
+    >{{ "RESULTS.FOR" | translate }} {{ result?.firstName }}
+    {{ result?.lastName }}</span
+  >
+</h1>
 
 <div *ngIf="result; else empty">
   <div class="container">
@@ -25,12 +31,18 @@
   </div>
   <div class="total">
     <p class="total-result">{{ result.totalMark }}</p>
-    <mat-progress-bar
-      class="progress"
-      mode="determinate"
-      value="{{ result.totalMark * 10 }}"
-    ></mat-progress-bar>
-    <p class="total-title">{{ "RESULTS.TOTAL" | translate }}</p>
+    <div class="progress">
+      <mat-icon *ngIf="result.changeLevel"> check_circle </mat-icon>
+      <mat-icon *ngIf="!result.changeLevel"> error </mat-icon>
+    </div>
+    <p class="total-title">
+      <span *ngIf="result.changeLevel">{{
+        "RESULTS.CONFIRMED" | translate
+      }}</span>
+      <span *ngIf="!result.changeLevel">{{
+        "RESULTS.FAILED" | translate
+      }}</span>
+    </p>
   </div>
 </div>
 <ng-template #empty>
