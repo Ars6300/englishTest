@@ -75,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     WritingService,
     UsersCoachService,
     CoreModule,
+    AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
