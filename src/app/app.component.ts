@@ -21,25 +21,14 @@ export class AppComponent implements OnInit, AfterContentInit {
   constructor(
     private languageService: LanguageService,
     private storage: StorageService,
-    public oidcSecurityService: OidcSecurityService,
+
     private route: Router,
     private serviceAuth: AuthenticationService
   ) {}
   ngAfterContentInit() {
-    // this.oidcSecurityService
-    //   .checkAuthMultiple()
-    //   .subscribe(([{ isAuthenticated, userData, accessToken }]) => {
-    //
-    //   });
-    // this.oidcSecurityService
-    //   .checkAuth()
+
   }
   ngOnInit(): void {
-    // this.oidcSecurityService
-    //   .checkAuthMultiple()
-    //   .subscribe(([{ isAuthenticated, userData, accessToken }]) => {
-    //     setCookieParams(TOKEN, accessToken, environment.COOKIE_KEEP_SECONDS)
-    //   });
 
     const lang: string | null = this.storage.getLocalItem('lang');
     if (!lang) {

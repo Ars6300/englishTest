@@ -3,6 +3,7 @@ import { getUserRole } from 'src/app/redux/selectors/user.selectors';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/redux/models/app.state';
 import { TooltipPosition } from '@angular/material/tooltip';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,22 +11,17 @@ import { TooltipPosition } from '@angular/material/tooltip';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  getUserRole$ = this.store.select(getUserRole);
   tooltipPosition: TooltipPosition = 'after';
-  ableToEditRoles = ['couch', 'administrator'];
-  ableToUsersRoles = ['HR'];
+  ableToEditRoles = ['couch'];
+  ableToSeeUsers = ['HR'];
+  userRole = ['cser'];
+  adminRole = ['admin'];
+  assigmentsRoles = ['HR', 'admin'];
+  role: string = this.storage.getSessionItem('role') || '';
 
-  // isHR(role: any) {
-  //   return role === 'HR'
-  // }
-  // isAdmin(role: any) {
-  //   return role === 'administrator'
-  // }
-  // isCouch(role: any) {
-  //   return role === 'couch'
-  // }
+  constructor(private store: Store<State>, private storage: StorageService) {}
 
-  constructor(private store: Store<State>) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.role);
+  }
 }

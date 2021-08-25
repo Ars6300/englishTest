@@ -6,5 +6,5 @@ export function setCookieParams(
   return (document.cookie = `${name}=${value}; max-age=${expiresIn}`);
 }
 export function deleteCookieParams() {
-  return (document.cookie = `test=test; max-age=-1`);
+  return (document.cookie = `token=token; max-age=-1`);
 }

@@ -22,11 +22,7 @@ export class TestsService {
   }
 
   completeTest() {
-    // return this.http.put(`${environment.api_URL}/api/test/completeUser`, {});
-
-    return fetch(`${environment.api_URL}/api/test/completeUser`, {
-      method: 'PUT',
-      body: '',
+    return fetch(`${environment.api_URL}/api/test/completeUser`, {method: "PUT", body: '',
       headers: {
         Authorization: `Bearer ${this.auth.token[1]}`,
       },

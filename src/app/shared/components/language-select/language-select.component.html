@@ -1,4 +1,5 @@
 <div class="wrapper-lang">
+  <img src="../../../../assets/images/logout.png"  class="logout-img" (click)="logout(configurations[0].configId!)" alt="logout">
   <div
     (click)="onLanguageSelect(item.lang)"
     *ngFor="let item of languageService.obj"

@@ -12,12 +12,11 @@ export class QuestionsService {
     const allQuestionsObj = {
       "type": +type,
       "level": level,
-      "questionStatus": 2,
+      "questionStatus": 0,
       "page": '0',
-      "skip": 8,
+      "skip": 0,
       "take": 30
     }
     return this.http.get(`${environment.api_URL}/api/question?Type=${allQuestionsObj.type}&Level=${allQuestionsObj.level}&QuestionStatus=${allQuestionsObj.questionStatus}&Page=${allQuestionsObj.page}&Skip=${allQuestionsObj.skip}&Take=${allQuestionsObj.take}`);
-    //   'https://localhost:44356/api/question?Type=1&Level=A1&QuestionStatus=2&Page=0&Skip=8&Take=8'
   }
 }

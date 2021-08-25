@@ -59,7 +59,6 @@ export class UsersCoachComponent implements OnInit {
   blobUrl: any;
   blobUrlAudio: any;
   isRecording = false;
-
   testsModel: CoachTestModel = new CoachTestModel();
   userAnswerSetModel: UserAnswerSet = new UserAnswerSet();
 

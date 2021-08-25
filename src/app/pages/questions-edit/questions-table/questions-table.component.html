@@ -7,7 +7,7 @@
     >
       {{ "BUTTONS.ADD_QUESTION" | translate }}
     </button>
-    <mat-form-field appearance="fill">
+    <mat-form-field >
       <mat-label>{{ "EDIT.SELECT_TYPE" | translate }}</mat-label>
       <mat-select>
         <mat-option
@@ -20,7 +20,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field >
       <mat-label>{{ "EDIT.SELECT_LEVEL" | translate }}</mat-label>
       <mat-select>
         <mat-option
@@ -62,14 +62,11 @@
           {{ "EDIT.EDIT" | translate }}
         </th>
         <td mat-cell mat-cell *matCellDef="let element">
-          <button
-            type="button"
-            class="edit-button"
-            (click)="onEditQuestion(element)"
-            (click)="openModal()"
-          >
-            {{ "EDIT.EDIT" | translate }}
-          </button>
+          <mat-icon  
+          class="edit-img" 
+          (click)="onEditQuestion(element)" 
+          (change)="getInputTextType($event)" 
+          (click)="openModal()" >edit</mat-icon>
         </td>
       </ng-container>
 
@@ -78,13 +75,7 @@
           {{ "EDIT.DELETE" | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
-          <button
-            (click)="onDeleteQuestion(element)"
-            type="button"
-            class="delete-button"
-          >
-            {{ "EDIT.DELETE" | translate }}
-          </button>
+          <mat-icon class="delete-img" (click)="onDeleteQuestion(element)">delete_outline</mat-icon>
         </td>
       </ng-container>
 
@@ -94,9 +85,7 @@
   </div>
 
   <div class="modal-close" id="modal">
-    <mat-stepper #stepper class="stepper-table">
-      <mat-step [stepControl]="firstFormGroup">
-        <!-- <form [formGroup]="formValue" class="modal-content">
+    <!-- <form [formGroup]="formValue" class="modal-content">
           <div class="form-group">
             <ng-template matStepLabel>Create Question</ng-template>
             <label class="textarea-label" for="text"
@@ -147,122 +136,576 @@
             </div>
           </div>
         </form> -->
+      <form [formGroup]="formValue" class="table-form">
+      <img src="../../../../assets/images/close.png" (click)="closeModal()" id="close-img" alt="close">
+      <ng-template matStepLabel>Create Question</ng-template>
+      <mat-form-field class="input-table">
+        <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+        <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+      </mat-form-field>
+      <mat-form-field class="input-table"  *ngIf="textInputType != '1'">
+        <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+        <input matInput  formControlName="englishLevel" name="englishLevel" />
+      </mat-form-field>
+      <mat-form-field  class="table-textarea" *ngIf="textInputType != '1'">
+        <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+        <textarea
+          class="form-control textarea"
+          matInput
+          no-resize
+          formControlName="text"
+          name="text"
+          [matTextareaAutosize]="true"
+        >
+        </textarea>
+      </mat-form-field>
 
-        <form [formGroup]="formValue" class="table-form">
-          <ng-template matStepLabel>Create Question</ng-template>
-
-          <mat-form-field appearance="fill" class="table-textarea">
-            <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
-            <textarea
-              class="form-control textarea"
-              matInput
-              formControlName="text"
-              name="text"
-              (change)="getText($event)"
-            >
-            </textarea>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill" class="table-input">
-            <mat-label>{{ "EDIT.SELECT_TYPE" | translate }}</mat-label>
-            <mat-select>
-              <mat-option
-                *ngFor="let type of types"
-                [value]="type.value"
-                matInput
-                name="type"
-                class="form-control input"
-                (click)="getType(type.value)"
-              >
-                {{ type.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
- 
-
-
-          <mat-form-field appearance="fill" class="table-input">
-            <mat-label>{{ "EDIT.SELECT_LEVEL" | translate }}</mat-label>
-            <mat-select>
-              <mat-option
-                *ngFor="let level of levels"
-                matInput
-                name=""
-                class="form-control input"
-                [value]="level.value"
-                (click)="getInputTextLevel($event)"
-              >
-                {{ level.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <div class="form-group">
-            <div class="form-group-wrapper">
-              <label for="file" class="form-group-file"
-                >Choose file to upload</label
-              >
-              <input
-                type="file"
-                hidden
-                id="file"
-                name="file"
-                (change)="getFile($event)"
-                multiple
-              />
-              <button (click)="submitFile()">Submit</button>
-            </div>
-          </div>
-
-          <div>
-            <button mat-button matStepperNext (click)="postQuestionDetails()">
-              Next
-            </button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="materialValue" label="Create answers">
-        <form [formGroup]="materialValue" class="form-answers">
-          <mat-form-field class="input-answer" appearance="fill">
-            <mat-label>Answer 1</mat-label>
-            <input matInput formControlName="answer1" name="answer1" />
-          </mat-form-field>
-          <mat-form-field class="input-answer" appearance="fill">
-            <mat-label>Answer 2</mat-label>
-            <input matInput formControlName="answer2" name="answer2" />
-          </mat-form-field>
-          <mat-form-field class="input-answer" appearance="fill">
-            <mat-label>Answer 3</mat-label>
-            <input matInput formControlName="answer3" name="answer3" />
-          </mat-form-field>
-          <mat-form-field class="input-answer" appearance="fill">
-            <mat-label>Answer 4</mat-label>
-            <input matInput formControlName="answer4" name="answer4" />
-          </mat-form-field>
-          <mat-form-field class="input-answer" appearance="fill">
-            <mat-label>Answer 5</mat-label>
-            <input matInput formControlName="answer5" name="answer5" />
-          </mat-form-field>
-          <div class="create-answers-btns">
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Confirm Test</ng-template>
-        <div class="confirm-test-wrap">
-          <h2>Please Confirm your test</h2>
-          <button>Confirm</button>
+      <div class="form-group" *ngIf="textInputType == '1'"> 
+        <div class="form-group-wrapper">
+          <label for="file" class="form-group-file" 
+            >{{"BUTTONS.UPLOAD_FILE" | translate}}</label
+          >
+          <input
+            type="file"
+            hidden
+            id="file"
+            name="file"
+            (change)="getFile($event)"
+            multiple
+          />
+          <button (click)="submitFile()">{{"BUTTONS.SUBMIT" | translate}}</button>
         </div>
-        <div class="confirm-test-btns">
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-          <button (click)="closeModal()">
-            {{ "EDIT.CLOSE" | translate }}
-          </button>
+      </div>
+      <form [formGroup]="materialValue" class="form-answers" *ngIf="textInputType != '3'">
+        <h4 class='form-answers__title' *ngIf="textInputType != '1'">{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+        <mat-form-field class="input-answer" *ngIf="textInputType != '1'">
+          <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+          <input matInput formControlName="answer1" name="answer1" />
+        </mat-form-field>
+        <mat-form-field class="input-answer" *ngIf="textInputType != '1'">
+          <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+          <input matInput formControlName="answer2" name="answer2" />
+        </mat-form-field>
+        <mat-form-field class="input-answer" *ngIf="textInputType != '1'">
+          <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+          <input matInput formControlName="answer3" name="answer3" />
+        </mat-form-field>
+        <mat-form-field class="input-answer" *ngIf="textInputType != '1'">
+          <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+          <input matInput formControlName="answer4" name="answer4" />
+        </mat-form-field>
+        <mat-form-field class="input-answer" *ngIf="textInputType != '1'">
+          <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+          <input matInput formControlName="answer5" name="answer5" />
+        </mat-form-field>
+        <div class="buttons" *ngIf="textInputType != '1'">
+          <button class="confirm-btn" (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+          <button class="edit-btn" (click)="onUpdateQuestionDetails()" >{{ "PROFILE.EDIT_QUESTION" | translate }}</button>
         </div>
-      </mat-step>
-    </mat-stepper>
+      </form>
+      <mat-stepper class="stepper-edit" linear #stepper *ngIf="textInputType == '1'">
+        <mat-step [stepControl]="firstFormGroup" [editable]="isEditable" class="scroll-edit" >
+          <div class="stepper-wrap">
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+              <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+            </mat-form-field>
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+              <input matInput  formControlName="englishLevel" name="englishLevel" />
+            </mat-form-field>
+            <mat-form-field  class="table-textarea">
+              <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+              <textarea
+                class="form-control textarea"
+                matInput
+                no-resize
+                formControlName="text"
+                name="text"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+            <form [formGroup]="materialValue" class="form-answers" >
+              <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+                <input matInput formControlName="answer1" name="answer1" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+                <input matInput formControlName="answer2" name="answer2" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+                <input matInput formControlName="answer3" name="answer3" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+                <input matInput formControlName="answer4" name="answer4" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+                <input matInput formControlName="answer5" name="answer5" />
+              </mat-form-field>
+              <div class="buttons">
+                <button class="confirm-btn" mat-button matStepperNext (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <div class="stepper-wrap">
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+              <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+            </mat-form-field>
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+              <input matInput  formControlName="englishLevel" name="englishLevel" />
+            </mat-form-field>
+            <mat-form-field  class="table-textarea">
+              <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+              <textarea
+                class="form-control textarea"
+                matInput
+                no-resize
+                formControlName="text"
+                name="text"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+            <form [formGroup]="materialValue" class="form-answers" >
+              <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+                <input matInput formControlName="answer1" name="answer1" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+                <input matInput formControlName="answer2" name="answer2" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+                <input matInput formControlName="answer3" name="answer3" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+                <input matInput formControlName="answer4" name="answer4" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+                <input matInput formControlName="answer5" name="answer5" />
+              </mat-form-field>
+              <div class="buttons">
+                <button class="confirm-btn" mat-button matStepperNext (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <div class="stepper-wrap">
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+              <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+            </mat-form-field>
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+              <input matInput  formControlName="englishLevel" name="englishLevel" />
+            </mat-form-field>
+            <mat-form-field  class="table-textarea">
+              <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+              <textarea
+                class="form-control textarea"
+                matInput
+                no-resize
+                formControlName="text"
+                name="text"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+            <form [formGroup]="materialValue" class="form-answers" >
+              <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+                <input matInput formControlName="answer1" name="answer1" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+                <input matInput formControlName="answer2" name="answer2" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+                <input matInput formControlName="answer3" name="answer3" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+                <input matInput formControlName="answer4" name="answer4" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+                <input matInput formControlName="answer5" name="answer5" />
+              </mat-form-field>
+              <div class="buttons">
+                <button class="confirm-btn" mat-button matStepperNext (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <div class="stepper-wrap">
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+              <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+            </mat-form-field>
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+              <input matInput  formControlName="englishLevel" name="englishLevel" />
+            </mat-form-field>
+            <mat-form-field  class="table-textarea">
+              <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+              <textarea
+                class="form-control textarea"
+                matInput
+                no-resize
+                formControlName="text"
+                name="text"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+            <form [formGroup]="materialValue" class="form-answers" >
+              <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+                <input matInput formControlName="answer1" name="answer1" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+                <input matInput formControlName="answer2" name="answer2" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+                <input matInput formControlName="answer3" name="answer3" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+                <input matInput formControlName="answer4" name="answer4" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+                <input matInput formControlName="answer5" name="answer5" />
+              </mat-form-field>
+              <div class="buttons">
+                <button class="confirm-btn" mat-button matStepperNext (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <div class="stepper-wrap">
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+              <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+            </mat-form-field>
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+              <input matInput  formControlName="englishLevel" name="englishLevel" />
+            </mat-form-field>
+            <mat-form-field  class="table-textarea">
+              <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+              <textarea
+                class="form-control textarea"
+                matInput
+                no-resize
+                formControlName="text"
+                name="text"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+            <form [formGroup]="materialValue" class="form-answers" >
+              <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+                <input matInput formControlName="answer1" name="answer1" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+                <input matInput formControlName="answer2" name="answer2" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+                <input matInput formControlName="answer3" name="answer3" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+                <input matInput formControlName="answer4" name="answer4" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+                <input matInput formControlName="answer5" name="answer5" />
+              </mat-form-field>
+              <div class="buttons">
+                <button class="confirm-btn" mat-button matStepperNext (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <div class="stepper-wrap">
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+              <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+            </mat-form-field>
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+              <input matInput  formControlName="englishLevel" name="englishLevel" />
+            </mat-form-field>
+            <mat-form-field  class="table-textarea">
+              <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+              <textarea
+                class="form-control textarea"
+                matInput
+                no-resize
+                formControlName="text"
+                name="text"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+            <form [formGroup]="materialValue" class="form-answers" >
+              <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+                <input matInput formControlName="answer1" name="answer1" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+                <input matInput formControlName="answer2" name="answer2" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+                <input matInput formControlName="answer3" name="answer3" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+                <input matInput formControlName="answer4" name="answer4" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+                <input matInput formControlName="answer5" name="answer5" />
+              </mat-form-field>
+              <div class="buttons">
+                <button class="confirm-btn" mat-button matStepperNext (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <div class="stepper-wrap">
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+              <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+            </mat-form-field>
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+              <input matInput  formControlName="englishLevel" name="englishLevel" />
+            </mat-form-field>
+            <mat-form-field  class="table-textarea">
+              <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+              <textarea
+                class="form-control textarea"
+                matInput
+                no-resize
+                formControlName="text"
+                name="text"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+            <form [formGroup]="materialValue" class="form-answers" >
+              <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+                <input matInput formControlName="answer1" name="answer1" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+                <input matInput formControlName="answer2" name="answer2" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+                <input matInput formControlName="answer3" name="answer3" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+                <input matInput formControlName="answer4" name="answer4" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+                <input matInput formControlName="answer5" name="answer5" />
+              </mat-form-field>
+              <div class="buttons">
+                <button class="confirm-btn" mat-button matStepperNext (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <div class="stepper-wrap">
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+              <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+            </mat-form-field>
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+              <input matInput  formControlName="englishLevel" name="englishLevel" />
+            </mat-form-field>
+            <mat-form-field  class="table-textarea">
+              <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+              <textarea
+                class="form-control textarea"
+                matInput
+                no-resize
+                formControlName="text"
+                name="text"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+            <form [formGroup]="materialValue" class="form-answers" >
+              <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+                <input matInput formControlName="answer1" name="answer1" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+                <input matInput formControlName="answer2" name="answer2" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+                <input matInput formControlName="answer3" name="answer3" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+                <input matInput formControlName="answer4" name="answer4" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+                <input matInput formControlName="answer5" name="answer5" />
+              </mat-form-field>
+              <div class="buttons">
+                <button class="confirm-btn" mat-button matStepperNext (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <div class="stepper-wrap">
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+              <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+            </mat-form-field>
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+              <input matInput  formControlName="englishLevel" name="englishLevel" />
+            </mat-form-field>
+            <mat-form-field  class="table-textarea">
+              <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+              <textarea
+                class="form-control textarea"
+                matInput
+                no-resize
+                formControlName="text"
+                name="text"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+            <form [formGroup]="materialValue" class="form-answers" >
+              <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+                <input matInput formControlName="answer1" name="answer1" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+                <input matInput formControlName="answer2" name="answer2" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+                <input matInput formControlName="answer3" name="answer3" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+                <input matInput formControlName="answer4" name="answer4" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+                <input matInput formControlName="answer5" name="answer5" />
+              </mat-form-field>
+              <div class="buttons">
+                <button class="confirm-btn" mat-button matStepperNext (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+        <mat-step [editable]="isEditable">
+          <div class="stepper-wrap">
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
+              <input matInput (change)="getInputTextType($event)" formControlName="type" name="type"/>
+            </mat-form-field>
+            <mat-form-field class="input-table" >
+              <mat-label>{{ "EDIT.ENG_LVL" | translate }}:</mat-label>
+              <input matInput  formControlName="englishLevel" name="englishLevel" />
+            </mat-form-field>
+            <mat-form-field  class="table-textarea">
+              <mat-label>{{ "EDIT.TEXT" | translate }}:</mat-label>
+              <textarea
+                class="form-control textarea"
+                matInput
+                no-resize
+                formControlName="text"
+                name="text"
+                [matTextareaAutosize]="true"
+              >
+              </textarea>
+            </mat-form-field>
+            <form [formGroup]="materialValue" class="form-answers" >
+              <h4 class='form-answers__title'>{{"EDIT.TITLE_ANSWER" | translate}}</h4>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_1" | translate}}</mat-label>
+                <input matInput formControlName="answer1" name="answer1" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_2" | translate}}</mat-label>
+                <input matInput formControlName="answer2" name="answer2" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_3" | translate}}</mat-label>
+                <input matInput formControlName="answer3" name="answer3" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_4" | translate}}</mat-label>
+                <input matInput formControlName="answer4" name="answer4" />
+              </mat-form-field>
+              <mat-form-field class="input-answer" >
+                <mat-label>{{"EDIT.ANSWER_5" | translate}}</mat-label>
+                <input matInput formControlName="answer5" name="answer5" />
+              </mat-form-field>
+              <div class="buttons">
+                <!-- <button class="confirm-btn" mat-button matStepperNext (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button> -->
+                <button class="confirm-btn" mat-button (click)="postQuestionDetails()" (click)="closeModal()" (click)="stepper.reset()">{{ "BUTTONS.ADD_AND_CONFIRM" | translate }}</button>
+              </div>
+            </form>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </form>
   </div>
 </div>

@@ -34,14 +34,8 @@ export class LoginComponent implements OnInit {
     Observable<AuthenticatedResult>
   >{};
 
-  constructor(
-    private store: Store<State>,
-    public oidcSecurityService: OidcSecurityService,
-    private route: Router,
-    private storage: StorageService
-  ) {
-    this._configurations = this.oidcSecurityService.getConfigurations();
-    this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$;
+  constructor(private store: Store<State>, public oidcSecurityService: OidcSecurityService, private route: Router, private storage: StorageService
+  ) {this._configurations = this.oidcSecurityService.getConfigurations();  this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$;
 
     this.oidcSecurityService
       .checkAuth()

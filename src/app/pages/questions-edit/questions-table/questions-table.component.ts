@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
@@ -16,6 +16,9 @@ import * as getAllQuestionsActions from 'src/app/redux/actions/get-all-questions
 import { QuestionType } from 'src/app/core/models/test.model';
 import { getAllQuestions } from 'src/app/redux/selectors/get-all-questions.selectors';
 import { SpeakingService } from 'src/app/core/services/speaking/speaking.service';
+import { environment } from 'src/environments/environment';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { ErrorService } from 'src/app/core/services/error.service';
 
 export class QuestionModel {
   questionId: string = '';
@@ -30,6 +33,15 @@ export class QuestionsModelForPost {
   text: string = '';
   type: number = 0;
   englishLevel: string = '';
+  audioId: any;
+  answers:
+    | [
+        {
+          text: string;
+          isCorrect: boolean;
+        }
+      ]
+    | undefined;
 }
 
 interface Types {
@@ -46,10 +58,12 @@ interface Levels {
   selector: 'app-questions-table',
   templateUrl: './questions-table.component.html',
   styleUrls: ['./questions-table.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class QuestionsTableComponent implements OnInit {
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
+  isEditable!: false;
 
   questions$: Observable<Question[]> | undefined;
 
@@ -60,6 +74,7 @@ export class QuestionsTableComponent implements OnInit {
   dataSource: any;
   type = '';
   level = '';
+  typeForAudio: any;
 
   types: Types[] = [
     { value: QuestionType.Grammar, viewValue: 'Grammar' },
@@ -85,7 +100,10 @@ export class QuestionsTableComponent implements OnInit {
   formValue!: FormGroup;
   showAdd!: boolean;
   showUpdate!: boolean;
-  materialValue!: FormGroup
+  materialValue!: FormGroup;
+  file = '';
+  audioIdForEdit = '';
+  guid = `00000000-0000-0000-0000-000000000000`;
 
   constructor(
     private questionsLoadingService: QuestionsLoadingService,
@@ -95,7 +113,9 @@ export class QuestionsTableComponent implements OnInit {
     private questionsService: QuestionsService,
     private store: Store<GetAllQuestionsState>,
     private _formBuilder: FormBuilder,
-    private speakingService: SpeakingService
+    private speakingService: SpeakingService,
+    private auth: AuthenticationService,
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {
@@ -119,13 +139,13 @@ export class QuestionsTableComponent implements OnInit {
       answer2: [''],
       answer3: [''],
       answer4: [''],
-      answer5: ['']
-    })
+      answer5: [''],
+    });
   }
 
-  textFromArea = ''
-  textInputType = ''
-  textInputLevel = ''
+  questionId = '';
+  textInputType: any;
+  objForEdit: any;
 
   onAddQuestion() {
     this.formValue.reset();
@@ -133,53 +153,83 @@ export class QuestionsTableComponent implements OnInit {
     this.showUpdate = false;
   }
 
-  file = '';
   getFile(event: any) {
     this.file = event.target.files[0];
   }
   submitFile() {
-    this.speakingService.uploadFile(this.file)
+    const formData = new FormData();
+    formData.append('uploadedFile', this.file);
+
+    this.textInputType === '1'
+      ? fetch(
+          `${
+            environment.api_URL
+          }/api/audio?AudioDescription=randomText${Math.floor(
+            Math.random() * 10000
+          )}`,
+          {
+            method: 'POST',
+            body: formData,
+            headers: {
+              Authorization: `Bearer ${this.auth.token[1]}`,
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then((result) => {
+            this.audioIdForEdit = result.audioId;
+          })
+      : '';
   }
-  getText(event: any){
-    this.textFromArea = event.target.value
-  }
+
   getInputTextType(event: any) {
-    this.textInputType = event.target.value
+    this.textInputType = event.target.value;
   }
   getInputTextLevel(event: any) {
-    this.textInputLevel = event.target.innerHTML.trim()
+    // this.textInputLevel = event.target.innerHTML.trim();
   }
 
   postQuestionDetails() {
-
-    const objPost = {
-      text: this.textFromArea,
-      type: +this.textInputType,
-      englishLevel: this.textInputLevel,
-      questionStatus: 0,
-    }
-    console.log(objPost);
-    
-
-    this.questionsLoadingService.postQuestion(objPost).subscribe(
-      (res: any) => {
-        console.log(res);
-        // const ref = document.getElementById('cancel');
-        // ref?.click();
-        // this.formValue.reset();
-        // this.closeModal();
-      },
-      (error) => {
-        console.log('Something went wrong.');
-      }
-    );
-    /* this.questionModel.id = this.formValue.value.id; */
     this.questionsModelForPost.text = this.formValue.value.text;
     this.questionsModelForPost.type = +this.formValue.value.type;
     this.questionsModelForPost.englishLevel = this.formValue.value.englishLevel;
 
-    console.log(this.questionsModelForPost);
-    
+    let answersList = [
+      {
+        text: this.materialValue.value.answer1,
+        isCorrect: true,
+      },
+      {
+        text: this.materialValue.value.answer2,
+        isCorrect: false,
+      },
+      {
+        text: this.materialValue.value.answer3,
+        isCorrect: false,
+      },
+      {
+        text: this.materialValue.value.answer4,
+        isCorrect: false,
+      },
+      {
+        text: this.materialValue.value.answer5,
+        isCorrect: false,
+      },
+    ];
+
+    const objPost = {
+      text: this.questionsModelForPost.text,
+      type: this.questionsModelForPost.type,
+      englishLevel: this.questionsModelForPost.englishLevel,
+      audioId: this.audioIdForEdit ? this.audioIdForEdit : this.guid,
+      answers: answersList.filter((el: any) => !!el.text),
+    };
+
+    this.questionsLoadingService.postQuestion(objPost).catch((error) => {
+      this.errorService.logError(
+        `Error post: ${error}` || 'Something went wrong'
+      );
+    });
   }
 
   getAllQuestions() {
@@ -192,46 +242,81 @@ export class QuestionsTableComponent implements OnInit {
   onDeleteQuestion(question: any) {
     this.questionsLoadingService
       .deleteQuestion(question.questionId)
-      .subscribe((res) => {
-        console.log(res);
+      .subscribe(() => {
+        return this.getAllQuestions();
       });
   }
 
-  // FIX: method edit return questionId not Id. QuestionModel changed on any for short!!!
   onEditQuestion(question: any) {
     this.showAdd = false;
     this.showUpdate = true;
-    
-    this.materialValue.controls['answer1'].setValue(question.text);
-    this.materialValue.controls['answer2'].setValue(question.text);
-    this.materialValue.controls['answer3'].setValue(question.text);
-    this.materialValue.controls['answer4'].setValue(question.text);
-    this.materialValue.controls['answer5'].setValue(question.text);
+
+    for (let i = 0; i < question.answers.length; i++) {
+      this.materialValue.controls[`answer${i + 1}`].setValue(
+        question.answers[i].text
+      );
+    }
+
+    this.formValue.controls['type'].setValue(question.type);
 
     this.formValue.controls['text'].setValue(question.text);
-    this.formValue.controls['englishLevel'].setValue(this.questionsModelForPost.englishLevel)
-    // this.questionsModelForPost.text = this.formValue.value.text;
-    // this.questionsModelForPost.type = +this.formValue.value.type;
-    // this.questionsModelForPost.englishLevel = this.formValue.value.englishLevel;
-    
-    
+    this.formValue.controls['englishLevel'].setValue(question.englishLevel);
 
+    this.questionId = '';
+    this.questionId = question.questionId;
   }
 
   onUpdateQuestionDetails() {
-    this.questionModel.questionId = this.formValue.value.id;
+    this.questionModel.questionId = this.questionId;
     this.questionModel.text = this.formValue.value.text;
     this.questionModel.type = this.formValue.value.type;
     this.questionModel.englishLevel = this.formValue.value.englishLevel;
 
-    this.questionsLoadingService
-      .updateQuestion(this.questionModel)
-      .subscribe((res) => {
-        let ref = document.getElementById('cancel');
+    let answersList = [
+      {
+        text: this.materialValue.value.answer1,
+        isCorrect: true,
+      },
+      {
+        text: this.materialValue.value.answer2,
+        isCorrect: false,
+      },
+      {
+        text: this.materialValue.value.answer3,
+        isCorrect: false,
+      },
+      {
+        text: this.materialValue.value.answer4,
+        isCorrect: false,
+      },
+      {
+        text: this.materialValue.value.answer5,
+        isCorrect: false,
+      },
+    ];
+
+    this.objForEdit = {
+      questionId: this.questionModel.questionId,
+      text: this.questionModel.text,
+      type: this.questionModel.type,
+      englishLevel: this.questionModel.englishLevel,
+      audioId: this.audioIdForEdit ? this.audioIdForEdit : this.guid,
+      answers: answersList.filter((el: any) => !!el.text),
+    };
+
+    this.questionsLoadingService.updateQuestion(this.objForEdit).subscribe(
+      (res) => {
+        let ref = document.getElementById('close-img');
         ref?.click();
         this.formValue.reset();
         this.closeModal();
-      });
+        this.formValue.reset();
+        this.materialValue.reset();
+      },
+      (error) => {
+        this.errorService.logError(`Something went wrong`);
+      }
+    );
   }
 
   openModal() {
@@ -245,6 +330,9 @@ export class QuestionsTableComponent implements OnInit {
     modal?.classList.remove('modal-open');
     modal?.classList.add('modal-close');
     this.formValue.reset();
+    this.materialValue.reset();
+    this.textInputType = '';
+    this.audioIdForEdit = '';
   }
 
   addData() {
@@ -259,7 +347,6 @@ export class QuestionsTableComponent implements OnInit {
     this.dataSource.pop();
     this.table.renderRows();
   }
-
 
   getQuestions() {
     this.store.dispatch(
