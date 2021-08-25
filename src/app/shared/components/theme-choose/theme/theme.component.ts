@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { getUrlName } from 'src/app/shared/utils/utils';
-import { QuestionType } from '../../../../core/models/test.model'
+import { QuestionType } from '../../../../core/models/test.model';
 
 @Component({
   selector: 'app-theme',
   templateUrl: './theme.component.html',
-  styleUrls: ['./theme.component.scss']
+  styleUrls: ['./theme.component.scss'],
 })
 export class ThemeComponent implements OnInit {
+  writingType = QuestionType.Writing;
+  speakingType = QuestionType.Speaking;
 
-  writingType = QuestionType.Writing
-  speakingType = QuestionType.Speaking
+  url = getUrlName();
 
-  url = getUrlName()
-
-  selectTheme(event: { target: any; }){
+  selectTheme(event: { target: any }) {
     console.log(event.target.innerText);
   }
 
@@ -28,7 +27,7 @@ export class ThemeComponent implements OnInit {
     {
       themeName: 'test1',
     },
-  ]
+  ];
   themesSpeaking = [
     {
       themeName: 'test2',
@@ -39,13 +38,9 @@ export class ThemeComponent implements OnInit {
     {
       themeName: 'test2',
     },
-  ]
+  ];
 
-  
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

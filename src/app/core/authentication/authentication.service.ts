@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { deleteCookieParams } from 'src/app/shared/utils/cookies';
+import { deleteCookieToken } from 'src/app/shared/utils/cookies';
 
 export const TOKEN = 'token';
 
@@ -31,7 +31,7 @@ export class AuthenticationService implements OnInit {
   // }
 
   deleteCookie() {
-    deleteCookieParams();
+    deleteCookieToken();
   }
 
   get token() {
