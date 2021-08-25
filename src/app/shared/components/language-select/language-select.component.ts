@@ -1,14 +1,15 @@
 import { LanguageService } from './../../../core/services/language.service';
-import { environment } from 'src/environments/environment';
-import { StorageService } from './../../../core/services/storage.service';
-import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { LANGUAGE_ENG, LANGUAGE_RU } from './language-select.constants';
-import { OidcSecurityService, OpenIdConfiguration } from 'angular-auth-oidc-client';
+import {
+  OidcSecurityService,
+  OpenIdConfiguration,
+} from 'angular-auth-oidc-client';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-language-select',
   templateUrl: './language-select.component.html',
   styleUrls: ['./language-select.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSelectComponent implements OnInit {
   private _configurations: OpenIdConfiguration[] = <OpenIdConfiguration[]>{};
@@ -25,13 +26,14 @@ export class LanguageSelectComponent implements OnInit {
     this.languageService.changeLanguage(target);
   }
 
-  constructor(public languageService: LanguageService, private oidcSecurityService: OidcSecurityService) {
+  constructor(
+    public languageService: LanguageService,
+    private oidcSecurityService: OidcSecurityService
+  ) {
     this._configurations = this.oidcSecurityService.getConfigurations();
   }
 
   logout(configId: string) {
     this.oidcSecurityService.logoff(configId);
   }
-  
 }
-
