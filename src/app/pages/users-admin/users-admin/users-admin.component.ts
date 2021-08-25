@@ -40,9 +40,8 @@ export class UsersAdminComponent implements OnInit, OnDestroy {
   users$: Hr[] | undefined;
 
   couchId: string = '';
-
   usersList: UserModelAdmin[] = [];
-
+  
   displayedColumns: string[] = [
     'date',
     'role',
@@ -52,33 +51,34 @@ export class UsersAdminComponent implements OnInit, OnDestroy {
   ];
   dataSource: TestsDoneModel[] = [];
   dataUsers: UserModelAdmin[] = [];
-
+  
   testsDoneModel: TestsDoneModel = new TestsDoneModel();
   userModel: UserModelAdmin = new UserModelAdmin();
 
+  
   @ViewChild(MatTable) table!: MatTable<TestsDoneModel>;
-
+  
   userListMatTabDataSource = new MatTableDataSource<TestsDoneModel>(
     this.dataSource
-  );
-
-  openEdit = false;
-  formValue!: FormGroup;
-  showAdd!: boolean;
-  showUpdate!: boolean;
-  unassignedTestsSubscription!: Subscription;
-  usersSubscription!: Subscription;
-
-  coachFormValue!: string;
-
-  constructor(
-    private usersAdminService: UsersAdminService,
-    private formBuilder: FormBuilder,
-    private errorService: ErrorService
-  ) {}
-
-  ngOnInit(): void {
-    this.unassignedTestsSubscription = this.usersAdminService
+    );
+    
+    openEdit = false;
+    formValue!: FormGroup;
+    showAdd!: boolean;
+    showUpdate!: boolean;
+    unassignedTestsSubscription!: Subscription;
+    usersSubscription!: Subscription;
+    
+    coachFormValue!: string;
+    
+    constructor(
+      private usersAdminService: UsersAdminService,
+      private formBuilder: FormBuilder,
+      private errorService: ErrorService
+      ) {}
+      
+      ngOnInit(): void {
+        this.unassignedTestsSubscription = this.usersAdminService
       .getUnassignedTests()
       .subscribe((testsDone$) => {
         this.testsDoneList = testsDone$;

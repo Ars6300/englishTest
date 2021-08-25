@@ -1,6 +1,5 @@
 <div class="wrapper">
   <app-timer *ngIf="isTest()" (timeEnded)="timerEnded()"></app-timer>
-  <!-- <app-timer *ngIf="startTime$ | async"></app-timer> -->
   <button class="complete" *ngIf="isTest()" (click)="onCompleteClick()">
     {{ "BUTTONS.COMPLETE_TEST" | translate }}
   </button>

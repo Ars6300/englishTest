@@ -13,7 +13,6 @@ export const LISTENING_PATH = 'listening';
 export const LISTENING_MODULE = './modules/listening/listening.module';
 export const SPEAKING_PATH = 'speaking';
 export const SPEAKING_MODULE = './modules/speaking/speaking.module';
-export const RESULT_PATH = 'result';
 export const ACCOUNT_PATH = 'account'
 export const RESULT_MODULE = './modules/result/result.module';
 export const ERROR_PATH = 'error';
@@ -35,8 +34,6 @@ export const appRoutingLoadChildren = {
     import(LISTENING_MODULE).then((m) => m.ListeningModule),
   speakingModule: () => 
     import(SPEAKING_MODULE).then((m) => m.SpeakingModule),
-  resultModule: () => 
-    import(RESULT_MODULE).then((m) => m.ResultModule),
   accountModule: () => 
     import(ACCOUNT_MODULE).then((m) => m.AccountModule)
 };

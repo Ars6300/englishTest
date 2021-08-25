@@ -15,7 +15,6 @@ import { NOTIFICATION_PATH, PROFILE_PATH } from './modules/profile/profile-routi
           responseType: 'code',
           silentRenew: true,
           useRefreshToken: true,
-          // logLevel: LogLevel.Debug,
         }
       ],
     }),

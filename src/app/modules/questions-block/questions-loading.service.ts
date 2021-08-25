@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 import { Answer, Question } from 'src/app/core/models/questions.model';
 import { QuestionModel } from 'src/app/pages/questions-edit/questions-table/questions-table.component';
@@ -21,7 +22,7 @@ export class QuestionsLoadingService {
   private questions: Question[] = [];
   private answers: Answer[] = [];
 
-  constructor(private http: HttpClient, private store: Store<TestDataState>) {}
+  constructor(private http: HttpClient, private store: Store<TestDataState>, private auth: AuthenticationService) {}
   tests$ = this.store.select(getAllTests);
   testsData = [];
 
@@ -41,22 +42,19 @@ export class QuestionsLoadingService {
   }
 
   postQuestion(data: any) {
-    console.log(data);
-    return this.http
-      .post<any>(`${environment.api_URL}/api/question`, data)
-      .pipe(
-        map((res: any) => {
-          return res;
-        })
-      );
+    return fetch("https://localhost:44356/api/question/withAnswers", {
+      headers: {
+        "accept": "application/json",
+        "authorization": `Bearer ${this.auth.token[1]}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+      method: "POST",
+    });
+
   }
-  // getQuestion() {
-  //   return this.http.get<any>('srcenvironmentsenvironment.ts').pipe(
-  //     map((res: QuestionModel) => {
-  //       return res;
-  //     })
-  //   );
-  // }
+  
+  
 
   updateQuestion(data: QuestionModel) {
     console.log(data);
@@ -78,7 +76,6 @@ export class QuestionsLoadingService {
 
   downloadAudio(audioId: any): Observable<Blob> {
     const url = `${environment.api_URL}/api/audio/id?audioId=${audioId}`;
-    // https://localhost:44356/api/audio?audioId=E8C5DD54-E297-4227-A026-C766453E7001&testId=5f56d726-1f15-4234-9ec7-190e36d22ad1
     return this.http.get(url, { responseType: 'blob' }).pipe(
       take(1),
       filter((audio) => !!audio)

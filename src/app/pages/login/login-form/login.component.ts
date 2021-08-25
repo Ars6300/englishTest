@@ -46,9 +46,6 @@ export class LoginComponent implements OnInit {
       .pipe(take(1))
       .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
         let authToken = this.oidcSecurityService.getAccessToken();
-        console.log(authToken);
-        console.log(isAuthenticated);
-
         if (isAuthenticated) {
           setCookieParams(TOKEN, authToken, environment.COOKIE_KEEP_SECONDS);
           this.route.navigate(['/profile']);

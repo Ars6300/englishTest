@@ -5,7 +5,7 @@
   width: 100%;
 
   &-navigation {
-    width: 25vw;
+    width: 33%;
     height: 100vh;
     background-color: var(--color-light);
     padding: 100px 0 0 70px;
@@ -64,7 +64,7 @@
 
   &-view {
     position: absolute;
-    width: 75vw;
+    width: 67%;
     right: 0;
 
     @include _1200 {

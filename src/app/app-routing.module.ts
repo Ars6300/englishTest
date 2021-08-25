@@ -8,7 +8,6 @@ import { GrammarModule } from './modules/grammar/grammar.module';
 import { ListeningModule } from './modules/listening/listening.module';
 import { WritingModule } from './modules/writing/writing.module';
 import { SpeakingModule } from './modules/speaking/speaking.module';
-import { ResultModule } from './modules/result/result.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -26,7 +25,6 @@ import {
   SPEAKING_PATH,
   SPEAKING_MODULE,
   RESULT_MODULE,
-  RESULT_PATH,
   WRITING_PATH,
   WRITING_MODULE,
   appRoutingLoadChildren,
@@ -65,10 +63,6 @@ const routes: Routes = [
     loadChildren: appRoutingLoadChildren.speakingModule,
   },
   {
-    path: RESULT_PATH,
-    loadChildren: appRoutingLoadChildren.resultModule,
-  },
-  {
     path: ACCOUNT_PATH,
     loadChildren: appRoutingLoadChildren.accountModule
   },
@@ -92,7 +86,6 @@ const routes: Routes = [
     SpeakingModule,
     SharedModule,
     ProfileModule,
-    ResultModule,
     AccountModule,
     RouterModule.forRoot(routes),
   ],
