@@ -9,7 +9,11 @@ import { AuthenticationService } from '../../authentication/authentication.servi
   providedIn: 'root',
 })
 export class TestsService {
-  constructor(private http: HttpClient, private auth: AuthenticationService, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private auth: AuthenticationService,
+    private router: Router
+  ) {}
 
   getTests(englishLevel: string) {
     return this.http.post(`${environment.api_URL}/api/test`, {
@@ -20,13 +24,18 @@ export class TestsService {
   completeTest() {
     // return this.http.put(`${environment.api_URL}/api/test/completeUser`, {});
 
-    return fetch("https://localhost:44356/api/test/completeUser", {method: "PUT", body: '',
+    return fetch(`${environment.api_URL}/api/test/completeUser`, {
+      method: 'PUT',
+      body: '',
       headers: {
-        Authorization: `Bearer ${this.auth.token[1]}`
-      }
+        Authorization: `Bearer ${this.auth.token[1]}`,
+      },
     }).then(() => {
-      this.router.navigate([PROFILE_PATH])
-    })
+      this.router.navigate([PROFILE_PATH]);
+    });
   }
 
+  getLastTestTime() {
+    return this.http.get(`${environment.api_URL}/api/test/lastTestTime`);
+  }
 }

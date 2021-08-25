@@ -24,10 +24,11 @@
     "TESTS": "Tests"
   },
   "SELECTORS": {
-    "START_BTN": "Start"
+    "START_BTN": "Start",
+    "AVAILABLE": "Next test available in"
   },
   "NAVIGATION": {
-    "GRAMMAR": "Grammar Test",
+    "GRAMMAR": "Grammar",
     "LISTENING": "Listening",
     "WRITING": "Essay",
     "SPEAKING": "Speaking"
