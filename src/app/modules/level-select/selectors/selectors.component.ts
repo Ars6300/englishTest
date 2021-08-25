@@ -46,8 +46,8 @@ export class SelectorsComponent implements OnInit, OnDestroy {
     this.lastTestTimeSubscription = this.testService
       .getLastTestTime()
       .subscribe((data: any) => {
+        console.log(data);
         this.allowStartTest = data.allowStartTest;
-        var d = new Date();
         this.nextTestTime = this.addDays(data.lastTestTime, 1);
       });
   }

@@ -10,7 +10,7 @@
     </button>
     <button
       class="selectors-container-button"
-      [disabled]="!allowStartTest"
+      [disabled]="!allowStartTest || level === ''"
       (click)="startTest()"
     >
       <span *ngIf="allowStartTest; else notAvailable">
