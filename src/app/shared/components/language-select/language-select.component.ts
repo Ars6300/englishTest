@@ -1,3 +1,8 @@
+import {
+  deleteCookieRole,
+  deleteCookieToken,
+} from 'src/app/shared/utils/cookies';
+import { StorageService } from 'src/app/core/services/storage.service';
 import { LanguageService } from './../../../core/services/language.service';
 import {
   OidcSecurityService,
@@ -28,12 +33,16 @@ export class LanguageSelectComponent implements OnInit {
 
   constructor(
     public languageService: LanguageService,
-    private oidcSecurityService: OidcSecurityService
+    private oidcSecurityService: OidcSecurityService,
+    private storage: StorageService
   ) {
     this._configurations = this.oidcSecurityService.getConfigurations();
   }
 
   logout(configId: string) {
     this.oidcSecurityService.logoff(configId);
+    this.storage.clearSession();
+    deleteCookieToken();
+    deleteCookieRole();
   }
 }
