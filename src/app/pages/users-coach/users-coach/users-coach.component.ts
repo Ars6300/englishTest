@@ -216,5 +216,13 @@ export class UsersCoachComponent implements OnInit {
       .subscribe((res: any) => {});
 
     this.closeModal();
+
+    this.removeItem(this.testsModel.testId);
+  }
+
+  removeItem(id: string) {
+    this.dataSource = this.dataSource.filter((test) => test.testId !== id);
+    this.testsListMatTabDataSource.data = this.dataSource;
+    return this.testsListMatTabDataSource.data;
   }
 }

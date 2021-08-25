@@ -124,7 +124,7 @@ export class UsersAdminComponent implements OnInit, OnDestroy {
         this.coachFormValue = '';
       });
 
-    this.removeItem(this.testsDoneModel.userId);
+    this.removeItem(this.testsDoneModel.testId);
   }
 
   onAssignCheck(test: TestsDoneModel) {
@@ -162,7 +162,9 @@ export class UsersAdminComponent implements OnInit, OnDestroy {
   }
 
   removeItem(id: string) {
-    this.dataSource = this.dataSource.filter((user) => user.userId !== id);
+    this.dataSource = this.dataSource.filter((test) => test.testId !== id);
+    this.userListMatTabDataSource.data = this.dataSource;
+    return this.userListMatTabDataSource.data;
   }
 
   applyFilter(event: any) {
