@@ -3,11 +3,16 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { environment } from 'src/environments/environment';
-
 @Injectable({
   providedIn: 'root',
 })
 export class UsersCoachService {
+
+  header = new HttpHeaders().set(
+    'Authorization',
+    `Bearer ${this.auth.token[1]}`
+  );;
+  
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
   getAssignedTests(): any {
@@ -22,43 +27,31 @@ export class UsersCoachService {
       .then((data) => {
         console.log(data);
       }); */
-    let header = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.auth.token[1]}`
-    );
+ 
     return this.http.get<string>(
       `${environment.api_URL}/api/test/assignedToCouch`,
-      { headers: header }
+      { headers: this.header }
     );
   }
 
   getResultsForCoach(testId: string): any {
-    let header = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.auth.token[1]}`
-    );
+    
     return this.http.get<string>(
       `${environment.api_URL}/api/test/resultForCouch?testId=${testId}`,
-      { headers: header }
+      { headers: this.header }
     );
   }
 
   getWritingText(id: string, testId: string): any {
-    let header = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.auth.token[1]}`
-    );
+    
     return this.http.get<any>(
       `${environment.api_URL}/api/writing?writingId=${id}&testId=${testId}`,
-      { headers: header }
+      { headers: this.header }
     );
   }
 
   estimateTest(userAnswerId: string, mark: number) {
-    let header = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.auth.token[1]}`
-    );
+    
     return this.http
       .post<any>(
         `${environment.api_URL}/api/userAnswer/estimate`,
@@ -66,7 +59,7 @@ export class UsersCoachService {
           mark,
           userAnswerId,
         },
-        { headers: header }
+        { headers: this.header }
       )
       .pipe(
         map((res: any) => {
@@ -76,10 +69,7 @@ export class UsersCoachService {
   }
 
   completeCoach(testId: string, comment: string) {
-    let header = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.auth.token[1]}`
-    );
+  
     return this.http
       .put<any>(
         `${environment.api_URL}/api/test/completeCouch`,
@@ -87,7 +77,7 @@ export class UsersCoachService {
           testId,
           comment,
         },
-        { headers: header }
+        { headers: this.header }
       )
       .pipe(
         map((res: any) => {

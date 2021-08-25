@@ -11,35 +11,32 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UsersAdminService {
-  constructor(private http: HttpClient, private auth: AuthenticationService) {}
-
-  getUnassignedTests(): Observable<Admin[]> {
-    let header = new HttpHeaders().set(
+  
+  header = new HttpHeaders().set(
       'Authorization',
       `Bearer ${this.auth.token[1]}`
     );
+
+  constructor(private http: HttpClient, private auth: AuthenticationService) {}
+
+  getUnassignedTests(): Observable<Admin[]> {
+    
     return this.http.get<Admin[]>(
       `${environment.api_URL}/api/test/unassignedToCouch`,
-      { headers: header }
+      { headers: this.header }
     );
   }
 
   getUsers(): Observable<Hr[]> {
-    let header = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.auth.token[1]}`
-    );
+    
     return this.http.get<Hr[]>(
       `${environment.api_URL}/api/users?Page=0&Skip=10&Take=10&Role=couch`,
-      { headers: header }
+      { headers: this.header }
     );
   }
 
   postAssignCheck(testId: string, couchId: string) {
-    let header = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.auth.token[1]}`
-    );
+   
     return this.http
       .put<any>(
         `${environment.api_URL}/api/test/assignToCouch?TestId`,
@@ -47,7 +44,7 @@ export class UsersAdminService {
           testId,
           couchId,
         },
-        { headers: header }
+        { headers: this.header }
       )
       .pipe(
         map((res: any) => {

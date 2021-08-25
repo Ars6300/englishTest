@@ -8,30 +8,29 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class UsersHrService {
-  constructor(private http: HttpClient, private auth: AuthenticationService) {}
-
-  getUsers(): Observable<Hr[]> {
-    let header = new HttpHeaders().set(
+export class UsersHrService { 
+  
+  header = new HttpHeaders().set(
       'Authorization',
       `Bearer ${this.auth.token[1]}`
     );
+  constructor(private http: HttpClient, private auth: AuthenticationService) {}
+
+  getUsers(): Observable<Hr[]> {
+   
     return this.http.get<Hr[]>(
       `${environment.api_URL}/api/users?Page=0&Skip=10&Take=40`,
-      { headers: header }
+      { headers: this.header }
     );
   }
 
   assignTest(userId: string, level: string) {
-    let header = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.auth.token[1]}`
-    );
+
     return this.http
       .put<any>(
         `${environment.api_URL}/api/test/assignToUser`,
         { userId, level },
-        { headers: header }
+        { headers: this.header }
       )
       .pipe(
         map((res: any) => {
@@ -55,13 +54,10 @@ export class UsersHrService {
   } */
 
   allowStartTest(userId: string) {
-    let header = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.auth.token[1]}`
-    );
+   
     return this.http
       .put(`${environment.api_URL}/api/users/allowStart?userId=${userId}`, {
-        headers: header,
+        headers: this.header,
       })
       .subscribe((res) => {
         console.log(res);
