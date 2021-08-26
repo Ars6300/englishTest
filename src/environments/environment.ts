@@ -8,6 +8,8 @@ export const environment = {
   ...commonEnvironment,
   production: false,
   api_URL: 'https://localhost:44356',
+  auth_url: 'https://localhost:5001',
+  local_url: 'https://localhost:4200',
 };
 
 /*
