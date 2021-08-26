@@ -14,9 +14,9 @@ export class ProfileComponent implements OnInit {
   tooltipPosition: TooltipPosition = 'after';
   ableToEditRoles = ['couch'];
   ableToSeeUsers = ['hr'];
-  userRole = ['cser'];
+  userRole = ['user'];
   adminRole = ['admin'];
-  assigmentsRoles = ['hr', 'admin'];
+  assigmentsRoles = ['admin'];
   role: string = this.storage.getSessionItem('role') || '';
 
   constructor(private store: Store<State>, private storage: StorageService) {}

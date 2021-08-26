@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class UsersHrService {
   header = new HttpHeaders().set(
     'Authorization',
-    `Bearer ${this.auth.token[1]}`
+    `Bearer ${this.auth.token}`
   );
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
@@ -55,10 +55,17 @@ export class UsersHrService {
       {
         headers: {
           authorization:
-            `Bearer ${this.auth.token[1]}`,
+            `Bearer ${this.auth.token}`,
         },
         method: 'PUT',
       }
     );
+    // return this.http
+    //   .put(`${environment.api_URL}/api/users/allowStart?userId=${userId}`, {
+    //     headers: this.header,
+    //   })
+    //   .subscribe((res) => {
+    //     console.log(res);
+    //   });
   }
 }

@@ -59,4 +59,12 @@ export class StorageService {
       return null;
     }
   }
+
+  clearSession(): void {
+    try {
+      this.session.clear();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

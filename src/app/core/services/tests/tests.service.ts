@@ -22,9 +22,11 @@ export class TestsService {
   }
 
   completeTest() {
-    return fetch(`${environment.api_URL}/api/test/completeUser`, {method: "PUT", body: '',
+    return fetch(`${environment.api_URL}/api/test/completeUser`, {
+      method: 'PUT',
+      body: '',
       headers: {
-        Authorization: `Bearer ${this.auth.token[1]}`,
+        Authorization: `Bearer ${this.auth.token}`,
       },
     }).then(() => {
       this.router.navigate([PROFILE_PATH]);
@@ -33,5 +35,9 @@ export class TestsService {
 
   getLastTestTime() {
     return this.http.get(`${environment.api_URL}/api/test/lastTestTime`);
+  }
+
+  getAssignedTest() {
+    return this.http.get(`${environment.api_URL}/api/test/assignedToUser`);
   }
 }

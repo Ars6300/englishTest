@@ -48,6 +48,7 @@ export class AudioComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.audioSrc = this.getAudioId();
     this.getTestId$.pipe(take(1)).subscribe((id) => (this.testId = id));
     this.tryCount = this.storage.getLocalItem('audioTryCount') || 0;
+    this.storage.setLocalItem('audioPlaying', false);
   }
 
   ngAfterViewChecked(): void {

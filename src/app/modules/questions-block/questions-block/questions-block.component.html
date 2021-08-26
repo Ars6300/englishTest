@@ -4,6 +4,7 @@
     class="stepper"
     [disableRipple]="true"
     (selectionChange)="setIndex($event)"
+    id="stepper"
   >
     <mat-step *ngFor="let item of getQuestionsByType()">
       <p class="text">{{ question[index].question.text }}</p>

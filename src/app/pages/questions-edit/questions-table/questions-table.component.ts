@@ -102,7 +102,7 @@ export class QuestionsTableComponent implements OnInit {
   showUpdate!: boolean;
   materialValue!: FormGroup;
   file = '';
-  audioIdForEdit = '';
+  audioIdForEdit: any;
   guid = `00000000-0000-0000-0000-000000000000`;
 
   constructor(
@@ -146,6 +146,7 @@ export class QuestionsTableComponent implements OnInit {
   questionId = '';
   textInputType: any;
   objForEdit: any;
+  audioIdFor: any;
 
   onAddQuestion() {
     this.formValue.reset();
@@ -171,7 +172,7 @@ export class QuestionsTableComponent implements OnInit {
             method: 'POST',
             body: formData,
             headers: {
-              Authorization: `Bearer ${this.auth.token[1]}`,
+              Authorization: `Bearer ${this.auth.token}`,
             },
           }
         )
@@ -257,7 +258,8 @@ export class QuestionsTableComponent implements OnInit {
     }
 
     this.formValue.controls['type'].setValue(question.type);
-
+    this.audioIdFor =  question.audioId
+    
     this.formValue.controls['text'].setValue(question.text);
     this.formValue.controls['englishLevel'].setValue(question.englishLevel);
 
@@ -270,6 +272,11 @@ export class QuestionsTableComponent implements OnInit {
     this.questionModel.text = this.formValue.value.text;
     this.questionModel.type = this.formValue.value.type;
     this.questionModel.englishLevel = this.formValue.value.englishLevel;
+    
+    // this.questionsModelForPost.audioId = 
+
+    // console.log(this.audioIdForEdit);
+    
 
     let answersList = [
       {
@@ -294,12 +301,14 @@ export class QuestionsTableComponent implements OnInit {
       },
     ];
 
+
+
     this.objForEdit = {
       questionId: this.questionModel.questionId,
       text: this.questionModel.text,
       type: this.questionModel.type,
       englishLevel: this.questionModel.englishLevel,
-      audioId: this.audioIdForEdit ? this.audioIdForEdit : this.guid,
+      audioId: this.audioIdFor ? this.audioIdFor : this.guid,
       answers: answersList.filter((el: any) => !!el.text),
     };
 

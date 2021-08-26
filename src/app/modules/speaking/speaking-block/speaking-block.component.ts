@@ -138,7 +138,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
       method: 'POST',
       body: formData,
       headers: {
-        Authorization: `Bearer ${this.auth.token[1]}`,
+        Authorization: `Bearer ${this.auth.token}`,
       },
     })
       .then((res) => res.json())

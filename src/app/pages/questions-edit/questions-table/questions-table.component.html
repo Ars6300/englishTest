@@ -137,7 +137,8 @@
           </div>
         </form> -->
       <form [formGroup]="formValue" class="table-form">
-      <img src="../../../../assets/images/close.png" (click)="closeModal()" id="close-img" alt="close">
+      <!-- <img src="../../../../assets/images/close.png" (click)="closeModal()" id="close-img" alt="close"> -->
+      <mat-icon (click)="closeModal()" id="close-img">close</mat-icon>
       <ng-template matStepLabel>Create Question</ng-template>
       <mat-form-field class="input-table">
         <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
@@ -199,12 +200,12 @@
           <input matInput formControlName="answer5" name="answer5" />
         </mat-form-field>
         <div class="buttons" *ngIf="textInputType != '1'">
-          <button class="confirm-btn" (click)="postQuestionDetails()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
-          <button class="edit-btn" (click)="onUpdateQuestionDetails()" >{{ "PROFILE.EDIT_QUESTION" | translate }}</button>
+          <button class="confirm-btn" (click)="postQuestionDetails()" (click)="closeModal()">{{ "BUTTONS.ADD_QUESTION" | translate }}</button>
+          <button class="edit-btn" (click)="onUpdateQuestionDetails()" (click)="closeModal()">{{ "PROFILE.EDIT_QUESTION" | translate }}</button>
         </div>
       </form>
-      <mat-stepper class="stepper-edit" linear #stepper *ngIf="textInputType == '1'">
-        <mat-step [stepControl]="firstFormGroup" [editable]="isEditable" class="scroll-edit" >
+      <mat-stepper class="stepper-edit" #stepper *ngIf="textInputType == '1'">
+        <mat-step [stepControl]="firstFormGroup" class="scroll-edit" >
           <div class="stepper-wrap">
             <mat-form-field class="input-table" >
               <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
@@ -254,7 +255,7 @@
             </form>
           </div>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <mat-step [stepControl]="secondFormGroup">
           <div class="stepper-wrap">
             <mat-form-field class="input-table" >
               <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
@@ -304,7 +305,7 @@
             </form>
           </div>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <mat-step [stepControl]="secondFormGroup">
           <div class="stepper-wrap">
             <mat-form-field class="input-table" >
               <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
@@ -354,7 +355,7 @@
             </form>
           </div>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <mat-step [stepControl]="secondFormGroup">
           <div class="stepper-wrap">
             <mat-form-field class="input-table" >
               <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
@@ -404,7 +405,7 @@
             </form>
           </div>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <mat-step [stepControl]="secondFormGroup">
           <div class="stepper-wrap">
             <mat-form-field class="input-table" >
               <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
@@ -454,7 +455,7 @@
             </form>
           </div>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <mat-step [stepControl]="secondFormGroup">
           <div class="stepper-wrap">
             <mat-form-field class="input-table" >
               <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
@@ -504,7 +505,7 @@
             </form>
           </div>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <mat-step [stepControl]="secondFormGroup">
           <div class="stepper-wrap">
             <mat-form-field class="input-table" >
               <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
@@ -554,7 +555,7 @@
             </form>
           </div>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <mat-step [stepControl]="secondFormGroup">
           <div class="stepper-wrap">
             <mat-form-field class="input-table" >
               <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
@@ -604,7 +605,7 @@
             </form>
           </div>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <mat-step [stepControl]="secondFormGroup">
           <div class="stepper-wrap">
             <mat-form-field class="input-table" >
               <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>
@@ -654,7 +655,7 @@
             </form>
           </div>
         </mat-step>
-        <mat-step [editable]="isEditable">
+        <mat-step>
           <div class="stepper-wrap">
             <mat-form-field class="input-table" >
               <mat-label>{{ "EDIT.TYPE" | translate }}:</mat-label>

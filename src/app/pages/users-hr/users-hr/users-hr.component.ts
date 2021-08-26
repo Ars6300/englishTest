@@ -49,9 +49,7 @@ export class UsersHrComponent implements OnInit {
   userModel: UserModel = new UserModel();
   @ViewChild(MatTable) table!: MatTable<UserModel>;
 
-  userListMatTabDataSource = new MatTableDataSource<UserModel>(
-    this.dataSource
-  );
+  userListMatTabDataSource = new MatTableDataSource<UserModel>(this.dataSource);
 
   openEdit = false;
   formValue!: FormGroup;
@@ -61,15 +59,13 @@ export class UsersHrComponent implements OnInit {
   constructor(
     private usersHrService: UsersHrService,
     private formBuilder: FormBuilder,
-    private store: Store<State>,
+    private store: Store<State>
   ) {}
 
   ngOnInit(): void {
     this.getUserId$.pipe(take(1)).subscribe((id) => (this.userId = id));
 
     this.usersHrService.getUsers().subscribe((users$) => {
-      console.log(users$);
-      
       this.usersList = users$;
       this.dataSource = [...this.usersList];
       this.userListMatTabDataSource.data = this.dataSource;
@@ -89,14 +85,12 @@ export class UsersHrComponent implements OnInit {
 
     this.usersHrService
       .assignTest(this.userModel.id, this.userModel.level)
-      .subscribe(
-        (res: any) => {
-          const ref = document.getElementById('cancel');
-          ref?.click();
-          this.formValue.reset();
-          this.closeModal();
-        }
-      );
+      .subscribe((res: any) => {
+        const ref = document.getElementById('cancel');
+        ref?.click();
+        this.formValue.reset();
+        this.closeModal();
+      });
 
     /* this.usersHrService
       .assignTestOfUser(this.userModel.id, this.userModel.level)
@@ -131,10 +125,10 @@ export class UsersHrComponent implements OnInit {
     modal?.classList.add('modal-close');
     this.formValue.reset();
   }
-  onAssignTestAgain(user: UserModel){
+  onAssignTestAgain(user: UserModel) {
     console.log(user);
-    
-    this.usersHrService.allowStartTest(user.id)
+
+    this.usersHrService.allowStartTest(user.id);
   }
 
   getOption(event: any): any {

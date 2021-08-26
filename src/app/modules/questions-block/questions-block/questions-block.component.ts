@@ -3,7 +3,7 @@ import {
   QUESTION_LISTENING_PATH,
   WRITING_PATH,
 } from 'src/app/app-routing.constants';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -20,6 +20,7 @@ import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { QuestionType } from 'src/app/core/models/test.model';
 import { ErrorService } from 'src/app/core/services/error.service';
+import { MatStepper } from '@angular/material/stepper';
 @Component({
   selector: 'app-questions-block',
   templateUrl: './questions-block.component.html',

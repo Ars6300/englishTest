@@ -14,7 +14,7 @@ export class UsersAdminService {
   
   header = new HttpHeaders().set(
       'Authorization',
-      `Bearer ${this.auth.token[1]}`
+      `Bearer ${this.auth.token}`
     );
 
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
@@ -28,10 +28,13 @@ export class UsersAdminService {
   }
 
   getUsers(): Observable<Hr[]> {
-    
     return this.http.get<Hr[]>(
       `${environment.api_URL}/api/users?Page=0&Skip=10&Take=10&Role=couch`,
-      { headers: this.header }
+      { 
+        headers: {
+          authorization: `Bearer ${this.auth.token}`,
+        },
+      }
     );
   }
 

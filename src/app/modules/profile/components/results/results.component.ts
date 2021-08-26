@@ -26,7 +26,6 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
   selectResult(data: ProfileResult) {
     this.selectedResult = data;
-    console.log(data);
   }
 
   ngOnInit(): void {
@@ -36,7 +35,10 @@ export class ResultsComponent implements OnInit, OnDestroy {
     this.resultsSubscription = this.results$.subscribe((res) => {
       res.length ? (this.opened = true) : (this.opened = false);
       this.results = res;
+      console.log(this.results);
+      
     });
+    
   }
 
   ngOnDestroy(): void {
