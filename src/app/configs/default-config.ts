@@ -1,20 +1,24 @@
-import { NOTIFICATION_PATH, PROFILE_PATH } from '../modules/profile/profile-routing.constants';
+import { environment } from 'src/environments/environment';
+import {
+  NOTIFICATION_PATH,
+  PROFILE_PATH,
+} from '../modules/profile/profile-routing.constants';
 import { LogLevel } from './log-level';
 import { OpenIdConfiguration } from './openid-configuration';
 
 export const DEFAULT_CONFIG: OpenIdConfiguration = {
-  authority: 'https://localhost:5001',
-  authWellknownEndpointUrl: 'https://localhost:5001/.well-known/openid-configuration',
+  authority: environment.auth_url,
+  authWellknownEndpointUrl: `${environment.auth_url}/.well-known/openid-configuration`,
   // authWellknownEndpoints: null,
-  redirectUrl: `https://localhost:4200`,
+  redirectUrl: environment.local_url,
   clientId: 'client_tye',
   responseType: 'code',
   scope: 'openid role Front',
   hdParam: '',
-  postLogoutRedirectUri: 'https://localhost:4200',
+  postLogoutRedirectUri: environment.local_url,
   startCheckSession: false,
   silentRenew: true,
-  silentRenewUrl: 'https://localhost:5001',
+  silentRenewUrl: environment.auth_url,
   silentRenewTimeoutInSeconds: 20,
   renewTimeBeforeTokenExpiresInSeconds: 0,
   useRefreshToken: true,

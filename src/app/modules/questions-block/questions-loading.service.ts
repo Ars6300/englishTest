@@ -45,19 +45,16 @@ export class QuestionsLoadingService {
   }
 
   postQuestion(data: any) {
-    return fetch("https://localhost:44356/api/question/withAnswers", {
+    return fetch(`${environment.api_URL}/api/question/withAnswers`, {
       headers: {
         "accept": "application/json",
         "authorization": `Bearer ${this.auth.token}`,
         "content-type": "application/json",
       },
       body: JSON.stringify(data),
-      method: "POST",
+      method: 'POST',
     });
-
   }
-  
-  
 
   updateQuestion(data: QuestionModel) {
     console.log(data);
