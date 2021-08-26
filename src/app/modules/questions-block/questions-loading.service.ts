@@ -47,9 +47,9 @@ export class QuestionsLoadingService {
   postQuestion(data: any) {
     return fetch(`${environment.api_URL}/api/question/withAnswers`, {
       headers: {
-        accept: 'application/json',
-        authorization: `Bearer ${this.auth.token[1]}`,
-        'content-type': 'application/json',
+        "accept": "application/json",
+        "authorization": `Bearer ${this.auth.token}`,
+        "content-type": "application/json",
       },
       body: JSON.stringify(data),
       method: 'POST',
@@ -85,7 +85,7 @@ export class QuestionsLoadingService {
   downloadAudioForCoach(audioId: any, testId: string): Observable<Blob> {
     let header = new HttpHeaders().set(
       'Authorization',
-      `Bearer ${this.auth.token[1]}`
+      `Bearer ${this.auth.token}`
     );
     const url = `${environment.api_URL}/api/audio?audioId=${audioId}&testId=${testId}`;
     return this.http.get(url, { responseType: 'blob', headers: header }).pipe(

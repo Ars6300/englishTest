@@ -52,11 +52,9 @@ export class LoginComponent implements OnInit {
     this.oidcSecurityService
       .checkAuth()
       .pipe(take(1))
-      .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
+      .subscribe(({ isAuthenticated }) => {
         const authToken = this.oidcSecurityService.getAccessToken();
         const user = this.oidcSecurityService.getUserData();
-        console.log(authToken);
-        console.log(isAuthenticated);
         if (isAuthenticated) {
           setCookieParams(TOKEN, authToken, environment.COOKIE_KEEP_SECONDS);
           setCookieParams(

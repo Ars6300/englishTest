@@ -10,24 +10,12 @@ export class UsersCoachService {
 
   header = new HttpHeaders().set(
     'Authorization',
-    `Bearer ${this.auth.token[1]}`
+    `Bearer ${this.auth.token}`
   );;
   
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
-  getAssignedTests(): any {
-    /* fetch(`${environment.api_URL}/api/test/assignedToCouch}`, {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${this.auth.token[1]}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      }); */
- 
+  getAssignedTests(): any { 
     return this.http.get<string>(
       `${environment.api_URL}/api/test/assignedToCouch`,
       { headers: this.header }

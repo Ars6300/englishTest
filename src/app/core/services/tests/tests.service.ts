@@ -26,7 +26,7 @@ export class TestsService {
       method: 'PUT',
       body: '',
       headers: {
-        Authorization: `Bearer ${this.auth.token[1]}`,
+        Authorization: `Bearer ${this.auth.token}`,
       },
     }).then(() => {
       this.router.navigate([PROFILE_PATH]);

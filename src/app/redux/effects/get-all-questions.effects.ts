@@ -15,15 +15,15 @@ export class getAllQuestionsEffects {
     private questionService: QuestionsService
   ) {}
 
-  getAllQuestions$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(GetAllQuestionsActions.getQuestions),
-      concatMap((action) =>
-        this.questionService.getAllQuestions(action.typeModel, action.level).pipe(
-          map((allQuestions) => GetAllQuestionsActions.getQuestionsSuccess({ allQuestions })),
-          catchError((error) => of(GetAllQuestionsActions.getQuestionsFailure({ error })))
-        )
-      )
-    );
-  });
+  // getAllQuestions$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(GetAllQuestionsActions.getQuestions),
+  //     concatMap((action) =>
+  //       this.questionService.getAllQuestions(action.typeModel, action.level).pipe(
+  //         map((allQuestions) => GetAllQuestionsActions.getQuestionsSuccess({ allQuestions })),
+  //         catchError((error) => of(GetAllQuestionsActions.getQuestionsFailure({ error })))
+  //       )
+  //     )
+  //   );
+  // });
 }

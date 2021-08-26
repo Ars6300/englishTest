@@ -41,11 +41,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  // completeTest() {
-  //   this.testIdSubscription = this.testId$.pipe(take(1)).subscribe((testId) => {
-  //     this.store.dispatch(completeTest({ testId: testId }));
-  //   });
-  // }
   onCompleteClick() {
     this.testsService.completeTest();
   }
