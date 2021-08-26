@@ -8,16 +8,14 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class UsersHrService { 
-  
+export class UsersHrService {
   header = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.auth.token[1]}`
-    );
+    'Authorization',
+    `Bearer ${this.auth.token[1]}`
+  );
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
   getUsers(): Observable<Hr[]> {
-   
     return this.http.get<Hr[]>(
       `${environment.api_URL}/api/users?Page=0&Skip=10&Take=40`,
       { headers: this.header }
@@ -25,7 +23,6 @@ export class UsersHrService {
   }
 
   assignTest(userId: string, level: string) {
-
     return this.http
       .put<any>(
         `${environment.api_URL}/api/test/assignToUser`,
@@ -52,16 +49,16 @@ export class UsersHrService {
         })
       );
   } */
-
   allowStartTest(userId: string) {
-   
-    return this.http
-      .put(`${environment.api_URL}/api/users/allowStart?userId=${userId}`, {
-        headers: this.header,
-      })
-      .subscribe((res) => {
-        console.log(res);
-      });
+    return fetch(
+      `${environment.api_URL}/api/users/allowStart?userId=${userId}`,
+      {
+        headers: {
+          authorization:
+            `Bearer ${this.auth.token[1]}`,
+        },
+        method: 'PUT',
+      }
+    );
   }
 }
-// https://localhost:44356/api/users/allowStart?userId=EC05634A-5C36-4981-92A7-5E5DDFAEA306

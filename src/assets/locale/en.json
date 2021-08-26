@@ -57,7 +57,8 @@
     "CHOOSE": "Choose",
     "CHECK": "Check",
     "ADD_AND_CONFIRM": "Add and confirm",
-    "UPLOAD_FILE": "Choose file to upload"
+    "UPLOAD_FILE": "Choose file to upload",
+    "LOGOUT": "Logout"
   },
   "EDIT": {
     "TEXT": "Text",

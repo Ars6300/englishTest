@@ -233,7 +233,6 @@ export class QuestionsTableComponent implements OnInit {
   }
 
   getAllQuestions() {
-    console.log('asd');
     this.questionsLoadingService.getQuestions().subscribe((res) => {
       this.questionsData = res;
     });
@@ -243,7 +242,7 @@ export class QuestionsTableComponent implements OnInit {
     this.questionsLoadingService
       .deleteQuestion(question.questionId)
       .subscribe(() => {
-        return this.getAllQuestions();
+        
       });
   }
 

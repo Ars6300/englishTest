@@ -15,6 +15,7 @@ import { QuestionsState } from 'src/app/redux/models/questions.state.model';
 import { HttpClient } from '@angular/common/http';
 import { filter, take } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { TestsService } from 'src/app/core/services/tests/tests.service';
 
 @Component({
   selector: 'app-speaking-block',
@@ -49,7 +50,8 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
     private questionsLoadingService: QuestionsLoadingService,
     private questionStore: Store<QuestionsState>,
     private http: HttpClient,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private testsService: TestsService
   ) {
     this.audioRecordingService.recordingFailed().subscribe(() => {
       this.isRecording = false;
@@ -123,7 +125,6 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
   }
 
   onGetLink() {
-    // this.speakingService.uploadFile(this.blobPost)
     let file = new File([this.blobPost], 'audio', {
       lastModified: new Date().getTime(),
       type: this.blobPost.type,
@@ -131,7 +132,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
     const formData = new FormData();
     formData.append('uploadedFile', file);
 
-    let text = 'text';
+    let text = `text${Math.floor(Math.random() * 10000)}`;
 
     fetch(`${environment.api_URL}/api/audio?AudioDescription=${text}`, {
       method: 'POST',
@@ -148,9 +149,7 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
             `${environment.api_URL}/api/audio/id?audioId=${result.audioId}`,
             { responseType: 'blob' }
           )
-          .subscribe((response) => {
-            console.log(response);
-          });
+          .subscribe((response) => {});
       })
       .catch((e) => console.log(e));
   }
@@ -167,5 +166,9 @@ export class SpeakingBlockComponent implements OnInit, OnDestroy {
 
   getQuestionsByType() {
     return this.questionsList.filter((el) => el.type === this.currentType);
+  }
+
+  onCompleteClick() {
+    this.testsService.completeTest();
   }
 }

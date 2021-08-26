@@ -13,10 +13,10 @@ import { StorageService } from 'src/app/core/services/storage.service';
 export class ProfileComponent implements OnInit {
   tooltipPosition: TooltipPosition = 'after';
   ableToEditRoles = ['couch'];
-  ableToSeeUsers = ['HR'];
+  ableToSeeUsers = ['hr'];
   userRole = ['cser'];
   adminRole = ['admin'];
-  assigmentsRoles = ['HR', 'admin'];
+  assigmentsRoles = ['hr', 'admin'];
   role: string = this.storage.getSessionItem('role') || '';
 
   constructor(private store: Store<State>, private storage: StorageService) {}
